@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Rutas para el usuario
 Route::view('/', 'home')->name('home');
 Route::view('/login', 'login')->name('login');
+
+//Rutas para personal del municipio
+Route::view('/panel', 'panel')->name('panel');
 
 //Route::view('/about', 'about')->name('about');
 //Route::view('/contact', 'contact')->name('contact');
