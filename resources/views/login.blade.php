@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="{{url('css/custom_login.css')}}">
 <main class="form-signin w-100 m-auto">
   <form>
-   <!-- <center><img class="mb-4" src="img/logo-azul.png" alt="" width="220" height="57"></center>-->
     <div class="form-floating">
       <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
       <label for="floatingInput">Usuario</label>

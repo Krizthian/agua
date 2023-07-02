@@ -42,22 +42,6 @@
 
 <!--INICIO DEL CONTENIDO-->
 @yield('content')
-<!--<div class="container">
-	    <br>
-    <br>
-      <form>
-       <div class="col-auto">
-      <center><input type="text" class="form-control" placeholder="Número de medidor o cédula"></input></center>
-      <br>
-      <center><button type="submit" class="btn btn-primary">Consultar</button></center>
-      <br>
-</div>
-
-    </form>
-</div>-->
-
-<!-- FIN DEL CONTENIDO-->
-
 
 <!--INICIO DE FOOTER-->
 <br>
