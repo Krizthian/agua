@@ -21,7 +21,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
         <!--BOTONES MENU INICIO-->
-                  <a href="/consulta"  type="button" class="btn btn-primary me-2">Consulta</a>
+                  <a href="/panel"  type="button" class="btn btn-primary me-2">Consulta</a>
                   <a href="/medidores" type="button" class="btn btn-success me-2">Medidores</a>
                   <a href="/usuarios" type="button" class="btn btn-warning me-2">Usuarios</a>
                   <a href="/reportes" type="button" class="btn btn-danger me-2">Reportes</a>
