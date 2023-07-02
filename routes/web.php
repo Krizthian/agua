@@ -20,6 +20,7 @@ Route::view('/login', 'login')->name('login');
 //Rutas para personal del municipio
 Route::view('/panel', 'panel')->name('panel');
 Route::view('/medidores', 'medidores')->name('medidores');
+Route::view('/usuarios', 'usuarios')->name('usuarios');
 
 
 //Route::view('/about', 'about')->name('about');

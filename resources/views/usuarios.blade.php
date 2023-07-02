@@ -1,8 +1,8 @@
 @extends('layout_panel')
 
 @section('content')
-    <style>
-        /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (MEDIDORES)*/
+   <style>
+        /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (USUARIOS)*/
         table th {
             text-align: center; 
         }
@@ -22,14 +22,14 @@
      }
     </style>
 
-<center><h1><strong>GESTIÓN DE MEDIDORES</h1></strong></center>
+<center><h1><strong>GESTIÓN DE USUARIOS</h1></strong></center>
     <div class="container">
       <br>
-        <div class="col-md-12 bg-light text-right"><a href="crear-medidor" type="submit" class="btn btn-success float-end">Nuevo Medidor</a></div>
+        <div class="col-md-12 bg-light text-right"><a href="crear-usuario" type="submit" class="btn btn-success float-end">Nuevo Usuario</a></div>
         <br><br>
          <form>
            <div class="col-auto">
-            <center><input type="text" class="form-control" placeholder="Nombres, número de medidor o cédula"></input></center>
+     		 <center><input type="text" class="form-control" placeholder="Nombre de Usuario"></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-primary">Consultar</button></center></div>
           <br>

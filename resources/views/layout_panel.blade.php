@@ -23,7 +23,9 @@
         <!--BOTONES MENU INICIO-->
                   <a href="/panel"  type="button" class="btn btn-primary me-2">Consulta</a>
                   <a href="/medidores" type="button" class="btn btn-success me-2">Medidores</a>
-                  <a href="/usuarios" type="button" class="btn btn-warning me-2">Usuarios</a>
+                  <!--ESTE VINCULO SOLO SERA VISTO Y SERA ACCESIBLE PARA USUARIOS CON ROL DE ADMINISTRADOR-->
+                  <a href="/usuarios" type="button" class="btn btn-warning me-2">Usuarios</a> 
+                  <!--FIN VINCULO RESERVADO-->
                   <a href="/reportes" type="button" class="btn btn-danger me-2">Reportes</a>
                          
          <!--BOTONES MENU FIN-->
