@@ -1,6 +1,7 @@
 @extends('layout_home')
 
 @section('content')
+<center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
 <div class="container">
       <form>
     <br>
@@ -11,7 +12,6 @@
       <center><button type="submit" class="btn btn-primary">Consultar</button></center>
       <br>
 </div>
-
     </form>
 </div>
 

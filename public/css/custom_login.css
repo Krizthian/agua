@@ -1,0 +1,52 @@
+
+/*
+
+ARCHIVO CSS PERSONALIZADO
+
+CUSTOM_LOGIN
+
+Adapta el formulario de login a algo mas acorde a lo que se tiene establecido para la aplicacióm
+
+Autor: Cristhian Alejandro Ortiz Morales
+Fecha: 2 de julio de 2023
+
+*/
+
+html,
+body {
+  height: 100%;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+    body{}
+    .container{
+    background-color: #ecf0f1;
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    border: 0px solid #000000;
+    width: 30%;
+  }
+.bg-body-tertiary {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+}

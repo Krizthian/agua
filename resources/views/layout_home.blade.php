@@ -14,7 +14,7 @@
     <header>
 		<nav class="navbar navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
     <img src="{{url('img/logo.png')}}" width="170" height="50" alt="GAD DE PORTOVELO logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Desplegar navegación">
@@ -27,9 +27,9 @@
         </li>
       </ul>
 <div class="text-end">
-          <button type="button" class="btn btn-outline-primary me-2">                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+          <a href="/" type="button" class="btn btn-outline-primary me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
   <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"></path>
-</svg></button>
+</svg></a>
           <a type="button" href="/login" class="btn btn-success">Iniciar Sesión</a>
         </div>      </div>
   </div>
@@ -39,7 +39,6 @@
 <br>
 </header>
 <!-- FIN DE CABECERA-->
-    <center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
 
 <!--INICIO DEL CONTENIDO-->
 @yield('content')
@@ -75,9 +74,9 @@
 <footer class="my-5 pt-5 text-body-secondary text-center text-small">
     <p class="mb-1">© 2023 GAD Municipal de Portovelo</p>
     <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Inicio</a></li>
-      <li class="list-inline-item"><a href="#">Municipio</a></li>
-      <li class="list-inline-item"><a href="#">Ciudad</a></li>
+      <li class="list-inline-item"><a href="/">Inicio</a></li>
+      <li class="list-inline-item"><a href="http://portovelo.gob.ec">Municipio</a></li>
+      <li class="list-inline-item"><a href="http://www.portovelo.gob.ec/canton-portovelo/">Ciudad</a></li>
     </ul>
   </footer>
 <!--FIN DE FOOTER-->
