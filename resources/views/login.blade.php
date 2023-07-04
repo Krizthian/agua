@@ -1,4 +1,4 @@
-@extends('layout_home')
+@extends('layouts.layout_home')
 
 @section('content')
 <center><h1 ><strong>INICIAR SESIÓN</strong></h1></center>

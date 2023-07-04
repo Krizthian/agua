@@ -1,4 +1,4 @@
-@extends('layout_home')
+@extends('layouts.layout_home')
 
 @section('content')
 <center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
