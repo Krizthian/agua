@@ -1,5 +1,5 @@
 @extends('layouts.layout_panel')
-
+<title>Gestión de Reportes | Sistema de Consultas de Valores a Pagar del Agua</title>
 @section('content')
 	<style>
         /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (REPORTES)*/

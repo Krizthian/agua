@@ -1,5 +1,5 @@
 @extends('layouts.layout_home')
-
+<title>Inicio | Sistema de Consultas de Valores a Pagar del Agua</title>
 @section('content')
 <center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
 <div class="container">

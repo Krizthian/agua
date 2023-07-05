@@ -1,5 +1,5 @@
 @extends('layouts.layout_home')
-
+<title>Inicio de Sesión | Sistema de Consultas de Valores a Pagar del Agua</title>
 @section('content')
 <center><h1 ><strong>INICIAR SESIÓN</strong></h1></center>
 <link rel="stylesheet" href="{{url('css/custom_login.css')}}">
