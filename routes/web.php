@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 //Definimos los controladores creados
 use App\Http\Controllers\ValoresAPagarController;
 use App\Http\Controllers\MedidoresController;
+use App\Http\Controllers\ConsultaClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ use App\Http\Controllers\MedidoresController;
 //Rutas para el usuario
 Route::view('/', 'home')->name('home');
 Route::view('/login', 'login')->name('login');
+Route::view('/consulta_cliente', 'consulta_cliente')->name('consulta_cliente');
 
 //Rutas para personal del municipio
 Route::view('/panel', 'panel')->name('panel');
@@ -32,6 +34,7 @@ Route::view('/medidores', 'medidores')->name('medidores');
 
 Route::view('/reportes', 'reportes')->name('reportes');
 Route::view('/usuarios', 'usuarios')->name('usuarios');
+Route::resource('/consulta_cliente', ConsultaClienteController::class);
 
 
 

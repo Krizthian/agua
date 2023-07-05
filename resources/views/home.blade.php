@@ -3,11 +3,11 @@
 @section('content')
 <center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
 <div class="container">
-      <form>
+      <form action="{{route('consulta_cliente.index')}}" method="GET">
     <br>
     <br>
        <div class="col-auto">
-      <center><input type="text" class="form-control" placeholder="Número de medidor o cédula"></input></center>
+      <center><input type="text" name="medidor_cedula" id="medidor_cedula" class="form-control" placeholder="Número de medidor o cédula" required></input></center>
       <br>
       <center><button type="submit" class="btn btn-primary">Consultar</button></center>
       <br>
