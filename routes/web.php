@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ValoresAPagarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,10 @@ Route::view('/login', 'login')->name('login');
 
 //Rutas para personal del municipio
 Route::view('/panel', 'panel')->name('panel');
+
+	//Rutas para mostrar (panel)
+		Route::get('/panel', [ValoresAPagarController::class, 'index']);
+
 Route::view('/medidores', 'medidores')->name('medidores');
 Route::view('/reportes', 'reportes')->name('reportes');
 Route::view('/usuarios', 'usuarios')->name('usuarios');
