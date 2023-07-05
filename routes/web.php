@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+//Definimos los controladores creados
 use App\Http\Controllers\ValoresAPagarController;
+use App\Http\Controllers\MedidoresController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +23,13 @@ Route::view('/login', 'login')->name('login');
 
 //Rutas para personal del municipio
 Route::view('/panel', 'panel')->name('panel');
-
-	//Rutas para mostrar (panel)
+	//Rutas para mostrar (valores a pagar)
 		Route::get('/panel', [ValoresAPagarController::class, 'index']);
 
 Route::view('/medidores', 'medidores')->name('medidores');
+	//Rutas para mostrar (medidores)
+		Route::get('/medidores', [MedidoresController::class, 'index']);
+
 Route::view('/reportes', 'reportes')->name('reportes');
 Route::view('/usuarios', 'usuarios')->name('usuarios');
 
