@@ -28,7 +28,9 @@
             </tr>
           </thead>
           <tbody>
-            @if($pagos_consulta)
+            @if(count($pagos_consulta)<=0)
+            <center><tr><td colspan="8">No se han encontrado resultados</td></tr></center>
+            @else
                 @foreach($pagos_consulta as $pagosConsultaItem)
             <tr>
               <td class="td_acciones">{{$pagosConsultaItem->numero_medidor}}</td>
