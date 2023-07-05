@@ -18,7 +18,6 @@
           <thead>
             <tr>
               <th scope="col">Medidor</th>
-              <th scope="col">Cedula</th>
               <th scope="col">Valor actual</th>
               <th scope="col">Meses en mora</th>
               <th scope="col">Valor pagado</th>
@@ -34,7 +33,6 @@
                 @foreach($pagos_consulta as $pagosConsultaItem)
             <tr>
               <td class="td_acciones">{{$pagosConsultaItem->numero_medidor}}</td>
-              <td class="td_acciones">{{$pagosConsultaItem->cedula}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_actual}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->meses_mora}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_pagado}}</td>
