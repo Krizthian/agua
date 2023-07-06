@@ -18,10 +18,10 @@ public function index(Request $request){
         $query = Pagos::query();
 
     // Verificar si se ha proporcionado "numero_medidor" o "cedula" y agregar condiciones a la consulta
-        if ($medidor_cedula) {
+        if (isset($medidor_cedula)) {
             $query->where('numero_medidor', $medidor_cedula)
             ->orWhere('cedula', $medidor_cedula);
-        }
+        
 
     // Ejecutar la consulta y obtener los resultados
         $resultados = $query->get();
@@ -36,6 +36,12 @@ public function index(Request $request){
                         ->orWhere('cedula','LIKE', '%'.$texto.'%')->get();
                         return view('consulta_cliente', compact('pagos_consulta', 'texto'));
                     */
+                        
+      //Si no se ha pasado ningun valor, redireccionamos al inicio                  
+        }else{
+        // Redireccionamos
+            return redirect('/');
+        }                
 }
     /**
      * Show the form for creating a new resource.
