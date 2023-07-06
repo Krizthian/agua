@@ -4,6 +4,7 @@
 <center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
 <div class="container">
       <form action="{{route('consulta_cliente.index')}}" method="GET">
+        @csrf
     <br>
     <br>
        <div class="col-auto">
@@ -34,7 +35,7 @@
             <tr>
               <td class="td_acciones">{{$pagosConsultaItem->numero_medidor}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_actual}}</td>
-              <td class="td_acciones">{{$pagosConsultaItem->meses_mora}}</td>
+              <td class="td_acciones">{{$pagosConsultaItem->meses_mora}} meses</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_pagado}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_restante}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha}}</td>
@@ -43,6 +44,7 @@
             @endif
           </tbody>
         </table>
+        <!--FIN DE LA TABLA CON DATOS-->
         <br>
 </div>
 

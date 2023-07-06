@@ -4,6 +4,7 @@
 <center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
 <div class="container">
       <form action="{{route('consulta_cliente.index')}}" method="GET">
+        @csrf
     <br>
     <br>
        <div class="col-auto">
