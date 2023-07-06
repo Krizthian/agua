@@ -7,7 +7,7 @@
     <br>
     <br>
        <div class="col-auto">
-      <center><input type="text" name="medidor_cedula" id="medidor_cedula" class="form-control" placeholder="{{$texto}}" required></input></center>
+      <center><input type="text" name="medidor_cedula" id="medidor_cedula" class="form-control" placeholder="{{$medidor_cedula}}" required></input></center>
       <br>
       <center><button type="submit" class="btn btn-primary">Consultar</button></center>
       <br>
@@ -27,10 +27,10 @@
             </tr>
           </thead>
           <tbody>
-            @if(count($pagos_consulta)<=0)
+            @if(count($resultados)<=0)
             <center><tr><td colspan="8">No se han encontrado resultados</td></tr></center>
             @else
-                @foreach($pagos_consulta as $pagosConsultaItem)
+                @foreach($resultados as $pagosConsultaItem)
             <tr>
               <td class="td_acciones">{{$pagosConsultaItem->numero_medidor}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_actual}}</td>

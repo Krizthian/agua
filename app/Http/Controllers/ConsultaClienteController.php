@@ -8,19 +8,35 @@ use Illuminate\Support\Facades\DB;
 
 class ConsultaClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request_consulta)
-    {
-        $texto = trim($request_consulta= $request_consulta->get('medidor_cedula'));
-        $pagos_consulta=DB::table('pagos')
-        ->select('numero_medidor', 'valor_actual', 'meses_mora', 'valor_pagado', 'valor_restante', 'fecha', 'cedula')
-        ->where('numero_medidor','LIKE', '%'.$texto.'%')
-        ->orWhere('cedula','LIKE', '%'.$texto.'%')->get();
-        return view('consulta_cliente', compact('pagos_consulta', 'texto'));
-    }
 
+public function index(Request $request){
+
+    // Obtener los valores pasados por el formulario
+        $medidor_cedula = $request->input('medidor_cedula');
+
+    // Consulta Eloquent
+        $query = Pagos::query();
+
+    // Verificar si se ha proporcionado "numero_medidor" o "cedula" y agregar condiciones a la consulta
+        if ($medidor_cedula) {
+            $query->where('numero_medidor', $medidor_cedula)
+            ->orWhere('cedula', $medidor_cedula);
+        }
+
+    // Ejecutar la consulta y obtener los resultados
+        $resultados = $query->get();
+
+    // Retornar los resultados
+        return view('consulta_cliente', compact('resultados', 'medidor_cedula'));
+                    /**
+                        $texto = trim($request_consulta= $request_consulta->get('medidor_cedula'));
+                        $pagos_consulta=DB::table('pagos')
+                        ->select('numero_medidor', 'valor_actual', 'meses_mora', 'valor_pagado', 'valor_restante', 'fecha', 'cedula')
+                        ->where('numero_medidor','LIKE', '%'.$texto.'%')
+                        ->orWhere('cedula','LIKE', '%'.$texto.'%')->get();
+                        return view('consulta_cliente', compact('pagos_consulta', 'texto'));
+                    */
+}
     /**
      * Show the form for creating a new resource.
      */
