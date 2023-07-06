@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pagos; //Importamos el modelo
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 
 class ConsultaClienteController extends Controller
 {
