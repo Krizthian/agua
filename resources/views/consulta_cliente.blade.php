@@ -45,7 +45,10 @@
           </tbody>
         </table>
         <!--FIN DE LA TABLA CON DATOS-->
-        <br>
+        <!--BOTON DE IMPRIMIR-->
+        <div class="col-md-12 bg-light text-right"><input class="btn btn-info float-end" type="button" name="imprimir" value="Imprimir" onclick="window.print();"></input></div>
+        <!--FIN DE BOTON DE IMPRIMIR-->
+        <br><br>
 </div>
 
 @endsection('content')
