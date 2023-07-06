@@ -34,6 +34,8 @@ Route::view('/medidores', 'medidores')->name('medidores');
 
 Route::view('/reportes', 'reportes')->name('reportes');
 Route::view('/usuarios', 'usuarios')->name('usuarios');
+
+//Controlador para la consulta de valores a pagar por parte del ciudadano
 Route::resource('/consulta_cliente', ConsultaClienteController::class);
 
 
