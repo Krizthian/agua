@@ -20,28 +20,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-        <!--    <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="#">Consulta</a>
+       <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/panel">Consulta</a>
               </li>
             <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="#">Medidores</a>
+                <a class="nav-link" aria-current="page" href="/medidores">Medidores</a>
               </li>
+            <!--ESTE VINCULO SOLO SERA VISTO Y SERA ACCESIBLE PARA USUARIOS CON ROL DE ADMINISTRADOR-->
               <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="#">Usuarios</a>
+                <a class="nav-link" aria-current="page" href="/usuarios">Usuarios</a>
               </li>
+             <!--FIN VINCULO RESERVADO-->
               <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="#">Reportes</a>
-              </li>-->
-            <!--BOTONES MENU INICIO-->
-              <a href="/panel"  type="button" class="btn btn-primary me-2">Consulta</a>
-              <a href="/medidores" type="button" class="btn btn-success me-2">Medidores</a>
-              
-              <!--ESTE VINCULO SOLO SERA VISTO Y SERA ACCESIBLE PARA USUARIOS CON ROL DE ADMINISTRADOR-->
-              <a href="/usuarios" type="button" class="btn btn-warning me-2">Usuarios</a> 
-              <!--FIN VINCULO RESERVADO-->
-
-              <a href="/reportes" type="button" class="btn btn-danger me-2">Reportes</a>   
-         <!--BOTONES MENU FIN-->
+                <a class="nav-link" aria-current="page" href="/reportes">Reportes</a>
+              </li>
         </li>
       </ul>
       <!--TEXTO DE SALUDO-->
