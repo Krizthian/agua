@@ -1,3 +1,8 @@
+@if(session()->get('sesion')['rol'] != 'administrador')
+  <script>
+    window.location = "/panel";
+  </script>
+@else
 @extends('layouts.layout_panel')
 <title>Gestión de Usuarios | Sistema de Consultas de Valores a Pagar del Agua</title>
 @section('content')
@@ -40,3 +45,5 @@
     </div>
 
 @endsection('content')
+
+@endif
