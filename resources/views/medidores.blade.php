@@ -43,10 +43,9 @@
               <th scope="col">Propietario</th>
               <th scope="col">Cédula</th>
               <th scope="col">Dirección</th>
-              <th scope="col">Télefono</th>
+              <th scope="col">Teléfono</th>
               <th scope="col">Estado del Servicio</th>
-              <center><th scope="col">Acciones</th></center>
-           
+              <th scope="col" align="center">Acciones</th> 
             </tr>
           </thead>
           <tbody>

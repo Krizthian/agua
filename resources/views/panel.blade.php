@@ -39,14 +39,13 @@
           <thead>
             <tr>
               <th scope="col">Medidor</th>
-              <th scope="col">Cedula</th>
+              <th scope="col">Cédula</th>
               <th scope="col">Valor actual</th>
               <th scope="col">Meses en mora</th>
               <th scope="col">Valor pagado</th>
               <th scope="col">Valor restante</th>
-              <th scope="col">Ultima fecha de pago</th>
-              <center><th scope="col">Acciones</th></center>
-           
+              <th scope="col">Última fecha de pago</th>
+              <th scope="col" align="center">Acciones</th>        
             </tr>
           </thead>
           <tbody>

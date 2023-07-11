@@ -23,8 +23,7 @@
               <th scope="col">Meses en mora</th>
               <th scope="col">Valor pagado</th>
               <th scope="col">Valor restante</th>
-              <th scope="col">Ultima fecha de pago</th>
-           
+              <th scope="col">Última fecha de pago</th>  
             </tr>
           </thead>
           <tbody>
