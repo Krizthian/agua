@@ -44,7 +44,6 @@
               <th scope="col">Cédula</th>
               <th scope="col">Dirección</th>
               <th scope="col">Teléfono</th>
-              <th scope="col">Estado del Servicio</th>
               <th scope="col" align="center">Acciones</th> 
             </tr>
           </thead>
@@ -57,7 +56,6 @@
               <td class="td_acciones">{{$medidoresItem->cedula}}</td>
               <td class="td_acciones">{{$medidoresItem->direccion}}</td>
               <td class="td_acciones">{{$medidoresItem->telefono}}</td>
-              <td class="td_acciones">{{$medidoresItem->estado_servicio}}</td>
               <td class="td_acciones">
                 <!--BOTON EDITAR-->
                     <a type="button" href="editar.php" class="btn btn-outline-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

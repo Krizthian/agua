@@ -45,6 +45,7 @@
               <th scope="col">Valor pagado</th>
               <th scope="col">Valor restante</th>
               <th scope="col">Última fecha de pago</th>
+              <th scope="col">Estado del servicio</th>
               <th scope="col" align="center">Acciones</th>        
             </tr>
           </thead>
@@ -59,6 +60,7 @@
               <td class="td_acciones">$ {{$valoresPagarItem->valor_pagado}}</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_restante}}</td>
               <td class="td_acciones">{{$valoresPagarItem->fecha}}</td>
+              <td class="td_acciones">{{$valoresPagarItem->estado_servicio}}</td>
               <td class="td_acciones">
                 <!--BOTON REGISTRAR PAGO-->
                 <a type="button" href="registrar_pago.php" class="btn btn-outline-success">Registrar Pago</a>

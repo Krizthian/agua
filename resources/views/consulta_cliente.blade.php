@@ -1,6 +1,26 @@
 @extends('layouts.layout_home')
 <title>Inicio | Sistema de Consultas de Valores a Pagar del Agua</title>
 @section('content')
+<style>
+  /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (PAGINA DE INICIO)*/
+    table th {
+      text-align: center; 
+    }
+    .td_acciones{
+      text-align: center;
+    }
+    .container{
+      background-color: #ecf0f1;
+      border-radius: 6px 6px 6px 6px;
+      -moz-border-radius: 6px 6px 6px 6px;
+      -webkit-border-radius: 6px 6px 6px 6px;
+      border: 0px solid #000000;
+    }
+    .bg-body-tertiary {
+      --bs-bg-opacity: 1;
+      background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+    }
+</style>
 <center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
 <div class="container">
       <form action="{{route('consulta_cliente.index')}}" method="GET">
@@ -15,7 +35,7 @@
 </div>
     </form>
         <!--INICIO TABLA CON DATOS-->
-        <table class=" table-responsive table table-bordered table-striped table-sm">
+        <table class="table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
               <th scope="col">Medidor</th>
@@ -24,6 +44,7 @@
               <th scope="col">Valor pagado</th>
               <th scope="col">Valor restante</th>
               <th scope="col">Última fecha de pago</th>  
+              <th scope="col">Estado del servicio</th>  
             </tr>
           </thead>
           <tbody>
@@ -38,6 +59,7 @@
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_pagado}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_restante}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha}}</td>
+              <td class="td_acciones">{{$pagosConsultaItem->estado_servicio}}</td>
             </tr> 
             @endforeach
             @endif
