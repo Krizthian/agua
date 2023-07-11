@@ -27,7 +27,8 @@ class ValoresAPagarController extends Controller
         //Verificamos si se recibio un valor        
             if(isset($valores)){
                 $query->where('numero_medidor', $valores)
-                      ->orWhere('cedula', $valores);
+                      ->orWhere('cedula', $valores)
+                      ->orWhere('apellido', $valores);
             }
 
          //Ejecutamos la consulta

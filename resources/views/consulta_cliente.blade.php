@@ -39,6 +39,7 @@
           <thead>
             <tr>
               <th scope="col">Medidor</th>
+              <th scope="col">Cliente</th>
               <th scope="col">Valor actual</th>
               <th scope="col">Meses en mora</th>
               <th scope="col">Valor pagado</th>
@@ -54,6 +55,7 @@
                 @foreach($resultados as $pagosConsultaItem)
             <tr>
               <td class="td_acciones">{{$pagosConsultaItem->numero_medidor}}</td>
+              <td class="td_acciones">{{$pagosConsultaItem->nombre}} {{$pagosConsultaItem->apellido}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_actual}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->meses_mora}} meses</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_pagado}}</td>

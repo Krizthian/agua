@@ -27,7 +27,7 @@
 			<br><br>
 			    <form action="{{route('panel.busqueda')}}" method="GET">
 			       <div class="col-auto">
-			      <center><input type="text" name="valores" class="form-control" placeholder="Número de medidor o cédula"></input></center>
+			      <center><input type="text" name="valores" class="form-control" placeholder="Apellidos, número de medidor o cédula"></input></center>
 			      <br>
 			      <center><button type="submit" class="btn btn-primary">Consultar</button></center>
 			      <br>
@@ -40,6 +40,7 @@
             <tr>
               <th scope="col">Medidor</th>
               <th scope="col">Cédula</th>
+              <th scope="col">Cliente</th>
               <th scope="col">Valor actual</th>
               <th scope="col">Meses en mora</th>
               <th scope="col">Valor pagado</th>
@@ -55,6 +56,7 @@
             <tr>
               <td class="td_acciones">{{$valoresPagarItem->numero_medidor}}</td>
               <td class="td_acciones">{{$valoresPagarItem->cedula}}</td>
+              <td class="td_acciones">{{$valoresPagarItem->nombre}} {{$valoresPagarItem->apellido}}</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_actual}}</td>
               <td class="td_acciones">{{$valoresPagarItem->meses_mora}}</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_pagado}}</td>
