@@ -89,7 +89,7 @@
 <br>
 <br><br>
 <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-    <p class="mb-1">© 2023 GAD Municipal de Portovelo</p>
+    <p class="mb-1">© {{date('Y')}} GAD Municipal de Portovelo</p>
     <ul class="list-inline">
       <li class="list-inline-item"><a href="/">Inicio</a></li>
       <li class="list-inline-item"><a href="http://portovelo.gob.ec">Municipio</a></li>
