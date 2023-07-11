@@ -1,4 +1,4 @@
-@if(session()->get('sesion')['rol'] != 'administrador')
+@if(isset(session()->get('sesion')['usuario']) && session()->get('sesion')['rol'] != 'administrador')
   <script>
     window.location = "/panel";
   </script>
