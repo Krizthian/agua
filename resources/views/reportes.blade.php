@@ -30,7 +30,7 @@
           <div class="form-group">
           <select class="form-select" id="tipo" name="tipo">
             <option>Pagos</option>
-            <option>Deudores</option>
+            <option>Medidores Inactivos</option>
   </select>
   <br>
           <center><label><strong>Mes</strong></label></center>

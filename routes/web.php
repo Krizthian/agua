@@ -36,6 +36,7 @@ Route::post('/salir', [SalirController::class, 'salir'])->name('salir');
 Route::view('/panel', 'panel')->name('panel');
 	//Rutas para mostrar (valores a pagar)
 		Route::get('/panel', [ValoresAPagarController::class, 'index']);
+		Route::get('/panel/busqueda', [ValoresAPagarController::class, 'busqueda'])->name('panel.busqueda');
 
 Route::view('/medidores', 'medidores')->name('medidores');
 	//Rutas para mostrar (medidores)

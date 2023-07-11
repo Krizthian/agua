@@ -16,6 +16,27 @@ class ValoresAPagarController extends Controller
         return view('panel', compact('valores_pagar'));
     }
 
+    public function busqueda(Request $request)
+    {
+        //Obtenemos los valores del formulario anterior
+            $valores = $request->input('valores');
+
+        //Consulta Eloquent
+            $query = Pagos::query();
+
+        //Verificamos si se recibio un valor        
+            if(isset($valores)){
+                $query->where('numero_medidor', $valores)
+                      ->orWhere('cedula', $valores);
+            }
+
+         //Ejecutamos la consulta
+            $valores_pagar = $query->paginate(10); //Solicitamos un maximo de valores para el paginado
+
+         //Retornamos los valores
+            return view('panel', compact('valores_pagar'));   
+    }
+
     /**
      * Show the form for creating a new resource.
      */
