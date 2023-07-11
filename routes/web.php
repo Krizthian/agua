@@ -3,11 +3,12 @@
 use Illuminate\Support\Facades\Route;
 
 //Definimos los controladores creados
-use App\Http\Controllers\ValoresAPagarController;
-use App\Http\Controllers\MedidoresController;
-use App\Http\Controllers\ConsultaClienteController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\SalirController;
+use App\Http\Controllers\ValoresAPagarController; //Controlador de consulta (personal)
+use App\Http\Controllers\MedidoresController; //Controlador de Medidores
+use App\Http\Controllers\ConsultaClienteController; //Controlador de consulta (ciudadano)
+use App\Http\Controllers\LoginController; //Controlador de Login
+use App\Http\Controllers\SalirController; //Controlador de Logout
+use App\Http\Controllers\UsuariosController; //Controlador de Usuarios
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,11 @@ Route::view('/medidores', 'medidores')->name('medidores');
 	//Rutas para mostrar (medidores)
 		Route::get('/medidores', [MedidoresController::class, 'index']);
 
-Route::view('/reportes', 'reportes')->name('reportes');
 Route::view('/usuarios', 'usuarios')->name('usuarios');
+	//Rutas para mostrar (usuarios)
+		Route::get('/usuarios', [UsuariosController::class, 'index']);
+
+Route::view('/reportes', 'reportes')->name('reportes');
 
 //Controlador para la consulta de valores a pagar por parte del ciudadano
 Route::resource('/consulta_cliente', ConsultaClienteController::class);
