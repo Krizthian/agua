@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ValoresAPagarController;
 use App\Http\Controllers\MedidoresController;
 use App\Http\Controllers\ConsultaClienteController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ use App\Http\Controllers\ConsultaClienteController;
 Route::view('/', 'home')->name('home');
 Route::view('/login', 'login')->name('login');
 Route::view('/consulta_cliente', 'consulta_cliente')->name('consulta_cliente');
+
+//Ruta para proceso de Login
+Route::post('/login', [LoginController::class, 'login']);
 
 //Rutas para personal del municipio
 Route::view('/panel', 'panel')->name('panel');

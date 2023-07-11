@@ -1,10 +1,16 @@
+@if(isset(session()->get('sesion')['usuario']))
+  <script>
+    window.location = "/panel";
+  </script>
+@else
 @extends('layouts.layout_home')
 <title>Inicio de Sesión | Sistema de Consultas de Valores a Pagar del Agua</title>
 @section('content')
 <center><h1 ><strong>INICIAR SESIÓN</strong></h1></center>
 <link rel="stylesheet" href="{{url('css/custom_login.css')}}">
 <main class="form-signin w-100 m-auto">
-  <form>
+  <form action="{{route('login')}}" method="POST" >
+    @csrf
     <div class="form-floating">
       <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" required>
       <label for="usuario">Usuario</label>
@@ -24,3 +30,4 @@
 <br>
 
 @endsection('content')
+@endif
