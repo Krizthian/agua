@@ -7,6 +7,7 @@ use App\Http\Controllers\ValoresAPagarController;
 use App\Http\Controllers\MedidoresController;
 use App\Http\Controllers\ConsultaClienteController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SalirController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,9 @@ Route::view('/consulta_cliente', 'consulta_cliente')->name('consulta_cliente');
 
 //Ruta para proceso de Login
 Route::post('/login', [LoginController::class, 'login']);
+//Ruta para hacer un logout
+Route::post('/salir', [SalirController::class, 'salir'])->name('salir');
+
 
 //Rutas para personal del municipio
 Route::view('/panel', 'panel')->name('panel');
