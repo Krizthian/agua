@@ -34,8 +34,6 @@ class LoginController extends Controller
                             $rol = $resultadosSesion->rol;
                             //Iniciamos la sesion y guardamos la cookie 
                                 if ($usuario == $usuarioBD && $password == $passwordBD) {
-                                       //Iniciamos la sesión
-                                            session_start();
                                        //Guardamos el rol y el usuario en variables de sesion
                                             $request->session()->put('sesion', ['usuario' => $usuario, 'rol' => $rol ]);
                                        //Redireccionamos 
