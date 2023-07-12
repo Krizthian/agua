@@ -48,7 +48,9 @@
             </tr>
           </thead>
           <tbody>
-            @if($medidores)
+            @if(count($medidores)<=0)
+              <center><tr><td colspan="8">No se han encontrado resultados</td></tr></center>
+            @else
                 @foreach ($medidores as $medidoresItem)
             <tr>
               <td class="td_acciones">{{$medidoresItem->numero_medidor}}</td>

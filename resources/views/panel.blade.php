@@ -51,7 +51,9 @@
             </tr>
           </thead>
           <tbody>
-          	@if($valores_pagar)
+          	@if(count($valores_pagar)<=0)
+              <center><tr><td colspan="8">No se han encontrado resultados</td></tr></center>
+            @else
           		@foreach ($valores_pagar as $valoresPagarItem)
             <tr>
               <td class="td_acciones">{{$valoresPagarItem->numero_medidor}}</td>
