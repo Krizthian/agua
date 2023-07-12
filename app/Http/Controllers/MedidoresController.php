@@ -16,6 +16,27 @@ class MedidoresController extends Controller
         return view('medidores', compact('medidores'));
     }
 
+    public function busqueda(Request $request)
+    {
+        //Obtenemos los valores del formulario anterior
+            $valores = $request->input('valores');
+        
+        //Consulta Eloquent
+                $query = Medidores::query();
+
+        //Verificamos si se recibio un valor        
+            if(isset($valores)){
+                $query->where('numero_medidor', $valores)
+                      ->orWhere('cedula', $valores)
+                      ->orWhere('apellido', $valores);
+            }
+
+        //Ejecutamos la consulta
+            $medidores = $query->paginate(10); //Solicitamos un maximo de valores para el paginado  
+
+        //Retornamos los valores
+            return view('medidores', compact('medidores'));              
+    }
     /**
      * Show the form for creating a new resource.
      */

@@ -41,6 +41,7 @@ Route::view('/panel', 'panel')->name('panel');
 Route::view('/medidores', 'medidores')->name('medidores');
 	//Rutas para mostrar (medidores)
 		Route::get('/medidores', [MedidoresController::class, 'index']);
+		Route::get('/medidores/busqueda', [MedidoresController::class, 'busqueda'])->name('medidores.busqueda');
 
 Route::view('/usuarios', 'usuarios')->name('usuarios');
 	//Rutas para mostrar (usuarios)
