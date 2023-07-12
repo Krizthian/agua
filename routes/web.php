@@ -9,6 +9,7 @@ use App\Http\Controllers\ConsultaClienteController; //Controlador de consulta (c
 use App\Http\Controllers\LoginController; //Controlador de Login
 use App\Http\Controllers\SalirController; //Controlador de Logout
 use App\Http\Controllers\UsuariosController; //Controlador de Usuarios
+use App\Http\Controllers\ReportesController; //Controlador de Reportes
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::view('/usuarios', 'usuarios')->name('usuarios');
 		Route::get('/usuarios/busqueda', [UsuariosController::class, 'busqueda'])->name('usuarios.busqueda');
 
 Route::view('/reportes', 'reportes')->name('reportes');
+	Route::get('/reportes/generar', [ReportesController::class, 'generar'])->name('reportes.generar');
 
 //Route::view('/about', 'about')->name('about');
 //Route::view('/contact', 'contact')->name('contact');
