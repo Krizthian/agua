@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
-use Carbon\Carbon; //Importamos la libreria 'Carbon' para manipular fechas
 
 class ReportesController extends Controller
 {
@@ -17,18 +16,26 @@ class ReportesController extends Controller
             $tipo = $request->input('tipo');
             $mes = $request->input('mes');
             $year = $request->input('year');
+            //Combinamos el 'año' y 'mes'
+             $month_year = $year.'-'.$mes;
 
-            $month_year = $year.'-'.$mes;
         //Generación de reporte de pagos              
-        if ($tipo = 'pagos') {
-                $query = Pagos::whereMonth('fecha', Carbon::parse($year.'-'.$mes)->month)->get();
+        if ($tipo == 'pagos') {
+                $query = Pagos::where('fecha', 'LIKE', $month_year.'%')->get();
         //Devolvemos los valores        
                return view('reportes', compact('query'));
 
-        //Generación de reporte de medidores   
-        // }elseif ($tipo = 'medidores_inactivos') {
-                // code...
-        
-         } 
+        /*Obtención de reportes Inactivos y Activos*/
+                //Generación de reporte de medidores que se envuentren inactivos  
+                }elseif ($tipo == 'medidores_inactivos') {
+                       $query = Pagos::where('estado_servicio', 'inactivo')->get();  
+                        //Devolvemos los valores        
+                       return view('reportes', compact('query'));
+                //Generación de reporte de medidores que se envuentren inactivos        
+                 }elseif ($tipo == 'medidores_activos') {
+                       $query = Pagos::where('estado_servicio', 'activo')->get();  
+                        //Devolvemos los valores        
+                       return view('reportes', compact('query'));
+                 }  
     }
 }

@@ -31,12 +31,13 @@
           <select class="form-select" id="tipo" name="tipo" required>
             <option value="" disabled selected>Seleccione un tipo de reporte</option>
             <option value="pagos">Pagos</option>
+            <option value="medidores_activos">Medidores Activos</option>
             <option value="medidores_inactivos">Medidores Inactivos</option>
   </select>
   <br>
           <center><label><strong>Mes</strong></label></center>
           <div class="form-group">
-          <select class="form-select" id="mes" name="mes" required>
+          <select class="form-select" id="mes" name="mes">
             <option value="" disabled selected>Seleccione un mes</option>
             <option value="01">Enero</option>
             <option value="02">Febrero</option>
@@ -56,7 +57,7 @@
     <br>
           <center><label><strong>Año</strong></label></center>
           <div class="form-group">
-          <select class="form-select" id="year" name="year" required>
+          <select class="form-select" id="year" name="year" >
             <option value="" disabled selected>Seleccione un año</option>
             <option>2023</option>
             <option>2022</option>
