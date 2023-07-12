@@ -26,12 +26,12 @@ class ReportesController extends Controller
                return view('reportes', compact('query'));
 
         /*Obtención de reportes Inactivos y Activos*/
-                //Generación de reporte de medidores que se envuentren inactivos  
+                //Generación de reporte de medidores que se encuentren inactivos  
                 }elseif ($tipo == 'medidores_inactivos') {
                        $query = Pagos::where('estado_servicio', 'inactivo')->get();  
                         //Devolvemos los valores        
                        return view('reportes', compact('query'));
-                //Generación de reporte de medidores que se envuentren inactivos        
+                //Generación de reporte de medidores que se encuentren activos        
                  }elseif ($tipo == 'medidores_activos') {
                        $query = Pagos::where('estado_servicio', 'activo')->get();  
                         //Devolvemos los valores        
