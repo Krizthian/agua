@@ -15,6 +15,10 @@ class MedidoresController extends Controller
         $medidores = Medidores::paginate(10);
         return view('medidores', compact('medidores'));
     }
+    
+    /**
+     * Busqueda de Medidodres
+     */
 
     public function busqueda(Request $request)
     {

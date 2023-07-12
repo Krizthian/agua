@@ -32,9 +32,9 @@
       <br>
         <div class="col-md-12 bg-light text-right"><a href="crear-usuario" type="submit" class="btn btn-success float-end">Nuevo Usuario</a></div>
         <br><br>
-         <form>
+         <form action="{{route('usuarios.busqueda')}}" method="GET">
            <div class="col-auto">
-     		 <center><input type="text" class="form-control" placeholder="Nombre de Usuario"></input></center>
+     		 <center><input type="text" class="form-control" name="valores" placeholder="Apellidos o nombre de usuario"></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-primary">Consultar</button></center></div>
           <br>
@@ -54,8 +54,10 @@
             </tr>
           </thead>
           <tbody>  
-            @if($usuarios)
-                @foreach($usuarios as $usuariosItem)
+          @if(count($usuarios)<=0)
+            <center><tr><td colspan="8">No se han encontrado resultados</td></tr></center>
+          @else     
+            @foreach($usuarios as $usuariosItem)
             <tr>
               <td class="td_acciones">{{$usuariosItem->id}}</td>
               <td class="td_acciones">{{$usuariosItem->usuario}}</td>

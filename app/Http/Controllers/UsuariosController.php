@@ -17,6 +17,31 @@ class UsuariosController extends Controller
     }
 
     /**
+     * Busqueda de Usuarios
+     */
+
+    public function busqueda (Request $request)
+    {
+        //Obtenemos los valores del formulario anterior
+            $valores = $request->input('valores');
+
+        //Consulta Eloquent
+            $query = Usuarios::query();
+
+        //Verificamos si se recibio un valor
+            if (isset($valores)) {
+                $query->where('usuario',$valores)
+                    ->orWhere('apellido',$valores);
+            }  
+
+        //Ejecutamos la consulta          
+            $usuarios = $query->paginate(10);
+
+        //Retornamos a la vista
+            return view('usuarios', compact('usuarios'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()

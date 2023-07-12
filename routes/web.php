@@ -49,6 +49,7 @@ Route::view('/medidores', 'medidores')->name('medidores');
 Route::view('/usuarios', 'usuarios')->name('usuarios');
 	//Rutas para mostrar (usuarios)
 		Route::get('/usuarios', [UsuariosController::class, 'index']);
+		Route::get('/usuarios/busqueda', [UsuariosController::class, 'busqueda'])->name('usuarios.busqueda');
 
 Route::view('/reportes', 'reportes')->name('reportes');
 
