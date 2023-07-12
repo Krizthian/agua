@@ -84,8 +84,9 @@ class MedidoresController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Medidores $medidoresItem)
     {
-        //
+       Medidores::destroy($medidoresItem->id);
+       return redirect()->route('medidores.index');  
     }
 }

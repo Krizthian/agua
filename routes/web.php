@@ -37,23 +37,33 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 
 /*Rutas para el personal del Municipio*/
 
-Route::view('/panel', 'panel')->name('panel');
-	//Rutas para mostrar (valores a pagar)
-		Route::get('/panel', [ValoresAPagarController::class, 'index']);
-		Route::get('/panel/busqueda', [ValoresAPagarController::class, 'busqueda'])->name('panel.busqueda');
+//Rutas para mostrar (valores a pagar)
+	Route::view('/panel', 'panel')->name('panel');
+		//Obtencion de valores
+			Route::get('/panel', [ValoresAPagarController::class, 'index']);
+		//Busqueda de valores	
+			Route::get('/panel/busqueda', [ValoresAPagarController::class, 'busqueda'])->name('panel.busqueda');
 
-Route::view('/medidores', 'medidores')->name('medidores');
-	//Rutas para mostrar (medidores)
-		Route::get('/medidores', [MedidoresController::class, 'index']);
-		Route::get('/medidores/busqueda', [MedidoresController::class, 'busqueda'])->name('medidores.busqueda');
+//Rutas para mostrar (medidores)
+	Route::view('/medidores', 'medidores')->name('medidores');
+		//Obtencion de medidores
+			Route::get('/medidores', [MedidoresController::class, 'index'])->name('medidores.index');
+		//Busqueda de medidores
+			Route::get('/medidores/busqueda', [MedidoresController::class, 'busqueda'])->name('medidores.busqueda');
+		//Eliminacion de medidores
+			Route::delete('/medidores/{medidoresItem}', [MedidoresController::class, 'destroy'])->name('medidores.destroy');
 
-Route::view('/usuarios', 'usuarios')->name('usuarios');
-	//Rutas para mostrar (usuarios)
-		Route::get('/usuarios', [UsuariosController::class, 'index']);
-		Route::get('/usuarios/busqueda', [UsuariosController::class, 'busqueda'])->name('usuarios.busqueda');
+//Rutas para mostrar (usuarios)
+	Route::view('/usuarios', 'usuarios')->name('usuarios');
+		//Obtencion de usuarios
+			Route::get('/usuarios', [UsuariosController::class, 'index']);
+		//Busqueda de Usuarios
+			Route::get('/usuarios/busqueda', [UsuariosController::class, 'busqueda'])->name('usuarios.busqueda');
 
-Route::view('/reportes', 'reportes')->name('reportes');
-	Route::get('/reportes/generar', [ReportesController::class, 'generar'])->name('reportes.generar');
+//Rutas para mostrar (reportes)
+	Route::view('/reportes', 'reportes')->name('reportes');
+		//Generacion de reportes
+			Route::get('/reportes/generar', [ReportesController::class, 'generar'])->name('reportes.generar');
 
 //Route::view('/about', 'about')->name('about');
 //Route::view('/contact', 'contact')->name('contact');
