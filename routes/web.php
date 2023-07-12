@@ -21,18 +21,21 @@ use App\Http\Controllers\UsuariosController; //Controlador de Usuarios
 |
 */
 
-//Rutas para el usuario
-Route::view('/', 'home')->name('home');
-Route::view('/login', 'login')->name('login');
-Route::view('/consulta_cliente', 'consulta_cliente')->name('consulta_cliente');
+/*Rutas para el usuario*/
 
-//Ruta para proceso de Login
-Route::post('/login', [LoginController::class, 'login']);
-//Ruta para hacer un logout
-Route::post('/salir', [SalirController::class, 'salir'])->name('salir');
+//Inicio
+	Route::view('/', 'home')->name('home');
+		Route::get('/consulta', [ConsultaClienteController::class, 'index'])->name('consulta.index');
 
+//Login
+	Route::view('/login', 'login')->name('login');
+		//Ruta para proceso de Login
+		Route::post('/login', [LoginController::class, 'login']);
+		//Ruta para hacer un logout
+		Route::post('/salir', [SalirController::class, 'salir'])->name('salir');
 
-//Rutas para personal del municipio
+/*Rutas para el personal del Municipio*/
+
 Route::view('/panel', 'panel')->name('panel');
 	//Rutas para mostrar (valores a pagar)
 		Route::get('/panel', [ValoresAPagarController::class, 'index']);
@@ -48,11 +51,6 @@ Route::view('/usuarios', 'usuarios')->name('usuarios');
 		Route::get('/usuarios', [UsuariosController::class, 'index']);
 
 Route::view('/reportes', 'reportes')->name('reportes');
-
-//Controlador para la consulta de valores a pagar por parte del ciudadano
-Route::resource('/consulta_cliente', ConsultaClienteController::class);
-
-
 
 //Route::view('/about', 'about')->name('about');
 //Route::view('/contact', 'contact')->name('contact');

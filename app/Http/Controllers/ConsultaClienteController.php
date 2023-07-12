@@ -27,7 +27,7 @@ public function index(Request $request){
         $resultados = $query->get();
 
     // Retornar los resultados
-        return view('consulta_cliente', compact('resultados', 'medidor_cedula'));
+        return view('/home', compact('resultados', 'medidor_cedula'));
                     /**
                         $texto = trim($request_consulta= $request_consulta->get('medidor_cedula'));
                         $pagos_consulta=DB::table('pagos')
