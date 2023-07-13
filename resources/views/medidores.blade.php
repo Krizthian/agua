@@ -25,7 +25,7 @@
 <center><h1><strong>GESTIÓN DE MEDIDORES</h1></strong></center>
     <div class="container">
       <br>
-        <div class="col-md-12 bg-light text-right"><a href="crear-medidor" type="submit" class="btn btn-success float-end">Nuevo Medidor</a></div>
+        <div class="col-md-12 bg-light text-right"><a href="{{route('medidores.create')}}" type="submit" class="btn btn-success float-end">Nuevo Medidor</a></div>
         <br><br>
          <form action="{{route('medidores.busqueda')}}" method="GET">
            <div class="col-auto">
@@ -35,14 +35,23 @@
           <br>
         </form>
         </div>
-      <!--INICIO DE MENSAJE DE RESULTADOS-->
+        <!--INICIO DE MENSAJE DE RESULTADO DE CREACION-->
+        @if(session('resultado_creacion'))
+          <div class="alert alert-success alert-dismissible fade show">
+              Se ha creado el nuevo <strong>Medidor</strong> correctamente.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADO DE CREACION-->
+
+      <!--INICIO DE MENSAJE DE RESULTADO DE ELIMINACION-->
         @if(session('resultado'))
           <div class="alert alert-success alert-dismissible fade show">
               El <strong>Medidor</strong> ha sido eliminado correctamente.
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
           </div>
         @endif  
-        <!--FIN DE MENSAJE DE RESULTADOS-->
+        <!--FIN DE MENSAJE DE RESULTADO DE ELIMINACION-->
 
         <!--INICIO DE TABLA CON VALORES-->
         <table class=" table-responsive table table-bordered table-striped table-sm">

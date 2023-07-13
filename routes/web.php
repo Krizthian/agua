@@ -52,6 +52,10 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/medidores', [MedidoresController::class, 'index'])->name('medidores.index');
 		//Busqueda de medidores
 			Route::get('/medidores/busqueda', [MedidoresController::class, 'busqueda'])->name('medidores.busqueda');
+		//Devolver el formulrio de creación de medidor
+			Route::get('/medidores/crear', [MedidoresController::class, 'create'])->name('medidores.create');
+			//Registrar medidor
+				Route::post('/medidores', [MedidoresController::class, 'store'])->name('medidores.store');		
 		//Eliminacion de medidores
 			Route::delete('/medidores/{medidoresItem}', [MedidoresController::class, 'destroy'])->name('medidores.destroy');
 

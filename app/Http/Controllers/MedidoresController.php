@@ -42,11 +42,11 @@ class MedidoresController extends Controller
             return view('medidores', compact('medidores'));              
     }
     /**
-     * Show the form for creating a new resource.
+     * Mostreamos el formulario para crear un nuevo elemento
      */
     public function create()
     {
-        //
+        return view('medidores.crear'); //Retornaremos a la vista con el formulario
     }
 
     /**
@@ -54,8 +54,20 @@ class MedidoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        //Validamos los valores recibidos
+        $campos_validados = request()->validate([
+            'numero_medidor' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'cedula' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+        ]);
+         //Insertamos los valores en la tabla
+            Medidores::create($campos_validados);
+        //Redireccionamos
+            return redirect()->route('medidores.index')->with('resultado_creacion', 'Se ha creado el medidor correctamente');    
+        }
 
     /**
      * Display the specified resource.
