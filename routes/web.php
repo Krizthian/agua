@@ -43,6 +43,8 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/panel', [ValoresAPagarController::class, 'index'])->name('panel.index');
 		//Busqueda de valores	
 			Route::get('/panel/busqueda', [ValoresAPagarController::class, 'busqueda'])->name('panel.busqueda');
+		//Inhabilitar/Habilitar servicio	
+			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [ValoresAPagarController::class, 'inhabilitar'])->name('panel.inhabilitar');
 
 //Rutas para mostrar (medidores)
 	Route::view('/medidores', 'medidores')->name('medidores');

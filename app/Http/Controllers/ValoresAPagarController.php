@@ -16,6 +16,9 @@ class ValoresAPagarController extends Controller
         return view('panel', compact('valores_pagar'));
     }
 
+    /**
+     * Busqueda de valores individuales
+     */
     public function busqueda(Request $request)
     {
         //Obtenemos los valores del formulario anterior
@@ -36,6 +39,23 @@ class ValoresAPagarController extends Controller
 
          //Retornamos los valores
             return view('panel', compact('valores_pagar'));   
+    }
+
+    /**
+     * Habilitar o Inhabilitar el servicio del agua
+     */
+    public function inhabilitar (Pagos $valoresPagarItem)
+    {
+        //Comprobamos el estado del servicio
+            //Desactivamos el servicio si este se encuentra 'inactivo'
+                if ($valoresPagarItem->estado_servicio == "activo") {
+                    Pagos::where('id', '=', $valoresPagarItem->id)->update(['estado_servicio' => 'inactivo']);
+                    return redirect()->route('panel.index')->with('resultado', 'Se ha suspendido el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'panel'
+            //Reactivamos el servicio si este se encuentra 'activo'
+                }elseif ($valoresPagarItem->estado_servicio == "inactivo") {
+                    Pagos::where('id', '=', $valoresPagarItem->id)->update(['estado_servicio' => 'activo']);
+                    return redirect()->route('panel.index')->with('resultado', 'Se ha reactivado el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'panel'
+                }
     }
 
     /**

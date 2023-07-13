@@ -33,7 +33,14 @@
 			      <br>
 				</div>
     </form>
-
+        <!--INICIO DE MENSAJE DE RESULTADOS-->
+        @if(session('resultado'))
+          <div class="alert alert-success alert-dismissible fade show">
+              {{session('resultado')}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADOS-->
     <!--INICIO TABLA CON DATOS-->
     	<table class=" table-responsive table table-bordered table-striped table-sm">
           <thead>
@@ -74,14 +81,14 @@
                   <!--INICIO DE COMPROBACION DE ESTADO DE SERVICIO-->  
                     @if($valoresPagarItem->estado_servicio == "activo") 
                      <!--BOTON CORTAR SERVICIO-->
-                              <a type="button" href="cortar.php" class="btn btn-outline-danger" title="Suspender servicio"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                              <a type="button" href="{{route('panel.inhabilitar', $valoresPagarItem)}}" class="btn btn-outline-danger" title="Suspender servicio"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
                               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                             </svg></a>
                       <!--FIN BOTON CORTAR SERVICIO-->
                     @else 
                       <!--BOTON RESTAURAR SERVICIO-->
-                              <a type="button" href="restore.php" class="btn btn-outline-info" title="Reactivar servicio"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                              <a type="button" href="{{route('panel.inhabilitar', $valoresPagarItem)}}" class="btn btn-outline-info" title="Reactivar servicio"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                               <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
                               <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
                             </svg></a>
