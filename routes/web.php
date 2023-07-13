@@ -40,7 +40,7 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 //Rutas para mostrar (valores a pagar)
 	Route::view('/panel', 'panel')->name('panel');
 		//Obtencion de valores
-			Route::get('/panel', [ValoresAPagarController::class, 'index']);
+			Route::get('/panel', [ValoresAPagarController::class, 'index'])->name('panel.index');
 		//Busqueda de valores	
 			Route::get('/panel/busqueda', [ValoresAPagarController::class, 'busqueda'])->name('panel.busqueda');
 
