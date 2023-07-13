@@ -51,6 +51,14 @@
         @endif  
         <!--FIN DE MENSAJE DE ALERTA-->
 
+        <!--INICIO DE MENSAJE DE RESULTADOS-->
+        @if(session('resultado'))
+          <div class="alert alert-success alert-dismissible fade show">
+              El <strong>Usuario</strong> ha sido eliminado correctamente.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADOS-->
         <table class=" table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>

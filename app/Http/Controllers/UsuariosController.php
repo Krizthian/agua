@@ -95,7 +95,7 @@ class UsuariosController extends Controller
             //Realizamos la consulta Eloquent
                 Usuarios::destroy($usuariosItem->id);
             //Redireccionamos    
-                return redirect()->route('usuarios.index');
+                return redirect()->route('usuarios.index')->with('resultado', 'El usuario ha sido eliminado'); //Devolvemos el mensaje de resultados a la vista 'usuarios'
             }
     }
 }
