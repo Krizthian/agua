@@ -35,6 +35,15 @@
           <br>
         </form>
         </div>
+      <!--INICIO DE MENSAJE DE RESULTADOS-->
+        @if(session('resultado'))
+          <div class="alert alert-success alert-dismissible fade show">
+              El <strong>Medidor</strong> ha sido eliminado correctamente.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADOS-->
+
         <!--INICIO DE TABLA CON VALORES-->
         <table class=" table-responsive table table-bordered table-striped table-sm">
           <thead>

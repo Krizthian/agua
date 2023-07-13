@@ -46,7 +46,7 @@
         @if(session('error'))
           <div class="alert alert-danger alert-dismissible fade show">
               No se puede eliminar un <strong>Administrador</strong>, asegúrate de darle un rol distinto antes de intentar eliminarlo.
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
           </div>
         @endif  
         <!--FIN DE MENSAJE DE ALERTA-->
@@ -55,10 +55,12 @@
         @if(session('resultado'))
           <div class="alert alert-success alert-dismissible fade show">
               El <strong>Usuario</strong> ha sido eliminado correctamente.
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
           </div>
         @endif  
         <!--FIN DE MENSAJE DE RESULTADOS-->
+
+      <!--INICIO DE TABLA CON VALORES-->
         <table class=" table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>

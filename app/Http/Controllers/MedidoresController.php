@@ -90,6 +90,6 @@ class MedidoresController extends Controller
             Medidores::destroy($medidoresItem->id);
 
        //Redireccionamos 
-            return redirect()->route('medidores.index');  
+            return redirect()->route('medidores.index')->with('resultado', 'El medidor ha sido eliminado');  
     }
 }
