@@ -42,7 +42,7 @@ class MedidoresController extends Controller
             return view('medidores', compact('medidores'));              
     }
     /**
-     * Mostreamos el formulario para crear un nuevo elemento
+     * Mostramos el formulario para crear un nuevo medidor
      */
     public function create()
     {
@@ -50,7 +50,7 @@ class MedidoresController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Ingresamos el medidor en la base de datos
      */
     public function store(Request $request)
     {

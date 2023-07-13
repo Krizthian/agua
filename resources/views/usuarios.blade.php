@@ -30,7 +30,7 @@
 <center><h1><strong>GESTIÓN DE USUARIOS</h1></strong></center>
     <div class="container">
       <br>
-        <div class="col-md-12 bg-light text-right"><a href="crear-usuario" type="submit" class="btn btn-success float-end">Nuevo Usuario</a></div>
+        <div class="col-md-12 bg-light text-right"><a href="{{route('usuarios.create')}}" type="submit" class="btn btn-success float-end">Nuevo Usuario</a></div>
         <br><br>
          <form action="{{route('usuarios.busqueda')}}" method="GET">
            <div class="col-auto">
@@ -40,7 +40,14 @@
           <br>
         </form>
         </div>
-        <!--INICIO DE TABLA CON VALORES-->
+      <!--INICIO DE MENSAJE DE RESULTADO DE CREACION-->
+        @if(session('resultado_creacion'))
+          <div class="alert alert-success alert-dismissible fade show">
+              Se ha creado el nuevo <strong>Usuario</strong> correctamente.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADO DE CREACION-->
 
         <!--INICIO DE MENSAJE DE ALERTA-->
         @if(session('error'))
@@ -51,14 +58,14 @@
         @endif  
         <!--FIN DE MENSAJE DE ALERTA-->
 
-        <!--INICIO DE MENSAJE DE RESULTADOS-->
+        <!--INICIO DE MENSAJE DE RESULTADOS DE ELIMINACION-->
         @if(session('resultado'))
           <div class="alert alert-success alert-dismissible fade show">
               El <strong>Usuario</strong> ha sido eliminado correctamente.
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
           </div>
         @endif  
-        <!--FIN DE MENSAJE DE RESULTADOS-->
+        <!--FIN DE MENSAJE DE RESULTADOS DE ELIMINACION-->
 
       <!--INICIO DE TABLA CON VALORES-->
         <table class=" table-responsive table table-bordered table-striped table-sm">

@@ -1,5 +1,5 @@
 @extends('layouts.layout_panel')
-<title>Crear - Gestión de Medidores | Sistema de Consultas de Valores a Pagar del Agua</title>
+<title>Crear medidor - Gestión de Medidores | Sistema de Consultas de Valores a Pagar del Agua</title>
 <link rel="stylesheet" href="{{url('css/custom_login.css')}}">
 @section('content')
     <style>

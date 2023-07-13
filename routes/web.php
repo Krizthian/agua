@@ -65,6 +65,10 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/usuarios', [UsuariosController::class, 'index'])->name('usuarios.index');
 		//Busqueda de Usuarios
 			Route::get('/usuarios/busqueda', [UsuariosController::class, 'busqueda'])->name('usuarios.busqueda');
+		//Devolver el formulrio de creación de usuario
+			Route::get('/usuarios/crear', [UsuariosController::class, 'create'])->name('usuarios.create');
+			//Registrar usuario
+				Route::post('/usuarios', [UsuariosController::class, 'store'])->name('usuarios.store');	
 		//Eliminar usuarios	
 			Route::delete('/usuarios/{usuariosItem}', [UsuariosController::class, 'destroy'])->name('usuarios.destroy');
 

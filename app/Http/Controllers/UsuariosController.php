@@ -42,19 +42,35 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostramos el formulario para crear un nuevo usuario
      */
     public function create()
     {
-        //
+         return view('usuarios.crear'); //Retornaremos a la vista con el formulario
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Ingresamos el usuario en la base de datos
      */
     public function store(Request $request)
     {
-        //
+        //Validamos los valores recibidos
+            $campos_validados = request()->validate([
+                'usuario' => 'required',
+                'password' => 'required',
+                'nombre' => 'required',
+                'apellido' => 'required',
+                'cedula' => 'required',
+                'rol' => 'required',
+                'email' => 'required',
+                'telefono' => 'required',
+            ]);
+
+         //Insertamos los valores en la tabla
+            Usuarios::create($campos_validados);
+
+         //Redireccionamos
+            return redirect()->route('usuarios.index')->with('resultado_creacion', 'Se ha creado el usuario correctamente');   
     }
 
     /**
