@@ -15,7 +15,6 @@ class LoginController extends Controller
             $usuario = $request->input('usuario');
             $password = $request->input('password');
 
-
         //Definimos la consulta
             $query = Usuarios::query(); //Llamamos al modelo Usuarios
 
@@ -27,23 +26,28 @@ class LoginController extends Controller
                                 ->first();
                 }       
 
-                //Obtenemos los valores de la consulta 
-                    $resultados = $query->get();
-                    //Obtenemos valores especificos desde la BD
-                        foreach ($resultados as $resultadosSesion) {
-                            $usuarioBD = $resultadosSesion->usuario;
-                            $passwordBD = $resultadosSesion->password;
-                            $rol = $resultadosSesion->rol;
-                            //Iniciamos la sesion y guardamos la cookie 
-                                if ($usuario == $usuarioBD && $password == $passwordBD) {
-                                       //Guardamos el rol y el usuario en variables de sesion
-                                            $request->session()->put('sesion', ['usuario' => $usuario, 'rol' => $rol ]);
-                                       //Redireccionamos 
-                                            return redirect()->route('panel.index'); 
-                                   }else {
-                                       //Redireccionamos al login si hay algun error en la validacion
-                                           return redirect()->route('login'); 
-                                   }   
-                } //Fin del foreach
+        //Obtenemos los valores de la consulta 
+            $resultados = $query->get();
+
+        //Obtenemos valores especificos desde la BD
+            foreach ($resultados as $resultadosSesion) {
+                $usuarioBD = $resultadosSesion->usuario;
+                $passwordBD = $resultadosSesion->password;
+                $rol = $resultadosSesion->rol;
+
+        //Iniciamos la sesion y guardamos la cookie 
+            if ($usuario == $usuarioBD && $password == $passwordBD) {
+                   //Guardamos el rol y el usuario en variables de sesion
+                        $request->session()->put('sesion', ['usuario' => $usuario, 'rol' => $rol ]);
+
+                   //Redireccionamos 
+                        return redirect()->route('panel.index'); 
+
+               }else {
+                   //Redireccionamos al login si hay algun error en la validacion
+                       return redirect()->route('login'); 
+
+               }   
+            } //Fin del foreach
     }
 }
