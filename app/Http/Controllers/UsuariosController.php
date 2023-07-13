@@ -84,8 +84,18 @@ class UsuariosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Usuarios $usuariosItem)
     {
-        //
+        //Comprobamos si el usuario es un administrador
+            if ($usuariosItem->rol == 'administrador') {
+                return redirect()->route('usuarios.index')->with('error', 'No se puede eliminar a un administrador'); //Devolvemos el mensaje de error a la vista 'usuarios'
+            }else{
+
+        //Si el usuario no es un administrador, procedemos con la eliminación        
+            //Realizamos la consulta Eloquent
+                Usuarios::destroy($usuariosItem->id);
+            //Redireccionamos    
+                return redirect()->route('usuarios.index');
+            }
     }
 }

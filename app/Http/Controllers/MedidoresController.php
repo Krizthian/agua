@@ -86,7 +86,10 @@ class MedidoresController extends Controller
      */
     public function destroy(Medidores $medidoresItem)
     {
-       Medidores::destroy($medidoresItem->id);
-       return redirect()->route('medidores.index');  
+       //Realizamos la consulta Eloquent 
+            Medidores::destroy($medidoresItem->id);
+
+       //Redireccionamos 
+            return redirect()->route('medidores.index');  
     }
 }

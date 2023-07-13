@@ -56,9 +56,11 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 //Rutas para mostrar (usuarios)
 	Route::view('/usuarios', 'usuarios')->name('usuarios');
 		//Obtencion de usuarios
-			Route::get('/usuarios', [UsuariosController::class, 'index']);
+			Route::get('/usuarios', [UsuariosController::class, 'index'])->name('usuarios.index');
 		//Busqueda de Usuarios
 			Route::get('/usuarios/busqueda', [UsuariosController::class, 'busqueda'])->name('usuarios.busqueda');
+		//Eliminar usuarios	
+			Route::delete('/usuarios/{usuariosItem}', [UsuariosController::class, 'destroy'])->name('usuarios.destroy');
 
 //Rutas para mostrar (reportes)
 	Route::view('/reportes', 'reportes')->name('reportes');
