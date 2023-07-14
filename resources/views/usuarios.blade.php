@@ -99,7 +99,7 @@
               <td class="td_acciones">{{$usuariosItem->usuario}}</td>
               <td class="td_acciones">{{$usuariosItem->nombre}} {{$usuariosItem->apellido}}</td>
               <td class="td_acciones">{{$usuariosItem->cedula}}</td>
-              <td class="td_acciones">{{$usuariosItem->rol}}</td>
+              <td class="td_acciones">{{ucfirst($usuariosItem->rol);}}</td>
               <td class="td_acciones">{{$usuariosItem->email}}</td>
               <td class="td_acciones">
            <!--BOTON EDITAR-->

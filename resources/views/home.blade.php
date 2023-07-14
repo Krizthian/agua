@@ -61,7 +61,7 @@
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_pagado}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_restante}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha}}</td>
-              <td class="td_acciones">{{$pagosConsultaItem->estado_servicio}}</td>
+              <td class="td_acciones">{{ucfirst($pagosConsultaItem->estado_servicio);}}</td>
             </tr> 
             @endforeach
             @endif

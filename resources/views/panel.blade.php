@@ -80,7 +80,7 @@
               <td class="td_acciones">$ {{$valoresPagarItem->valor_pagado}}</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_restante}}</td>
               <td class="td_acciones">{{$valoresPagarItem->fecha}}</td>
-              <td class="td_acciones">{{$valoresPagarItem->estado_servicio}}</td>
+              <td class="td_acciones">{{ucfirst($valoresPagarItem->estado_servicio);}}</td>
               <td class="td_acciones">
                 <!--BOTON PAGAR-->
                     <a type="button" href="{{route('pagos.ingresar', $valoresPagarItem)}}" class="btn btn-outline-success" title="Registrar pago"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">

@@ -108,7 +108,7 @@
               <td class="td_acciones">{{$valorGenerado->valor_pagado}}</td>
               <td class="td_acciones">{{$valorGenerado->valor_restante}}</td>
               <td class="td_acciones">{{$valorGenerado->fecha}}</td>
-              <td class="td_acciones">{{$valorGenerado->estado_servicio}}</td>
+              <td class="td_acciones">{{ucfirst($valorGenerado->estado_servicio);}}</td>
             </tr> 
           @endforeach
           @endif
