@@ -76,7 +76,7 @@
               <td class="td_acciones">{{$valoresPagarItem->cedula}}</td>
               <td class="td_acciones">{{$valoresPagarItem->nombre}} {{$valoresPagarItem->apellido}}</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_actual}}</td>
-              <td class="td_acciones">{{$valoresPagarItem->meses_mora}}</td>
+              <td class="td_acciones">{{$valoresPagarItem->meses_mora}} meses</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_pagado}}</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_restante}}</td>
               <td class="td_acciones">{{$valoresPagarItem->fecha}}</td>
