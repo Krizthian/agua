@@ -56,12 +56,10 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/medidores/crear', [MedidoresController::class, 'create'])->name('medidores.create');
 			//Registrar medidor
 				Route::post('/medidores', [MedidoresController::class, 'store'])->name('medidores.store');	
-
 		//Devolver el formulrio de edición de medidor
 			Route::get('/medidores/editar/{medidoresItem}', [MedidoresController::class, 'edit'])->name('medidores.editar');
 			//Actualizar medidor
-				Route::patch('/medidores/{medidoresItem}', [MedidoresController::class, 'update'])->name('medidores.update');	
-
+				Route::patch('/medidores/{medidoresItem}', [MedidoresController::class, 'update'])->name('medidores.update');
 		//Eliminacion de medidores
 			Route::get('/medidores/{medidoresItem}', [MedidoresController::class, 'destroy'])->name('medidores.destroy');
 

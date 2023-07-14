@@ -19,11 +19,11 @@
          	@csrf @method('PATCH')
            <div class="col-auto">
             <label>Numero de medidor:</label><center><input type="text" class="form-control" name="numero_medidor" value="{{$medidoresItem->numero_medidor}}" placeholder="{{$medidoresItem->numero_medidor}}" disabled></input></center>
-            <label>Nombre del cliente:</label><center><input type="text" class="form-control" name="nombre" value="{{$medidoresItem->nombre}}" placeholder="{{$medidoresItem->nombre}}"></input></center>
-            <label>Apellido del cliente:</label><center><input type="text" class="form-control" name="apellido" value="{{$medidoresItem->apellido}}" placeholder="{{$medidoresItem->apellido}}"></input></center>
-            <label>Cédula del cliente:</label><center><input type="text" class="form-control" name="cedula" value="{{$medidoresItem->cedula}}" placeholder="{{$medidoresItem->cedula}}"></input></center>
-            <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" value="{{$medidoresItem->direccion}}" placeholder="{{$medidoresItem->direccion}}"></input></center>
-            <label>Télefono del cliente:</label><center><input type="text" class="form-control" name="telefono" value="{{$medidoresItem->telefono}}" placeholder="{{$medidoresItem->telefono}}" ></input></center>
+            <label>Nombre del cliente:</label><center><input type="text" class="form-control" name="nombre" value="{{$medidoresItem->nombre}}" placeholder="{{$medidoresItem->nombre}}" required></input></center>
+            <label>Apellido del cliente:</label><center><input type="text" class="form-control" name="apellido" value="{{$medidoresItem->apellido}}" placeholder="{{$medidoresItem->apellido}}" required></input></center>
+            <label>Cédula del cliente:</label><center><input type="text" class="form-control" name="cedula" value="{{$medidoresItem->cedula}}" placeholder="{{$medidoresItem->cedula}}" required></input></center>
+            <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" value="{{$medidoresItem->direccion}}" placeholder="{{$medidoresItem->direccion}}" required></input></center>
+            <label>Télefono del cliente:</label><center><input type="text" class="form-control" name="telefono" value="{{$medidoresItem->telefono}}" placeholder="{{$medidoresItem->telefono}}" required></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Actualizar</button></center></div>
           <br>
