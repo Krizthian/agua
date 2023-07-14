@@ -78,23 +78,36 @@ class MedidoresController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Mostramos el formulario para editar un medidor
      */
-    public function edit(string $id)
+    public function edit(Medidores $medidoresItem)
     {
-        //
+        //Retornaremos a la vista con el formulario
+           return view('medidores.editar', [
+            'medidoresItem' => $medidoresItem
+           ]); 
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizamos el valor en la base de datos
      */
-    public function update(Request $request, string $id)
+    public function update(Medidores $medidoresItem)
     {
-        //
+        //Realizamos la consulta Eloquent
+            Medidores::where('id', $medidoresItem->id)
+                    ->update([
+                        'nombre' => request('nombre'),
+                        'apellido' => request('apellido'),
+                        'cedula' => request('cedula'),
+                        'direccion' => request('direccion'),
+                        'telefono' => request('telefono'),
+                    ]);
+        //Redireccionamos 
+            return redirect()->route('medidores.index')->with('resultado_edicion', 'El medidor se ha actualizado correctamente');               
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar el valor en la base de datos
      */
     public function destroy(Medidores $medidoresItem)
     {
