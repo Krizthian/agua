@@ -80,7 +80,6 @@
         <table class=" table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Usuario</th>
               <th scope="col">Nombres</th>
               <th scope="col">Cédula</th>
@@ -95,7 +94,6 @@
           @else     
             @foreach($usuarios as $usuariosItem)
             <tr>
-              <td class="td_acciones">{{$usuariosItem->id}}</td>
               <td class="td_acciones">{{$usuariosItem->usuario}}</td>
               <td class="td_acciones">{{$usuariosItem->nombre}} {{$usuariosItem->apellido}}</td>
               <td class="td_acciones">{{$usuariosItem->cedula}}</td>
