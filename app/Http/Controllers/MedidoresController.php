@@ -56,17 +56,26 @@ class MedidoresController extends Controller
     {
         //Validamos los valores recibidos
         $campos_validados = request()->validate([
-            'numero_medidor' => 'required',
+            'numero_medidor' => 'required|unique:medidores',
             'nombre' => 'required',
             'apellido' => 'required',
-            'cedula' => 'required',
+            'cedula' => 'required|numeric',
             'direccion' => 'required',
-            'telefono' => 'required',
+            'telefono' => 'required|numeric',
+        ],[
+            'numero_medidor.unique' => 'Este medidor ya se encuentra registrado',
+            'cedula.numeric' => 'El campo cédula debe contener números',
+            'telefono.numeric' => 'El campo télefono debe contener números',
         ]);
-         //Insertamos los valores en la tabla
+        if ($campos_validados) {
+        //Insertamos los valores en la tabla
             Medidores::create($campos_validados);
         //Redireccionamos
-            return redirect()->route('medidores.index')->with('resultado_creacion', 'Se ha creado el medidor correctamente');    
+            return redirect()->route('medidores.index')->with('resultado_creacion', 'Se ha creado el medidor correctamente'); 
+        }else{
+            return redirect()->back()->withErrors($campos_validados)->withInput();
+        }
+   
         }
 
     /**

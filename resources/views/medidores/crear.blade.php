@@ -17,6 +17,19 @@
         <main class="form-signin w-100 m-auto">
          <form action="{{route('medidores.store')}}" method="POST">
          	@csrf
+          <!--DEVOLVEMOS MENSAJES DE ERROR-->
+              @if ($errors->any())
+                  <div class="alert alert-danger alert-dismissible fade show">
+                    <strong>Error de validación</strong><br>
+                        <ul>
+                          @foreach ($errors->all() as $error)          
+                              <li>{{ $error }}</li>
+                             @endforeach   
+                        </ul>
+                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>       
+                  </div>
+              @endif
+            <!--FIN DE MENSAJES DE ERROR-->  
            <div class="col-auto">
             <label>Numero de medidor:</label><center><input type="text" class="form-control" name="numero_medidor" placeholder="Ej. 010051" required></input></center>
             <label>Nombre del cliente:</label><center><input type="text" class="form-control" name="nombre" placeholder="Ej. Arturo" required></input></center>
