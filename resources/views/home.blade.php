@@ -50,11 +50,13 @@
         <!--FIN DE LA TABLA CON DATOS-->
 
         <!--INICIO DE MENSAJE DE ALERTA-->
+        @if(isset($pagosConsultaItem))
         @if($pagosConsultaItem->estado_servicio == 'inactivo')
           <div class="alert alert-danger alert-dismissible fade show">
               <strong>ATENCIÓN,</strong> el servicio de agua en su <strong>medidor</strong>, se encuentra suspendido por falta de pago, por favor, acerquese a realizar el pago lo antes posible.
           </div>
-        @endif  
+          @endif  
+        @endif
         <!--FIN DE MENSAJE DE ALERTA-->
 
         <!--BOTON DE IMPRIMIR-->
