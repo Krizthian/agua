@@ -11,6 +11,13 @@
 <main class="form-signin w-100 m-auto">
   <form action="{{route('login')}}" method="POST" >
     @csrf
+          <!--INICIO DE MENSAJE DE RESULTADO DE CREACION-->
+        @if(session('resultado_login'))
+          <div class="alert alert-danger alert-dismissible fade show">
+              El <strong>usuario</strong> o <strong>contraseña</strong> ingresados son incorrectos.
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADO DE CREACION-->
     <div class="form-floating">
       <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" required>
       <label for="usuario">Usuario</label>
