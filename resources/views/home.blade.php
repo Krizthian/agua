@@ -49,6 +49,14 @@
         </table>
         <!--FIN DE LA TABLA CON DATOS-->
 
+        <!--INICIO DE MENSAJE DE ALERTA-->
+        @if($pagosConsultaItem->estado_servicio == 'inactivo')
+          <div class="alert alert-danger alert-dismissible fade show">
+              <strong>ATENCIÓN,</strong> el servicio de agua en su <strong>medidor</strong>, se encuentra suspendido por falta de pago, por favor, acerquese a realizar el pago lo antes posible.
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE ALERTA-->
+
         <!--BOTON DE IMPRIMIR-->
         <div class="col-md-12 bg-light text-right"><button title="Imprimir" class="btn btn-info float-end" type="button" name="imprimir" value="Imprimir" onclick="window.print();">Imprimir <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
         <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
