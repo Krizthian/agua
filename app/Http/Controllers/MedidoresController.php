@@ -65,7 +65,7 @@ class MedidoresController extends Controller
         ],[
             'numero_medidor.unique' => 'Este medidor ya se encuentra registrado',
             'cedula.numeric' => 'El campo cédula debe contener números',
-            'telefono.numeric' => 'El campo télefono debe contener números',
+            'telefono.numeric' => 'El campo teléfono debe contener números',
         ]);
         if ($campos_validados) {
         //Insertamos los valores en la tabla

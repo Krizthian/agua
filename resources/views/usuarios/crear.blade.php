@@ -16,6 +16,19 @@
         <main class="form-signin w-100 m-auto">
          <form action="{{route('usuarios.store')}}" method="POST">
          	@csrf
+          <!--DEVOLVEMOS MENSAJES DE ERROR-->
+              @if ($errors->any())
+                  <div class="alert alert-danger alert-dismissible fade show">
+                    <strong>Error de validación</strong><br>
+                        <ul>
+                          @foreach ($errors->all() as $error)          
+                              <li>{{ $error }}</li>
+                             @endforeach   
+                        </ul>
+                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>       
+                  </div>
+              @endif
+          <!--FIN DE MENSAJES DE ERROR-->
            <div class="col-auto">
             <label>Nombre de Usuario:</label><center><input type="text" class="form-control" name="usuario" placeholder="Ej. arturo91" required></input></center>
 

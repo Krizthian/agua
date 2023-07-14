@@ -56,21 +56,36 @@ class UsuariosController extends Controller
     {
         //Validamos los valores recibidos
             $campos_validados = request()->validate([
-                'usuario' => 'required',
+                'usuario' => 'required|unique:usuarios',
                 'password' => 'required',
                 'nombre' => 'required',
                 'apellido' => 'required',
-                'cedula' => 'required',
+                'cedula' => 'required|unique:usuarios|numeric',
                 'rol' => 'required',
-                'email' => 'required',
-                'telefono' => 'required',
+                'email' => 'required|email|unique:usuarios',
+                'telefono' => 'required|numeric',
+            ],[
+                //Mensajes de error de usuario
+                    'usuario.unique' => 'Este usuario ya se encuentra registrado',
+                //Mensajes de error de cédula
+                    'cedula.unique' => 'Esta cédula ya se encuentra registrada y asociada a un usuario',
+                    'cedula.numeric' => 'El campo cédula debe contener números',
+                //Mensajes de error de email
+                    'email.unique' => 'Este correo ya se encuentra registrado y asociado a un usuario',     
+                    'email.email' => 'El campo correo debe contener un correo electronico',     
+                //Mensajes de error de teléfono
+                    'telefono.numeric' => 'El campo teléfono debe contener números',
             ]);
 
-         //Insertamos los valores en la tabla
-            Usuarios::create($campos_validados);
+        if($campos_validados){
+            //Insertamos los valores en la tabla
+                Usuarios::create($campos_validados);
 
-         //Redireccionamos
-            return redirect()->route('usuarios.index')->with('resultado_creacion', 'Se ha creado el usuario correctamente');   
+            //Redireccionamos
+                return redirect()->route('usuarios.index')->with('resultado_creacion', 'Se ha creado el usuario correctamente');         
+        }else{
+            return redirect()->back()->withErrors($campos_validados)->withInput();
+        }      
     }
 
     /**
@@ -97,6 +112,26 @@ class UsuariosController extends Controller
      */
     public function update(Usuarios $usuariosItem)
     {
+        //Validamos los valores recibidos
+            $campos_validados = request()->validate([
+                'usuario' => 'required',
+                'password' => 'required',
+                'nombre' => 'required',
+                'apellido' => 'required',
+                'cedula' => 'required|numeric',
+                'rol' => 'required',
+                'email' => 'required|email',
+                'telefono' => 'required|numeric',
+        ],[
+            //Mensajes de error de cédula
+                'cedula.numeric' => 'El campo cédula debe contener números',
+            //Mensajes de error de email
+                'email.email' => 'El campo correo debe contener un correo electronico',     
+            //Mensajes de error de teléfono
+                'telefono.numeric' => 'El campo teléfono debe contener números',
+        ]);
+
+        if($campos_validados){
         //Realizamos la consulta Eloquent
             Usuarios::where('id', $usuariosItem->id)
                     ->update([
@@ -110,7 +145,11 @@ class UsuariosController extends Controller
                         'telefono' => request('telefono'),
                     ]);
         //Redireccionamos 
-            return redirect()->route('usuarios.index')->with('resultado_edicion', 'El usuario se ha actualizado correctamente');   
+            return redirect()->route('usuarios.index')->with('resultado_edicion', 'El usuario se ha actualizado correctamente');
+
+        }else{
+            return redirect()->back()->withErrors($campos_validados)->withInput();
+        }       
     }
 
     /**
