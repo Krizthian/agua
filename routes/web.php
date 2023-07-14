@@ -57,7 +57,7 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			//Registrar medidor
 				Route::post('/medidores', [MedidoresController::class, 'store'])->name('medidores.store');		
 		//Eliminacion de medidores
-			Route::delete('/medidores/{medidoresItem}', [MedidoresController::class, 'destroy'])->name('medidores.destroy');
+			Route::get('/medidores/{medidoresItem}', [MedidoresController::class, 'destroy'])->name('medidores.destroy');
 
 //Rutas para mostrar (usuarios)
 	Route::view('/usuarios', 'usuarios')->name('usuarios');
@@ -70,7 +70,7 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			//Registrar usuario
 				Route::post('/usuarios', [UsuariosController::class, 'store'])->name('usuarios.store');	
 		//Eliminar usuarios	
-			Route::delete('/usuarios/{usuariosItem}', [UsuariosController::class, 'destroy'])->name('usuarios.destroy');
+			Route::get('/usuarios/{usuariosItem}', [UsuariosController::class, 'destroy'])->name('usuarios.destroy');
 
 //Rutas para mostrar (reportes)
 	Route::view('/reportes', 'reportes')->name('reportes');
