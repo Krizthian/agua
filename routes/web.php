@@ -73,6 +73,10 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/usuarios/crear', [UsuariosController::class, 'create'])->name('usuarios.create');
 			//Registrar usuario
 				Route::post('/usuarios', [UsuariosController::class, 'store'])->name('usuarios.store');	
+		//Devolver el formulrio de edición de usuario
+			Route::get('/usuarios/editar/{usuariosItem}', [UsuariosController::class, 'edit'])->name('usuarios.editar');
+			//Actualizar usuario
+				Route::patch('/usuarios/{usuariosItem}', [UsuariosController::class, 'update'])->name('usuarios.update');		
 		//Eliminar usuarios	
 			Route::get('/usuarios/{usuariosItem}', [UsuariosController::class, 'destroy'])->name('usuarios.destroy');
 

@@ -82,23 +82,39 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Mostramos el formulario para editar un medidor
      */
-    public function edit(string $id)
+    public function edit(Usuarios $usuariosItem)
     {
-        //
+        //Retornaremos a la vista con el formulario
+           return view('usuarios.editar', [
+            'usuariosItem' => $usuariosItem
+           ]); 
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizamos el valor en la base de datos
      */
-    public function update(Request $request, string $id)
+    public function update(Usuarios $usuariosItem)
     {
-        //
+        //Realizamos la consulta Eloquent
+            Usuarios::where('id', $usuariosItem->id)
+                    ->update([
+                        'usuario' => request('usuario'),
+                        'password' => request('password'),
+                        'nombre' => request('nombre'),
+                        'apellido' => request('apellido'),
+                        'cedula' => request('cedula'),
+                        'rol' => request('rol'),
+                        'email' => request('email'),
+                        'telefono' => request('telefono'),
+                    ]);
+        //Redireccionamos 
+            return redirect()->route('usuarios.index')->with('resultado_edicion', 'El usuario se ha actualizado correctamente');   
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar el valor en la base de datos
      */
     public function destroy(Usuarios $usuariosItem)
     {
