@@ -36,7 +36,7 @@
             <label>Apellido:</label><center><input type="text" class="form-control" name="apellido" value="{{$usuariosItem->apellido}}" placeholder="{{$usuariosItem->apellido}}" required></input></center>
             <label>Cédula:</label><center><input type="text" class="form-control" name="cedula" value="{{$usuariosItem->cedula}}" placeholder="{{$usuariosItem->cedula}}" required></input></center>
             <label>Rol:</label><center><select class="form-select" name="rol" required>
-              <option value="{{$usuariosItem->rol}}" selected>{{$usuariosItem->rol}}</option>
+              <option value="{{$usuariosItem->rol}}" selected>{{ucfirst($usuariosItem->rol);}}</option>
               <option value="administrador">Administrador</option>
               <option value="personal">Personal</option>  
             </select></center>
