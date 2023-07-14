@@ -63,7 +63,7 @@
               <th scope="col">Valor restante</th>
               <th scope="col">Última fecha de pago</th>
               <th scope="col">Estado del servicio</th>
-              <th scope="col" align="center">Acciones</th>        
+              <th scope="col">Acciones</th>        
             </tr>
           </thead>
           <tbody>

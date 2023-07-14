@@ -1,6 +1,26 @@
 @extends('layouts.layout_home')
 <title>Inicio | Sistema de Consultas de Valores a Pagar del Agua</title>
 @section('content')
+<style>
+  /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (PAGINA DE INICIO)*/
+    table th {
+      text-align: center; 
+    }
+    .td_acciones{
+      text-align: center;
+    }
+    .container{
+      background-color: #ecf0f1;
+      border-radius: 6px 6px 6px 6px;
+      -moz-border-radius: 6px 6px 6px 6px;
+      -webkit-border-radius: 6px 6px 6px 6px;
+      border: 0px solid #000000;
+    }
+    .bg-body-tertiary {
+      --bs-bg-opacity: 1;
+      background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+    }
+</style>
 <center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
 <div class="container">
       <form action="{{route('consulta.index')}}" method="GET">
