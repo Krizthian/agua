@@ -13,10 +13,22 @@
 <center><h1><strong>EDITAR MEDIDOR</h1></strong></center>
     <div class="container">
       <br>
-
         <main class="form-signin w-100 m-auto">
          <form action="{{route('medidores.update', $medidoresItem)}}" method="POST">
          	@csrf @method('PATCH')
+          <!--DEVOLVEMOS MENSAJES DE ERROR-->
+              @if ($errors->any())
+                  <div class="alert alert-danger alert-dismissible fade show">
+                    <strong>Error de validación</strong><br>
+                        <ul>
+                          @foreach ($errors->all() as $error)          
+                              <li>{{ $error }}</li>
+                             @endforeach   
+                        </ul>
+                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>       
+                  </div>
+              @endif
+            <!--FIN DE MENSAJES DE ERROR-->  
            <div class="col-auto">
             <label>Numero de medidor:</label><center><input type="text" class="form-control" name="numero_medidor" value="{{$medidoresItem->numero_medidor}}" placeholder="{{$medidoresItem->numero_medidor}}" disabled></input></center>
             <label>Nombre del cliente:</label><center><input type="text" class="form-control" name="nombre" value="{{$medidoresItem->nombre}}" placeholder="{{$medidoresItem->nombre}}" required></input></center>

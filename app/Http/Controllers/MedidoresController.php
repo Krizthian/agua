@@ -102,17 +102,32 @@ class MedidoresController extends Controller
      */
     public function update(Medidores $medidoresItem)
     {
-        //Realizamos la consulta Eloquent
-            Medidores::where('id', $medidoresItem->id)
-                    ->update([
-                        'nombre' => request('nombre'),
-                        'apellido' => request('apellido'),
-                        'cedula' => request('cedula'),
-                        'direccion' => request('direccion'),
-                        'telefono' => request('telefono'),
-                    ]);
-        //Redireccionamos 
-            return redirect()->route('medidores.index')->with('resultado_edicion', 'El medidor se ha actualizado correctamente');               
+    //Validamos los valores recibidos
+        $campos_validados = request()->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'cedula' => 'required|numeric',
+            'direccion' => 'required',
+            'telefono' => 'required|numeric',
+        ],[
+            'cedula.numeric' => 'El campo cédula debe contener números',
+            'telefono.numeric' => 'El campo télefono debe contener números',
+        ]);
+        if ($campos_validados) {
+            //Realizamos la consulta Eloquent
+                Medidores::where('id', $medidoresItem->id)
+                        ->update([
+                            'nombre' => request('nombre'),
+                            'apellido' => request('apellido'),
+                            'cedula' => request('cedula'),
+                            'direccion' => request('direccion'),
+                            'telefono' => request('telefono'),
+                        ]);
+            //Redireccionamos 
+                return redirect()->route('medidores.index')->with('resultado_edicion', 'El medidor se ha actualizado correctamente');
+         }else{
+            return redirect()->back()->withErrors($campos_validados)->withInput();
+        }                      
     }
 
     /**
