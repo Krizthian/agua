@@ -89,14 +89,6 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Mostramos el formulario para editar un medidor
      */
     public function edit(Usuarios $usuariosItem)
