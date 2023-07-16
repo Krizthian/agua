@@ -8,12 +8,41 @@ use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
 class ValoresAPagarController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Devolver resultados al Panel
      */
     public function index()
     {
         $valores_pagar = Pagos::paginate(10);
         return view('panel', compact('valores_pagar'));
+    }
+
+    /**
+     * Devolver resultados al Home (Solicitud de Ciudadano)
+     */
+    public function indexCiudadano(Request $request){
+
+    // Obtener los valores pasados por el formulario
+        $medidor_cedula = $request->input('medidor_cedula');
+
+    // Consulta Eloquent
+        $query = Pagos::query();
+
+    // Verificar si se ha proporcionado "numero_medidor" o "cedula" y agregar condiciones a la consulta
+        if (isset($medidor_cedula)) {
+            $query->where('numero_medidor', $medidor_cedula)
+            ->orWhere('cedula', $medidor_cedula);
+        
+
+    // Ejecutar la consulta y obtener los resultados
+        $resultados = $query->get();
+
+    // Retornar los resultados
+        return view('/home', compact('resultados', 'medidor_cedula'));
+      //Si no se ha pasado ningun valor, redireccionamos al inicio                  
+        }else{
+        // Redireccionamos
+            return redirect('/');
+        }                
     }
 
     /**
