@@ -31,9 +31,9 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 //Login
 	Route::view('/login', 'login')->name('login');
 		//Ruta para proceso de Login
-		Route::post('/login', [LoginController::class, 'login']);
+			Route::post('/login', [LoginController::class, 'login']);
 		//Ruta para hacer un logout
-		Route::post('/salir', [SalirController::class, 'salir'])->name('salir');
+			Route::post('/salir', [LoginController::class, 'salir'])->name('salir');
 
 /*Rutas para el personal del Municipio*/
 

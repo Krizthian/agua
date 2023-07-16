@@ -31,4 +31,11 @@ class LoginController extends Controller
             // Redireccionamos al login si hay algún error en la validación
                  return redirect()->route('login')->with('resultado_login', 'El usuario o la contraseña son incorrectos');
     }
+
+    /*Procesar el logout*/
+    public function salir (Request $request)
+    {
+        session()->flush(); //Esto limpiará la sesión existente
+        return redirect('/login'); //Redireccionamos a la pagina de inicio
+    }
 }
