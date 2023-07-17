@@ -33,14 +33,22 @@
 			      <br>
 				</div>
     </form>
-      <!--INICIO DE MENSAJE DE RESULTADO DE EDICION-->
+          <!--INICIO DE MENSAJE DE RESULTADO DE COMPROBACION DE VALOR ACTUAL-->
+        @if(session('resultado_comprobacion'))
+          <div class="alert alert-warning alert-dismissible fade show">
+              El medidor <strong>{{session('medidor_pagado')}}</strong> no tiene valores pendientes
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADO DE COMPROBACION DE VALOR ACTUAL-->
+      <!--INICIO DE MENSAJE DE RESULTADO DE INGRESO-->
         @if(session('resultado_ingreso'))
           <div class="alert alert-success alert-dismissible fade show">
               Se ha ingresado el pago por <strong>${{session('valor_pagado')}}</strong> al medidor <strong>{{session('medidor_pagado')}}</strong> correctamente.
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
           </div>
         @endif  
-        <!--FIN DE MENSAJE DE RESULTADO DE EDICION-->
+        <!--FIN DE MENSAJE DE RESULTADO DE INGRESO-->
 
         <!--INICIO DE MENSAJE DE RESULTADOS-->
         @if(session('resultado'))

@@ -92,10 +92,20 @@ class ValoresAPagarController extends Controller
      */
     public function edit(Pagos $valoresPagarItem)
     {
-        //Retornaremos a la vista con el formulario
-            return view('pagos.ingresar', [
-                'valoresPagarItem' => $valoresPagarItem
+
+    //Comprobamos si el medidor seleccionado tiene valores pendientes
+        if ($valoresPagarItem->valor_actual > 0) {
+            //Retornaremos a la vista con el formulario si existen valores pendientes
+                return view('pagos.ingresar', [
+                    'valoresPagarItem' => $valoresPagarItem
+                ]);
+            }
+        //En caso de que no haya valores pendientes notificamos al usuario    
+            return redirect()->route('panel.index')->with([
+                'resultado_comprobacion' => 'El medidor seleccionado no tiene valores pendientes',
+                'medidor_pagado' => $valoresPagarItem->numero_medidor,
             ]);
+
     }
 
     /**
