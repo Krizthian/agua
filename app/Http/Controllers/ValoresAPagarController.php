@@ -117,30 +117,45 @@ class ValoresAPagarController extends Controller
             $meses_mora = request('meses_mora');
             $valor_nuevo = request('valor_nuevo');
             $fecha = date("Y-m-d");
-
+       //Validamos los valores recibidos desde el formulario anterior
+            $campos_validados = request()->validate([
+                'meses_mora' => 'required|numeric',
+                'valor_nuevo' => 'required|numeric',
+            ],[
+                //Mensaje de error de meses
+                    'meses_mora.numeric' => 'Se requiere un valor numerico para los meses en mora',
+                    'valor_nuevo.numeric' => 'Se requiere un valor numerico para el campo de valor a pagar'
+            ]);     
         //Realizamos la operacion matematica para restar valores
-            /*
-                Restamos los valores existentes en la base de datos menos los recibidos en el formulario
-            */
+           
+        //Restamos los valores existentes en la base de datos menos los recibidos en el formulario
             $valorFinalIngresar = $valoresPagarItem->valor_actual - $valor_nuevo;
 
-        //Realizamos la consulta Eloquent
-            Pagos::where('id', $valoresPagarItem->id)
-                 ->update([
-                        'valor_actual' => $valorFinalIngresar,
-                        'valor_pagado' => $valor_nuevo,
-                        'valor_restante' => $valorFinalIngresar,
-                        'meses_mora' => $meses_mora,
-                        'fecha' => $fecha,
-                    ]);
+        //Si los campos han sido validados, realizamos la consulta
+        if ($campos_validados) {
+                   
+            //Realizamos la consulta Eloquent
+                Pagos::where('id', $valoresPagarItem->id)
+                     ->update([
+                            'valor_actual' => $valorFinalIngresar,
+                            'valor_pagado' => $valor_nuevo,
+                            'valor_restante' => $valorFinalIngresar,
+                            'meses_mora' => $meses_mora,
+                            'fecha' => $fecha,
+                        ]);
 
-        //Redireccionamos y devolvemos variables
-            return redirect()->route('panel.index')->with([
-                'resultado_ingreso' => 'El pago se ha ingresado correctamente',
-                'medidor_pagado' => $valoresPagarItem->numero_medidor,
-                'valor_pagado' => $valor_nuevo,
+            //Redireccionamos y devolvemos variables
+                return redirect()->route('panel.index')->with([
+                    'resultado_ingreso' => 'El pago se ha ingresado correctamente',
+                    'medidor_pagado' => $valoresPagarItem->numero_medidor,
+                    'valor_pagado' => $valor_nuevo,
 
-            ]);         
+                ]);         
+        
+        //Si no se ha realizado la validación correctamente, regresamos al formulario anterior        
+        }else{
+            return redirect()->back()->withErrors($campos_validados)->withInput();
+        }
+
     }
-
 }
