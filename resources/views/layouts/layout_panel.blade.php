@@ -27,18 +27,18 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
        <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/panel">Consulta</a>
+                <a class="nav-link {{setActive('panel.index')}}" aria-current="page" href="/panel">Consulta</a>
               </li>
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/medidores">Medidores</a>
+                <a class="nav-link {{setActive('medidores.index')}}" aria-current="page" href="/medidores">Medidores</a>
               </li>
             <!--ESTE VINCULO SOLO SERA VISTO Y SERA ACCESIBLE PARA USUARIOS CON ROL DE ADMINISTRADOR-->
               <li class="nav-item">
-                @if(session()->get('sesion')['rol'] == 'administrador')<a class="nav-link" aria-current="page" href="/usuarios">Usuarios</a>@endif
+                @if(session()->get('sesion')['rol'] == 'administrador')<a class="nav-link {{setActive('usuarios.index')}}" aria-current="page" href="/usuarios">Usuarios</a>@endif
               </li>
              <!--FIN VINCULO RESERVADO-->
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/reportes">Reportes</a>
+                <a class="nav-link {{setActive('reportes')}}" aria-current="page" href="/reportes">Reportes</a>
               </li>
         </li>
       </ul>
