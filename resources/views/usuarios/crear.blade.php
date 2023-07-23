@@ -30,7 +30,7 @@
               @endif
           <!--FIN DE MENSAJES DE ERROR-->
            <div class="col-auto">
-            <label>Nombre de Usuario:</label><center><input type="text" class="form-control" name="usuario" placeholder="Ej. arturo91" required></input></center>
+            <label>Nombre de Usuario:</label><center><input type="text" class="form-control @error('usuario') is-invalid @enderror" name="usuario" placeholder="Ej. arturo91" required></input></center>
 
             <label>Contraseña:</label><center><input type="text" class="form-control" name="password" placeholder="Ej. pw123" required></input></center>
 
@@ -38,7 +38,7 @@
 
             <label>Apellido:</label><center><input type="text" class="form-control" name="apellido" placeholder="Ej. Cueva" required></input></center>
 
-            <label>Cédula:</label><center><input type="text" class="form-control" name="cedula" placeholder="Ej. 0705559639" required></input></center>
+            <label>Cédula:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" placeholder="Ej. 0705559639" required></input></center>
 
             <label>Rol:</label><center><select class="form-select" name="rol" required>
 	            <option value="" disabled selected>Selecciona un rol</option>
@@ -46,8 +46,8 @@
 	            <option value="personal">Personal</option>	
             </select></center>
 
-            <label>Correo Electronico:</label><center><input type="email" class="form-control" name="email" placeholder="Ej. arturo@portovelo.gob.ec" required></input></center>
-            <label>Telefono:</label><center><input type="text" class="form-control" name="telefono" placeholder="2949888" required></input></center>
+            <label>Correo Electronico:</label><center><input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Ej. arturo@portovelo.gob.ec" required></input></center>
+            <label>Telefono:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" placeholder="2949888" required></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
           <br>

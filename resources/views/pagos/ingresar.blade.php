@@ -40,7 +40,7 @@
 
             <label>Valor actual:</label><div class="input-group mb-3"><span class="input-group-text">$</span><center><input type="text" class="form-control" name="valor_actual" value="{{$valoresPagarItem->valor_actual}}" placeholder="{{$valoresPagarItem->valor_actual}}" disabled></input></center></div>
 
-            <label>Meses en mora:</label><center><input type="text" class="form-control mb-3" name="meses_mora" value="{{$valoresPagarItem->meses_mora}}" placeholder="{{$valoresPagarItem->meses_mora}}" required></input></center>
+            <label>Meses en mora:</label><center><input type="text" class="form-control mb-3 @error('meses_mora') is-invalid @enderror" name="meses_mora" value="{{old('meses_mora',$valoresPagarItem->meses_mora)}}" placeholder="{{$valoresPagarItem->meses_mora}}" required></input></center>
             <label>Ultimo pago realizado:</label><div class="input-group mb-3"><span class="input-group-text">$</span><center><input type="text" class="form-control"  value="{{$valoresPagarItem->valor_pagado}}" placeholder="{{$valoresPagarItem->valor_pagado}}" disabled></input></center></div>
 
             <label>Valor restante:</label><div class="input-group mb-3"><span class="input-group-text">$</span><center><input type="text" class="form-control" name="valor_restante" value="{{$valoresPagarItem->valor_restante}}" placeholder="{{$valoresPagarItem->valor_restante}}" disabled></input></center></div>
@@ -48,7 +48,7 @@
             <!--INICIO DE VALOR A PAGAR-->
               <label>Valor a pagar:</label><div class="input-group mb-3">
                 <span class="input-group-text">$</span>
-                <input type="text" class="form-control" name="valor_nuevo" placeholder="Ingrese el valor a pagar" aria-label="Monto" required>
+                <input type="text" class="form-control @error('valor_nuevo') is-invalid @enderror" name="valor_nuevo" value="{{old('valor_nuevo')}}" placeholder="Ingrese el valor a pagar" aria-label="Monto" required>
               </div>
             <!--FIN DE VALOR A PAGAR-->
 
