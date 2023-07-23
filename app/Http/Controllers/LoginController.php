@@ -35,7 +35,9 @@ class LoginController extends Controller
     /*Procesar el logout*/
     public function salir (Request $request)
     {
-        session()->flush(); //Esto limpiará la sesión existente
-        return redirect('/login'); //Redireccionamos a la pagina de inicio
+        //Limpamos las sesiones existentes
+         session()->flush(); 
+        //Redireccionamos a la pagina de inicio de sesión
+         return redirect()->route('login')->with('resultado_logout', 'Se ha cerrado la sesión'); 
     }
 }

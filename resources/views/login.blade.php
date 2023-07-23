@@ -11,13 +11,21 @@
 <main class="form-signin w-100 m-auto">
   <form action="{{route('login')}}" method="POST" >
     @csrf
-          <!--INICIO DE MENSAJE DE RESULTADO DE CREACION-->
+      <!--INICIO DE MENSAJE DE RESULTADO DE LOGOUT-->
+        @if(session('resultado_logout'))
+          <div class="alert alert-warning alert-dismissible fade show">
+              Se ha <strong>cerrado</strong> la sesión correctamente.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+      <!--FIN DE MENSAJE DE RESULTADO DE LOGOUT-->
+      <!--INICIO DE MENSAJE DE RESULTADO DE VALIDACION-->
         @if(session('resultado_login'))
           <div class="alert alert-danger alert-dismissible fade show">
               El <strong>usuario</strong> o <strong>contraseña</strong> ingresados son incorrectos.
           </div>
         @endif  
-        <!--FIN DE MENSAJE DE RESULTADO DE CREACION-->
+      <!--FIN DE MENSAJE DE RESULTADO DE VALIDACION-->
     <div class="form-floating">
       <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" required>
       <label for="usuario">Usuario</label>
