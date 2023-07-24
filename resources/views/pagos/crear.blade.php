@@ -38,7 +38,7 @@
             <option value="{{$queryMedidoresItem->numero_medidor}}" required>{{$queryMedidoresItem->numero_medidor}} - {{$queryMedidoresItem->nombre}} {{$queryMedidoresItem->apellido}}</option>
             @endforeach
           </select>
-            <label>Meses en mora:</label><center><input type="text" class="form-control mb-3 @error('meses_mora') is-invalid @enderror" name="meses_mora" value="{{old('meses_mora')}}" placeholder="Ingrese la cantidad de meses en mora" required></input></center>
+            <label>Meses en mora:</label><center><input type="text" class="form-control mb-3 @error('meses_mora') is-invalid @enderror" name="meses_mora" value="{{old('meses_mora')}}" placeholder="Ingrese el numero de meses en mora" required></input></center>
 
               <label>Valor actual:</label><div class="input-group mb-3">
                 <span class="input-group-text">$</span>
