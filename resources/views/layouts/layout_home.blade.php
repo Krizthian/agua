@@ -81,9 +81,9 @@
 <footer class="my-5 pt-5 text-body-secondary text-center text-small">
     <p class="mb-1">© {{date('Y')}} GAD Municipal de Portovelo</p>
     <ul class="list-inline">
-      <li class="list-inline-item"><a href="/">Inicio</a></li>
-      <li class="list-inline-item"><a href="http://portovelo.gob.ec">Municipio</a></li>
-      <li class="list-inline-item"><a href="http://www.portovelo.gob.ec/canton-portovelo/">Ciudad</a></li>
+      <li class="list-inline-item"><a class="text-decoration-none" href="/">Inicio</a></li>
+      <li class="list-inline-item"><a class="text-decoration-none" href="http://portovelo.gob.ec">Municipio</a></li>
+      <li class="list-inline-item"><a class="text-decoration-none" href="http://www.portovelo.gob.ec/canton-portovelo/">Ciudad</a></li>
     </ul>
   </footer>
 <!--FIN DE FOOTER-->
