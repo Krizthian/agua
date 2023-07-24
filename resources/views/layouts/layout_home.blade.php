@@ -79,7 +79,6 @@
 <br>
 <br><br>
 <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-  <hr>
     <p class="mb-1">Gobierno Autónomo Descentralizado Municipal de Portovelo | Copyright © {{date('Y')}} </p>
     <ul class="list-inline">
       <li class="list-inline-item"><a class="text-decoration-none" href="/">Inicio</a></li>
