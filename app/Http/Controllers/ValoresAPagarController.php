@@ -111,6 +111,7 @@ class ValoresAPagarController extends Controller
             'valor_actual' => 'required|numeric',
         ],[
             'numero_medidor.unique' => 'Este medidor ya se encuentra asociado a una planilla',
+            'numero_medidor.required' => 'El numero de medidor es un campo obligatorio',
             'meses_mora.numeric' => 'Se requiere un valor numerico para los meses en mora',
             'valor_nuevo.numeric' => 'Se requiere un valor numerico para el campo de valor a pagar',
             'valor_actual.numeric' => 'Se requiere un valor numerico para el campo de valor actual',

@@ -32,17 +32,17 @@
             <!--FIN DE MENSAJES DE ERROR-->  
         <label>Medidor asociado:</label>
         <div class="form-group ">
-          <select class="form-select input-group mb-3" id="numero_medidor" name="numero_medidor" required>
+          <select class="form-select input-group mb-3 @error('numero_medidor') is-invalid @enderror" id="numero_medidor" name="numero_medidor" required>
             <option value="Seleccione un medidor" required selected disabled>Seleccione un medidor</option>
             @foreach ($queryMedidores as $queryMedidoresItem)
             <option value="{{$queryMedidoresItem->numero_medidor}}" required>{{$queryMedidoresItem->numero_medidor}} - {{$queryMedidoresItem->nombre}} {{$queryMedidoresItem->apellido}}</option>
             @endforeach
           </select>
-            <label>Meses en mora:</label><center><input type="text" class="form-control mb-3" name="meses_mora" placeholder="Ingrese la cantidad de meses en mora" required></input></center>
+            <label>Meses en mora:</label><center><input type="text" class="form-control mb-3 @error('meses_mora') is-invalid @enderror" name="meses_mora" value="{{old('meses_mora')}}" placeholder="Ingrese la cantidad de meses en mora" required></input></center>
 
               <label>Valor actual:</label><div class="input-group mb-3">
                 <span class="input-group-text">$</span>
-                <input type="text" class="form-control" name="valor_actual" placeholder="Ingrese el valor actual a pagar" aria-label="Monto" required>
+                <input type="text" class="form-control @error('valor_actual') is-invalid @enderror" name="valor_actual" value="{{old('valor_actual')}}" placeholder="Ingrese el valor actual a pagar" aria-label="Monto" required>
               </div>
 
         </div>
