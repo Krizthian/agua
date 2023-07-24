@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
+use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
 
 class ValoresAPagarController extends Controller
 {
@@ -88,8 +89,71 @@ class ValoresAPagarController extends Controller
     }
 
     /**
-     * Mostramos el formulario para editar un medidor
+     * Mostramos el formulario para crear una planilla
      */
+    public function create(){
+        //Realizamos la consulta para obtener la informacion de los medidores registrados
+            $queryMedidores = Medidores::all();
+        //Devolvemos la informacion al formulario de creación     
+            return view ('pagos.crear', compact('queryMedidores'));
+    }    
+
+    /**
+     * Mostramos el formulario para guardar la planilla creada
+     */
+    public function store(Request $request){
+     //Creamos la fecha actual
+        $fecha = date("Y-m-d"); 
+     //Validamos los valores recibidos
+        $campos_validados = request()->validate([
+            'numero_medidor' => 'required|unique:pagos',
+            'meses_mora' => 'required|numeric',
+            'valor_actual' => 'required|numeric',
+        ],[
+            'numero_medidor.unique' => 'Este medidor ya se encuentra asociado a una planilla',
+            'meses_mora.numeric' => 'Se requiere un valor numerico para los meses en mora',
+            'valor_nuevo.numeric' => 'Se requiere un valor numerico para el campo de valor a pagar',
+            'valor_actual.numeric' => 'Se requiere un valor numerico para el campo de valor actual',
+            'valor_restante.numeric' => 'Se requiere un valor numerico para el campo de valor restante',
+        ]);
+
+       if ($campos_validados) {          
+            //Obtendremos todos los valores de la tabla Medidores asociados al numero de medidor pasado
+                //Consulta Eloquent
+                    $queryMedidor = Medidores::query();
+                //Obtenemos valores con el numero de medidor recibido       
+                    $queryMedidor->where('numero_medidor',  $campos_validados['numero_medidor']);
+                    $queryMedidorItem = $queryMedidor->first();
+
+                //Ingresamos los datos en la tabla de Pagos
+                    Pagos::create([
+                        'numero_medidor' => $campos_validados['numero_medidor'],
+                        'nombre' => $queryMedidorItem->nombre,
+                        'apellido' => $queryMedidorItem->apellido,
+                        'meses_mora' => $campos_validados['meses_mora'],
+                        'valor_actual' => $campos_validados['valor_actual'],
+                        'valor_restante' => $campos_validados['valor_actual'],
+                        'valor_pagado' => '0.00',
+                        'fecha' => $fecha,
+                        'cedula' => $queryMedidorItem->cedula,
+                        'estado_servicio' => 'activo',
+
+                    ]);
+                //Redireccionamos y devolvemos variables
+                return redirect()->route('panel.index')->with([
+                    'resultado_creacion' => 'Se ha creado la nueva planilla correctamente',
+                ]);         
+        
+                //Si no se ha realizado la validación correctamente, regresamos al formulario anterior        
+                }else{
+                    return redirect()->back()->withErrors($campos_validados)->withInput();
+                }
+
+    } 
+
+    /**
+     * Mostramos el formulario para ingresar un pago
+    */
     public function edit(Pagos $valoresPagarItem)
     {
 

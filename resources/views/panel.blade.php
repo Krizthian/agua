@@ -24,7 +24,9 @@
 	<center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
 
 		<div class="container">
-			<br><br>
+			<br>
+          <div class="col-md-12 bg-light text-right"><a href="{{route('pagos.crear')}}" type="submit" class="btn btn-success float-end">Nueva Planilla</a></div>
+          <br><br>
 			    <form action="{{route('panel.busqueda')}}" method="GET">
 			       <div class="col-auto">
 			      <center><input type="text" name="valores" class="form-control" placeholder="Apellidos, número de medidor o cédula"></input></center>
@@ -49,6 +51,15 @@
           </div>
         @endif  
         <!--FIN DE MENSAJE DE RESULTADO DE INGRESO-->
+
+      <!--INICIO DE MENSAJE DE RESULTADO DE CREACION DE PLANILLA-->
+        @if(session('resultado_creacion'))
+          <div class="alert alert-success alert-dismissible fade show">
+              Se ha creado la nueva planilla correctamente.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADO DE CREACION DE PLANILLA-->
 
         <!--INICIO DE MENSAJE DE RESULTADOS-->
         @if(session('resultado'))

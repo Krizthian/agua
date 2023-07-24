@@ -42,7 +42,13 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/panel', [ValoresAPagarController::class, 'index'])->name('panel.index');
 		//Busqueda de valores	
 			Route::get('/panel/busqueda', [ValoresAPagarController::class, 'busqueda'])->name('panel.busqueda');
-		//Devolver el formulrio de ingreso de pago
+
+		//Devolver el formulario de creación de planilla
+			Route::get('/panel/pagos/crear', [ValoresAPagarController::class, 'create'])->name('pagos.crear');
+			//Registrar planilla
+				Route::post('/panel', [ValoresAPagarController::class, 'store'])->name('pagos.store');	
+
+		//Devolver el formulario de ingreso de pago
 			Route::get('/panel/pagos/{valoresPagarItem}', [ValoresAPagarController::class, 'edit'])->name('pagos.ingresar');
 			//Actualizar planilla
 				Route::patch('/panel/{valoresPagarItem}', [ValoresAPagarController::class, 'update'])->name('pagos.update');	
@@ -55,11 +61,11 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/medidores', [MedidoresController::class, 'index'])->name('medidores.index');
 		//Busqueda de medidores
 			Route::get('/medidores/busqueda', [MedidoresController::class, 'busqueda'])->name('medidores.busqueda');
-		//Devolver el formulrio de creación de medidor
+		//Devolver el formulario de creación de medidor
 			Route::get('/medidores/crear', [MedidoresController::class, 'create'])->name('medidores.create');
 			//Registrar medidor
 				Route::post('/medidores', [MedidoresController::class, 'store'])->name('medidores.store');	
-		//Devolver el formulrio de edición de medidor
+		//Devolver el formulario de edición de medidor
 			Route::get('/medidores/editar/{medidoresItem}', [MedidoresController::class, 'edit'])->name('medidores.editar');
 			//Actualizar medidor
 				Route::patch('/medidores/{medidoresItem}', [MedidoresController::class, 'update'])->name('medidores.update');
@@ -72,11 +78,11 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/usuarios', [UsuariosController::class, 'index'])->name('usuarios.index');
 		//Busqueda de Usuarios
 			Route::get('/usuarios/busqueda', [UsuariosController::class, 'busqueda'])->name('usuarios.busqueda');
-		//Devolver el formulrio de creación de usuario
+		//Devolver el formulario de creación de usuario
 			Route::get('/usuarios/crear', [UsuariosController::class, 'create'])->name('usuarios.create');
 			//Registrar usuario
 				Route::post('/usuarios', [UsuariosController::class, 'store'])->name('usuarios.store');	
-		//Devolver el formulrio de edición de usuario
+		//Devolver el formulario de edición de usuario
 			Route::get('/usuarios/editar/{usuariosItem}', [UsuariosController::class, 'edit'])->name('usuarios.editar');
 			//Actualizar usuario
 				Route::patch('/usuarios/{usuariosItem}', [UsuariosController::class, 'update'])->name('usuarios.update');		
