@@ -41,15 +41,13 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/panel', [ValoresAPagarController::class, 'index'])->name('panel.index');
 		//Busqueda de valores	
 			Route::get('/panel/busqueda', [ValoresAPagarController::class, 'busqueda'])->name('panel.busqueda');
-
 		//Devolver el formulario de creación de planilla
 			Route::get('/panel/pagos/crear', [ValoresAPagarController::class, 'create'])->name('pagos.crear');
 			//Registrar planilla
 				Route::post('/panel', [ValoresAPagarController::class, 'store'])->name('pagos.store');	
-
 		//Devolver el formulario de ingreso de pago
 			Route::get('/panel/pagos/{valoresPagarItem}', [ValoresAPagarController::class, 'edit'])->name('pagos.ingresar');
-			//Actualizar planilla
+			//Ingresar pago
 				Route::patch('/panel/{valoresPagarItem}', [ValoresAPagarController::class, 'update'])->name('pagos.update');	
 		//Inhabilitar/Habilitar servicio	
 			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [ValoresAPagarController::class, 'inhabilitar'])->name('panel.inhabilitar');
@@ -92,7 +90,3 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 	Route::view('/reportes', 'reportes')->name('reportes');
 		//Generacion de reportes
 			Route::get('/reportes/generar', [ReportesController::class, 'generar'])->name('reportes.generar');
-
-//Route::view('/about', 'about')->name('about');
-//Route::view('/contact', 'contact')->name('contact');
-//Route::view('/servicios', 'servicios')->name('servicios');
