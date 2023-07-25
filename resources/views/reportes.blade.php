@@ -105,8 +105,8 @@
             <tr>
               <td class="td_acciones">{{$valorGenerado->numero_medidor}}</td>
               <td class="td_acciones">{{$valorGenerado->nombre}} {{$valorGenerado->apellido}}</td>
-              <td class="td_acciones">{{$valorGenerado->valor_pagado}}</td>
-              <td class="td_acciones">{{$valorGenerado->valor_restante}}</td>
+              <td class="td_acciones">$ {{$valorGenerado->valor_pagado}}</td>
+              <td class="td_acciones">$ {{$valorGenerado->valor_restante}}</td>
               <td class="td_acciones">{{$valorGenerado->fecha}}</td>
               <td class="td_acciones">{{ucfirst($valorGenerado->estado_servicio);}}</td>
             </tr> 
