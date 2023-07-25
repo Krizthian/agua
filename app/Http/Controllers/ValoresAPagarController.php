@@ -80,11 +80,11 @@ class ValoresAPagarController extends Controller
             //Desactivamos el servicio si este se encuentra 'inactivo'
                 if ($valoresPagarItem->estado_servicio == "activo") {
                     Pagos::where('id', '=', $valoresPagarItem->id)->update(['estado_servicio' => 'inactivo']);
-                    return redirect()->route('panel.index')->with('resultado', 'Se ha suspendido el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'panel'
+                    return redirect()->back()->with('resultado', 'Se ha suspendido el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'panel'
             //Reactivamos el servicio si este se encuentra 'activo'
                 }elseif ($valoresPagarItem->estado_servicio == "inactivo") {
                     Pagos::where('id', '=', $valoresPagarItem->id)->update(['estado_servicio' => 'activo']);
-                    return redirect()->route('panel.index')->with('resultado', 'Se ha reactivado el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'panel'
+                    return redirect()->back()->with('resultado', 'Se ha reactivado el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'panel'
                 }
     }
 
