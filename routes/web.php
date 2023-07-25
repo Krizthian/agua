@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ValoresAPagarController; //Controlador de consulta
 use App\Http\Controllers\MedidoresController; //Controlador de Medidores
 use App\Http\Controllers\LoginController; //Controlador de Login
-use App\Http\Controllers\SalirController; //Controlador de Logout
 use App\Http\Controllers\UsuariosController; //Controlador de Usuarios
 use App\Http\Controllers\ReportesController; //Controlador de Reportes
 
