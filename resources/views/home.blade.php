@@ -35,6 +35,7 @@
     </form>
     @if(isset($resultados))
          <!--INICIO TABLA CON DATOS-->
+      <div class="table-responsive">
         <table class="table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
@@ -67,6 +68,7 @@
             @endif
           </tbody>
         </table>
+      </div>
         <!--FIN DE LA TABLA CON DATOS-->
 
         <!--INICIO DE MENSAJE DE ALERTA-->

@@ -70,6 +70,7 @@
         @endif  
         <!--FIN DE MENSAJE DE RESULTADOS-->
     <!--INICIO TABLA CON DATOS-->
+    <div class="table-responsive">
     	<table class=" table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
@@ -133,6 +134,7 @@
             @endif
           </tbody>
         </table>
+      </div>
         	{{$valores_pagar->links('pagination::bootstrap-4')}}
       <!--FIN TABLA CON DATOS-->
         <!--BOTON DE IMPRIMIR-->

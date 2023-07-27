@@ -77,6 +77,7 @@
         <!--FIN DE MENSAJE DE RESULTADOS DE ELIMINACION-->
 
       <!--INICIO DE TABLA CON VALORES-->
+      <div class="table-responsive">
         <table class=" table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
@@ -124,6 +125,7 @@
             @endif
           </tbody>
         </table>
+      </div>
             {{$usuarios->links('pagination::bootstrap-4')}}
         <br>
         <!--FIN DE TABLA CON VALORES-->
