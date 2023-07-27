@@ -1,5 +1,5 @@
 @extends('layouts.layout_panel')
-<title>Panel de Consulta | Sistema de Consultas de Valores a Pagar del Agua</title>
+<title>Panel de Gestión | Sistema de Consultas de Valores a Pagar del Agua</title>
 @section('content')
 <style>
 	/*ESTILO PERSONALIZADO PARA PANEL DE GESTION (PAGINA DE INICIO)*/
