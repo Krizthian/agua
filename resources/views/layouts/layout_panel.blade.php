@@ -13,6 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.0/css/all.css">
     <link rel='shortcut icon' href='{{asset('img/favicon.ico')}}' type='image/x-icon'>
+    <link rel="stylesheet" href="{{url('css/footer.css')}}">
   </head>
   <body class="bg-body-tertiary">
     <header>
@@ -78,10 +79,9 @@
 <!--FIN CONTENIDO-->
 
 <!--INICIO FOOTER-->
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<footer class="my-5 pt-5 text-body-secondary text-center text-small">
+<footer class="footer my-5 pt-5 text-body-secondary text-center text-small">
+    <div class="container_footer">
     <!--INICIO DE ICONOS DE REDES SOCIALES-->
-    <hr>
           <ul class="list-inline">
             <li class="list-inline-item mx-2">
                   <!-- Facebook -->
@@ -100,7 +100,7 @@
                 <a title="TikTok" href="https://www.tiktok.com/@gadportovelo"><i class="list-inline-item mx-2 fab fa-tiktok fa-1x" style="color: #000;"></i></a>
             </li>
         </ul>
-    <hr>
+    <center><hr class="hr_short"></center>
   <!--FIN DE ICONOS DE REDES SOCIALES-->
     <p class="mb-1">Gobierno Autónomo Descentralizado Municipal de Portovelo | Copyright © {{date('Y')}} </p>
     <ul class="list-inline">
@@ -108,6 +108,7 @@
       <li class="list-inline-item"><a class="text-decoration-none" href="http://portovelo.gob.ec">Municipio</a></li>
       <li class="list-inline-item"><a class="text-decoration-none" href="http://www.portovelo.gob.ec/canton-portovelo/">Ciudad</a></li>
     </ul>
+  </div>
   </footer>
 <!--FIN FOOTER-->
 <!--JAVASCRIPT BOOTSTRAP 5.3-->
