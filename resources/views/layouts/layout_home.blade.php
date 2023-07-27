@@ -6,6 +6,7 @@
     <title>Inicio</title>
     <!--BOOTSTRAP 5.3 - CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.0/css/all.css">
     <link rel='shortcut icon' href='{{asset('img/favicon.ico')}}' type='image/x-icon'>
     <!--ARCHIVO DE CSS PERSONALIZADO-->
     <link rel="stylesheet" href="{{url('css/custom.css')}}">
@@ -67,18 +68,30 @@
 @yield('content')
 
 <!--INICIO DE FOOTER-->
-<br>
-<br>
-<br><br>
-<br>
-<br><br>
-<br>
-<br><br>
-<br>
-<br><br>
-<br>
-<br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+  <!--INICIO DE ICONOS DE REDES SOCIALES-->
+      <hr>
+          <ul class="list-inline">
+            <li class="list-inline-item mx-2">
+                  <!-- Facebook -->
+                <a title="Facebook" href="https://www.facebook.com/PortoveloGADM"><i class=" list-inline-item mx-2 fab fa-facebook-f fa-1x" style="color: #3b5998;"></i></a>
+
+                <!-- Twitter -->
+                <a title="Twitter" href="https://twitter.com/GadPortovelo"><i class=" list-inline-item mx-2 fab fa-twitter fa-1x" style="color: #55acee;"></i></a>
+
+                <!-- Instagram -->
+                <a title="Instagram" href="https://www.instagram.com/gadportovelo/"><i class="list-inline-item mx-2 fab fa-instagram fa-1x" style="color: #ac2bac;"></i></a>
+
+                <!-- YouTube -->
+                <a title="YouTube" href="https://www.youtube.com/channel/UCLomKkKiMVOrg8CCgkYr1kA?view_as=subscriber"><i class="list-inline-item mx-2 fab fa-youtube fa-1x" style="color: #ed302f;"></i></a>
+
+                <!-- TikTok -->
+                <a title="TikTok" href="https://www.tiktok.com/@gadportovelo"><i class="list-inline-item mx-2 fab fa-tiktok fa-1x" style="color: #000;"></i></a>
+            </li>
+        </ul>
+      <hr>
+  <!--FIN DE ICONOS DE REDES SOCIALES-->
     <p class="mb-1">Gobierno Autónomo Descentralizado Municipal de Portovelo | Copyright © {{date('Y')}} </p>
     <ul class="list-inline">
       <li class="list-inline-item"><a class="text-decoration-none" href="/">Inicio</a></li>
