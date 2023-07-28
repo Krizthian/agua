@@ -150,7 +150,92 @@ class ValoresAPagarController extends Controller
                     return redirect()->back()->withErrors($campos_validados)->withInput();
                 }
 
-    } 
+    }
+
+    /**
+     * Mostramos el formulario para actualizar una planilla
+    */
+    public function actualizar(Pagos $valoresPagarItem){
+
+        //Devolvemos la informacion al formulario de facturacion     
+        return view('pagos.facturar', [
+                    'valoresPagarItem' => $valoresPagarItem
+        ]);
+
+    }   
+
+    /**
+     * Actualizamos los valores en la planilla
+    */
+    public function bill(Pagos $valoresPagarItem){
+        //Obtenemos las variables enviadas en el formulario
+            $cedula = request('cedula');
+            $nombre = request('nombre');
+            $apellido = request('apellido');
+            $valor_pagar = request('valor_pagar');
+            $fecha_factura = request('fecha_factura');
+            $fecha_maxima = request('fecha_maxima');
+            $meses_mora = request('meses_mora');
+
+       //Validamos los valores recibidos desde el formulario anterior
+            $campos_validados = request()->validate([
+                'cedula' => 'required|numeric',
+                'nombre' => 'required|string|regex:/^[A-Za-z\s]+$/',
+                'apellido' => 'required|string|regex:/^[A-Za-z\s]+$/',
+                'valor_pagar' => 'required|numeric',
+                'fecha_factura' => 'required|date_format:Y-m-d',
+                'fecha_maxima' => 'required|date_format:Y-m-d',
+                'meses_mora' => 'required|numeric',
+            ],[
+                //Mensaje de error
+                    //Valores numericos
+                        'cedula.numeric' => 'Se requiere un valor numerico para la cédula',
+                        'meses_mora.numeric' => 'Se requiere un valor numerico para los meses en mora',
+                        'valor_pagar.numeric' => 'Se requiere un valor numerico para el campo de valor a pagar',
+
+                    //Valores cadena
+                        'nombre.string' => 'Se requiere un valor de texto para el nombre',    
+                        'nombre.regex' => 'Se requiere un valor de texto para el nombre',    
+                        'apellido.string' => 'Se requiere un valor de texto para el apellido',
+                        'apellido.regex' => 'Se requiere un valor de texto para el apellido',
+
+                    //Valores de fecha
+                        'fecha_factura.date_format' => 'Se requiere una fecha con formato valido',    
+                        'fecha_maxima.date_format' => 'Se requiere una fecha con formato valido',  
+
+                    //Valores requeridos
+                        'cedula.required' => 'La cédula es un campo obligatorio',    
+                        'nombre.required' => 'El nombre es un campo obligatorio',
+                        'apellido.required' => 'El apellido es un campo obligatorio',
+                        'valor_pagar.required' => 'El valor a pagar es un campo obligatorio',
+                        'fecha_factura.required' => 'La fecha de factura es un campo obligatorio',
+                        'fecha_maxima.required' => 'La fecha maxima es un campo obligatorio',
+                        'meses_mora.required' => 'Los meses en mora son un campo obligatorio',
+            ]); 
+        //Si los campos han sido validados, realizamos la consulta
+            if ($campos_validados) {       
+                //Realizamos la consulta Eloquent
+                    Pagos::where('id', $valoresPagarItem->id)
+                         ->update([
+                                'cedula' => $cedula,
+                                'nombre' => $nombre,
+                                'apellido' => $apellido,
+                                'valor_actual' => $valor_pagar,
+                                'valor_restante' => $valor_pagar,
+                                'fecha_factura' => $fecha_factura,
+                                'fecha_maxima' => $fecha_maxima,
+                                'meses_mora' => $meses_mora,
+                            ]);
+                //Redireccionamos y devolvemos variables
+                    return redirect()->route('panel.index')->with([
+                        'resultado_actualizacion' => 'El pago se ha ingresado correctamente',
+                    ]);         
+            
+        //Si no se ha realizado la validación correctamente, regresamos al formulario anterior        
+        }else{
+            return redirect()->back()->withErrors($campos_validados)->withInput();
+        }
+    }      
 
     /**
      * Mostramos el formulario para ingresar un pago
@@ -172,6 +257,8 @@ class ValoresAPagarController extends Controller
             ]);
 
     }
+
+
 
     /**
      * Actualizamos el valor en la base de datos.

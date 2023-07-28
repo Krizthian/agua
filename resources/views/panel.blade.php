@@ -61,6 +61,15 @@
         @endif  
         <!--FIN DE MENSAJE DE RESULTADO DE CREACION DE PLANILLA-->
 
+      <!--INICIO DE MENSAJE DE RESULTADO DE ACTUALIZACION DE PLANILLA-->
+        @if(session('resultado_actualizacion'))
+          <div class="alert alert-success alert-dismissible fade show">
+              Se ha actualizado los valores de la planilla correctamente.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADO DE ACTUALIZACION DE PLANILLA-->
+
         <!--INICIO DE MENSAJE DE RESULTADOS-->
         @if(session('resultado'))
           <div class="alert alert-success alert-dismissible fade show">
@@ -71,7 +80,7 @@
         <!--FIN DE MENSAJE DE RESULTADOS-->
     <!--INICIO TABLA CON DATOS-->
     <div class="table-responsive">
-    	<table class=" table-responsive table table-bordered table-striped table-sm">
+    	<table class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
               <th scope="col">Medidor</th>
@@ -82,6 +91,7 @@
               <th scope="col">Valor pagado</th>
               <th scope="col">Valor restante</th>
               <th scope="col">Última fecha de pago</th>
+              <th scope="col">Fecha de Factura</th>
               <th scope="col">Estado del servicio</th>
               <th scope="col">Acciones</th>        
             </tr>
@@ -100,6 +110,7 @@
               <td class="td_acciones">$ {{$valoresPagarItem->valor_pagado}}</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_restante}}</td>
               <td class="td_acciones">{{$valoresPagarItem->fecha}}</td>
+              <td class="td_acciones">{{$valoresPagarItem->fecha_factura}}</td>
               <td class="td_acciones">{{ucfirst($valoresPagarItem->estado_servicio);}}</td>
               <td class="td_acciones">
               <!--INICIO DE ACCIONES-->
@@ -108,7 +119,13 @@
                     <a type="button" href="{{route('pagos.ingresar', $valoresPagarItem)}}" class="btn btn-outline-success" title="Registrar pago"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
                       <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
                     </svg></a>
-                    <!--FIN BOTON PAGAR-->
+                 <!--FIN BOTON PAGAR-->
+               <!--BOTON ACTUALIZAR PLANILLA-->
+                    <a type="button" href="{{route('pagos.actualizar', $valoresPagarItem)}}" class="btn btn-outline-dark" title="Actualizar Planilla"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt-cutoff" viewBox="0 0 16 16">
+                    <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zM11.5 4a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                    <path d="M2.354.646a.5.5 0 0 0-.801.13l-.5 1A.5.5 0 0 0 1 2v13H.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H15V2a.5.5 0 0 0-.053-.224l-.5-1a.5.5 0 0 0-.8-.13L13 1.293l-.646-.647a.5.5 0 0 0-.708 0L11 1.293l-.646-.647a.5.5 0 0 0-.708 0L9 1.293 8.354.646a.5.5 0 0 0-.708 0L7 1.293 6.354.646a.5.5 0 0 0-.708 0L5 1.293 4.354.646a.5.5 0 0 0-.708 0L3 1.293 2.354.646zm-.217 1.198.51.51a.5.5 0 0 0 .707 0L4 1.707l.646.647a.5.5 0 0 0 .708 0L6 1.707l.646.647a.5.5 0 0 0 .708 0L8 1.707l.646.647a.5.5 0 0 0 .708 0L10 1.707l.646.647a.5.5 0 0 0 .708 0L12 1.707l.646.647a.5.5 0 0 0 .708 0l.509-.51.137.274V15H2V2.118l.137-.274z"/>
+                  </svg></a>
+                 <!--FIN BOTON ACTUALIZAR PLANILLA-->
                   <!--INICIO DE COMPROBACION DE ESTADO DE SERVICIO-->  
                     @if($valoresPagarItem->estado_servicio == "activo") 
                      <!--BOTON CORTAR SERVICIO-->

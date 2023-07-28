@@ -36,7 +36,7 @@
     @if(isset($resultados))
          <!--INICIO TABLA CON DATOS-->
       <div class="table-responsive">
-        <table class="table-responsive table table-bordered table-striped table-sm">
+        <table class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
               <th scope="col">Medidor</th>
@@ -45,7 +45,9 @@
               <th scope="col">Meses en mora</th>
               <th scope="col">Valor pagado</th>
               <th scope="col">Valor restante</th>
-              <th scope="col">Última fecha de pago</th>  
+              <th scope="col">Fecha de facturación</th>  
+              <th scope="col">Fecha maxima de pago</th>  
+              <th scope="col">Ultimo pago realizado</th>  
               <th scope="col">Estado del servicio</th>  
             </tr>
           </thead>
@@ -61,6 +63,8 @@
               <td class="td_acciones">{{$pagosConsultaItem->meses_mora}} meses</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_pagado}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_restante}}</td>
+              <td class="td_acciones">{{$pagosConsultaItem->fecha_factura}}</td>
+              <td class="td_acciones">{{$pagosConsultaItem->fecha_maxima}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha}}</td>
               <td class="td_acciones">{{ucfirst($pagosConsultaItem->estado_servicio);}}</td>
             </tr> 

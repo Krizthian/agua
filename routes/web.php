@@ -48,7 +48,11 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 		//Devolver el formulario de ingreso de pago
 			Route::get('/panel/pagos/{valoresPagarItem}', [ValoresAPagarController::class, 'edit'])->name('pagos.ingresar');
 			//Ingresar pago
-				Route::patch('/panel/{valoresPagarItem}', [ValoresAPagarController::class, 'update'])->name('pagos.update');	
+				Route::patch('/panel/{valoresPagarItem}', [ValoresAPagarController::class, 'update'])->name('pagos.update');
+		//Devolver el formulario de actualizacion de planilla
+			Route::get('/panel/pagos/facturar/{valoresPagarItem}', [ValoresAPagarController::class, 'actualizar'])->name('pagos.actualizar');
+			//Facturar
+				Route::patch('/panel/facturar/{valoresPagarItem}', [ValoresAPagarController::class, 'bill'])->name('pagos.bill');			
 		//Inhabilitar/Habilitar servicio	
 			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [ValoresAPagarController::class, 'inhabilitar'])->name('panel.inhabilitar');
 

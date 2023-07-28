@@ -30,23 +30,23 @@
               @endif
           <!--FIN DE MENSAJES DE ERROR-->
            <div class="col-auto">
-            <label>Numero de medidor:</label><center><input type="text" class="form-control mb-3" name="numero_medidor" value="{{$valoresPagarItem->numero_medidor}}" placeholder="{{$valoresPagarItem->numero_medidor}}" disabled></input></center>
+            <label>Numero de medidor:</label><center><input type="text" class="form-control mb-2" name="numero_medidor" value="{{$valoresPagarItem->numero_medidor}}" placeholder="{{$valoresPagarItem->numero_medidor}}" disabled></input></center>
 
-            <label>Cédula:</label><center><input type="text" class="form-control mb-3" name="cedula" value="{{$valoresPagarItem->cedula}}" placeholder="{{$valoresPagarItem->cedula}}" disabled></input></center>
+            <label>Cédula:</label><center><input type="text" class="form-control mb-2" name="cedula" value="{{$valoresPagarItem->cedula}}" placeholder="{{$valoresPagarItem->cedula}}" disabled></input></center>
 
-            <label>Nombre del cliente:</label><center><input type="text" class="form-control mb-3" name="nombre" value="{{$valoresPagarItem->nombre}}" placeholder="{{$valoresPagarItem->nombre}}" disabled></input></center>
+            <label>Nombre del cliente:</label><center><input type="text" class="form-control mb-2" name="nombre" value="{{$valoresPagarItem->nombre}}" placeholder="{{$valoresPagarItem->nombre}}" disabled></input></center>
 
-            <label>Apellido del cliente:</label><center><input type="text" class="form-control mb-3" name="apellido" value="{{$valoresPagarItem->apellido}}" placeholder="{{$valoresPagarItem->apellido}}" disabled></input></center>
+            <label>Apellido del cliente:</label><center><input type="text" class="form-control mb-2" name="apellido" value="{{$valoresPagarItem->apellido}}" placeholder="{{$valoresPagarItem->apellido}}" disabled></input></center>
 
-            <label>Valor actual:</label><div class="input-group mb-3"><span class="input-group-text">$</span><center><input type="text" class="form-control" name="valor_actual" value="{{$valoresPagarItem->valor_actual}}" placeholder="{{$valoresPagarItem->valor_actual}}" disabled></input></center></div>
+            <label>Valor actual:</label><div class="input-group mb-2"><span class="input-group-text">$</span><center><input type="text" class="form-control" name="valor_actual" value="{{$valoresPagarItem->valor_actual}}" placeholder="{{$valoresPagarItem->valor_actual}}" disabled></input></center></div>
 
-            <label>Meses en mora:</label><center><input type="text" class="form-control mb-3 @error('meses_mora') is-invalid @enderror" name="meses_mora" value="{{old('meses_mora',$valoresPagarItem->meses_mora)}}" placeholder="{{$valoresPagarItem->meses_mora}}" required></input></center>
-            <label>Ultimo pago realizado:</label><div class="input-group mb-3"><span class="input-group-text">$</span><center><input type="text" class="form-control"  value="{{$valoresPagarItem->valor_pagado}}" placeholder="{{$valoresPagarItem->valor_pagado}}" disabled></input></center></div>
+            <label>Meses en mora:</label><center><input type="text" class="form-control mb-2 @error('meses_mora') is-invalid @enderror" name="meses_mora" value="{{old('meses_mora',$valoresPagarItem->meses_mora)}}" placeholder="{{$valoresPagarItem->meses_mora}}" required></input></center>
+            <label>Ultimo pago realizado:</label><div class="input-group mb-2"><span class="input-group-text">$</span><center><input type="text" class="form-control"  value="{{$valoresPagarItem->valor_pagado}}" placeholder="{{$valoresPagarItem->valor_pagado}}" disabled></input></center></div>
 
-            <label>Valor restante:</label><div class="input-group mb-3"><span class="input-group-text">$</span><center><input type="text" class="form-control" name="valor_restante" value="{{$valoresPagarItem->valor_restante}}" placeholder="{{$valoresPagarItem->valor_restante}}" disabled></input></center></div>
+            <label>Valor restante:</label><div class="input-group mb-2"><span class="input-group-text">$</span><center><input type="text" class="form-control" name="valor_restante" value="{{$valoresPagarItem->valor_restante}}" placeholder="{{$valoresPagarItem->valor_restante}}" disabled></input></center></div>
 
             <!--INICIO DE VALOR A PAGAR-->
-              <label>Valor a pagar:</label><div class="input-group mb-3">
+              <label>Valor a pagar:</label><div class="input-group mb-2">
                 <span class="input-group-text">$</span>
                 <input type="text" class="form-control @error('valor_nuevo') is-invalid @enderror" name="valor_nuevo" value="{{old('valor_nuevo')}}" placeholder="Ingrese el valor a pagar" aria-label="Monto" required>
               </div>

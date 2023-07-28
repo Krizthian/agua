@@ -21,6 +21,8 @@ return new class extends Migration
             $table ->decimal('valor_pagado');
             $table ->decimal('valor_restante');
             $table ->date('fecha');
+            $table ->date('fecha_factura');
+            $table ->date('fecha_maxima');
             $table ->string('cedula');
             $table ->string('estado_servicio');
         });

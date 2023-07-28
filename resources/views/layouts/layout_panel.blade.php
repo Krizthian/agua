@@ -77,9 +77,8 @@
 <!--CONTENIDO-->
   @yield('content')
 <!--FIN CONTENIDO-->
-
 <!--INICIO FOOTER-->
-<footer class="footer my-5 pt-5 text-body-secondary text-center text-small">
+<footer class="footer fixed-bottom my-5 pt-5 text-body-secondary text-center text-small">
     <div class="container_footer">
     <!--INICIO DE ICONOS DE REDES SOCIALES-->
           <ul class="list-inline">

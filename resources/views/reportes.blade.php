@@ -87,7 +87,7 @@
           <br><br>
       <!--FIN BOTON DE IMPRIMIR-->
      <div class="table-responsive"> 
-      <table class="table-responsive table table-bordered table-striped table-sm">
+      <table class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
               <th scope="col">Medidor</th>
