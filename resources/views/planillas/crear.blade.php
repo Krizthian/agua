@@ -15,7 +15,7 @@
       <br>
 
         <main class="form-signin w-100 m-auto">
-         <form action="{{route('pagos.store')}}" method="POST">
+         <form action="{{route('planillas.store')}}" method="POST">
          	@csrf 
           <!--DEVOLVEMOS MENSAJES DE ERROR-->
               @if ($errors->any())
@@ -34,8 +34,8 @@
         <div class="form-group ">
           <select class="form-select input-group mb-3 @error('numero_medidor') is-invalid @enderror" id="numero_medidor" name="numero_medidor" required>
             <option value="Seleccione un medidor" required selected disabled>Seleccione un medidor</option>
-            @foreach ($queryMedidores as $queryMedidoresItem)
-            <option value="{{$queryMedidoresItem->numero_medidor}}" required>{{$queryMedidoresItem->numero_medidor}} - {{$queryMedidoresItem->nombre}} {{$queryMedidoresItem->apellido}}</option>
+            @foreach ($queryClientes as $queryClientesItem)
+            <option value="{{$queryClientesItem->numero_medidor}}" required>{{$queryClientesItem->numero_medidor}} - {{$queryClientesItem->nombre}} {{$queryClientesItem->apellido}}</option>
             @endforeach
           </select>
             <label>Meses en mora:</label><center><input type="text" class="form-control mb-3 @error('meses_mora') is-invalid @enderror" name="meses_mora" value="{{old('meses_mora')}}" placeholder="Ingrese el numero de meses en mora" required></input></center>

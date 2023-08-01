@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 //Definimos los controladores creados
 use App\Http\Controllers\ValoresAPagarController; //Controlador de consulta
-use App\Http\Controllers\MedidoresController; //Controlador de Medidores
+use App\Http\Controllers\ClientesController; //Controlador de Clientes
 use App\Http\Controllers\LoginController; //Controlador de Login
 use App\Http\Controllers\UsuariosController; //Controlador de Usuarios
 use App\Http\Controllers\ReportesController; //Controlador de Reportes
@@ -42,36 +42,36 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 		//Busqueda de valores	
 			Route::get('/panel/busqueda', [ValoresAPagarController::class, 'busqueda'])->name('panel.busqueda');
 		//Devolver el formulario de creación de planilla
-			Route::get('/panel/pagos/crear', [ValoresAPagarController::class, 'create'])->name('pagos.crear');
+			Route::get('/panel/planillas/crear', [ValoresAPagarController::class, 'create'])->name('planillas.crear');
 			//Registrar planilla
-				Route::post('/panel', [ValoresAPagarController::class, 'store'])->name('pagos.store');	
+				Route::post('/panel', [ValoresAPagarController::class, 'store'])->name('planillas.store');	
 		//Devolver el formulario de ingreso de pago
-			Route::get('/panel/pagos/{valoresPagarItem}', [ValoresAPagarController::class, 'edit'])->name('pagos.ingresar');
+			Route::get('/panel/planillas/{valoresPagarItem}', [ValoresAPagarController::class, 'edit'])->name('planillas.ingresar');
 			//Ingresar pago
-				Route::patch('/panel/{valoresPagarItem}', [ValoresAPagarController::class, 'update'])->name('pagos.update');
+				Route::patch('/panel/{valoresPagarItem}', [ValoresAPagarController::class, 'update'])->name('planillas.update');
 		//Devolver el formulario de actualizacion de planilla
-			Route::get('/panel/pagos/facturar/{valoresPagarItem}', [ValoresAPagarController::class, 'actualizar'])->name('pagos.actualizar');
+			Route::get('/panel/planillas/facturar/{valoresPagarItem}', [ValoresAPagarController::class, 'actualizar'])->name('planillas.actualizar');
 			//Facturar
-				Route::patch('/panel/facturar/{valoresPagarItem}', [ValoresAPagarController::class, 'bill'])->name('pagos.bill');			
+				Route::patch('/panel/facturar/{valoresPagarItem}', [ValoresAPagarController::class, 'bill'])->name('planillas.bill');			
 		//Inhabilitar/Habilitar servicio	
 			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [ValoresAPagarController::class, 'inhabilitar'])->name('panel.inhabilitar');
 
-//Rutas para mostrar (medidores)
-	Route::view('/medidores', 'medidores')->name('medidores');
-		//Obtencion de medidores
-			Route::get('/medidores', [MedidoresController::class, 'index'])->name('medidores.index');
-		//Busqueda de medidores
-			Route::get('/medidores/busqueda', [MedidoresController::class, 'busqueda'])->name('medidores.busqueda');
-		//Devolver el formulario de creación de medidor
-			Route::get('/medidores/crear', [MedidoresController::class, 'create'])->name('medidores.create');
-			//Registrar medidor
-				Route::post('/medidores', [MedidoresController::class, 'store'])->name('medidores.store');	
-		//Devolver el formulario de edición de medidor
-			Route::get('/medidores/editar/{medidoresItem}', [MedidoresController::class, 'edit'])->name('medidores.editar');
-			//Actualizar medidor
-				Route::patch('/medidores/{medidoresItem}', [MedidoresController::class, 'update'])->name('medidores.update');
-		//Eliminacion de medidores
-			Route::get('/medidores/{medidoresItem}', [MedidoresController::class, 'destroy'])->name('medidores.destroy');
+//Rutas para mostrar (clientes)
+	Route::view('/clientes', 'clientes')->name('clientes');
+		//Obtencion de clientes
+			Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+		//Busqueda de clientes
+			Route::get('/clientes/busqueda', [ClientesController::class, 'busqueda'])->name('clientes.busqueda');
+		//Devolver el formulario de creación de cliente
+			Route::get('/clientes/crear', [ClientesController::class, 'create'])->name('clientes.create');
+			//Registrar cliente
+				Route::post('/clientes', [ClientesController::class, 'store'])->name('clientes.store');	
+		//Devolver el formulario de edición de cliente
+			Route::get('/clientes/editar/{clientesItem}', [ClientesController::class, 'edit'])->name('clientes.editar');
+			//Actualizar cliente
+				Route::patch('/clientes/{clientesItem}', [ClientesController::class, 'update'])->name('clientes.update');
+		//Eliminacion de clientes
+			Route::get('/clientes/{clientesItem}', [ClientesController::class, 'destroy'])->name('clientes.destroy');
 
 //Rutas para mostrar (usuarios)
 	Route::view('/usuarios', 'usuarios')->name('usuarios');

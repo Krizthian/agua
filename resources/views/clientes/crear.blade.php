@@ -1,21 +1,21 @@
 @extends('layouts.layout_panel')
-<title>Crear medidor - Gestión de Medidores | Sistema de Consultas de Valores a Pagar del Agua</title>
+<title>Crear medidor - Gestión de Clientes | Sistema de Consultas de Valores a Pagar del Agua</title>
 <link rel="stylesheet" href="{{url('css/custom_login.css')}}">
 @section('content')
     <style>
-    /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (MEDIDORES)*/
+    /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (CLIENTES)*/
 	    .bg-body-tertiary {
 	        --bs-bg-opacity: 1;
 	         background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
 	     }
     </style>
 
-<center><h1><strong>CREAR MEDIDOR</h1></strong></center>
+<center><h1><strong>CREAR CLIENTE</h1></strong></center>
     <div class="container">
       <br>
 
         <main class="form-signin w-100 m-auto">
-         <form action="{{route('medidores.store')}}" method="POST">
+         <form action="{{route('clientes.store')}}" method="POST">
          	@csrf
           <!--DEVOLVEMOS MENSAJES DE ERROR-->
               @if ($errors->any())

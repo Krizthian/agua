@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
+use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
 
-class MedidoresController extends Controller
+class ClientesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $medidores = Medidores::paginate(10);
-        return view('medidores', compact('medidores'));
+        $clientes = Clientes::paginate(10);
+        return view('clientes', compact('clientes'));
     }
     
     /**
-     * Busqueda de Medidodres
+     * Busqueda de Clientes
      */
 
     public function busqueda(Request $request)
@@ -26,7 +26,7 @@ class MedidoresController extends Controller
             $valores = $request->input('valores');
         
         //Consulta Eloquent
-                $query = Medidores::query();
+                $query = Clientes::query();
 
         //Verificamos si se recibio un valor        
             if(isset($valores)){
@@ -36,27 +36,27 @@ class MedidoresController extends Controller
             }
 
         //Ejecutamos la consulta
-            $medidores = $query->paginate(10); //Solicitamos un maximo de valores para el paginado  
+            $clientes = $query->paginate(10); //Solicitamos un maximo de valores para el paginado  
 
         //Retornamos los valores
-            return view('medidores', compact('medidores'));              
+            return view('clientes', compact('clientes'));              
     }
     /**
-     * Mostramos el formulario para crear un nuevo medidor
+     * Mostramos el formulario para crear un nuevo cliente
      */
     public function create()
     {
-        return view('medidores.crear'); //Retornaremos a la vista con el formulario
+        return view('clientes.crear'); //Retornaremos a la vista con el formulario
     }
 
     /**
-     * Ingresamos el medidor en la base de datos
+     * Ingresamos el cliente en la base de datos
      */
     public function store(Request $request)
     {
         //Validamos los valores recibidos
         $campos_validados = request()->validate([
-            'numero_medidor' => 'required|unique:medidores',
+            'numero_medidor' => 'required|unique:clientes',
             'nombre' => 'required',
             'apellido' => 'required',
             'cedula' => 'required|numeric',
@@ -69,9 +69,9 @@ class MedidoresController extends Controller
         ]);
         if ($campos_validados) {
         //Insertamos los valores en la tabla
-            Medidores::create($campos_validados);
+            Clientes::create($campos_validados);
         //Redireccionamos
-            return redirect()->route('medidores.index')->with('resultado_creacion', 'Se ha creado el medidor correctamente'); 
+            return redirect()->route('clientes.index')->with('resultado_creacion', 'Se ha creado el cliente correctamente'); 
         }else{
             return redirect()->back()->withErrors($campos_validados)->withInput();
         }
@@ -79,20 +79,20 @@ class MedidoresController extends Controller
         }
 
     /**
-     * Mostramos el formulario para editar un medidor
+     * Mostramos el formulario para editar un cliente
      */
-    public function edit(Medidores $medidoresItem)
+    public function edit(Clientes $clientesItem)
     {
         //Retornaremos a la vista con el formulario
-           return view('medidores.editar', [
-            'medidoresItem' => $medidoresItem
+           return view('clientes.editar', [
+            'clientesItem' => $clientesItem
            ]); 
     }
 
     /**
      * Actualizamos el valor en la base de datos
      */
-    public function update(Medidores $medidoresItem)
+    public function update(Clientes $clientesItem)
     {
     //Validamos los valores recibidos
         $campos_validados = request()->validate([
@@ -107,7 +107,7 @@ class MedidoresController extends Controller
         ]);
         if ($campos_validados) {
             //Realizamos la consulta Eloquent
-                Medidores::where('id', $medidoresItem->id)
+                Clientes::where('id', $clientesItem->id)
                         ->update([
                             'nombre' => request('nombre'),
                             'apellido' => request('apellido'),
@@ -116,7 +116,7 @@ class MedidoresController extends Controller
                             'telefono' => request('telefono'),
                         ]);
             //Redireccionamos 
-                return redirect()->route('medidores.index')->with('resultado_edicion', 'El medidor se ha actualizado correctamente');
+                return redirect()->route('clientes.index')->with('resultado_edicion', 'El cliente se ha actualizado correctamente');
          }else{
             return redirect()->back()->withErrors($campos_validados)->withInput();
         }                      
@@ -125,12 +125,12 @@ class MedidoresController extends Controller
     /**
      * Eliminar el valor en la base de datos
      */
-    public function destroy(Medidores $medidoresItem)
+    public function destroy(Clientes $clientesItem)
     {
        //Realizamos la consulta Eloquent 
-            Medidores::destroy($medidoresItem->id);
+            Clientes::destroy($clientesItem->id);
 
        //Redireccionamos 
-            return redirect()->route('medidores.index')->with('resultado', 'El medidor ha sido eliminado');  
+            return redirect()->route('clientes.index')->with('resultado', 'El cliente ha sido eliminado');  
     }
 }

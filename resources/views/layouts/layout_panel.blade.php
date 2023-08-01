@@ -32,7 +32,7 @@
                 <a class="nav-link {{setActive('panel.index')}}" aria-current="page" href="/panel">Consulta</a>
               </li>
             <li class="nav-item">
-                <a class="nav-link {{setActive('medidores.index')}}" aria-current="page" href="/medidores">Medidores</a>
+                <a class="nav-link {{setActive('clientes.index')}}" aria-current="page" href="/clientes">Clientes</a>
               </li>
             <!--ESTE VINCULO SOLO SERA VISTO Y SERA ACCESIBLE PARA USUARIOS CON ROL DE ADMINISTRADOR-->
               <li class="nav-item">

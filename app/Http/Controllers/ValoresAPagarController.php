@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
-use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
+use App\Models\Planillas; //Importamos el modelo de la tabla 'planillas'
+use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
 
 class ValoresAPagarController extends Controller
 {
@@ -13,7 +13,7 @@ class ValoresAPagarController extends Controller
      */
     public function index()
     {
-        $valores_pagar = Pagos::paginate(10);
+        $valores_pagar = Planillas::paginate(10);
         return view('panel', compact('valores_pagar'));
     }
 
@@ -26,7 +26,7 @@ class ValoresAPagarController extends Controller
         $medidor_cedula = $request->input('medidor_cedula');
 
     // Consulta Eloquent
-        $query = Pagos::query();
+        $query = Planillas::query();
 
     // Verificar si se ha proporcionado "numero_medidor" o "cedula" y agregar condiciones a la consulta
         if (isset($medidor_cedula)) {
@@ -55,7 +55,7 @@ class ValoresAPagarController extends Controller
             $valores = $request->input('valores');
 
         //Consulta Eloquent
-            $query = Pagos::query();
+            $query = Planillas::query();
 
         //Verificamos si se recibio un valor        
             if(isset($valores)){
@@ -74,16 +74,16 @@ class ValoresAPagarController extends Controller
     /**
      * Habilitar o Inhabilitar el servicio del agua
      */
-    public function inhabilitar (Pagos $valoresPagarItem)
+    public function inhabilitar (Planillas $valoresPagarItem)
     {
         //Comprobamos el estado del servicio
             //Desactivamos el servicio si este se encuentra 'inactivo'
                 if ($valoresPagarItem->estado_servicio == "activo") {
-                    Pagos::where('id', '=', $valoresPagarItem->id)->update(['estado_servicio' => 'inactivo']);
+                    Planillas::where('id', '=', $valoresPagarItem->id)->update(['estado_servicio' => 'inactivo']);
                     return redirect()->back()->with('resultado', 'Se ha suspendido el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'panel'
             //Reactivamos el servicio si este se encuentra 'activo'
                 }elseif ($valoresPagarItem->estado_servicio == "inactivo") {
-                    Pagos::where('id', '=', $valoresPagarItem->id)->update(['estado_servicio' => 'activo']);
+                    Planillas::where('id', '=', $valoresPagarItem->id)->update(['estado_servicio' => 'activo']);
                     return redirect()->back()->with('resultado', 'Se ha reactivado el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'panel'
                 }
     }
@@ -92,10 +92,10 @@ class ValoresAPagarController extends Controller
      * Mostramos el formulario para crear una planilla
      */
     public function create(){
-        //Realizamos la consulta para obtener la informacion de los medidores registrados
-            $queryMedidores = Medidores::all();
+        //Realizamos la consulta para obtener la informacion de los clientes registrados
+            $queryClientes = Clientes::all();
         //Devolvemos la informacion al formulario de creación     
-            return view ('pagos.crear', compact('queryMedidores'));
+            return view ('planillas.crear', compact('queryClientes'));
     }    
 
     /**
@@ -106,7 +106,7 @@ class ValoresAPagarController extends Controller
         $fecha = date("Y-m-d"); 
      //Validamos los valores recibidos
         $campos_validados = request()->validate([
-            'numero_medidor' => 'required|unique:pagos',
+            'numero_medidor' => 'required|unique:planillas',
             'meses_mora' => 'required|numeric',
             'valor_actual' => 'required|numeric',
         ],[
@@ -119,24 +119,26 @@ class ValoresAPagarController extends Controller
         ]);
 
        if ($campos_validados) {          
-            //Obtendremos todos los valores de la tabla Medidores asociados al numero de medidor pasado
+            //Obtendremos todos los valores de la tabla clientes asociados al numero de medidor pasado
                 //Consulta Eloquent
-                    $queryMedidor = Medidores::query();
+                    $queryCliente = Clientes::query();
                 //Obtenemos valores con el numero de medidor recibido       
-                    $queryMedidor->where('numero_medidor',  $campos_validados['numero_medidor']);
-                    $queryMedidorItem = $queryMedidor->first();
+                    $queryCliente->where('numero_medidor',  $campos_validados['numero_medidor']);
+                    $queryClienteItem = $queryCliente->first();
 
-                //Ingresamos los datos en la tabla de Pagos
-                    Pagos::create([
+                //Ingresamos los datos en la tabla de Planillas
+                    Planillas::create([
                         'numero_medidor' => $campos_validados['numero_medidor'],
-                        'nombre' => $queryMedidorItem->nombre,
-                        'apellido' => $queryMedidorItem->apellido,
+                        'nombre' => $queryClienteItem->nombre,
+                        'apellido' => $queryClienteItem->apellido,
                         'meses_mora' => $campos_validados['meses_mora'],
                         'valor_actual' => $campos_validados['valor_actual'],
                         'valor_restante' => $campos_validados['valor_actual'],
                         'valor_pagado' => '0.00',
                         'fecha' => $fecha,
-                        'cedula' => $queryMedidorItem->cedula,
+                        'fecha_factura' => $fecha,
+                        'fecha_maxima' => $fecha,
+                        'cedula' => $queryClienteItem->cedula,
                         'estado_servicio' => 'activo',
 
                     ]);
@@ -155,10 +157,10 @@ class ValoresAPagarController extends Controller
     /**
      * Mostramos el formulario para actualizar una planilla
     */
-    public function actualizar(Pagos $valoresPagarItem){
+    public function actualizar(Planillas $valoresPagarItem){
 
         //Devolvemos la informacion al formulario de facturacion     
-        return view('pagos.facturar', [
+        return view('planillas.facturar', [
                     'valoresPagarItem' => $valoresPagarItem
         ]);
 
@@ -167,7 +169,7 @@ class ValoresAPagarController extends Controller
     /**
      * Actualizamos los valores en la planilla
     */
-    public function bill(Pagos $valoresPagarItem){
+    public function bill(Planillas $valoresPagarItem){
         //Obtenemos las variables enviadas en el formulario
             $cedula = request('cedula');
             $nombre = request('nombre');
@@ -215,7 +217,7 @@ class ValoresAPagarController extends Controller
         //Si los campos han sido validados, realizamos la consulta
             if ($campos_validados) {       
                 //Realizamos la consulta Eloquent
-                    Pagos::where('id', $valoresPagarItem->id)
+                    Planillas::where('id', $valoresPagarItem->id)
                          ->update([
                                 'cedula' => $cedula,
                                 'nombre' => $nombre,
@@ -240,13 +242,13 @@ class ValoresAPagarController extends Controller
     /**
      * Mostramos el formulario para ingresar un pago
     */
-    public function edit(Pagos $valoresPagarItem)
+    public function edit(Planillas $valoresPagarItem)
     {
 
     //Comprobamos si el medidor seleccionado tiene valores pendientes
         if ($valoresPagarItem->valor_actual > 0) {
             //Retornaremos a la vista con el formulario si existen valores pendientes
-                return view('pagos.ingresar', [
+                return view('planillas.ingresar', [
                     'valoresPagarItem' => $valoresPagarItem
                 ]);
             }
@@ -263,7 +265,7 @@ class ValoresAPagarController extends Controller
     /**
      * Actualizamos el valor en la base de datos.
      */
-    public function update(Pagos $valoresPagarItem)
+    public function update(Planillas $valoresPagarItem)
     {
         //Obtenemos las variables enviadas en el formulario
             $meses_mora = request('meses_mora');
@@ -287,7 +289,7 @@ class ValoresAPagarController extends Controller
         if ($campos_validados) {
                    
             //Realizamos la consulta Eloquent
-                Pagos::where('id', $valoresPagarItem->id)
+                Planillas::where('id', $valoresPagarItem->id)
                      ->update([
                             'valor_actual' => $valorFinalIngresar,
                             'valor_pagado' => $valor_nuevo,

@@ -15,7 +15,7 @@
     <div class="container">
       <br>
         <main class="form-signin w-100 m-auto">
-         <form action="{{route('pagos.bill', $valoresPagarItem)}}" method="POST">
+         <form action="{{route('planillas.bill', $valoresPagarItem)}}" method="POST">
          	@csrf @method('PATCH')
           <!--DEVOLVEMOS MENSAJES DE ERROR-->
               @if ($errors->any())

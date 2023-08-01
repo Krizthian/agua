@@ -11,14 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('medidores', function (Blueprint $table) {
+        Schema::create('planillas', function (Blueprint $table) {
             $table ->integer('id','true','false');
-            $table ->string('numero_medidor')->unique();
+            $table ->string('numero_medidor');
             $table ->string('nombre');
             $table ->string('apellido');
+            $table ->decimal('valor_actual');
+            $table ->integer('meses_mora');
+            $table ->decimal('valor_pagado');
+            $table ->decimal('valor_restante');
+            $table ->date('fecha');
+            $table ->date('fecha_factura');
+            $table ->date('fecha_maxima');
             $table ->string('cedula');
-            $table ->string('direccion');
-            $table ->integer('telefono');
+            $table ->string('estado_servicio');
         });
     }
 
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('medidores');
+        Schema::dropIfExists('planillas');
     }
 };
