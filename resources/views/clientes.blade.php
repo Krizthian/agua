@@ -81,8 +81,9 @@
             @else
                 @foreach ($clientes as $clientesItem)
             <tr>
+              
               <td class="td_acciones">{{$clientesItem->numero_medidor}}</td>
-              <td class="td_acciones">{{$clientesItem->nombre}} {{$clientesItem->apellido}}</td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="#">{{$clientesItem->nombre}} {{$clientesItem->apellido}}</a></td>
               <td class="td_acciones">{{$clientesItem->cedula}}</td>
               <td class="td_acciones">{{$clientesItem->direccion}}</td>
               <td class="td_acciones">{{$clientesItem->telefono}}</td>
