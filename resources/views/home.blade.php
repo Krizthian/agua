@@ -91,9 +91,14 @@
         <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
         </svg></button></div>
         <!--FIN DE BOTON DE IMPRIMIR-->
-
         <br><br>
+       <!--INICIO DE BANNER DE MANTENIMIENTO-->
+        <br>
+          <a href="#"><center><img src="{{url('img/banners/banner_mantenimiento.png')}}" alt="Solicitud de mantenimiento"></center></a>
+        <br>  
+        <!--FIN DE BANNER DE MANTENIMIENTO-->
     @endif
+
 </div>
 
 @endsection('content')
