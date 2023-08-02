@@ -19,7 +19,7 @@
     <header>
 		<nav class="navbar navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/panel">
     <img src="{{url('img/logo.png')}}" width="170" height="50" alt="GAD DE PORTOVELO logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Desplegar navegación">
@@ -29,11 +29,14 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
        <li class="nav-item">
-                <a class="nav-link {{setActive('panel.index')}}" aria-current="page" href="/panel">Consulta</a>
-              </li>
+                <a class="nav-link {{setActive('panel.index')}}" aria-current="page" href="/panel">Planillas</a>
+        </li>
             <li class="nav-item">
                 <a class="nav-link {{setActive('clientes.index')}}" aria-current="page" href="/clientes">Clientes</a>
-              </li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Consumos</a>
+            </li>
             <!--ESTE VINCULO SOLO SERA VISTO Y SERA ACCESIBLE PARA USUARIOS CON ROL DE ADMINISTRADOR-->
               <li class="nav-item">
                 @if(session()->get('sesion')['rol'] == 'administrador')<a class="nav-link {{setActive('usuarios.index')}}" aria-current="page" href="/usuarios">Usuarios</a>@endif

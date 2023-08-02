@@ -29,7 +29,7 @@
         <br><br>
          <form action="{{route('clientes.busqueda')}}" method="GET">
            <div class="col-auto">
-            <center><input type="text" class="form-control" name="valores" placeholder="Apellidos, número de medidor o cédula"></input></center>
+            <center><input type="text" class="form-control" name="valores" placeholder="Nombres, apellidos o cédula"></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-primary">Consultar</button></center></div>
           <br>
@@ -67,8 +67,7 @@
         <table class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
-              <th scope="col">Medidor</th>
-              <th scope="col">Propietario</th>
+              <th scope="col">Nombre de cliente</th>
               <th scope="col">Cédula</th>
               <th scope="col">Dirección</th>
               <th scope="col">Teléfono</th>
@@ -81,8 +80,6 @@
             @else
                 @foreach ($clientes as $clientesItem)
             <tr>
-              
-              <td class="td_acciones">{{$clientesItem->numero_medidor}}</td>
               <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="#">{{$clientesItem->nombre}} {{$clientesItem->apellido}}</a></td>
               <td class="td_acciones">{{$clientesItem->cedula}}</td>
               <td class="td_acciones">{{$clientesItem->direccion}}</td>

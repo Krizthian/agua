@@ -21,7 +21,7 @@
 	    background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
     }
 </style>
-	<center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
+	<center><h1><strong>GESTIÓN DE PLANILLAS</h1></strong></center>
 
 		<div class="container">
 			<br>

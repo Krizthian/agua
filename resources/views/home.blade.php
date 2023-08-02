@@ -92,11 +92,11 @@
         </svg></button></div>
         <!--FIN DE BOTON DE IMPRIMIR-->
         <br><br>
-       <!--INICIO DE BANNER DE MANTENIMIENTO-->
+       <!--INICIO DE BANNER DE RECLAMO-->
         <br>
-          <a href="#"><center><img src="{{url('img/banners/banner_mantenimiento.png')}}" alt="Solicitud de mantenimiento"></center></a>
+          <a href="#"><center><img src="{{url('img/banners/banner_reclamo.png')}}" alt="Solicitud de mantenimiento"></center></a>
         <br>  
-        <!--FIN DE BANNER DE MANTENIMIENTO-->
+        <!--FIN DE BANNER DE RECLAMO-->
     @endif
 
 </div>
