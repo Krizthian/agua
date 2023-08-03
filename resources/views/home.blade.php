@@ -21,7 +21,7 @@
       background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
     }
 </style>
-<center><h1><strong>CONSULTA DE VALORES A PAGAR</h1></strong></center>
+<center><h1 class="display-4">CONSULTA DE VALORES A PAGAR</h1></center>
 <div class="container">
       <form action="{{route('consulta.index')}}" method="GET">
     <br>

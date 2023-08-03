@@ -22,7 +22,7 @@
      }
     </style>
 
-<center><h1><strong>GESTIÓN DE CLIENTES</h1></strong></center>
+<center><h1 class="display-4">GESTIÓN DE CLIENTES</h1></center>
     <div class="container">
       <br>
         <div class="col-md-12 bg-light text-right"><a href="{{route('clientes.create')}}" type="submit" class="btn btn-success float-end">Nuevo Cliente</a></div>

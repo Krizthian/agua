@@ -92,7 +92,7 @@
         </ul>
       <center><hr class="hr_short"></center>
   <!--FIN DE ICONOS DE REDES SOCIALES-->
-    <p class="mb-1">Gobierno Autónomo Descentralizado Municipal de Portovelo | Copyright © {{date('Y')}} </p>
+    <p class="mb-0">Gobierno Autónomo Descentralizado Municipal de Portovelo | Copyright © {{date('Y')}} </p>
     <ul class="list-inline">
       <li class="list-inline-item"><a class="text-decoration-none" href="/">Inicio</a></li>
       <li class="list-inline-item"><a class="text-decoration-none" href="http://portovelo.gob.ec">Municipio</a></li>

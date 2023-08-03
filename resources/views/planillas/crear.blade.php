@@ -10,7 +10,7 @@
 	     }
     </style>
 
-<center><h1><strong>CREAR PLANILLA</h1></strong></center>
+<center><h1 class="display-4">CREAR PLANILLA</h1></center>
     <div class="container">
       <br>
 

@@ -21,7 +21,7 @@
 	    background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
     }
 </style>
-	<center><h1><strong>GESTIÓN DE PLANILLAS</h1></strong></center>
+<center><h1 class="display-4">GESTIÓN DE PLANILLAS</h1></center>
 
 		<div class="container">
 			<br>

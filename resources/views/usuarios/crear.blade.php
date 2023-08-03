@@ -10,7 +10,7 @@
 	     }
     </style>
 
-<center><h1><strong>CREAR USUARIO</h1></strong></center>
+<center><h1 class="display-4">CREAR USUARIO</h1></center>
     <div class="container">
       <br>
         <main class="form-signin w-100 m-auto">
