@@ -45,6 +45,7 @@
               <th scope="col">Valor actual</th>
               <th scope="col">Consumo actual</th>
               <th scope="col">Consumo previo</th>
+              <th scope="col">Responsable de lectura</th>
               <th scope="col">Fecha de Factura</th>
               <th scope="col">Fecha maxima de pago</th>
               <th scope="col">Estado del servicio</th>  
@@ -62,6 +63,7 @@
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_actual}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
               <td class="td_acciones">{{$pagosConsultaItem->consumo->consumo_anterior}} m<sup><strong>3</strong></sup></td>
+              <td class="td_acciones">{{$pagosConsultaItem->consumo->responsable}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha_factura}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha_maxima}}</td>
               <td class="td_acciones">{{ucfirst($pagosConsultaItem->estado_servicio);}}</td>

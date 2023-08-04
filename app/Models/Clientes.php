@@ -12,7 +12,7 @@ class Clientes extends Model
     protected $guarded = []; //Deshabilitamos la asignacion masiva
     public $timestamps= false; //Deshabilitamos los timestamps puesto que esta tabla no los tiene como columnas
 
-    //Relacion con 'medidor'
+    //Relacion con Medidor
         public function medidor()
             {
                 return $this->hasOne(Medidores::class, 'id_cliente');

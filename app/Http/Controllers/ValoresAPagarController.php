@@ -72,7 +72,10 @@ class ValoresAPagarController extends Controller
                     ->orWhereHas('cliente', function ($subQuery) use ($valores) {
                         $subQuery->where('cedula', $valores)
                                   ->orWhere('apellido', $valores);
-                    });
+                    })              
+                    ->orWhere(function($subQuery) use ($valores){
+                        $subQuery->where('id', $valores);
+                    }); 
                 });
             }
 
@@ -105,9 +108,9 @@ class ValoresAPagarController extends Controller
      */
     public function create(){
         //Realizamos la consulta para obtener la informacion de los clientes registrados
-            $queryClientes = Clientes::with(['medidor'])->get();
+            $queryMedidores = Medidores::with('cliente')->get();
         //Devolvemos la informacion al formulario de creación     
-            return view ('planillas.crear', compact('queryClientes'));
+            return view ('planillas.crear', compact('queryMedidores'));
     }    
 
     /**
@@ -119,9 +122,8 @@ class ValoresAPagarController extends Controller
             'valor_actual' => 'required|numeric',
             'fecha_factura' => 'required|date',
             'fecha_maxima' => 'required|date',
-            'numero_medidor' => 'required|unique:medidores,numero_medidor',
+            'numero_medidor' => 'required',
         ],[
-            'numero_medidor.unique' => 'El medidor ya tiene una planilla asignada',
             'numero_medidor.required' => 'El numero de medidor es un campo obligatorio',
             'valor_actual.numeric' => 'Se requiere un valor numerico para el campo de valor actual',
             'fecha_factura.required' => 'Se requiere una fecha para el campo de fecha de factura ',

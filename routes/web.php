@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 //Definimos los controladores creados
-use App\Http\Controllers\ValoresAPagarController; //Controlador de consulta
+use App\Http\Controllers\ValoresAPagarController; //Controlador de Consulta
+use App\Http\Controllers\PagosController; //Controlador de Pagos
 use App\Http\Controllers\MedidoresController; //Controlador de Medidores
 use App\Http\Controllers\ConsumosController; //Controlador de Consumos
 use App\Http\Controllers\ClientesController; //Controlador de Clientes
@@ -57,6 +58,13 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 				Route::patch('/panel/facturar/{valoresPagarItem}', [ValoresAPagarController::class, 'bill'])->name('planillas.bill');			
 		//Inhabilitar/Habilitar servicio	
 			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [ValoresAPagarController::class, 'inhabilitar'])->name('panel.inhabilitar');
+
+//Rutas para mostrar (historial de pagos)
+	Route::view('/pagos', 'pagos')->name('pagos');
+			//Obtencion de valores
+			Route::get('/pagos', [PagosController::class, 'index'])->name('pagos.index');
+			//Busqueda de valores	
+			Route::get('/pagos/busqueda', [PagosController::class, 'busqueda'])->name('pagos.busqueda');
 
 //Rutas para mostrar (medidores)
 	Route::view('/medidores', 'medidores')->name('medidores');

@@ -32,10 +32,12 @@
         <label>Medidor asociado:</label>
         <div class="form-group">
           <select class="form-select input-group mb-3 @error('numero_medidor') is-invalid @enderror" id="numero_medidor" name="numero_medidor" required>
-            <option value="Seleccione un medidor" required selected disabled>Seleccione un medidor</option>
-            @foreach ($queryClientes as $queryClientesItem)
-            <option value="{{$queryClientesItem->medidor->numero_medidor}}" required>{{$queryClientesItem->medidor->numero_medidor}} - {{$queryClientesItem->nombre}} {{$queryClientesItem->apellido}}</option>
-            @endforeach
+              <option value="Seleccione un medidor" required selected disabled>Seleccione un medidor</option>
+              @foreach ($queryMedidores as $medidor)
+                  <option value="{{ $medidor->numero_medidor }}" required>
+                      {{ $medidor->numero_medidor }} - {{ $medidor->cliente->nombre }} {{ $medidor->cliente->apellido }}
+                  </option>
+              @endforeach
           </select>
           <label>Fecha de factura:</label><div class="input-group mb-3">
             <center><input type="date" class="form-control @error('fecha_factura') is-invalid @enderror" name="fecha_factura" value=""></center></div>
