@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 //Definimos los controladores creados
 use App\Http\Controllers\ValoresAPagarController; //Controlador de consulta
+use App\Http\Controllers\MedidoresController; //Controlador de Medidores
+use App\Http\Controllers\ConsumosController; //Controlador de Consumos
 use App\Http\Controllers\ClientesController; //Controlador de Clientes
 use App\Http\Controllers\LoginController; //Controlador de Login
 use App\Http\Controllers\UsuariosController; //Controlador de Usuarios
@@ -55,6 +57,20 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 				Route::patch('/panel/facturar/{valoresPagarItem}', [ValoresAPagarController::class, 'bill'])->name('planillas.bill');			
 		//Inhabilitar/Habilitar servicio	
 			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [ValoresAPagarController::class, 'inhabilitar'])->name('panel.inhabilitar');
+
+//Rutas para mostrar (medidores)
+	Route::view('/medidores', 'medidores')->name('medidores');
+		//Obtencion de medidores
+			Route::get('/medidores', [MedidoresController::class, 'index'])->name('medidores.index');
+		//Busqueda de medidores
+			Route::get('/medidores/busqueda', [MedidoresController::class, 'busqueda'])->name('medidores.busqueda');
+
+//Rutas para mostrar (consumos)
+	Route::view('/consumos', 'consumos')->name('consumos');
+		//Obtencion de consumos
+			Route::get('/consumos', [ConsumosController::class, 'index'])->name('consumos.index');
+		//Busqueda de consumos
+			Route::get('/consumos/busqueda', [ConsumosController::class, 'busqueda'])->name('consumos.busqueda');
 
 //Rutas para mostrar (clientes)
 	Route::view('/clientes', 'clientes')->name('clientes');

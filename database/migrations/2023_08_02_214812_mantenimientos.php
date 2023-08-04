@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('mantenimientos', function (Blueprint $table) {
+            $table ->integer('id')->unique();
+            $table ->date('fecha_solicitud');
+            $table ->date('fecha_mantenimiento');
+            $table ->string('responsable_asignado');
+            $table ->string('estado_mantenimiento');
+        });
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
+use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
+
 
 class ClientesController extends Controller
 {
@@ -12,8 +14,8 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = Clientes::paginate(10);
-        return view('clientes', compact('clientes'));
+        $clientes = Clientes::with('medidor')->paginate(10); 
+        return view('clientes', ['clientes' => $clientes]);
     }
     
     /**
@@ -30,9 +32,10 @@ class ClientesController extends Controller
 
         //Verificamos si se recibio un valor        
             if(isset($valores)){
-                $query->where('numero_medidor', $valores)
-                      ->orWhere('cedula', $valores)
-                      ->orWhere('apellido', $valores);
+                $query->where('cedula', $valores)
+                      ->orWhere('nombre', $valores)
+                      ->orWhere('apellido', $valores)
+                      ->orWhere('cedula', $valores);
             }
 
         //Ejecutamos la consulta

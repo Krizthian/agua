@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+     Schema::create('reclamos', function (Blueprint $table) {
+            $table ->integer('id')->unique();
+            $table ->string('motivo');
+            $table ->string('email');
+            $table ->string('estado_reclamo');
+            $table ->date('fecha_reclamo');
+        });
     }
 
     /**

@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('medidores', function (Blueprint $table) {
-            $table ->integer('id','true','false');
-            $table ->date('fecha_instalacion');
-            $table ->string('ubicacion');
-            $table ->integer('numero_medidor');
+     Schema::create('pagos', function (Blueprint $table) {
+            $table ->integer('id')->unique();
+            $table ->decimal('valor_pagado');
+            $table ->decimal('valor_restante');
+            $table ->date('fecha_pago');
+            $table ->string('forma_pago');
         });
-
     }
 
     /**

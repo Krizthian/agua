@@ -12,19 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('planillas', function (Blueprint $table) {
-            $table ->integer('id','true','false');
-            $table ->string('numero_medidor');
-            $table ->string('nombre');
-            $table ->string('apellido');
+            $table ->integer('id')->unique();
             $table ->decimal('valor_actual');
-            $table ->integer('meses_mora');
-            $table ->decimal('valor_pagado');
-            $table ->decimal('valor_restante');
-            $table ->date('fecha');
             $table ->date('fecha_factura');
             $table ->date('fecha_maxima');
-            $table ->string('cedula');
             $table ->string('estado_servicio');
+        });
+
+        //Añadimos el id_planilla a la tabla de "pagos"
+            Schema::table('pagos', function(Blueprint $table){
+            $table->integer('id_planilla')->nullable()->after('id'); 
+            $table->foreign('id_planilla')->references('id')->on('planillas'); //Referenciamos la llave foranea
         });
     }
 
