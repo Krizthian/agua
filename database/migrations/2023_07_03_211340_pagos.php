@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
      Schema::create('pagos', function (Blueprint $table) {
-            $table ->integer('id')->unique();
+            $table->integer('id', true)->unique();
             $table ->decimal('valor_pagado');
             $table ->decimal('valor_restante');
             $table ->date('fecha_pago');

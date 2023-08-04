@@ -12,8 +12,15 @@ class Consumos extends Model
     protected $guarded = []; //Deshabilitamos la asignacion masiva
     public $timestamps = false; //Deshabilitamos los timestamps puesto que esta tabla no los tiene como columnas
 
-    public function medidor()
-    {
-        return $this->belongsTo(Medidores::class, 'id_medidor'); // Cambio realizado aquí
-    }
+    //Relacion con 'medidores'
+        public function medidor()
+        {
+            return $this->belongsTo(Medidores::class, 'id_medidor'); // Cambio realizado aquí
+        }
+
+     //Relacion con 'planillas'
+        public function planilla()
+        {
+            return $this->hasMany(Planillas::class, 'id_consumo');
+        }    
 }

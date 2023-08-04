@@ -13,7 +13,6 @@
 <center><h1 class="display-4">CREAR PLANILLA</h1></center>
     <div class="container">
       <br>
-
         <main class="form-signin w-100 m-auto">
          <form action="{{route('planillas.store')}}" method="POST">
          	@csrf 
@@ -31,19 +30,21 @@
               @endif
             <!--FIN DE MENSAJES DE ERROR-->  
         <label>Medidor asociado:</label>
-        <div class="form-group ">
+        <div class="form-group">
           <select class="form-select input-group mb-3 @error('numero_medidor') is-invalid @enderror" id="numero_medidor" name="numero_medidor" required>
             <option value="Seleccione un medidor" required selected disabled>Seleccione un medidor</option>
             @foreach ($queryClientes as $queryClientesItem)
-            <option value="{{$queryClientesItem->numero_medidor}}" required>{{$queryClientesItem->numero_medidor}} - {{$queryClientesItem->nombre}} {{$queryClientesItem->apellido}}</option>
+            <option value="{{$queryClientesItem->medidor->numero_medidor}}" required>{{$queryClientesItem->medidor->numero_medidor}} - {{$queryClientesItem->nombre}} {{$queryClientesItem->apellido}}</option>
             @endforeach
           </select>
-            <label>Meses en mora:</label><center><input type="text" class="form-control mb-3 @error('meses_mora') is-invalid @enderror" name="meses_mora" value="{{old('meses_mora')}}" placeholder="Ingrese el numero de meses en mora" required></input></center>
-
-              <label>Valor actual:</label><div class="input-group mb-3">
-                <span class="input-group-text">$</span>
-                <input type="text" class="form-control @error('valor_actual') is-invalid @enderror" name="valor_actual" value="{{old('valor_actual')}}" placeholder="Ingrese el valor actual a pagar" aria-label="Monto" required>
-              </div>
+          <label>Fecha de factura:</label><div class="input-group mb-3">
+            <center><input type="date" class="form-control @error('fecha_factura') is-invalid @enderror" name="fecha_factura" value=""></center></div>
+          <label>Fecha maxima de pago:</label><div class="input-group mb-3" required>
+            <center><input type="date" class="form-control @error('fecha_maxima') is-invalid @enderror" name="fecha_maxima" value=""/></center></div>
+          <label>Valor actual:</label><div class="input-group mb-3" required>
+            <span class="input-group-text">$</span>
+            <input type="text" class="form-control @error('valor_actual') is-invalid @enderror" name="valor_actual" value="{{old('valor_actual')}}" placeholder="Ingrese el valor actual a pagar" aria-label="Monto" required>
+          </div>
 
         </div>
           <br>

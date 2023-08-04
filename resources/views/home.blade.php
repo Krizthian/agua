@@ -40,14 +40,13 @@
           <thead>
             <tr>
               <th scope="col">Medidor</th>
+              <th scope="col">Cédula</th>
               <th scope="col">Cliente</th>
               <th scope="col">Valor actual</th>
-              <th scope="col">Meses en mora</th>
-              <th scope="col">Valor pagado</th>
-              <th scope="col">Valor restante</th>
-              <th scope="col">Fecha de facturación</th>  
-              <th scope="col">Fecha maxima de pago</th>  
-              <th scope="col">Ultimo pago realizado</th>  
+              <th scope="col">Consumo actual</th>
+              <th scope="col">Consumo previo</th>
+              <th scope="col">Fecha de Factura</th>
+              <th scope="col">Fecha maxima de pago</th>
               <th scope="col">Estado del servicio</th>  
             </tr>
           </thead>
@@ -57,15 +56,14 @@
             @else
                 @foreach($resultados as $pagosConsultaItem)
             <tr>
-              <td class="td_acciones">{{$pagosConsultaItem->numero_medidor}}</td>
-              <td class="td_acciones">{{$pagosConsultaItem->nombre}} {{$pagosConsultaItem->apellido}}</td>
+              <td class="td_acciones">{{$pagosConsultaItem->medidor->numero_medidor}}</td>
+              <td class="td_acciones">{{$pagosConsultaItem->cliente->cedula}}</td>
+              <td class="td_acciones">{{$pagosConsultaItem->cliente->nombre}} {{$pagosConsultaItem->cliente->apellido}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_actual}}</td>
-              <td class="td_acciones">{{$pagosConsultaItem->meses_mora}} meses</td>
-              <td class="td_acciones">$ {{$pagosConsultaItem->valor_pagado}}</td>
-              <td class="td_acciones">$ {{$pagosConsultaItem->valor_restante}}</td>
+              <td class="td_acciones">{{$pagosConsultaItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
+              <td class="td_acciones">{{$pagosConsultaItem->consumo->consumo_anterior}} m<sup><strong>3</strong></sup></td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha_factura}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha_maxima}}</td>
-              <td class="td_acciones">{{$pagosConsultaItem->fecha}}</td>
               <td class="td_acciones">{{ucfirst($pagosConsultaItem->estado_servicio);}}</td>
             </tr> 
             @endforeach

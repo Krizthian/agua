@@ -32,11 +32,11 @@
                 <a class="nav-link {{setActive('panel.index')}}" aria-current="page" href="/panel">Planillas</a>
         </li>
        <li class="nav-item">
+                <a class="nav-link {{setActive('clientes.index')}}" aria-current="page" href="/clientes">Clientes</a>
+       </li>
+       <li class="nav-item">
                 <a class="nav-link {{setActive('medidores.index')}}" aria-current="page" href="/medidores">Medidores</a>
         </li>
-            <li class="nav-item">
-                <a class="nav-link {{setActive('clientes.index')}}" aria-current="page" href="/clientes">Clientes</a>
-            </li>
             <!--ESTE VINCULO SOLO SERA VISTO Y SERA ACCESIBLE PARA USUARIOS CON ROL DE ADMINISTRADOR-->
               <li class="nav-item">
                 @if(session()->get('sesion')['rol'] == 'administrador')<a class="nav-link {{setActive('usuarios.index')}}" aria-current="page" href="/usuarios">Usuarios</a>@endif

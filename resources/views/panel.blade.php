@@ -22,7 +22,6 @@
     }
 </style>
 <center><h1 class="display-4">GESTIÓN DE PLANILLAS</h1></center>
-
 		<div class="container">
 			<br>
       <!--BOTON DE NUEVA PLANILLA-->
@@ -89,11 +88,10 @@
               <th scope="col">Cédula</th>
               <th scope="col">Cliente</th>
               <th scope="col">Valor actual</th>
-              <th scope="col">Meses en mora</th>
-              <th scope="col">Valor pagado</th>
-              <th scope="col">Valor restante</th>
-              <th scope="col">Última fecha de pago</th>
+              <th scope="col">Consumo actual</th>
+              <th scope="col">Consumo previo</th>
               <th scope="col">Fecha de Factura</th>
+              <th scope="col">Fecha maxima de pago</th>
               <th scope="col">Estado del servicio</th>
               <th scope="col">Acciones</th>        
             </tr>
@@ -104,15 +102,14 @@
             @else
           		@foreach ($valores_pagar as $valoresPagarItem)
             <tr>
-              <td class="td_acciones">{{$valoresPagarItem->numero_medidor}}</td>
-              <td class="td_acciones">{{$valoresPagarItem->cedula}}</td>
-              <td class="td_acciones">{{$valoresPagarItem->nombre}} {{$valoresPagarItem->apellido}}</td>
+              <td class="td_acciones">{{$valoresPagarItem->medidor->numero_medidor}}</td>
+              <td class="td_acciones">{{$valoresPagarItem->cliente->cedula}}</td>
+              <td class="td_acciones">{{$valoresPagarItem->cliente->nombre}} {{$valoresPagarItem->cliente->apellido}}</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_actual}}</td>
-              <td class="td_acciones">{{$valoresPagarItem->meses_mora}} meses</td>
-              <td class="td_acciones">$ {{$valoresPagarItem->valor_pagado}}</td>
-              <td class="td_acciones">$ {{$valoresPagarItem->valor_restante}}</td>
-              <td class="td_acciones">{{$valoresPagarItem->fecha}}</td>
+              <td class="td_acciones">{{$valoresPagarItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
+              <td class="td_acciones">{{$valoresPagarItem->consumo->consumo_anterior}} m<sup><strong>3</strong></sup></td>
               <td class="td_acciones">{{$valoresPagarItem->fecha_factura}}</td>
+              <td class="td_acciones">{{$valoresPagarItem->fecha_maxima}}</td>
               <td class="td_acciones">{{ucfirst($valoresPagarItem->estado_servicio);}}</td>
               <td class="td_acciones">
               <!--INICIO DE ACCIONES-->

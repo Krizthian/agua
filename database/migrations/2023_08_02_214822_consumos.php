@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('consumos', function (Blueprint $table) {
-            $table ->integer('id')->unique();
+            $table->integer('id', true)->unique();
             $table ->decimal('consumo_actual');
             $table ->date('fecha_lectura_actual');
             $table ->decimal('consumo_anterior');

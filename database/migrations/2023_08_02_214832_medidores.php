@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('medidores', function (Blueprint $table) {
-            $table ->integer('id')->unique();
+            $table->integer('id', true)->unique();
             $table ->date('fecha_instalacion');
             $table ->string('ubicacion');
             $table ->string('numero_medidor')->unique();

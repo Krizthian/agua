@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('planillas', function (Blueprint $table) {
-            $table ->integer('id')->unique();
+            $table->integer('id', true)->unique();
             $table ->decimal('valor_actual');
             $table ->date('fecha_factura');
             $table ->date('fecha_maxima');

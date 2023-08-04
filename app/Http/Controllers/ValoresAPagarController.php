@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Planillas; //Importamos el modelo de la tabla 'planillas'
 use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
+use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
+use App\Models\Consumos; //Importamos el modelo de la tabla 'consumos'
 
 class ValoresAPagarController extends Controller
 {
@@ -13,7 +15,7 @@ class ValoresAPagarController extends Controller
      */
     public function index()
     {
-        $valores_pagar = Planillas::paginate(10);
+        $valores_pagar = Planillas::with(['cliente', 'medidor', 'consumo'])->paginate(10);
         return view('panel', compact('valores_pagar'));
     }
 
@@ -26,16 +28,20 @@ class ValoresAPagarController extends Controller
         $medidor_cedula = $request->input('medidor_cedula');
 
     // Consulta Eloquent
-        $query = Planillas::query();
+        $query = Planillas::with(['cliente', 'medidor', 'consumo']);
 
     // Verificar si se ha proporcionado "numero_medidor" o "cedula" y agregar condiciones a la consulta
-        if (isset($medidor_cedula)) {
-            $query->where('numero_medidor', $medidor_cedula)
-            ->orWhere('cedula', $medidor_cedula);
-        
-
+        if(isset($medidor_cedula)){
+            $query->where(function ($q) use ($medidor_cedula) {
+                $q->whereHas('medidor', function ($subQuery) use ($medidor_cedula) {
+                    $subQuery->where('numero_medidor', $medidor_cedula);
+                })
+                ->orWhereHas('cliente', function ($subQuery) use ($medidor_cedula) {
+                    $subQuery->where('cedula', $medidor_cedula);
+                });
+            });
     // Ejecutar la consulta y obtener los resultados
-        $resultados = $query->get();
+        $resultados = $query->paginate(10);
 
     // Retornar los resultados
         return view('/home', compact('resultados', 'medidor_cedula'));
@@ -47,7 +53,7 @@ class ValoresAPagarController extends Controller
     }
 
     /**
-     * Busqueda de valores individuales
+     * Busqueda de valores en panel de gestión
      */
     public function busqueda(Request $request)
     {
@@ -55,13 +61,19 @@ class ValoresAPagarController extends Controller
             $valores = $request->input('valores');
 
         //Consulta Eloquent
-            $query = Planillas::query();
+            $query = Planillas::with(['cliente', 'medidor', 'consumo']);
 
-        //Verificamos si se recibio un valor        
+        //Verificamos si se recibio un valor y realizamos la busqueda
             if(isset($valores)){
-                $query->where('numero_medidor', $valores)
-                      ->orWhere('cedula', $valores)
-                      ->orWhere('apellido', $valores);
+                $query->where(function ($q) use ($valores) {
+                    $q->whereHas('medidor', function ($subQuery) use ($valores) {
+                        $subQuery->where('numero_medidor', $valores);
+                    })
+                    ->orWhereHas('cliente', function ($subQuery) use ($valores) {
+                        $subQuery->where('cedula', $valores)
+                                  ->orWhere('apellido', $valores);
+                    });
+                });
             }
 
          //Ejecutamos la consulta
@@ -93,53 +105,50 @@ class ValoresAPagarController extends Controller
      */
     public function create(){
         //Realizamos la consulta para obtener la informacion de los clientes registrados
-            $queryClientes = Clientes::all();
+            $queryClientes = Clientes::with(['medidor'])->get();
         //Devolvemos la informacion al formulario de creación     
             return view ('planillas.crear', compact('queryClientes'));
     }    
 
     /**
-     * Mostramos el formulario para guardar la planilla creada
+     * Guardamos la planilla creada
      */
     public function store(Request $request){
-     //Creamos la fecha actual
-        $fecha = date("Y-m-d"); 
      //Validamos los valores recibidos
         $campos_validados = request()->validate([
-            'numero_medidor' => 'required|unique:planillas',
-            'meses_mora' => 'required|numeric',
             'valor_actual' => 'required|numeric',
+            'fecha_factura' => 'required|date',
+            'fecha_maxima' => 'required|date',
+            'numero_medidor' => 'required|unique:medidores,numero_medidor',
         ],[
-            'numero_medidor.unique' => 'Este medidor ya se encuentra asociado a una planilla',
+            'numero_medidor.unique' => 'El medidor ya tiene una planilla asignada',
             'numero_medidor.required' => 'El numero de medidor es un campo obligatorio',
-            'meses_mora.numeric' => 'Se requiere un valor numerico para los meses en mora',
-            'valor_nuevo.numeric' => 'Se requiere un valor numerico para el campo de valor a pagar',
             'valor_actual.numeric' => 'Se requiere un valor numerico para el campo de valor actual',
-            'valor_restante.numeric' => 'Se requiere un valor numerico para el campo de valor restante',
+            'fecha_factura.required' => 'Se requiere una fecha para el campo de fecha de factura ',
+            'fecha_maxima.required' => 'Se requiere una fecha para el campo de fecha maxima de pago ',
         ]);
 
        if ($campos_validados) {          
             //Obtendremos todos los valores de la tabla clientes asociados al numero de medidor pasado
-                //Consulta Eloquent
-                    $queryCliente = Clientes::query();
                 //Obtenemos valores con el numero de medidor recibido       
-                    $queryCliente->where('numero_medidor',  $campos_validados['numero_medidor']);
-                    $queryClienteItem = $queryCliente->first();
+                    $queryMedidorItem = Medidores::query()
+                        ->where('numero_medidor', $campos_validados['numero_medidor'])
+                        ->first();
+
+                //Buscamos el consumo asociado al medidor
+                        $queryConsumoItem = Consumos::query()
+                            ->where('id_medidor', $queryMedidorItem->id) 
+                            ->first();       
 
                 //Ingresamos los datos en la tabla de Planillas
                     Planillas::create([
-                        'numero_medidor' => $campos_validados['numero_medidor'],
-                        'nombre' => $queryClienteItem->nombre,
-                        'apellido' => $queryClienteItem->apellido,
-                        'meses_mora' => $campos_validados['meses_mora'],
+                        'id_cliente' => $queryMedidorItem->id_cliente,
+                        'id_medidor' => $queryMedidorItem->id,
+                        'id_consumo' => $queryConsumoItem->id,
                         'valor_actual' => $campos_validados['valor_actual'],
-                        'valor_restante' => $campos_validados['valor_actual'],
-                        'valor_pagado' => '0.00',
-                        'fecha' => $fecha,
-                        'fecha_factura' => $fecha,
-                        'fecha_maxima' => $fecha,
-                        'cedula' => $queryClienteItem->cedula,
-                        'estado_servicio' => 'activo',
+                        'fecha_factura' => $campos_validados['fecha_factura'],
+                        'fecha_maxima' => $campos_validados['fecha_maxima'],
+                        'estado_servicio' => "activo",
 
                     ]);
                 //Redireccionamos y devolvemos variables
