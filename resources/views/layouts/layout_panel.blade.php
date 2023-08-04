@@ -45,6 +45,9 @@
               <li class="nav-item">
                 <a class="nav-link {{setActive('reportes')}}" aria-current="page" href="/reportes">Reportes</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link {{setActive('reclamos')}}" aria-current="page" href="#">Reclamos</a>
+              </li>
         </li>
       </ul>
       <!--TEXTO DE SALUDO-->
