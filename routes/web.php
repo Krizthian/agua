@@ -86,6 +86,8 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/clientes/editar/{clientesItem}', [ClientesController::class, 'edit'])->name('clientes.editar');
 			//Actualizar cliente
 				Route::patch('/clientes/{clientesItem}', [ClientesController::class, 'update'])->name('clientes.update');
+		//Solicitar listado de medidores asociado a clientes
+			Route::get('/clientes/listar/{clientesItem}', [ClientesController::class, 'listar'])->name('clientes.listar');
 		//Eliminacion de clientes
 			Route::get('/clientes/{clientesItem}', [ClientesController::class, 'destroy'])->name('clientes.destroy');
 

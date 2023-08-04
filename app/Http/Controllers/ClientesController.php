@@ -126,6 +126,20 @@ class ClientesController extends Controller
     }
 
     /**
+     * Listar todos los medidores asociados a un cliente
+    */
+
+    public function listar(Clientes $clientesItem)
+    {
+        $medidores = Medidores::where('id_cliente', $clientesItem->id)->get();
+        //Retornaremos a la vista con los valores
+           return view('clientes.medidores', [
+            'clientesItem' => $clientesItem,
+            'medidores' => $medidores
+           ]); 
+    }
+
+    /**
      * Eliminar el valor en la base de datos
      */
     public function destroy(Clientes $clientesItem)

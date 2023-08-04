@@ -69,7 +69,6 @@
             <tr>
               <th scope="col">Cliente</th>
               <th scope="col">Cédula</th>
-              <th scope="col">Numero Medidor</th>
               <th scope="col">Dirección</th>
               <th scope="col">Teléfono</th>
               <th scope="col" align="center">Acciones</th> 
@@ -81,9 +80,8 @@
             @else
                 @foreach ($clientes as $clientesItem)
             <tr>
-              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="#">{{$clientesItem->nombre}} {{$clientesItem->apellido}}</a></td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="{{route('clientes.listar', $clientesItem )}}">{{$clientesItem->nombre}} {{$clientesItem->apellido}}</a></td>
               <td class="td_acciones">{{$clientesItem->cedula}}</td>
-              <td class="td_acciones">{{$clientesItem->medidor->numero_medidor}}</td>
               <td class="td_acciones">{{$clientesItem->direccion}}</td>
               <td class="td_acciones">{{$clientesItem->telefono}}</td>
               <td class="td_acciones">
