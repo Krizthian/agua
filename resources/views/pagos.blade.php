@@ -21,7 +21,7 @@
 	    background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
     }
 </style>
-<center><h1 class="display-4">HISTORIA DE PAGOS</h1></center>
+<center><h1 class="display-4">HISTORIAL DE PAGOS</h1></center>
 		<div class="container">
 			<br>
       <!--BOTON DE REGRESAR-->
@@ -32,7 +32,7 @@
 			<br><br>
                <form action="{{route('pagos.busqueda')}}" method="GET">
            <div class="col-auto">
-            <center><input type="text" class="form-control" name="valores" placeholder="Nombres, apellidos o cédula"></input></center>
+            <center><input type="text" class="form-control" name="valores" placeholder="Apellidos o cédula"></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-primary">Consultar</button></center></div>
           <br>

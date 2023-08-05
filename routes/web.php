@@ -72,6 +72,11 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/medidores', [MedidoresController::class, 'index'])->name('medidores.index');
 		//Busqueda de medidores
 			Route::get('/medidores/busqueda', [MedidoresController::class, 'busqueda'])->name('medidores.busqueda');
+		//Devolver el formulario de ingreso de consumos
+			Route::get('/panel/medidores/consumos/{consumoMedidorItem}', [MedidoresController::class, 'ingresarConsumo'])->name('consumos.ingresarConsumo');
+				//Ingresar pago
+				Route::patch('/panel/medidores/consumos/{consumoMedidorItem}', [MedidoresController::class, 'almacenarConsumo'])->name('consumos.almacenarConsumo');
+
 
 //Rutas para mostrar (consumos)
 	Route::view('/consumos', 'consumos')->name('consumos');
