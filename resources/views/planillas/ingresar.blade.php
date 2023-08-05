@@ -30,20 +30,26 @@
               @endif
           <!--FIN DE MENSAJES DE ERROR-->
            <div class="col-auto">
-            <label>Numero de medidor:</label><center><input type="text" class="form-control mb-2" name="numero_medidor" value="{{$valoresPagarItem->numero_medidor}}" placeholder="{{$valoresPagarItem->numero_medidor}}" disabled></input></center>
+            <label>Numero de medidor:</label><center><input type="text" class="form-control mb-2" name="numero_medidor" value="{{$valoresPagarItem->medidor->numero_medidor}}" placeholder="{{$valoresPagarItem->medidor->numero_medidor}}" disabled></input></center>
 
-            <label>Cédula:</label><center><input type="text" class="form-control mb-2" name="cedula" value="{{$valoresPagarItem->cedula}}" placeholder="{{$valoresPagarItem->cedula}}" disabled></input></center>
+            <label>Cédula:</label><center><input type="text" class="form-control mb-2" name="cedula" value="{{$valoresPagarItem->cliente->cedula}}" placeholder="{{$valoresPagarItem->cliente->cedula}}" disabled></input></center>
 
-            <label>Nombre del cliente:</label><center><input type="text" class="form-control mb-2" name="nombre" value="{{$valoresPagarItem->nombre}}" placeholder="{{$valoresPagarItem->nombre}}" disabled></input></center>
+            <label>Nombre del cliente:</label><center><input type="text" class="form-control mb-2" name="nombre" value="{{$valoresPagarItem->cliente->nombre}}" placeholder="{{$valoresPagarItem->cliente->nombre}}" disabled></input></center>
 
-            <label>Apellido del cliente:</label><center><input type="text" class="form-control mb-2" name="apellido" value="{{$valoresPagarItem->apellido}}" placeholder="{{$valoresPagarItem->apellido}}" disabled></input></center>
+            <label>Apellido del cliente:</label><center><input type="text" class="form-control mb-2" name="apellido" value="{{$valoresPagarItem->cliente->apellido}}" placeholder="{{$valoresPagarItem->cliente->apellido}}" disabled></input></center>
 
             <label>Valor actual:</label><div class="input-group mb-2"><span class="input-group-text">$</span><center><input type="text" class="form-control" name="valor_actual" value="{{$valoresPagarItem->valor_actual}}" placeholder="{{$valoresPagarItem->valor_actual}}" disabled></input></center></div>
 
-            <label>Meses en mora:</label><center><input type="text" class="form-control mb-2 @error('meses_mora') is-invalid @enderror" name="meses_mora" value="{{old('meses_mora',$valoresPagarItem->meses_mora)}}" placeholder="{{$valoresPagarItem->meses_mora}}" required></input></center>
-            <label>Ultimo pago realizado:</label><div class="input-group mb-2"><span class="input-group-text">$</span><center><input type="text" class="form-control"  value="{{$valoresPagarItem->valor_pagado}}" placeholder="{{$valoresPagarItem->valor_pagado}}" disabled></input></center></div>
+            <label>Consumo actual (m<sup><strong>3</strong></sup>):</label><center><input type="text" class="form-control mb-2"  value="{{$valoresPagarItem->consumo->consumo_actual}}" placeholder="{{$valoresPagarItem->consumo->consumo_actual}}" disabled></input></center></div>
 
-            <label>Valor restante:</label><div class="input-group mb-2"><span class="input-group-text">$</span><center><input type="text" class="form-control" name="valor_restante" value="{{$valoresPagarItem->valor_restante}}" placeholder="{{$valoresPagarItem->valor_restante}}" disabled></input></center></div>
+            <label>Fecha de factura:</label><center><input type="text" class="form-control mb-2"  value="{{$valoresPagarItem->fecha_factura}}" placeholder="{{$valoresPagarItem->fecha_factura}}" disabled></input></center>
+
+            <label>Forma de pago:</label><center><select class="form-select input-group mb-3 @error('forma_pago') is-invalid @enderror" id="forma_pago" name="forma_pago">
+              <option value="Seleccione una forma de pago" required selected disabled>Seleccione una forma de pago</option>
+              <option value="efectivo">Efectivo</option>
+              <option value="cheque">Cheque</option>
+              <option value="otro">Otro</option>
+            </select></center>
 
             <!--INICIO DE VALOR A PAGAR-->
               <label>Valor a pagar:</label><div class="input-group mb-2">

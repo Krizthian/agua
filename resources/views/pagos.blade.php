@@ -65,7 +65,7 @@
               <td class="td_acciones">{{$pagosItem->valor_pagado}}</td>
               <td class="td_acciones">{{$pagosItem->valor_restante}}</td>
               <td class="td_acciones">{{$pagosItem->fecha_pago}}</td>
-              <td class="td_acciones">{{$pagosItem->forma_pago}}</td>
+              <td class="td_acciones">{{ucfirst($pagosItem->forma_pago)}}</td>
             </tr>
               </td>
             </tr> 

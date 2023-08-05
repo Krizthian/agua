@@ -7,6 +7,7 @@ use App\Models\Planillas; //Importamos el modelo de la tabla 'planillas'
 use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
 use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
 use App\Models\Consumos; //Importamos el modelo de la tabla 'consumos'
+use App\Models\Pagos; //Importamos el modelo de la tabla 'consumos'
 
 class ValoresAPagarController extends Controller
 {
@@ -255,12 +256,23 @@ class ValoresAPagarController extends Controller
     */
     public function edit(Planillas $valoresPagarItem)
     {
-
+        $valores_pagar = Planillas::with(['cliente', 'medidor', 'consumo'])
+            ->whereHas('cliente', function ($query) use ($valoresPagarItem) {
+                $query->where('id_cliente', $valoresPagarItem);
+            })
+            ->whereHas('medidor', function ($query) use ($valoresPagarItem) {
+                $query->where('id_medidor', $valoresPagarItem);
+            })
+            ->whereHas('consumo', function ($query) use ($valoresPagarItem) {
+                $query->where('id_consumo', $valoresPagarItem);
+            })
+            ->get();
     //Comprobamos si el medidor seleccionado tiene valores pendientes
         if ($valoresPagarItem->valor_actual > 0) {
             //Retornaremos a la vista con el formulario si existen valores pendientes
                 return view('planillas.ingresar', [
-                    'valoresPagarItem' => $valoresPagarItem
+                    'valoresPagarItem' => $valoresPagarItem,
+                    'valores_pagar' => $valores_pagar
                 ]);
             }
         //En caso de que no haya valores pendientes notificamos al usuario    
@@ -271,42 +283,45 @@ class ValoresAPagarController extends Controller
 
     }
 
-
-
     /**
      * Actualizamos el valor en la base de datos.
      */
     public function update(Planillas $valoresPagarItem)
     {
         //Obtenemos las variables enviadas en el formulario
-            $meses_mora = request('meses_mora');
             $valor_nuevo = request('valor_nuevo');
+            $forma_pago = request('forma_pago');
             $fecha = date("Y-m-d");
        //Validamos los valores recibidos desde el formulario anterior
             $campos_validados = request()->validate([
-                'meses_mora' => 'required|numeric',
                 'valor_nuevo' => 'required|numeric',
+                'forma_pago' => 'required',
             ],[
-                //Mensaje de error de meses
-                    'meses_mora.numeric' => 'Se requiere un valor numerico para los meses en mora',
-                    'valor_nuevo.numeric' => 'Se requiere un valor numerico para el campo de valor a pagar'
+                //Mensaje de error valor numerico
+                    'valor_nuevo.numeric' => 'Se requiere un valor numerico para el campo de valor a pagar',
+                    'forma_pago.required' => 'La forma de pago es obligatoria'
             ]);     
+
         //Realizamos la operacion matematica para restar valores
-           
-        //Restamos los valores existentes en la base de datos menos los recibidos en el formulario
-            $valorFinalIngresar = $valoresPagarItem->valor_actual - $valor_nuevo;
+            //Restamos los valores existentes en la base de datos menos los recibidos en el formulario
+                $valorFinalIngresar = $valoresPagarItem->valor_actual - $valor_nuevo;
 
         //Si los campos han sido validados, realizamos la consulta
         if ($campos_validados) {
-                   
-            //Realizamos la consulta Eloquent
-                Planillas::where('id', $valoresPagarItem->id)
+            //Realizamos la consulta Eloquent para la actualizacion de valores en 'Planillas'
+                Planillas::where('id_medidor', $valoresPagarItem->medidor->id)
                      ->update([
                             'valor_actual' => $valorFinalIngresar,
+                        ]);
+            //Realizamos la consulta Eloquent para la actualizacion de valores en 'Pagos'
+                Pagos::where('id_cliente', $valoresPagarItem->cliente->id)
+                     ->create([
+                            'id_cliente' => $valoresPagarItem->cliente->id,
+                            'id_planilla' => $valoresPagarItem->id,
                             'valor_pagado' => $valor_nuevo,
                             'valor_restante' => $valorFinalIngresar,
-                            'meses_mora' => $meses_mora,
-                            'fecha' => $fecha,
+                            'fecha_pago' => $fecha,
+                            'forma_pago' => $forma_pago
                         ]);
 
             //Redireccionamos y devolvemos variables
@@ -314,7 +329,6 @@ class ValoresAPagarController extends Controller
                     'resultado_ingreso' => 'El pago se ha ingresado correctamente',
                     'medidor_pagado' => $valoresPagarItem->numero_medidor,
                     'valor_pagado' => $valor_nuevo,
-
                 ]);         
         
         //Si no se ha realizado la validación correctamente, regresamos al formulario anterior        
