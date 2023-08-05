@@ -72,7 +72,10 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/panel/medidores/consumos/{consumoMedidorItem}', [MedidoresController::class, 'ingresarConsumo'])->name('consumos.ingresarConsumo');
 				//Ingresar pago
 				Route::patch('/panel/medidores/consumos/{consumoMedidorItem}', [MedidoresController::class, 'almacenarConsumo'])->name('consumos.almacenarConsumo');
-
+		//Devolver el formulario de creación de medidor
+			Route::get('/panel/medidores/crear', [MedidoresController::class, 'create'])->name('medidores.create');
+			//Registrar planilla
+				Route::post('/panel/medidores', [MedidoresController::class, 'store'])->name('medidores.store');	
 
 //Rutas para mostrar (consumos)
 	Route::view('/consumos', 'consumos')->name('consumos');

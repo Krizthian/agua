@@ -59,14 +59,12 @@ class ClientesController extends Controller
     {
         //Validamos los valores recibidos
         $campos_validados = request()->validate([
-            'numero_medidor' => 'required|unique:clientes',
             'nombre' => 'required',
             'apellido' => 'required',
             'cedula' => 'required|numeric',
             'direccion' => 'required',
             'telefono' => 'required|numeric',
         ],[
-            'numero_medidor.unique' => 'Este medidor ya se encuentra registrado',
             'cedula.numeric' => 'El campo cédula debe contener números',
             'telefono.numeric' => 'El campo teléfono debe contener números',
         ]);
@@ -79,7 +77,7 @@ class ClientesController extends Controller
             return redirect()->back()->withErrors($campos_validados)->withInput();
         }
    
-        }
+    }
 
     /**
      * Mostramos el formulario para editar un cliente

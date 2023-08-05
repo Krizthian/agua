@@ -36,9 +36,10 @@
 
             <label>Ubicación de medidor:</label><center><input type="text" class="form-control mb-2" name="ubicacion" value="{{$consumoMedidorItem->ubicacion}}" placeholder="{{$consumoMedidorItem->ubicacion}}" disabled></input></center>
 
-            <label>Consumo anterior (m<sup><strong>3</strong></sup>):</label><center><input type="text" class="form-control mb-2" name="consumo_anterior" value="{{$consumoMedidorItem->consumo->consumo_actual}}" placeholder="{{$consumoMedidorItem->consumo_actual}}" readonly></input></center>
+            <label>Consumo anterior (m<sup><strong>3</strong></sup>):</label><center><input type="text" class="form-control mb-2" name="consumo_anterior" 
+            @isset($consumoMedidorItem->consumo->consumo_actual) value="{{$consumoMedidorItem->consumo->consumo_actual}}" placeholder="{{$consumoMedidorItem->consumo_actual}}" @else value="0" placeholder="0" @endisset readonly></input></center>
 
-            <label>Fecha de lectura anterior:</label><center><input type="text" class="form-control mb-2" name="fecha_lectura_anterior" value="{{$consumoMedidorItem->consumo->fecha_lectura_actual}}" placeholder="{{$consumoMedidorItem->fecha_lectura_actual}}" readonly></input></center>
+            <label>Fecha de lectura anterior:</label><center><input type="text" class="form-control mb-2" name="fecha_lectura_anterior" @isset($consumoMedidorItem->consumo->fecha_lectura_actual) value="{{$consumoMedidorItem->consumo->fecha_lectura_actual}}" placeholder="{{$consumoMedidorItem->fecha_lectura_actual}}" @else value="2000-08-05" placeholder="2000-08-05" @endisset readonly></input></center>
 
             <label>Consumo actual (m<sup><strong>3</strong></sup>):</label><center><input type="text" class="form-control mb-2 @error('consumo_actual') is-invalid @enderror" name="consumo_actual" placeholder="Ingrese el consumo actual" required></input></center>
 

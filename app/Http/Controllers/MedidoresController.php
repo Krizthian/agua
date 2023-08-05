@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
 use App\Models\Consumos; //Importamos el modelo de la tabla 'consumos'
 use App\Models\Planillas; //Importamos el modelo de la tabla 'planillas'
+use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
 
 class MedidoresController extends Controller
 {
@@ -43,6 +44,51 @@ class MedidoresController extends Controller
     }
 
     /**
+     * Mostramos el formulario para crear un nuevo medidor
+    */
+    public function create()
+    {
+    //Realizamos la consulta para obtener la informacion de los clientes registrados
+        $queryClientes = Clientes::with('medidor')->get();
+    //Retornaremos a la vista con el formulario    
+        return view('medidores.crear', compact('queryClientes')); 
+    }
+
+    /**
+     * Ingresamos el medidor en la base de datos
+    */
+    public function store(Request $request)
+    {
+        //Obtenemos valores
+            $id_cliente = $request->input('id_cliente');
+        //Validamos los valores recibidos
+        $campos_validados = request()->validate([
+            'fecha_instalacion' => 'required',
+            'ubicacion' => 'required',
+            'numero_medidor' => 'required|numeric',
+        ],[
+            'ubicacion.required' => 'El campo cédula debe contener números',
+            'numero_medidor.numeric' => 'El campo de numero de medidor debe contener números',
+            'numero_medidor.required' => 'El campo de numero de medidor es obligatorio',
+        ]);
+
+        if ($campos_validados) {
+        //Insertamos los valores en la tabla
+            Medidores::create([
+                'id_cliente' => $id_cliente,
+                'fecha_instalacion' => $campos_validados['fecha_instalacion'],
+                'ubicacion' => $campos_validados['ubicacion'],
+                'numero_medidor' => $campos_validados['numero_medidor'],
+            ]);
+        //Redireccionamos
+            return redirect()->route('medidores.index')->with('resultado_creacion', 'Se ha creado el medidor correctamente'); 
+        }else{
+            return redirect()->back()->withErrors($campos_validados)->withInput();
+        }
+   
+    }
+
+    /**
      * Redireccionar al formulario de ingreso de consumos
     */
 
@@ -63,6 +109,7 @@ class MedidoresController extends Controller
     {
         //Obtenemos los valores desde el formulario anterior
             $id_medidor = $consumoMedidorItem->id;
+            $id_cliente = $consumoMedidorItem->id_cliente;
             $consumo_actual = request('consumo_actual');
             $fecha_lectura_actual = date("Y-m-d"); //Generamos una fecha actual
             $consumo_anterior = request('consumo_anterior');
@@ -118,22 +165,52 @@ class MedidoresController extends Controller
 
          //Comprobamos si los campos han sido validados
             if ($campos_validados) {
-                   Consumos::where('id_medidor', $id_medidor)
-                   ->update([
-                    'consumo_actual' => $consumo_actual,
-                    'fecha_lectura_actual' => $fecha_lectura_actual,
-                    'consumo_anterior' => $consumo_anterior,
-                    'fecha_lectura_anterior' => $fecha_lectura_anterior,
-                    'responsable' => $responsable
-                   ]);
+                //Validamos si existe un medidor en la tabla 'consumos'
+                    $id_medidorExistente = Consumos::where('id_medidor', $id_medidor)->exists();
+                    if ($id_medidorExistente) {       
+                       Consumos::where('id_medidor', $id_medidor)
+                       ->update([
+                        'consumo_actual' => $consumo_actual,
+                        'fecha_lectura_actual' => $fecha_lectura_actual,
+                        'consumo_anterior' => $consumo_anterior,
+                        'fecha_lectura_anterior' => $fecha_lectura_anterior,
+                        'responsable' => $responsable
+                       ]);
 
-                   Planillas::where('id_medidor', $id_medidor)
-                   ->update([
-                    'valor_actual' => $valor_actual,
-                    'fecha_factura' => $fecha_factura,
-                    'fecha_maxima' => $fecha_maxima
+                       Planillas::where('id_medidor', $id_medidor)
+                       ->update([
+                        'valor_actual' => $valor_actual,
+                        'fecha_factura' => $fecha_factura,
+                        'fecha_maxima' => $fecha_maxima
 
-                   ]);
+                       ]);
+                   }else{
+                    //Creamos el consumo si aun no existe
+                        $consumoCreado = Consumos::create([
+                        'id_medidor' => $id_medidor,
+                        'consumo_actual' => $consumo_actual,
+                        'fecha_lectura_actual' => $fecha_lectura_actual,
+                        'consumo_anterior' => $consumo_anterior,
+                        'fecha_lectura_anterior' => $fecha_lectura_anterior,
+                        'responsable' => $responsable
+                       ]);
+                        //Obtenemos el id de consumo para la creacion de la planilla
+                            $id_consumoCreado = $consumoCreado->id;
+                        //Creamos la nueva planilla    
+                            Planillas::create([
+                            'id_cliente' => $id_cliente,
+                            'id_medidor' => $id_medidor,
+                            'id_consumo' => $id_consumoCreado,
+                            'valor_actual' => $valor_actual,
+                            'fecha_factura' => $fecha_factura,
+                            'fecha_maxima' => $fecha_maxima,
+                            'estado_servicio' => "activo"   
+                       ]);
+                        //Redireccionamos y devolvemos variables
+                        return redirect()->route('medidores.index')->with([
+                            'resultado_ingresoPlanilla' => 'Los consumos se han ingresado correctamente y se ha creado una nueva planilla',
+                        ]);    
+                   }
           //Redireccionamos y devolvemos variables
                 return redirect()->route('medidores.index')->with([
                     'resultado_ingreso' => 'Los consumos se han ingresado correctamente',

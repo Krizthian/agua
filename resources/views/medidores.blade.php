@@ -25,7 +25,7 @@
 <center><h1 class="display-4">GESTIÓN DE MEDIDORES</h1></center>
     <div class="container">
       <br>
-        <div class="col-md-12 bg-light text-right"><a href="{{route('clientes.create')}}" type="submit" class="btn btn-success float-end">Nuevo Medidor</a></div>
+        <div class="col-md-12 bg-light text-right"><a href="{{route('medidores.create')}}" type="submit" class="btn btn-success float-end">Nuevo Medidor</a></div>
         <br><br>
          <form action="{{route('medidores.busqueda')}}" method="GET">
            <div class="col-auto">
@@ -42,6 +42,22 @@
             </div>
           @endif  
         <!--FIN DE MENSAJE DE RESULTADO DE INGRESO-->
+        <!--INICIO DE MENSAJE DE RESULTADO DE INGRESO CON PLANILLA-->
+          @if(session('resultado_ingresoPlanilla'))
+            <div class="alert alert-success alert-dismissible fade show">
+                Se ha ingresado el <strong>consumo</strong> correctamente y se ha creado una nueva <strong>planilla</strong>.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+          @endif  
+        <!--FIN DE MENSAJE DE RESULTADO DE INGRESO-->
+        <!--INICIO DE MENSAJE DE RESULTADO DE CREACION-->
+          @if(session('resultado_creacion'))
+            <div class="alert alert-success alert-dismissible fade show">
+                Se ha creado el medidor correctamente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+          @endif  
+        <!--FIN DE MENSAJE DE RESULTADO DE INGRESO-->
         </div>
 
         <!--INICIO DE TABLA CON VALORES-->
@@ -49,7 +65,8 @@
         <table class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
-              <th scope="col">Numero de Medidor</th>
+              <th scope="col"># Medidor</th>
+              <th scope="col">Propietario</th>
               <th scope="col">Fecha de Instalación</th>
               <th scope="col">Ubicación</th>
               <th scope="col">Consumo</th>
@@ -65,6 +82,7 @@
          @foreach ($consumoMedidor as $consumoMedidorItem)   
             <tr>
               <td class="td_acciones">{{$consumoMedidorItem->numero_medidor}}</td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="{{route('clientes.listar', $consumoMedidorItem->cliente )}}">{{$consumoMedidorItem->cliente->nombre}} {{$consumoMedidorItem->cliente->apellido}}</a></td>
               <td class="td_acciones">{{$consumoMedidorItem->fecha_instalacion}}</td>
               <td class="td_acciones">{{$consumoMedidorItem->ubicacion}}</td>
               @isset($consumoMedidorItem->consumo)
