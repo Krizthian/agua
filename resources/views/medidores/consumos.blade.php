@@ -40,9 +40,9 @@
 
             <label>Fecha de lectura anterior:</label><center><input type="text" class="form-control mb-2" name="fecha_lectura_anterior" value="{{$consumoMedidorItem->consumo->fecha_lectura_actual}}" placeholder="{{$consumoMedidorItem->fecha_lectura_actual}}" readonly></input></center>
 
-            <label>Consumo actual (m<sup><strong>3</strong></sup>):</label><center><input type="text" class="form-control mb-2" name="consumo_actual" placeholder="Ingrese el consumo actual" required></input></center>
+            <label>Consumo actual (m<sup><strong>3</strong></sup>):</label><center><input type="text" class="form-control mb-2 @error('consumo_actual') is-invalid @enderror" name="consumo_actual" placeholder="Ingrese el consumo actual" required></input></center>
 
-            <label>Responsable de lectura:</label><center><input type="text" class="form-control mb-2" name="responsable" placeholder="Ingrese al responsable de la lectura" required></input></center>
+            <label>Responsable de lectura:</label><center><input type="text" class="form-control mb-2 @error('responsable') is-invalid @enderror" name="responsable" placeholder="Ingrese al responsable de la lectura" required></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar Consumo</button></center></div>
           <br>
