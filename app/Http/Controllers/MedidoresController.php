@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
 use App\Models\Consumos; //Importamos el modelo de la tabla 'consumos'
+use App\Models\Planillas; //Importamos el modelo de la tabla 'planillas'
 
 class MedidoresController extends Controller
 {
@@ -67,7 +68,7 @@ class MedidoresController extends Controller
             $consumo_anterior = request('consumo_anterior');
             $fecha_lectura_anterior = request('fecha_lectura_anterior');
             $responsable = request('responsable'); 
-
+  
         //Validamos los valores recibidos desde el formulario anterior    
             $campos_validados = request()->validate([
                 'consumo_actual' => 'required|numeric',
@@ -82,6 +83,39 @@ class MedidoresController extends Controller
 
             ]);
 
+        //Valores para la tabla de planillas
+            //La factura se genera dos dias despues de la lectura
+                $fecha_factura = date('Y-m-d', strtotime('+2 days', strtotime($fecha_lectura_actual)));
+            //La fecha maxima de pago previo a que se suspenda el servicio es 5 dias despues de la fecha de factura    
+                $fecha_maxima =  date('Y-m-d', strtotime('+5 days', strtotime($fecha_factura))); 
+            //Realizamos el calculo de consumos en funcion de las tarifas e ingresarmos el valor en la variable valor_actual
+                switch (true) {
+                    case ($consumo_actual >= 0 && $consumo_actual <= 15):
+                        $valor_actual = $consumo_actual * 0.308;
+                        break;
+                    case ($consumo_actual >= 16 && $consumo_actual <= 30):
+                        $valor_actual = $consumo_actual * 0.457;
+                        break;
+                    case ($consumo_actual >= 31 && $consumo_actual <= 60):
+                        $valor_actual = $consumo_actual * 0.646;
+                        break;
+                    case ($consumo_actual >= 61 && $consumo_actual <= 100):
+                        $valor_actual = $consumo_actual * 0.810;
+                        break;
+                    case ($consumo_actual >= 101 && $consumo_actual <= 300):
+                        $valor_actual = $consumo_actual * 0.903;
+                        break;
+                    case ($consumo_actual >= 301 && $consumo_actual <= 2500):
+                        $valor_actual = $consumo_actual * 1.401;
+                        break;
+                    case ($consumo_actual >= 2501 && $consumo_actual <= 5000):
+                        $valor_actual = $consumo_actual * 1.798;
+                        break;
+                    case ($consumo_actual > 5000):
+                        $valor_actual = $consumo_actual * 2.956;
+                        break;
+                }  
+
          //Comprobamos si los campos han sido validados
             if ($campos_validados) {
                    Consumos::where('id_medidor', $id_medidor)
@@ -92,9 +126,17 @@ class MedidoresController extends Controller
                     'fecha_lectura_anterior' => $fecha_lectura_anterior,
                     'responsable' => $responsable
                    ]);
+
+                   Planillas::where('id_medidor', $id_medidor)
+                   ->update([
+                    'valor_actual' => $valor_actual,
+                    'fecha_factura' => $fecha_factura,
+                    'fecha_maxima' => $fecha_maxima
+
+                   ]);
           //Redireccionamos y devolvemos variables
                 return redirect()->route('medidores.index')->with([
-                    'resultado_ingreso' => 'El pago se ha ingresado correctamente',
+                    'resultado_ingreso' => 'Los consumos se han ingresado correctamente',
                 ]);         
             }else{
                 return redirect()->back()->withErrors($campos_validados)->withInput();
