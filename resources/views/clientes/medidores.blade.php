@@ -37,6 +37,7 @@
               <th scope="col">Numero de Medidor</th>
               <th scope="col">Fecha de Instalacion</th>
               <th scope="col">Ubicacion</th>
+              <th scope="col">Consumo Actual</th>
             </tr>
           </thead>
           <tbody>
@@ -48,6 +49,7 @@
               <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="/medidores/busqueda?valores={{$medidoresItem->numero_medidor}}">{{$medidoresItem->numero_medidor}}</a></td>
               <td class="td_acciones">{{$medidoresItem->fecha_instalacion}}</td>
               <td class="td_acciones">{{$medidoresItem->ubicacion}}</td>
+              <td class="td_acciones">{{$medidoresItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
             </tr>
               </td>
             </tr> 

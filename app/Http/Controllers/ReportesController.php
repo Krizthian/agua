@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Planillas; //Importamos el modelo de la tabla 'pagos'
+use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
+use App\Models\Clientes; //Importamos el modelo de la tabla 'pagos'
+use App\Models\Medidores; //Importamos el modelo de la tabla 'pagos'
 
 class ReportesController extends Controller
 {
@@ -21,21 +24,23 @@ class ReportesController extends Controller
 
         //Generación de reporte de pagos              
         if ($tipo == 'pagos') {
-                $query = Planillas::where('fecha', 'LIKE', $month_year.'%')->get();
+                $query = Pagos::with('cliente', 'planilla')
+                ->where('fecha_pago', 'LIKE', $month_year.'%')
+                ->get();
         //Devolvemos los valores        
                return view('reportes', compact('query'));
 
         /*Obtención de reportes Inactivos y Activos*/
                 //Generación de reporte de medidores que se encuentren inactivos  
                 }elseif ($tipo == 'medidores_inactivos') {
-                       $query = Planillas::where('estado_servicio', 'inactivo')->get();  
+                       $queryMedidoresInactivos = Planillas::where('estado_servicio', 'inactivo')->get();  
                         //Devolvemos los valores        
-                       return view('reportes', compact('query'));
+                       return view('reportes', compact('queryMedidoresInactivos'));
                 //Generación de reporte de medidores que se encuentren activos        
                  }elseif ($tipo == 'medidores_activos') {
-                       $query = Planillas::where('estado_servicio', 'activo')->get();  
+                       $queryMedidoresActivos = Planillas::where('estado_servicio', 'activo')->get();  
                         //Devolvemos los valores        
-                       return view('reportes', compact('query'));
+                       return view('reportes', compact('queryMedidoresActivos'));
                  }  
     }
 }

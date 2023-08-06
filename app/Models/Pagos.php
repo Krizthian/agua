@@ -24,6 +24,9 @@ class Pagos extends Model
             return $this->belongsTo(Planillas::class, 'id_planilla');
         }
 
-
-
+    // Relación con Medidor
+        public function medidor()
+        {
+            return $this->belongsTo(Medidores::class, 'id_medidor');
+        }   
 }

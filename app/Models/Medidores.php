@@ -26,5 +26,5 @@ class Medidores extends Model
         public function planilla()
         {
             return $this->hasMany(Planillas::class, 'id_medidor');
-        }    
+        }   
 }

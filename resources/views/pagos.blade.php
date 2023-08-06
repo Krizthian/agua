@@ -44,6 +44,7 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Cliente</th>
+              <th scope="col"># Medidor</th>
               <th scope="col"># Planilla</th>
               <th scope="col">Valor a pagar</th>
               <th scope="col">Valor pagado</th>
@@ -60,6 +61,7 @@
             <tr>
               <td class="td_acciones">{{$pagosItem->id}}</td>
               <td class="td_acciones">{{$pagosItem->cliente->nombre}} {{$pagosItem->cliente->apellido}}</td>
+              <td class="td_acciones">{{$pagosItem->planilla->medidor->numero_medidor}}</td>
               <td class="td_acciones"><a href="panel/busqueda?valores={{$pagosItem->planilla->id}}" class="link link-offset-2 link-underline link-underline-opacity-0">{{$pagosItem->planilla->id}}</a></td>
               <td class="td_acciones">{{$pagosItem->planilla->valor_actual}}</td>
               <td class="td_acciones">{{$pagosItem->valor_pagado}}</td>
