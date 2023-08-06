@@ -76,6 +76,10 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/panel/medidores/crear', [MedidoresController::class, 'create'])->name('medidores.create');
 			//Registrar planilla
 				Route::post('/panel/medidores', [MedidoresController::class, 'store'])->name('medidores.store');	
+		//Devolver el formulario de edición de medidor
+			Route::get('/medidores/editar/{consumoMedidorItem}', [MedidoresController::class, 'edit'])->name('medidores.edit');
+			//Actualizar medidor
+				Route::patch('/medidores/{consumoMedidorItem}', [MedidoresController::class, 'update'])->name('medidores.update');		
 
 //Rutas para mostrar (consumos)
 	Route::view('/consumos', 'consumos')->name('consumos');

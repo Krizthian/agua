@@ -67,7 +67,7 @@ class MedidoresController extends Controller
             'ubicacion' => 'required',
             'numero_medidor' => 'required|numeric',
         ],[
-            'ubicacion.required' => 'El campo cédula debe contener números',
+            'ubicacion.required' => 'El campo de ubicación es obligatorio',
             'numero_medidor.numeric' => 'El campo de numero de medidor debe contener números',
             'numero_medidor.required' => 'El campo de numero de medidor es obligatorio',
         ]);
@@ -86,6 +86,56 @@ class MedidoresController extends Controller
             return redirect()->back()->withErrors($campos_validados)->withInput();
         }
    
+    }
+
+    /**
+     * Redireccionar al formulario de actualización de medidor
+    */
+
+    public function edit(Medidores $consumoMedidorItem)
+    {
+        //Obtenemos información de los clientes
+            $queryClientes = Clientes::with('medidor')->get();
+        //Devolvemos todo lo obtenido al formulario de ingreso
+            return view('medidores.editar', [
+                'consumoMedidorItem' => $consumoMedidorItem,
+                'queryClientes' => $queryClientes
+            ]);
+
+    } 
+
+    public function update(Request $request, Medidores $consumoMedidorItem)
+    {
+        //Obtenemos valores
+            $id_medidor = $consumoMedidorItem->id;
+            $id_cliente = $request->input('id_cliente');
+        //Validamos los valores recibidos
+            $campos_validados = request()->validate([
+                'ubicacion' => 'required',
+                'id_cliente' => 'required',
+            ],[
+                'ubicacion.required' => 'El campo de ubicación es obligatorio',
+                'id_cliente.required' => 'El campo de propietario es obligatorio',
+            ]);
+        //Comprobamos si los campos han sido validados
+            if ($campos_validados) {
+                //Actualizamos los valores en la tabla de medidores
+                    Medidores::where('id', $id_medidor)
+                       ->update([
+                        'id_cliente' => $id_cliente,
+                        'ubicacion' => $campos_validados['ubicacion']
+                       ]);
+                //Actualizamos los valores en la tabla de planilla       
+                     Planillas::where('id_medidor', $id_medidor)
+                       ->update([
+                        'id_cliente' => $id_cliente
+                       ]);
+        //Redireccionamos
+            return redirect()->route('medidores.index')->with('resultado_creacion', 'Se ha actualizado la información del medidor correctamente'); 
+
+            }else{
+                return redirect()->back()->withErrors($campos_validados)->withInput();
+            }   
     }
 
     /**

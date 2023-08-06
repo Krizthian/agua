@@ -1,5 +1,5 @@
 @extends('layouts.layout_panel')
-<title>Crear medidor - Gestión de Medidores | Sistema de Consultas de Valores a Pagar del Agua</title>
+<title>Editar medidor - Gestión de Medidores | Sistema de Consultas de Valores a Pagar del Agua</title>
 <link rel="stylesheet" href="{{url('css/custom_login.css')}}">
 @section('content')
     <style>
@@ -10,7 +10,7 @@
 	     }
     </style>
 
-<center><h1 class="display-4">CREAR MEDIDOR</h1></center>
+<center><h1 class="display-4">EDITAR MEDIDOR</h1></center>
     <div class="container">
       <br>
         <!--BOTON DE REGRESAR-->
@@ -19,8 +19,8 @@
           </svg></a></div>
       <!--FIN DE BOTON DE REGRESAR-->
         <main class="form-signin w-100 m-auto">
-         <form action="{{route('medidores.store')}}" method="POST">
-         	@csrf
+         <form action="{{route('medidores.update', $consumoMedidorItem)}}" method="POST">
+         	@csrf @method('PATCH')
           <!--DEVOLVEMOS MENSAJES DE ERROR-->
               @if ($errors->any())
                   <div class="alert alert-danger alert-dismissible fade show">
@@ -35,21 +35,22 @@
               @endif
             <!--FIN DE MENSAJES DE ERROR-->  
            <div class="col-auto">
-        <label>Propietario del medidor:</label>
-          <div class="form-group">
-            <select class="form-select input-group mb-2" id="id_cliente" name="id_cliente" required>
-                <option value="Seleccione un cliente" required selected disabled>Seleccione al propietario</option>
-                @foreach ($queryClientes as $cliente)
-                    <option value="{{ $cliente->id }}" required>
-                        {{ $cliente->nombre }} {{ $cliente->apellido }}
-                    </option>
-                @endforeach
-            </select>
-            <label>Fecha de Instalación:</label><center><input type="date" class="form-control" name="fecha_instalacion" required></input></center>
-            <label>Ubicación del medidor:</label><center><input type="text" class="form-control" name="ubicacion" placeholder="Ej. Calle 10 de Agosto, Puerta Roja" required></input></center>
-            <label>Número de medidor:</label><center><input type="text" class="form-control @error('numero_medidor') is-invalid @enderror" name="numero_medidor" placeholder="Ej. 010027" required></input></center>
+            <label>Numero de medidor:</label><center><input type="text" class="form-control" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" disabled></input></center>
+	       <label>Propietario del medidor:</label>
+	          <div class="form-group">
+	            <select class="form-select input-group mb-2  @error('id_cliente') is-invalid @enderror" id="id_cliente" name="id_cliente" required>
+	                <option value="{{$consumoMedidorItem->cliente->id}}" required selected>{{$consumoMedidorItem->cliente->nombre}} {{$consumoMedidorItem->cliente->apellido}}</option>
+	                @foreach ($queryClientes as $cliente)
+	                    <option value="{{ $cliente->id }}" required>
+	                        {{ $cliente->nombre }} {{ $cliente->apellido }}
+	                    </option>
+	                @endforeach
+	            </select>
+
+            <label>Fecha de instalación:</label><center><input type="text" class="form-control" name="fecha_instalacion" value="{{$consumoMedidorItem->fecha_instalacion}}" disabled></input></center>
+            <label>Ubicación:</label><center><input type="text" class="form-control @error('ubicacion') is-invalid @enderror" name="ubicacion" value="{{$consumoMedidorItem->ubicacion}}" placeholder="{{$consumoMedidorItem->ubicacion}}" required></input></center>
           <br>
-            <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
+            <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Actualizar</button></center></div>
           <br>
         </form>
     </main>

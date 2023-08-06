@@ -1,5 +1,5 @@
 @extends('layouts.layout_panel')
-<title>Editar medidor - Gestión de Clientes | Sistema de Consultas de Valores a Pagar del Agua</title>
+<title>Editar cliente - Gestión de Clientes | Sistema de Consultas de Valores a Pagar del Agua</title>
 <link rel="stylesheet" href="{{url('css/custom_login.css')}}">
 @section('content')
     <style>
