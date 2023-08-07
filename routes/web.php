@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ValoresAPagarController; //Controlador de Consulta
 use App\Http\Controllers\PagosController; //Controlador de Pagos
 use App\Http\Controllers\MedidoresController; //Controlador de Medidores
-use App\Http\Controllers\ConsumosController; //Controlador de Consumos
 use App\Http\Controllers\ClientesController; //Controlador de Clientes
 use App\Http\Controllers\LoginController; //Controlador de Login
 use App\Http\Controllers\UsuariosController; //Controlador de Usuarios
 use App\Http\Controllers\ReportesController; //Controlador de Reportes
+use App\Http\Controllers\MantenimientosController; //Controlador de Mantenimientos
 
 /*
 |--------------------------------------------------------------------------
@@ -70,23 +70,33 @@ use App\Http\Controllers\ReportesController; //Controlador de Reportes
 			Route::get('/medidores/busqueda', [MedidoresController::class, 'busqueda'])->name('medidores.busqueda');
 		//Devolver el formulario de ingreso de consumos
 			Route::get('/panel/medidores/consumos/{consumoMedidorItem}', [MedidoresController::class, 'ingresarConsumo'])->name('consumos.ingresarConsumo');
-				//Ingresar pago
+				//Ingresar consumo
 				Route::patch('/panel/medidores/consumos/{consumoMedidorItem}', [MedidoresController::class, 'almacenarConsumo'])->name('consumos.almacenarConsumo');
 		//Devolver el formulario de creación de medidor
 			Route::get('/panel/medidores/crear', [MedidoresController::class, 'create'])->name('medidores.create');
-			//Registrar planilla
+			//Registrar medidor
 				Route::post('/panel/medidores', [MedidoresController::class, 'store'])->name('medidores.store');	
 		//Devolver el formulario de edición de medidor
 			Route::get('/medidores/editar/{consumoMedidorItem}', [MedidoresController::class, 'edit'])->name('medidores.edit');
 			//Actualizar medidor
-				Route::patch('/medidores/{consumoMedidorItem}', [MedidoresController::class, 'update'])->name('medidores.update');		
+				Route::patch('/medidores/{consumoMedidorItem}', [MedidoresController::class, 'update'])->name('medidores.update');	
 
-//Rutas para mostrar (consumos)
-	Route::view('/consumos', 'consumos')->name('consumos');
-		//Obtencion de consumos
-			Route::get('/consumos', [ConsumosController::class, 'index'])->name('consumos.index');
-		//Busqueda de consumos
-			Route::get('/consumos/busqueda', [ConsumosController::class, 'busqueda'])->name('consumos.busqueda');
+//Rutas para mostrar (mantenimientos)
+	Route::view('/mantenimientos', 'mantenimientos')->name('mantenimientos');
+		//Obtencion de valores
+			Route::get('/mantenimientos', [MantenimientosController::class, 'index'])->name('mantenimientos.index');				
+		//Devolver el formulario de solicitud de mantenimiento
+			Route::get('/panel/medidores/mantenimiento/{consumoMedidorItem}', [MantenimientosController::class, 'create'])->name('mantenimientos.create');
+			//Registrar mantenimiento
+				Route::post('/panel/medidores/mantenimiento/{consumoMedidorItem}', [MantenimientosController::class, 'store'])->name('mantenimientos.store');		
+		//Busqueda de mantenimientos
+			Route::get('/panel/mantenimientos/busqueda', [MantenimientosController::class, 'busqueda'])->name('mantenimientos.busqueda');
+		//Actualizar estado de solicitud	
+			Route::get('/panel/mantenimientos/{mantenimientosItem}/actualizar/', [MantenimientosController::class, 'actualizarEstado'])->name('mantenimientos.actualizarEstado');
+		//Devolver el formulario de edición de solicitud de mantenimiento
+			Route::get('/panel/mantenimientos/editar/{mantenimientosItem}', [MantenimientosController::class, 'edit'])->name('mantenimientos.edit');
+			//Actualizar solicitud de mantenimiento
+				Route::patch('/panel/mantenimientos/editar/{mantenimientosItem}', [MantenimientosController::class, 'update'])->name('mantenimientos.update');				
 
 //Rutas para mostrar (clientes)
 	Route::view('/clientes', 'clientes')->name('clientes');

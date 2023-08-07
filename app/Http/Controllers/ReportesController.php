@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Planillas; //Importamos el modelo de la tabla 'pagos'
+use App\Models\Planillas; //Importamos el modelo de la tabla 'planillas'
 use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
-use App\Models\Clientes; //Importamos el modelo de la tabla 'pagos'
-use App\Models\Medidores; //Importamos el modelo de la tabla 'pagos'
+use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
+use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
+use App\Models\Mantenimientos; //Importamos el modelo de la tabla 'mantenimientos'
 
 class ReportesController extends Controller
 {
@@ -35,12 +36,22 @@ class ReportesController extends Controller
                 }elseif ($tipo == 'medidores_inactivos') {
                        $queryMedidoresInactivos = Planillas::where('estado_servicio', 'inactivo')->get();  
                         //Devolvemos los valores        
-                       return view('reportes', compact('queryMedidoresInactivos'));
+                            return view('reportes', compact('queryMedidoresInactivos'));
+
                 //Generación de reporte de medidores que se encuentren activos        
                  }elseif ($tipo == 'medidores_activos') {
                        $queryMedidoresActivos = Planillas::where('estado_servicio', 'activo')->get();  
                         //Devolvemos los valores        
-                       return view('reportes', compact('queryMedidoresActivos'));
+                            return view('reportes', compact('queryMedidoresActivos'));
+
+         /*Obtención de mantenimientos*/               
+                 }elseif ($tipo == 'mantenimientos'){
+                    $queryMantenimientos = Mantenimientos::with('medidor')
+                    ->where('fecha_mantenimiento', 'LIKE', $month_year.'%')
+                    ->get();
+
+                    //Devolvemos los valores
+                        return view('reportes', compact('queryMantenimientos'));
                  }  
     }
 }

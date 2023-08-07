@@ -22,9 +22,14 @@ class Medidores extends Model
         {
             return $this->belongsTo(Clientes::class, 'id_cliente');
         }
-    // Relación con Planilla
+    // Relación con 'planillas'
         public function planilla()
         {
             return $this->hasMany(Planillas::class, 'id_medidor');
-        }   
+        }
+    // Relación con 'mantenimientos'
+        public function mantenimientos()
+        {
+            return $this->hasMany(Mantenimientos::class, 'id_medidor');
+        }       
 }
