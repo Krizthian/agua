@@ -8,6 +8,7 @@ use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
 use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
 use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
 use App\Models\Mantenimientos; //Importamos el modelo de la tabla 'mantenimientos'
+use App\Models\Reclamos; //Importamos el modelo de la tabla 'reclamos'
 
 class ReportesController extends Controller
 {
@@ -52,6 +53,11 @@ class ReportesController extends Controller
 
                     //Devolvemos los valores
                         return view('reportes', compact('queryMantenimientos'));
-                 }  
+         /*Obtención de reclamos*/               
+                 }elseif ($tipo == 'reclamos'){
+                    $queryReclamos = Reclamos::where('fecha_reclamo', 'LIKE', $month_year.'%')->get();
+                    //Devolvemos los valores
+                        return view('reportes', compact('queryReclamos'));                   
     }
+  }
 }

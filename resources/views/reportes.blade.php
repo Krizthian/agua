@@ -50,6 +50,7 @@
             <option value="" disabled selected>Seleccione un tipo de reporte</option>
             <option value="pagos">Pagos</option>
             <option value="mantenimientos">Mantenimientos</option>
+            <option value="reclamos">Reclamos</option>
             <option value="medidores_activos">Medidores Activos</option>
             <option value="medidores_inactivos">Medidores Inactivos</option>
   </select>
@@ -183,6 +184,46 @@
     </div>
         @endisset
      <!--FIN DE VALORES DE REPORTE DE MANTENIMIENTOS-->
+
+<!--INICIO DE VALORES DE REPORTE DE RECLAMOS-->          
+    @isset($queryReclamos)  
+          <!--INICIO BOTON DE IMPRIMIR-->
+            <div class="col-md-12 bg-light text-right"><button title="Imprimir" class="btn btn-info float-end" type="button" name="imprimir" value="Imprimir" onclick="window.print();">Imprimir <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+            <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+            <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+            </svg></button></div>
+            <br><br>
+        <!--FIN BOTON DE IMPRIMIR-->
+     <div class="table-responsive"> 
+      <table class="table-hover table-responsive table table-bordered table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Cliente</th>
+              <th scope="col"># Medidor</th>
+              <th scope="col"># Planilla</th>
+              <th scope="col">Fecha de reclamo</th>
+              <th scope="col">Estado de reclamo</th>
+            </tr>
+          </thead>
+          <tbody>
+        @if(count($queryReclamos)<=0)
+          <center><tr><td colspan="8">No se han encontrado resultados dentro de las fechas establecidas</td></tr></center>
+        @else  
+          @foreach ($queryReclamos as $queryReclamosItem)
+            <tr>
+              <td class="td_acciones">{{$queryReclamosItem->nombre}} {{$queryReclamosItem->apellido}}</td>
+              <td class="td_acciones">{{$queryReclamosItem->numero_medidor}}</td>
+              <td class="td_acciones">{{$queryReclamosItem->numero_planilla}}</td>
+              <td class="td_acciones">{{$queryReclamosItem->fecha_reclamo}}</td>
+              <td class="td_acciones">{{ucFirst($queryReclamosItem->estado_reclamo)}}</td>
+            </tr> 
+          @endforeach
+          @endif
+        </tbody>
+      </table>
+    </div>
+        @endisset
+     <!--FIN DE VALORES DE REPORTE DE RECLAMOS-->
 
   <!--INICIO DE VALORES DE REPORTE DE MEDIDORES INACTIVOS-->          
     @isset($queryMedidoresInactivos)  

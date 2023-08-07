@@ -62,7 +62,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
             </div>
           @endif  
-        <!--FIN DE MENSAJE DE RESULTADO DE INGRESO-->
+        <!--FIN DE MENSAJE DE RESULTADO DE CREACION-->
+      <!--INICIO DE MENSAJE DE RESULTADO DE ACTUALIZACION-->
+          @if(session('resultado_actualizacion'))
+            <div class="alert alert-success alert-dismissible fade show">
+                Se ha actualizado la información del medidor correctamente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+          @endif  
+        <!--FIN DE MENSAJE DE RESULTADO DE ACTUALIZACION-->
         </div>
 
         <!--INICIO DE TABLA CON VALORES-->

@@ -23,9 +23,17 @@
 </style>
 <center><h1 class="display-4">CONSULTA DE VALORES A PAGAR</h1></center>
 <div class="container">
+          <!--INICIO DE MENSAJE DE RESULTADO DE CREACION-->
+          @if(session('resultado_creacion'))
+          <br>
+          <br>
+            <div class="alert alert-success alert-dismissible fade show">
+                Se ha ingresado el reclamo correctamente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+          @endif  
+        <!--FIN DE MENSAJE DE RESULTADO DE CREACION-->    
       <form action="{{route('consulta.index')}}" method="GET">
-    <br>
-    <br>
        <div class="col-auto">
       <center><input type="text" name="medidor_cedula" id="medidor_cedula" class="form-control" placeholder="Número de medidor o cédula" required></input></center>
       <br>
@@ -94,7 +102,9 @@
         <br><br>
        <!--INICIO DE BANNER DE RECLAMO-->
         <br>
-          <a href="#"><center><img src="{{url('img/banners/banner_reclamo.png')}}" alt="Solicitud de mantenimiento"></center></a>
+        @isset ($pagosConsultaItem)
+          <a href="{{route('reclamos.create', $pagosConsultaItem)}}"><center><img src="{{url('img/banners/banner_reclamo.png')}}" alt="Solicitud de mantenimiento"></center></a>
+       @endisset
         <br>  
         <!--FIN DE BANNER DE RECLAMO-->
     @endif

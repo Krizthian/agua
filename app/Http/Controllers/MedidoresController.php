@@ -131,7 +131,7 @@ class MedidoresController extends Controller
                         'id_cliente' => $id_cliente
                        ]);
         //Redireccionamos
-            return redirect()->route('medidores.index')->with('resultado_creacion', 'Se ha actualizado la información del medidor correctamente'); 
+            return redirect()->route('medidores.index')->with('resultado_actualizacion', 'Se ha actualizado la información del medidor correctamente'); 
 
             }else{
                 return redirect()->back()->withErrors($campos_validados)->withInput();

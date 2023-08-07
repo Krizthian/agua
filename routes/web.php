@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginController; //Controlador de Login
 use App\Http\Controllers\UsuariosController; //Controlador de Usuarios
 use App\Http\Controllers\ReportesController; //Controlador de Reportes
 use App\Http\Controllers\MantenimientosController; //Controlador de Mantenimientos
+use App\Http\Controllers\ReclamosController; //Controlador de Reclamos
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,23 @@ use App\Http\Controllers\MantenimientosController; //Controlador de Mantenimient
 			Route::get('/panel/mantenimientos/editar/{mantenimientosItem}', [MantenimientosController::class, 'edit'])->name('mantenimientos.edit');
 			//Actualizar solicitud de mantenimiento
 				Route::patch('/panel/mantenimientos/editar/{mantenimientosItem}', [MantenimientosController::class, 'update'])->name('mantenimientos.update');				
+
+//Rutas para mostrar (reclamos)
+	Route::view('/reclamos', 'reclamos')->name('reclamos');
+		//Obtencion de valores
+			Route::get('/reclamos', [ReclamosController::class, 'index'])->name('reclamos.index');
+		//Devolver informacion completa de reclamos
+			Route::get('/reclamos/reclamo/{reclamosItem}', [ReclamosController::class, 'show'])->name('reclamos.show');	
+		//Devolver el formulario de ingreso de reclamo
+			Route::get('/reclamos/crear/{pagosConsultaItem}', [ReclamosController::class, 'create'])->name('reclamos.create');
+		//Busqueda de mantenimientos
+			Route::get('/reclamos/busqueda', [ReclamosController::class, 'busqueda'])->name('reclamos.busqueda');
+			//Registrar reclamo
+				Route::post('/reclamos/crear/{pagosConsultaItem}', [ReclamosController::class, 'store'])->name('reclamos.store');
+		//Actualizar estado de solicitud	
+			Route::get('/reclamos/actualizar/{reclamosItem}', [ReclamosController::class, 'actualizarEstado'])->name('reclamos.actualizarEstado');
+		//Eliminar reclamos	
+			Route::get('/reclamos/eliminar/{reclamosItem}', [ReclamosController::class, 'destroy'])->name('reclamos.destroy');
 
 //Rutas para mostrar (clientes)
 	Route::view('/clientes', 'clientes')->name('clientes');

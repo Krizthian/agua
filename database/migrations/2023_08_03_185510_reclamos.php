@@ -13,10 +13,15 @@ return new class extends Migration
     {
      Schema::create('reclamos', function (Blueprint $table) {
             $table->integer('id', true)->unique();
-            $table ->string('motivo');
+            $table ->string('nombre');
+            $table ->string('apellido');
+            $table ->string('numero_medidor');
+            $table ->string('numero_planilla');
             $table ->string('email');
+            $table ->string('motivo');
             $table ->string('estado_reclamo');
             $table ->date('fecha_reclamo');
+            $table ->string('telefono');
         });
     }
 
