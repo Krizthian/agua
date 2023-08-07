@@ -105,68 +105,6 @@ class ValoresAPagarController extends Controller
     }
 
     /**
-     * Mostramos el formulario para crear una planilla
-     */
-    public function create(){
-        //Realizamos la consulta para obtener la informacion de los clientes registrados
-            $queryMedidores = Medidores::with('cliente')->get();
-        //Devolvemos la informacion al formulario de creación     
-            return view ('planillas.crear', compact('queryMedidores'));
-    }    
-
-    /**
-     * Guardamos la planilla creada
-     */
-    public function store(Request $request){
-     //Validamos los valores recibidos
-        $campos_validados = request()->validate([
-            'valor_actual' => 'required|numeric',
-            'fecha_factura' => 'required|date',
-            'fecha_maxima' => 'required|date',
-            'numero_medidor' => 'required',
-        ],[
-            'numero_medidor.required' => 'El numero de medidor es un campo obligatorio',
-            'valor_actual.numeric' => 'Se requiere un valor numerico para el campo de valor actual',
-            'fecha_factura.required' => 'Se requiere una fecha para el campo de fecha de factura ',
-            'fecha_maxima.required' => 'Se requiere una fecha para el campo de fecha maxima de pago ',
-        ]);
-
-       if ($campos_validados) {          
-            //Obtendremos todos los valores de la tabla clientes asociados al numero de medidor pasado
-                //Obtenemos valores con el numero de medidor recibido       
-                    $queryMedidorItem = Medidores::query()
-                        ->where('numero_medidor', $campos_validados['numero_medidor'])
-                        ->first();
-
-                //Buscamos el consumo asociado al medidor
-                        $queryConsumoItem = Consumos::query()
-                            ->where('id_medidor', $queryMedidorItem->id) 
-                            ->first();       
-
-                //Ingresamos los datos en la tabla de Planillas
-                    Planillas::create([
-                        'id_cliente' => $queryMedidorItem->id_cliente,
-                        'id_medidor' => $queryMedidorItem->id,
-                        'id_consumo' => $queryConsumoItem->id,
-                        'valor_actual' => $campos_validados['valor_actual'],
-                        'fecha_factura' => $campos_validados['fecha_factura'],
-                        'fecha_maxima' => $campos_validados['fecha_maxima'],
-                        'estado_servicio' => "activo",
-
-                    ]);
-                //Redireccionamos y devolvemos variables
-                return redirect()->route('panel.index')->with([
-                    'resultado_creacion' => 'Se ha creado la nueva planilla correctamente',
-                ]);         
-        
-                //Si no se ha realizado la validación correctamente, regresamos al formulario anterior        
-                }else{
-                    return redirect()->back()->withErrors($campos_validados)->withInput();
-                }
-
-    }  
-
-    /**
      * Mostramos el formulario para ingresar un pago
     */
     public function edit(Planillas $valoresPagarItem)

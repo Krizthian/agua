@@ -45,10 +45,6 @@ use App\Http\Controllers\ReclamosController; //Controlador de Reclamos
 			Route::get('/panel', [ValoresAPagarController::class, 'index'])->name('panel.index');
 		//Busqueda de valores	
 			Route::get('/panel/busqueda', [ValoresAPagarController::class, 'busqueda'])->name('panel.busqueda');
-		//Devolver el formulario de creación de planilla
-			Route::get('/panel/planillas/crear', [ValoresAPagarController::class, 'create'])->name('planillas.crear');
-			//Registrar planilla
-				Route::post('/panel', [ValoresAPagarController::class, 'store'])->name('planillas.store');	
 		//Devolver el formulario de ingreso de pago
 			Route::get('/panel/planillas/{valoresPagarItem}', [ValoresAPagarController::class, 'edit'])->name('planillas.ingresar');
 			//Ingresar pago

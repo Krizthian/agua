@@ -21,12 +21,12 @@
       background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
     }
 </style>
+
 <center><h1 class="display-4">CONSULTA DE VALORES A PAGAR</h1></center>
 <div class="container">
+  <br><br>
           <!--INICIO DE MENSAJE DE RESULTADO DE CREACION-->
           @if(session('resultado_creacion'))
-          <br>
-          <br>
             <div class="alert alert-success alert-dismissible fade show">
                 Se ha ingresado el reclamo correctamente.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>

@@ -38,7 +38,7 @@
     <br>
     <br>
     <center><a href="/" class="mt-5 mb-3 text-body-secondary text-decoration-none">Regresar al inicio</a></center>
-    <center><a href="#" class="mt-5 mb-3 text-body-secondary text-decoration-none">¿Olvidaste tu contraseña?</a></center>
+    <!--<center><a href="#" class="mt-5 mb-3 text-body-secondary text-decoration-none">¿Olvidaste tu contraseña?</a></center>-->
   </form>
 </main>
 </div>

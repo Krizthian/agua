@@ -30,10 +30,7 @@
           <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
           <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
         </svg></a></div>
-      <!--FIN DE BOTON DE HISTORIAL DE PAGOS-->
-      <!--BOTON DE NUEVA PLANILLA
-          <div class="col-md-12 text-right"><a href="{{route('planillas.crear')}}" type="submit" class="btn btn-success float-end">Nueva Planilla</a></div>
-        FIN DE BOTON DE NUEVA PLANILLA-->    
+      <!--FIN DE BOTON DE HISTORIAL DE PAGOS--> 
           <br><br>
 			    <form action="{{route('panel.busqueda')}}" method="GET">
 			       <div class="col-auto">
