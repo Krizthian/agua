@@ -41,7 +41,7 @@
                 <option value="Seleccione un cliente" required selected disabled>Seleccione al propietario</option>
                 @foreach ($queryClientes as $cliente)
                     <option value="{{ $cliente->id }}" required>
-                        {{ $cliente->nombre }} {{ $cliente->apellido }}
+                        {{ $cliente->apellido }}, {{ $cliente->nombre }} 
                     </option>
                 @endforeach
             </select>

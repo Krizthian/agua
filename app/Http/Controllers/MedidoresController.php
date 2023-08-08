@@ -49,7 +49,7 @@ class MedidoresController extends Controller
     public function create()
     {
     //Realizamos la consulta para obtener la informacion de los clientes registrados
-        $queryClientes = Clientes::with('medidor')->get();
+        $queryClientes = Clientes::with('medidor')->orderBy('apellido')->get();
     //Retornaremos a la vista con el formulario    
         return view('medidores.crear', compact('queryClientes')); 
     }
@@ -95,7 +95,7 @@ class MedidoresController extends Controller
     public function edit(Medidores $consumoMedidorItem)
     {
         //Obtenemos información de los clientes
-            $queryClientes = Clientes::with('medidor')->get();
+            $queryClientes = Clientes::with('medidor')->orderBy('apellido')->get();
         //Devolvemos todo lo obtenido al formulario de ingreso
             return view('medidores.editar', [
                 'consumoMedidorItem' => $consumoMedidorItem,

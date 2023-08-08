@@ -35,7 +35,7 @@
               @endif
           <!--FIN DE MENSAJES DE ERROR-->
     <div class="col-auto">
-    		<input type="hidden" name="id_medidor" value="{{ $consumoMedidorItem->id }}"> <!-- Supongamos que $medidor es el objeto Medidores -->
+    		<input type="hidden" name="id_medidor" value="{{ $consumoMedidorItem->id }}">
             <label>Número de medidor:</label><center><input type="text" class="form-control" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" readonly required></input></center>
             <label>Fecha para mantenimiento:</label><center><input type="date" class="form-control" name="fecha_mantenimiento" required></input></center>
             <label>Responsable asignado:</label><center><input type="text" class="form-control @error('responsable_asignado') is-invalid @enderror" name="responsable_asignado" placeholder="Ej. David Lopez" required></input></center>

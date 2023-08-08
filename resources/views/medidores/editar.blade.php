@@ -39,10 +39,10 @@
 	       <label>Propietario del medidor:</label>
 	          <div class="form-group">
 	            <select class="form-select input-group mb-2  @error('id_cliente') is-invalid @enderror" id="id_cliente" name="id_cliente" required>
-	                <option value="{{$consumoMedidorItem->cliente->id}}" required selected>{{$consumoMedidorItem->cliente->nombre}} {{$consumoMedidorItem->cliente->apellido}}</option>
+	                <option value="{{$consumoMedidorItem->cliente->id}}" required selected>{{$consumoMedidorItem->cliente->apellido}}, {{$consumoMedidorItem->cliente->nombre}} </option>
 	                @foreach ($queryClientes as $cliente)
 	                    <option value="{{ $cliente->id }}" required>
-	                        {{ $cliente->nombre }} {{ $cliente->apellido }}
+	                        {{ $cliente->apellido }}, {{ $cliente->nombre }} 
 	                    </option>
 	                @endforeach
 	            </select>
