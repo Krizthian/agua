@@ -32,7 +32,7 @@
               @endif
           <!--FIN DE MENSAJES DE ERROR-->
            <div class="col-auto">
-            <label>Numero de medidor:</label><center><input type="text" class="form-control mb-2" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" placeholder="{{$consumoMedidorItem->numero_medidor}}" disabled></input></center>
+            <label>Número de medidor:</label><center><input type="text" class="form-control mb-2" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" placeholder="{{$consumoMedidorItem->numero_medidor}}" disabled></input></center>
 
             <label>Ubicación de medidor:</label><center><input type="text" class="form-control mb-2" name="ubicacion" value="{{$consumoMedidorItem->ubicacion}}" placeholder="{{$consumoMedidorItem->ubicacion}}" disabled></input></center>
 

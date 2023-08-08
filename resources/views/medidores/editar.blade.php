@@ -35,7 +35,7 @@
               @endif
             <!--FIN DE MENSAJES DE ERROR-->  
            <div class="col-auto">
-            <label>Numero de medidor:</label><center><input type="text" class="form-control" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" disabled></input></center>
+            <label>Número de medidor:</label><center><input type="text" class="form-control" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" disabled></input></center>
 	       <label>Propietario del medidor:</label>
 	          <div class="form-group">
 	            <select class="form-select input-group mb-2  @error('id_cliente') is-invalid @enderror" id="id_cliente" name="id_cliente" required>

@@ -34,7 +34,7 @@
         <br><br>
          <form action="{{route('medidores.busqueda')}}" method="GET">
            <div class="col-auto">
-            <center><input type="text" class="form-control" name="valores" placeholder="Numero de medidor" required></input></center>
+            <center><input type="text" class="form-control" name="valores" placeholder="Número de medidor" required></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-primary">Consultar</button></center></div>
           <br>

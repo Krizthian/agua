@@ -112,7 +112,7 @@
           <thead>
             <tr>
               <th scope="col">Cliente</th>
-              <th scope="col">Numero de Medidor</th>
+              <th scope="col">Número de Medidor</th>
               <th scope="col">Valor pagado</th>
               <th scope="col">Valor restante</th>
               <th scope="col">Última fecha de pago</th>
@@ -154,7 +154,7 @@
       <table class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
-              <th scope="col">Numero de Medidor</th>
+              <th scope="col">Número de Medidor</th>
               <th scope="col">Propietario</th>
               <th scope="col">Fecha de Solicitud</th>
               <th scope="col">Fecha para Mantenimiento</th>
@@ -239,7 +239,7 @@
           <thead>
             <tr>
               <th scope="col">Cliente</th>
-              <th scope="col">Numero de Medidor</th>
+              <th scope="col">Número de Medidor</th>
               <th scope="col">Ubicación</th>
               <th scope="col">Estado de servicio</th>
             </tr>
@@ -277,7 +277,7 @@
           <thead>
             <tr>
               <th scope="col">Cliente</th>
-              <th scope="col">Numero de Medidor</th>
+              <th scope="col">Número de Medidor</th>
               <th scope="col">Ubicación</th>
               <th scope="col">Estado de servicio</th>
             </tr>

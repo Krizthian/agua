@@ -35,7 +35,7 @@
               @endif
             <!--FIN DE MENSAJES DE ERROR-->  
            <div class="col-auto">
-	       <label>Numero de medidor:</label>
+	       <label>Número de medidor:</label>
 	          <div class="form-group">
 	            <select class="form-select input-group mb-2  @error('id_medidor') is-invalid @enderror" id="id_medidor" name="id_medidor" required>
 	                <option value="{{$mantenimientosItem->id_medidor}}" required selected>{{$mantenimientosItem->medidor->numero_medidor}} - {{$mantenimientosItem->medidor->cliente->nombre}} {{$mantenimientosItem->medidor->cliente->apellido}} - {{ $mantenimientosItem->medidor->ubicacion }}</option>

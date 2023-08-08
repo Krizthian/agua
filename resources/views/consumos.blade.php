@@ -41,7 +41,7 @@
         <table class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
-              <th scope="col">Numero de Medidor</th>
+              <th scope="col">Número de Medidor</th>
               <th scope="col">Fecha de Instalación</th>
               <th scope="col">Ubicación</th>
               <th scope="col" align="center">Acciones</th> 

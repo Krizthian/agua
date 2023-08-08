@@ -27,7 +27,7 @@
 			<br><br>
         <form action="{{route('reclamos.busqueda')}}" method="GET">
            <div class="col-auto">
-            <center><input type="text" class="form-control" name="valores" placeholder="Numero de medidor, planilla o apellidos "></input></center>
+            <center><input type="text" class="form-control" name="valores" placeholder="Número de medidor, planilla o apellidos "></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-primary">Consultar</button></center></div>
         </form>

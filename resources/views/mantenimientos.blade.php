@@ -40,7 +40,7 @@
 			<br><br>
         <form action="{{route('mantenimientos.busqueda')}}" method="GET">
            <div class="col-auto">
-            <center><input type="text" class="form-control" name="valores" placeholder="Numero de medidor"></input></center>
+            <center><input type="text" class="form-control" name="valores" placeholder="Número de medidor"></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-primary">Consultar</button></center></div>
           <br>
@@ -60,7 +60,6 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col"># Medidor</th>
-              <!--<th scope="col">Propietario</th>-->
               <th scope="col">Fecha de Solicitud</th>
               <th scope="col">Fecha para Mantenimiento</th>
               <th scope="col">Ubicación</th>
