@@ -65,11 +65,12 @@ class MedidoresController extends Controller
         $campos_validados = request()->validate([
             'fecha_instalacion' => 'required',
             'ubicacion' => 'required',
-            'numero_medidor' => 'required|numeric',
+            'numero_medidor' => 'required|numeric|unique:medidores,numero_medidor',
         ],[
             'ubicacion.required' => 'El campo de ubicación es obligatorio',
             'numero_medidor.numeric' => 'El campo de numero de medidor debe contener números',
             'numero_medidor.required' => 'El campo de numero de medidor es obligatorio',
+            'numero_medidor.unique' => 'Este medidor ya se encuentra registrado',
         ]);
 
         if ($campos_validados) {
