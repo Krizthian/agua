@@ -25,7 +25,7 @@
 		<div class="container">
 			<br>
       <!--BOTON DE HISTORIAL DE PAGOS-->
-          <div class="col-md-12 text-right"><a title="Historial de pagos" href="{{route('pagos.index')}}" type="submit" class="btn btn-dark float-start"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+          <div class="col-md-12 text-right"><a title="Historial de pagos" href="{{route('pagos.index')}}" type="submit" class="btn btn-info float-start position-relative"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
           <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
           <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
           <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
@@ -107,7 +107,8 @@
               <td class="td_acciones">{{$valoresPagarItem->consumo->consumo_anterior}} m<sup><strong>3</strong></sup></td>
               <td class="td_acciones">{{$valoresPagarItem->fecha_factura}}</td>
               <td class="td_acciones">{{$valoresPagarItem->fecha_maxima}}</td>
-              <td class="td_acciones">{{ucfirst($valoresPagarItem->estado_servicio);}}</td>
+               @if($valoresPagarItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge rounded-pill text-bg-info">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
+               @if($valoresPagarItem->estado_servicio == "inactivo")<td class="td_acciones"><span class="badge rounded-pill text-bg-danger">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
               <td class="td_acciones">
               <!--INICIO DE ACCIONES-->
               <div class="btn-group">
@@ -119,14 +120,14 @@
                   <!--INICIO DE COMPROBACION DE ESTADO DE SERVICIO-->  
                     @if($valoresPagarItem->estado_servicio == "activo") 
                      <!--BOTON CORTAR SERVICIO-->
-                              <a type="button" href="{{route('panel.inhabilitar', $valoresPagarItem)}}" class="btn btn-outline-danger" title="Suspender servicio" onclick="return confirm('¿Estás seguro de que deseas suspender el servicio al medidor {{$valoresPagarItem->numero_medidor}}?')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                              <a type="button" href="{{route('panel.inhabilitar', $valoresPagarItem)}}" class="btn btn-outline-danger" title="Suspender servicio" onclick="return confirm('¿Estás seguro de que deseas suspender el servicio al medidor {{$valoresPagarItem->medidor->numero_medidor}}?')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
                               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                             </svg></a>
                       <!--FIN BOTON CORTAR SERVICIO-->
                     @else 
                       <!--BOTON RESTAURAR SERVICIO-->
-                              <a type="button" href="{{route('panel.inhabilitar', $valoresPagarItem)}}" class="btn btn-outline-info" title="Reactivar servicio" onclick="return confirm('¿Estás seguro de que deseas habilitar el servicio al medidor {{$valoresPagarItem->numero_medidor}}?')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                              <a type="button" href="{{route('panel.inhabilitar', $valoresPagarItem)}}" class="btn btn-outline-info" title="Reactivar servicio" onclick="return confirm('¿Estás seguro de que deseas habilitar el servicio al medidor {{$valoresPagarItem->medidor->numero_medidor}}?')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                               <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
                               <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
                             </svg></a>

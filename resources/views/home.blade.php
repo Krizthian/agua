@@ -74,7 +74,8 @@
               <td class="td_acciones">{{$pagosConsultaItem->consumo->responsable}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha_factura}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha_maxima}}</td>
-              <td class="td_acciones">{{ucfirst($pagosConsultaItem->estado_servicio);}}</td>
+               @if($pagosConsultaItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge rounded-pill text-bg-info">{{ucfirst($pagosConsultaItem->estado_servicio);}}</span></td>@endif
+               @if($pagosConsultaItem->estado_servicio == "inactivo")<td class="td_acciones"><span class="badge rounded-pill text-bg-danger">{{ucfirst($pagosConsultaItem->estado_servicio);}}</span></td>@endif
             </tr> 
             @endforeach
             @endif
