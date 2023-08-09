@@ -34,6 +34,14 @@ use App\Http\Controllers\ReclamosController; //Controlador de Reclamos
 	Route::view('/login', 'login')->name('login');
 		//Ruta para proceso de Login
 			Route::post('/login', [LoginController::class, 'login']);
+		//Ruta para proceso de recuperación de contraseña	
+			Route::get('/login/recuperar', [LoginController::class, 'recuperarFormulario'])->name('recuperar');
+				//Enviar formulario de recuperación
+				Route::post('/login/recuperar', [LoginController::class, 'recuperarProceso'])->name('login.RecuperarProcesar');
+				//Formulario para la actualizacion de contraseña
+				Route::get('/login/recuperar/actualizar', [LoginController::class, 'validarToken'])->name('validarToken');
+				//Proceso para actualizacion de contraseña
+				Route::post('/login/recuperar/actualizar/', [LoginController::class, 'recuperacionUpdate'])->name('login.update');
 		//Ruta para hacer un logout
 			Route::post('/salir', [LoginController::class, 'salir'])->name('salir');
 

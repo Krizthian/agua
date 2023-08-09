@@ -26,6 +26,30 @@
           </div>
         @endif  
       <!--FIN DE MENSAJE DE RESULTADO DE VALIDACION-->
+      <!--INICIO DE MENSAJE DE RESULTADO DE RECUPERACION-->
+        @if(session('resultado_recuperacion'))
+          <div class="alert alert-success alert-dismissible fade show">
+              Si el <strong>correo</strong> ingresado <strong>coincide</strong> con nuestros registros, recibirás un enlace para recuperar tu contraseña.
+          </div>
+        @endif  
+      <!--FIN DE MENSAJE DE RESULTADO DE RECUPERACION-->
+
+      <!--INICIO DE MENSAJE DE ENLACE EXPIRADO-->
+        @if(session('enlace_expirado'))
+          <div class="alert alert-danger alert-dismissible fade show">
+              Este <b>enlace</b> ya no está disponible para recuperar la contraseña.
+          </div>
+        @endif  
+      <!--FIN DE MENSAJE DE DE ENLACE EXPIRADO-->
+
+      <!--INICIO DE MENSAJE DE CONTRASEÑA ACTUALIZADA-->
+        @if(session('resultado_cambio'))
+          <div class="alert alert-success alert-dismissible fade show">
+              Se ha actualizado la <b>contraseña</b> correctamente.
+          </div>
+        @endif  
+      <!--FIN DE MENSAJE DE CONTRASEÑA ACTUALIZADA-->
+
     <div class="form-floating">
       <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" required>
       <label for="usuario">Usuario</label>
@@ -38,7 +62,7 @@
     <br>
     <br>
     <center><a href="/" class="mt-5 mb-3 text-body-secondary text-decoration-none">Regresar al inicio</a></center>
-    <!--<center><a href="#" class="mt-5 mb-3 text-body-secondary text-decoration-none">¿Olvidaste tu contraseña?</a></center>-->
+    <center><a href="{{route('recuperar')}}" class="mt-5 mb-3 text-body-secondary text-decoration-none">¿Olvidaste tu contraseña?</a></center>
   </form>
 </main>
 </div>
