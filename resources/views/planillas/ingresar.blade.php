@@ -43,9 +43,9 @@
 
             <label>Apellido del cliente:</label><center><input type="text" class="form-control mb-2" name="apellido" value="{{$valoresPagarItem->cliente->apellido}}" placeholder="{{$valoresPagarItem->cliente->apellido}}" disabled></input></center>
 
-            <label>Valor actual:</label><div class="input-group mb-2"><span class="input-group-text">$</span><center><input type="text" class="form-control" name="valor_actual" value="{{$valoresPagarItem->valor_actual}}" placeholder="{{$valoresPagarItem->valor_actual}}" disabled></input></center></div>
-
             <label>Consumo actual (m<sup><strong>3</strong></sup>):</label><center><input type="text" class="form-control mb-2"  value="{{$valoresPagarItem->consumo->consumo_actual}}" placeholder="{{$valoresPagarItem->consumo->consumo_actual}}" disabled></input></center></div>
+            <hr>
+            <label>Valor actual:</label><div class="input-group mb-2"><span class="input-group-text"><b>$</b></span><center><input type="text" class="form-control" name="valor_actual" value="{{$valoresPagarItem->valor_actual}}" placeholder="{{$valoresPagarItem->valor_actual}}" disabled></input></center></div>
 
             <label>Fecha de factura:</label><center><input type="text" class="form-control mb-2"  value="{{$valoresPagarItem->fecha_factura}}" placeholder="{{$valoresPagarItem->fecha_factura}}" disabled></input></center>
 
@@ -62,9 +62,8 @@
                 <input type="text" class="form-control @error('valor_nuevo') is-invalid @enderror" name="valor_nuevo" value="{{old('valor_nuevo')}}" placeholder="Ingrese el valor a pagar" aria-label="Monto" required>
               </div>
             <!--FIN DE VALOR A PAGAR-->
-
           <br>
-            <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Registrar Pago</button></center></div>
+            <div class="col-md-12 text-right"><center><button onclick="return confirm('¿Estás seguro de que deseas ingresar un pago al medidor {{$valoresPagarItem->medidor->numero_medidor}}?')" type="submit" class="btn btn-success">Registrar Pago</button></center></div>
           <br>
         </form>
     </main>
