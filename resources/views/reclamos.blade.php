@@ -25,11 +25,11 @@
 		<div class="container">
 			<br>
 			<br><br>
-        <form action="{{route('reclamos.busqueda')}}" method="GET">
-           <div class="col-auto">
-            <center><input type="text" class="form-control" name="valores" placeholder="Número de medidor, planilla o apellidos "></input></center>
-          <br>
-            <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-primary">Consultar</button></center></div>
+        <form action="{{route('reclamos.busqueda')}}" method="GET" class="d-flex" role="search">
+            <input class="form-control me-2" type="search" name="valores" placeholder="Número de medidor, planilla o apellidos" aria-label="Buscar" required>
+            <button class="btn btn-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg></button>
         </form>
       <!--INICIO DE MENSAJE DE RESULTADOS-->
           @if(session('resultado'))

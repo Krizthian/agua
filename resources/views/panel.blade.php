@@ -32,14 +32,13 @@
         </svg></a></div>
       <!--FIN DE BOTON DE HISTORIAL DE PAGOS--> 
           <br><br>
-			    <form action="{{route('panel.busqueda')}}" method="GET">
-			       <div class="col-auto">
-			      <center><input type="text" name="valores" class="form-control" placeholder="Planilla, apellidos, número de medidor o cédula"></input></center>
-			      <br>
-			      <center><button type="submit" class="btn btn-primary">Consultar</button></center>
-			      <br>
-				</div>
-    </form>
+        <form action="{{route('panel.busqueda')}}" method="GET" class="d-flex" role="search">
+            <input class="form-control me-2" type="search" name="valores" placeholder="Planilla, apellidos, número de medidor o cédula" aria-label="Buscar" required>
+            <button class="btn btn-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg></button>
+        </form>
+
           <!--INICIO DE MENSAJE DE RESULTADO DE COMPROBACION DE VALOR ACTUAL-->
         @if(session('resultado_comprobacion'))
           <div class="alert alert-warning alert-dismissible fade show">
@@ -107,7 +106,7 @@
               <td class="td_acciones">{{$valoresPagarItem->consumo->consumo_anterior}} m<sup><strong>3</strong></sup></td>
               <td class="td_acciones">{{$valoresPagarItem->fecha_factura}}</td>
               <td class="td_acciones">{{$valoresPagarItem->fecha_maxima}}</td>
-               @if($valoresPagarItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge rounded-pill text-bg-info">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
+               @if($valoresPagarItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge rounded-pill text-bg-success">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
                @if($valoresPagarItem->estado_servicio == "inactivo")<td class="td_acciones"><span class="badge rounded-pill text-bg-danger">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
               <td class="td_acciones">
               <!--INICIO DE ACCIONES-->

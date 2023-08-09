@@ -32,12 +32,11 @@
         <!--FIN DE BOTON DE HISTORIAL DE PAGOS-->
         <div class="col-md-12 bg-light text-right"><a href="{{route('medidores.create')}}" type="submit" class="btn btn-success float-end">Nuevo Medidor</a></div>
         <br><br>
-         <form action="{{route('medidores.busqueda')}}" method="GET">
-           <div class="col-auto">
-            <center><input type="text" class="form-control" name="valores" placeholder="Número de medidor" required></input></center>
-          <br>
-            <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-primary">Consultar</button></center></div>
-          <br>
+        <form action="{{route('medidores.busqueda')}}" method="GET" class="d-flex" role="search">
+            <input class="form-control me-2" type="search" name="valores" placeholder="Número de medidor" aria-label="Buscar" required>
+            <button class="btn btn-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg></button>
         </form>
         <!--INICIO DE MENSAJE DE RESULTADO DE INGRESO-->
           @if(session('resultado_ingreso'))
@@ -71,7 +70,6 @@
             </div>
           @endif  
         <!--FIN DE MENSAJE DE RESULTADO DE ACTUALIZACION-->
-        </div>
 
         <!--INICIO DE TABLA CON VALORES-->
        <div class="table-responsive"> 

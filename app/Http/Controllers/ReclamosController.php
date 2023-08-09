@@ -35,7 +35,7 @@ class ReclamosController extends Controller
      /**
      * Procesamos la busqueda
     */
-     public function busqueda (Request $request)
+     public function busqueda(Request $request)
      {
         //Obtenemos los valores del formulario anterior
             $valores = $request->input('valores');
