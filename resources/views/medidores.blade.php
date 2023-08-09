@@ -22,7 +22,7 @@
      }
     </style>
 
-<center><h1 class="display-4">GESTIÓN DE MEDIDORES</h1></center>
+<center><h1 class="display-4">GESTIÓN DE MEDIDORES </h1></center>
     <div class="container">
       <br>
         <!--BOTON DE HISTORIAL DE PAGOS-->

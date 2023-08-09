@@ -21,8 +21,10 @@ class LoginController extends Controller
         if ($usuarioEncontrado) {
             // Verificamos la contraseña
                 if ($usuarioEncontrado->password === $password) {
+                    //Obtenemos los nombres
+                        $nombres = $usuarioEncontrado->nombre . ' ' . $usuarioEncontrado->apellido;
                     // Guardamos el rol y el usuario en variables de sesión
-                        $request->session()->put('sesion', ['usuario' => $usuarioEncontrado->usuario, 'rol' => $usuarioEncontrado->rol]);
+                        $request->session()->put('sesion', ['usuario' => $usuarioEncontrado->usuario, 'rol' => $usuarioEncontrado->rol, 'nombres' => $nombres]);
                     // Redireccionamos al panel de control
                         return redirect()->route('panel.index');
                 }
