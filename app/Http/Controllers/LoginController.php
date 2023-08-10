@@ -39,7 +39,7 @@ class LoginController extends Controller
 
             }
             // Redireccionamos al login si hay algún error en la validación
-                 return redirect()->route('login')->with('resultado_login', 'El usuario o la contraseña son incorrectos');
+                 return redirect()->back()->with('resultado_login', 'El usuario o la contraseña son incorrectos')->withInput();
     }
 
     /*Mostrar formulario de recuperación de contraseña*/

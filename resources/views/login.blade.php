@@ -51,7 +51,7 @@
       <!--FIN DE MENSAJE DE CONTRASEÑA ACTUALIZADA-->
 
     <div class="form-floating">
-      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" required>
+      <input type="text" class="form-control" id="usuario" name="usuario" value="{{old('usuario')}}" placeholder="Usuario" required>
       <label for="usuario">Usuario</label>
     </div>
     <div class="form-floating">
