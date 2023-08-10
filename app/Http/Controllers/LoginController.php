@@ -29,7 +29,12 @@ class LoginController extends Controller
                     // Guardamos el rol y el usuario en variables de sesión
                         $request->session()->put('sesion', ['usuario' => $usuarioEncontrado->usuario, 'rol' => $usuarioEncontrado->rol, 'nombres' => $nombres]);
                     // Redireccionamos al panel de control
-                        return redirect()->route('panel.index');
+                        if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){
+                            return redirect()->route('panel.index');
+                        }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+                            return redirect()->route('medidores.index');
+                        }
+
                 }
 
             }

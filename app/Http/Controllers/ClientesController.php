@@ -14,8 +14,14 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = Clientes::with('medidor')->paginate(10); 
-        return view('clientes', ['clientes' => $clientes]);
+        //Comprobamos el rol antes de devolver la vista
+            if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){        
+                $clientes = Clientes::with('medidor')->paginate(10); 
+                return view('clientes', ['clientes' => $clientes]);
+        //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
+            }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+                return redirect()->route('medidores.index');
+            }     
     }
     
     /**

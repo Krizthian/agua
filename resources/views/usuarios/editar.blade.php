@@ -44,6 +44,7 @@
               <option value="{{$usuariosItem->rol}}" selected>{{ucfirst($usuariosItem->rol);}}</option>
               <option value="administrador">Administrador</option>
               <option value="personal">Personal</option>  
+              <option value="supervisor">Supervisor</option>  
             </select></center>
             <label>Correo Electronico:</label><center><input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$usuariosItem->email}}" placeholder="{{$usuariosItem->email}}" required></input></center>
             <label>Telefono:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$usuariosItem->telefono)}}" placeholder="{{$usuariosItem->telefono}}" required></input></center>

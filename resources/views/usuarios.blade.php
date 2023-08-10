@@ -96,7 +96,13 @@
               <td class="td_acciones">{{$usuariosItem->usuario}}</td>
               <td class="td_acciones">{{$usuariosItem->nombre}} {{$usuariosItem->apellido}}</td>
               <td class="td_acciones">{{$usuariosItem->cedula}}</td>
-              <td class="td_acciones">{{ucfirst($usuariosItem->rol);}}</td>
+              @if($usuariosItem->rol == "administrador")
+              <td class="td_acciones"><span class="badge text-bg-primary">{{ucfirst($usuariosItem->rol);}}</span></td>
+              @elseif($usuariosItem->rol == "personal")
+              <td class="td_acciones"><span class="badge text-bg-info">{{ucfirst($usuariosItem->rol);}}</span></td>
+              @elseif($usuariosItem->rol == "supervisor")
+              <td class="td_acciones"><span class="badge text-bg-secondary">{{ucfirst($usuariosItem->rol);}}</span></td>
+              @endif
               <td class="td_acciones">{{$usuariosItem->email}}</td>
               <td class="td_acciones">
           <!--INICIO DE ACCIONES-->      

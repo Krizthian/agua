@@ -49,6 +49,7 @@
 	            <option value="" disabled selected>Selecciona un rol</option>
 	            <option value="administrador">Administrador</option>
 	            <option value="personal">Personal</option>	
+              <option value="supervisor">Supervisor</option>  
             </select></center>
 
             <label>Correo Electronico:</label><center><input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Ej. arturo@portovelo.gob.ec" required></input></center>

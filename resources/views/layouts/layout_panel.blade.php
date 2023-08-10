@@ -29,10 +29,10 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
        <li class="nav-item">
-                <a class="nav-link {{setActive('panel.index')}}" aria-current="page" href="/panel">Planillas</a>
+                @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<a class="nav-link {{setActive('panel.index')}}" aria-current="page" href="/panel">Planillas</a>@endif
         </li>
        <li class="nav-item">
-                <a class="nav-link {{setActive('clientes.index')}}" aria-current="page" href="/clientes">Clientes</a>
+           @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<a class="nav-link {{setActive('clientes.index')}}" aria-current="page" href="/clientes">Clientes</a>@endif
        </li>
        <li class="nav-item">
                 <a class="nav-link {{setActive('medidores.index')}}" aria-current="page" href="/medidores">Medidores</a>

@@ -145,10 +145,16 @@ class MedidoresController extends Controller
 
     public function ingresarConsumo(Medidores $consumoMedidorItem)
     {
-        //Devolvemos todo lo obtenido al formulario de ingreso
-            return view('medidores.consumos', [
-                'consumoMedidorItem' => $consumoMedidorItem
-            ]);
+        //Comprobamos el rol antes de devolver la vista
+            if(session()->get('sesion')['rol'] == 'supervisor' || session()->get('sesion')['rol'] == 'administrador'){            
+            //Devolvemos todo lo obtenido al formulario de ingreso
+                return view('medidores.consumos', [
+                    'consumoMedidorItem' => $consumoMedidorItem
+                ]);
+        //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
+            }elseif(session()->get('sesion')['rol'] == 'personal'){
+                return redirect()->route('medidores.index');
+            }                   
 
     }
 

@@ -16,8 +16,15 @@ class ValoresAPagarController extends Controller
      */
     public function index()
     {
-        $valores_pagar = Planillas::with(['cliente', 'medidor', 'consumo'])->paginate(10);
-        return view('panel', compact('valores_pagar'));
+        //Comprobamos el rol antes de devolver la vista
+            if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){
+                $valores_pagar = Planillas::with(['cliente', 'medidor', 'consumo'])->paginate(10);
+                return view('panel', compact('valores_pagar'));
+
+        //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
+            }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+                return redirect()->route('medidores.index');
+            }    
     }
 
     /**

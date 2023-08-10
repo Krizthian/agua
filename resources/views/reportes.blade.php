@@ -48,7 +48,7 @@
           <div class="form-group">
           <select class="form-select" id="tipo" name="tipo" required>
             <option value="" disabled selected>Seleccione un tipo de reporte</option>
-            <option value="pagos">Pagos</option>
+            @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<option value="pagos">Pagos</option>@endif
             <option value="mantenimientos">Mantenimientos</option>
             <option value="reclamos">Reclamos</option>
             <option value="medidores_activos">Medidores Activos</option>
