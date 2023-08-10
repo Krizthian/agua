@@ -55,7 +55,7 @@
               <th scope="col">Consumo previo</th>
               <th scope="col">Responsable de lectura</th>
               <th scope="col">Fecha de Factura</th>
-              <th scope="col">Fecha maxima de pago</th>
+              <th scope="col">Fecha máxima de pago</th>
               <th scope="col">Estado del servicio</th>  
             </tr>
           </thead>

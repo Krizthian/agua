@@ -61,7 +61,7 @@
               <td class="td_acciones">{{$pagosItem->id}}</td>
               <td class="td_acciones">{{$pagosItem->cliente->nombre}} {{$pagosItem->cliente->apellido}}</td>
               <td class="td_acciones">{{$pagosItem->planilla->medidor->numero_medidor}}</td>
-              <td class="td_acciones"><a href="panel/busqueda?valores={{$pagosItem->planilla->id}}" class="link link-offset-2 link-underline link-underline-opacity-0">{{$pagosItem->planilla->id}}</a></td>
+              <td class="td_acciones"><a href="/panel/busqueda?valores={{$pagosItem->planilla->id}}" class="link link-offset-2 link-underline link-underline-opacity-0">{{$pagosItem->planilla->id}}</a></td>
               <td class="td_acciones">{{$pagosItem->valor_pagado}}</td>
               <td class="td_acciones">{{$pagosItem->valor_restante}}</td>
               <td class="td_acciones">{{$pagosItem->fecha_pago}}</td>

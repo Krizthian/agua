@@ -63,8 +63,8 @@
             <tr>
               <td class="td_acciones">{{$reclamosItem->id}}</td>
               <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="{{route('reclamos.show', $reclamosItem)}}">{{$reclamosItem->nombre}} {{$reclamosItem->apellido}}</td>
-              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="medidores/busqueda?valores={{$reclamosItem->numero_medidor}}">{{$reclamosItem->numero_medidor}}</a></td>
-              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="panel/busqueda?valores={{$reclamosItem->numero_planilla}}">{{$reclamosItem->numero_planilla}}</a></td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="/medidores/busqueda?valores={{$reclamosItem->numero_medidor}}">{{$reclamosItem->numero_medidor}}</a></td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="/panel/busqueda?valores={{$reclamosItem->numero_planilla}}">{{$reclamosItem->numero_planilla}}</a></td>
               <td class="td_acciones">{{$reclamosItem->fecha_reclamo}}</td>
              @if($reclamosItem->estado_reclamo == "ingresado")<td class="td_acciones"><span class="badge rounded-pill text-bg-info">{{ucfirst($reclamosItem->estado_reclamo);}}</span></td>@endif
               @if($reclamosItem->estado_reclamo == "en proceso")<td class="td_acciones"><span class="badge rounded-pill text-bg-primary">{{ucfirst($reclamosItem->estado_reclamo);}}</span></td>@endif

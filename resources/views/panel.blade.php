@@ -89,7 +89,7 @@
               <th scope="col">Consumo actual</th>
               <th scope="col">Consumo previo</th>
               <th scope="col">Fecha de Factura</th>
-              <th scope="col">Fecha maxima de pago</th>
+              <th scope="col">Fecha máxima de pago</th>
               <th scope="col">Estado del servicio</th>
               @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<th scope="col">Acciones</th>@else @endif        
             </tr>

@@ -74,8 +74,7 @@
                 @foreach ($mantenimientos as $mantenimientosItem)
             <tr>
               <td class="td_acciones">{{$mantenimientosItem->id}}</td>
-              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="medidores/busqueda?valores={{$mantenimientosItem->medidor->numero_medidor}}">{{$mantenimientosItem->medidor->numero_medidor}}</a></td>
-              <!--<td class="td_acciones">{{$mantenimientosItem->medidor->cliente->nombre}} {{$mantenimientosItem->medidor->cliente->apellido}}</td>-->
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="/medidores/busqueda?valores={{$mantenimientosItem->medidor->numero_medidor}}">{{$mantenimientosItem->medidor->numero_medidor}}</a></td>
               <td class="td_acciones">{{$mantenimientosItem->fecha_solicitud}}</td>
               <td class="td_acciones">{{$mantenimientosItem->fecha_mantenimiento}}</td>
               <td class="td_acciones">{{$mantenimientosItem->medidor->ubicacion}}</td>
