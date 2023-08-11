@@ -66,10 +66,11 @@ class MedidoresController extends Controller
         $campos_validados = request()->validate([
             'fecha_instalacion' => 'required',
             'ubicacion' => 'required',
-            'numero_medidor' => 'required|numeric|unique:medidores,numero_medidor',
+            'numero_medidor' => 'required|numeric|min:0|unique:medidores,numero_medidor',
         ],[
             'ubicacion.required' => 'El campo de ubicación es obligatorio',
             'numero_medidor.numeric' => 'El campo de número de medidor debe contener números',
+            'numero_medidor.min' => 'El valor mínimo para el campo de número de medidor es 0',
             'numero_medidor.required' => 'El campo de número de medidor es obligatorio',
             'numero_medidor.unique' => 'Este medidor ya se encuentra registrado',
         ]);
@@ -176,12 +177,13 @@ class MedidoresController extends Controller
   
         //Validamos los valores recibidos desde el formulario anterior    
             $campos_validados = request()->validate([
-                'consumo_actual' => 'required|numeric',
+                'consumo_actual' => 'required|numeric|min:0',
                 'responsable' => 'required',
             ],[
                 //Mensajes de error valor numerico y requerido
                     //Consumo Actual
                         'consumo_actual.numeric' => 'Se requiere un valor numérico para el campo de consumo actual',
+                        'consumo_actual.min' => 'El valor mínimo para el campo de consumo actual es 0',
                         'consumo_actual.required' => 'El consumo actual es obligatorio',
                     //Responsable
                         'responsable.required' => 'El nombre del responsable es obligatorio'    
