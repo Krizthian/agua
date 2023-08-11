@@ -53,7 +53,7 @@
             </select></center>
 
             <label>Correo Electronico:</label><center><input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Ej. arturo@portovelo.gob.ec" required></input></center>
-            <label>Telefono:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" placeholder="2949888" required></input></center>
+            <label>Teléfono:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" placeholder="2949888" required></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
           <br>

@@ -78,7 +78,7 @@ class ClientesController extends Controller
         //Insertamos los valores en la tabla
             Clientes::create($campos_validados);
         //Redireccionamos
-            return redirect()->route('clientes.index')->with('resultado_creacion', 'Se ha creado el cliente correctamente'); 
+            return redirect()->route('clientes.index')->with('resultado_creacion', 'Se ha creado el Cliente correctamente'); 
         }else{
             return redirect()->back()->withErrors($campos_validados)->withInput();
         }
@@ -110,7 +110,7 @@ class ClientesController extends Controller
             'telefono' => 'required|numeric',
         ],[
             'cedula.numeric' => 'El campo cédula debe contener números',
-            'telefono.numeric' => 'El campo télefono debe contener números',
+            'telefono.numeric' => 'El campo teléfono debe contener números',
         ]);
         if ($campos_validados) {
             //Realizamos la consulta Eloquent
@@ -123,7 +123,7 @@ class ClientesController extends Controller
                             'telefono' => request('telefono'),
                         ]);
             //Redireccionamos 
-                return redirect()->route('clientes.index')->with('resultado_edicion', 'El cliente se ha actualizado correctamente');
+                return redirect()->route('clientes.index')->with('resultado_edicion', 'El Cliente se ha actualizado correctamente');
          }else{
             return redirect()->back()->withErrors($campos_validados)->withInput();
         }                      
@@ -143,15 +143,4 @@ class ClientesController extends Controller
            ]); 
     }
 
-    /**
-     * Eliminar el valor en la base de datos
-     */
-    public function destroy(Clientes $clientesItem)
-    {
-       //Realizamos la consulta Eloquent 
-            Clientes::destroy($clientesItem->id);
-
-       //Redireccionamos 
-            return redirect()->route('clientes.index')->with('resultado', 'El cliente ha sido eliminado');  
-    }
 }

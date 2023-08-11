@@ -39,7 +39,7 @@
             <label>Apellido del cliente:</label><center><input type="text" class="form-control" name="apellido" placeholder="Ej. Cueva" required></input></center>
             <label>Cédula del cliente:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" placeholder="Ej. 0705558887" required></input></center>
             <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" placeholder="Ej. Avenida del Ejercito" required></input></center>
-            <label>Télefono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" placeholder="Ej. 2949888" required></input></center>
+            <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" placeholder="Ej. 2949888" required></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
           <br>

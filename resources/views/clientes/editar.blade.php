@@ -39,7 +39,7 @@
             <label>Apellido del cliente:</label><center><input type="text" class="form-control" name="apellido" value="{{$clientesItem->apellido}}" placeholder="{{$clientesItem->apellido}}" required></input></center>
             <label>Cédula del cliente:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{old('cedula',$clientesItem->cedula)}}" placeholder="{{$clientesItem->cedula}}" required></input></center>
             <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" value="{{$clientesItem->direccion}}" placeholder="{{$clientesItem->direccion}}" required></input></center>
-            <label>Télefono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$clientesItem->telefono)}}" placeholder="{{$clientesItem->telefono}}" required></input></center>
+            <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$clientesItem->telefono)}}" placeholder="{{$clientesItem->telefono}}" required></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Actualizar</button></center></div>
           <br>

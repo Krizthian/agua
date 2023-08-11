@@ -35,7 +35,7 @@
           <thead>
             <tr>
               <th scope="col">Número de Medidor</th>
-              <th scope="col">Fecha de Instalacion</th>
+              <th scope="col">Fecha de Instalación</th>
               <th scope="col">Ubicacion</th>
               <th scope="col">Consumo Actual</th>
             </tr>

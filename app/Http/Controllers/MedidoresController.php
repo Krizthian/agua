@@ -68,8 +68,8 @@ class MedidoresController extends Controller
             'numero_medidor' => 'required|numeric|unique:medidores,numero_medidor',
         ],[
             'ubicacion.required' => 'El campo de ubicación es obligatorio',
-            'numero_medidor.numeric' => 'El campo de numero de medidor debe contener números',
-            'numero_medidor.required' => 'El campo de numero de medidor es obligatorio',
+            'numero_medidor.numeric' => 'El campo de número de medidor debe contener números',
+            'numero_medidor.required' => 'El campo de número de medidor es obligatorio',
             'numero_medidor.unique' => 'Este medidor ya se encuentra registrado',
         ]);
 
@@ -180,7 +180,7 @@ class MedidoresController extends Controller
             ],[
                 //Mensajes de error valor numerico y requerido
                     //Consumo Actual
-                        'consumo_actual.numeric' => 'Se requiere un valor numerico para el campo de consumo actual',
+                        'consumo_actual.numeric' => 'Se requiere un valor numérico para el campo de consumo actual',
                         'consumo_actual.required' => 'El consumo actual es obligatorio',
                     //Responsable
                         'responsable.required' => 'El nombre del responsable es obligatorio'    

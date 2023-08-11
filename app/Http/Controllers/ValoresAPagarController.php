@@ -158,7 +158,7 @@ class ValoresAPagarController extends Controller
                 'forma_pago' => 'required',
             ],[
                 //Mensaje de error valor numerico
-                    'valor_nuevo.numeric' => 'Se requiere un valor numerico para el campo de valor a pagar',
+                    'valor_nuevo.numeric' => 'Se requiere un valor numérico para el campo de valor a pagar',
                     'forma_pago.required' => 'La forma de pago es obligatoria'
             ]);     
 
