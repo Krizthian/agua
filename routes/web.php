@@ -3,15 +3,16 @@
 use Illuminate\Support\Facades\Route;
 
 //Definimos los controladores creados
-use App\Http\Controllers\ValoresAPagarController; //Controlador de Consulta
-use App\Http\Controllers\PagosController; //Controlador de Pagos
-use App\Http\Controllers\MedidoresController; //Controlador de Medidores
-use App\Http\Controllers\ClientesController; //Controlador de Clientes
-use App\Http\Controllers\LoginController; //Controlador de Login
-use App\Http\Controllers\UsuariosController; //Controlador de Usuarios
-use App\Http\Controllers\ReportesController; //Controlador de Reportes
-use App\Http\Controllers\MantenimientosController; //Controlador de Mantenimientos
-use App\Http\Controllers\ReclamosController; //Controlador de Reclamos
+	use App\Http\Controllers\ValoresAPagarController; //Controlador de Consulta
+	use App\Http\Controllers\PagosController; //Controlador de Pagos
+	use App\Http\Controllers\MedidoresController; //Controlador de Medidores
+	use App\Http\Controllers\ClientesController; //Controlador de Clientes
+	use App\Http\Controllers\LoginController; //Controlador de Login
+	use App\Http\Controllers\UsuariosController; //Controlador de Usuarios
+	use App\Http\Controllers\ReportesController; //Controlador de Reportes
+	use App\Http\Controllers\MantenimientosController; //Controlador de Mantenimientos
+	use App\Http\Controllers\ReclamosController; //Controlador de Reclamos
+	use App\Http\Controllers\AjustesController; //Controlador de Ajustes
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,14 @@ use App\Http\Controllers\ReclamosController; //Controlador de Reclamos
 				Route::patch('/panel/{valoresPagarItem}', [ValoresAPagarController::class, 'update'])->name('planillas.update');		
 		//Inhabilitar/Habilitar servicio	
 			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [ValoresAPagarController::class, 'inhabilitar'])->name('panel.inhabilitar');
+
+//Rutas para mostrar (ajustes del sistema)
+		Route::view('/ajustes', 'ajustes')->name('ajustes');
+			//Obtencion de valores
+				Route::get('/ajustes', [AjustesController::class, 'index'])->name('ajustes.index');
+			//Actualizar medidor
+				Route::patch('/ajustes/tarifas/actualizar/', [AjustesController::class, 'actualizarTarifas'])->name('tarifas.update');	
+
 
 //Rutas para mostrar (historial de pagos)
 	Route::view('/pagos', 'pagos')->name('pagos');

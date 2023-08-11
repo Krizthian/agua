@@ -7,7 +7,7 @@ use App\Models\Planillas; //Importamos el modelo de la tabla 'planillas'
 use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
 use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
 use App\Models\Consumos; //Importamos el modelo de la tabla 'consumos'
-use App\Models\Pagos; //Importamos el modelo de la tabla 'consumos'
+use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
 
 class ValoresAPagarController extends Controller
 {

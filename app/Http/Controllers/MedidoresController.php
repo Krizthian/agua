@@ -7,6 +7,7 @@ use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
 use App\Models\Consumos; //Importamos el modelo de la tabla 'consumos'
 use App\Models\Planillas; //Importamos el modelo de la tabla 'planillas'
 use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
+use App\Models\Tarifas; //Importamos el modelo de la tabla 'tarifas'
 
 class MedidoresController extends Controller
 {
@@ -192,33 +193,44 @@ class MedidoresController extends Controller
                 $fecha_factura = date('Y-m-d', strtotime('+2 days', strtotime($fecha_lectura_actual)));
             //La fecha maxima de pago previo a que se suspenda el servicio es 5 dias despues de la fecha de factura    
                 $fecha_maxima =  date('Y-m-d', strtotime('+5 days', strtotime($fecha_factura))); 
+            //Obtenemos los rangos de tarifas desde la tabla 'tarifas'
+                $tarifas = Tarifas::all();
+                    $tarifa_0_15 = $tarifas->pluck('tarifa_a')->first();
+                    $tarifa_16_30 = $tarifas->pluck('tarifa_b')->first();
+                    $tarifa_31_60 = $tarifas->pluck('tarifa_c')->first();
+                    $tarifa_61_100 = $tarifas->pluck('tarifa_d')->first();
+                    $tarifa_101_300 = $tarifas->pluck('tarifa_e')->first();
+                    $tarifa_301_2500 = $tarifas->pluck('tarifa_f')->first();
+                    $tarifa_2501_5000 = $tarifas->pluck('tarifa_g')->first();
+                    $tarifa_5000 = $tarifas->pluck('tarifa_h')->first(); 
+
             //Realizamos el calculo de consumos en funcion de las tarifas e ingresarmos el valor en la variable valor_actual
-                switch (true) {
+               switch (true) {
                     case ($consumo_actual >= 0 && $consumo_actual <= 15):
-                        $valor_actual = $consumo_actual * 0.308;
+                        $valor_actual = $consumo_actual * $tarifa_0_15;
                         break;
                     case ($consumo_actual >= 16 && $consumo_actual <= 30):
-                        $valor_actual = $consumo_actual * 0.457;
+                        $valor_actual = $consumo_actual * $tarifa_16_30;
                         break;
                     case ($consumo_actual >= 31 && $consumo_actual <= 60):
-                        $valor_actual = $consumo_actual * 0.646;
+                        $valor_actual = $consumo_actual * $tarifa_31_60;
                         break;
                     case ($consumo_actual >= 61 && $consumo_actual <= 100):
-                        $valor_actual = $consumo_actual * 0.810;
+                        $valor_actual = $consumo_actual * $tarifa_61_100;
                         break;
                     case ($consumo_actual >= 101 && $consumo_actual <= 300):
-                        $valor_actual = $consumo_actual * 0.903;
+                        $valor_actual = $consumo_actual *  $tarifa_101_300;
                         break;
                     case ($consumo_actual >= 301 && $consumo_actual <= 2500):
-                        $valor_actual = $consumo_actual * 1.401;
+                        $valor_actual = $consumo_actual * $tarifa_301_2500;
                         break;
                     case ($consumo_actual >= 2501 && $consumo_actual <= 5000):
-                        $valor_actual = $consumo_actual * 1.798;
+                        $valor_actual = $consumo_actual * $tarifa_2501_5000;
                         break;
                     case ($consumo_actual > 5000):
-                        $valor_actual = $consumo_actual * 2.956;
+                        $valor_actual = $consumo_actual * $tarifa_5000;
                         break;
-                }  
+                }
 
          //Comprobamos si los campos han sido validados
             if ($campos_validados) {
