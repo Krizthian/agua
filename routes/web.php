@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 	use App\Http\Controllers\ReportesController; //Controlador de Reportes
 	use App\Http\Controllers\MantenimientosController; //Controlador de Mantenimientos
 	use App\Http\Controllers\ReclamosController; //Controlador de Reclamos
-	use App\Http\Controllers\AjustesController; //Controlador de Ajustes
 
 /*
 |--------------------------------------------------------------------------
@@ -61,12 +60,12 @@ use Illuminate\Support\Facades\Route;
 		//Inhabilitar/Habilitar servicio	
 			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [ValoresAPagarController::class, 'inhabilitar'])->name('panel.inhabilitar');
 
-//Rutas para mostrar (ajustes del sistema)
-		Route::view('/ajustes', 'ajustes')->name('ajustes');
+//Rutas para mostrar (actualizacion de tarifas)
+		Route::view('/tarifas', 'tarifas')->name('tarifas');
 			//Obtencion de valores
-				Route::get('/ajustes', [AjustesController::class, 'index'])->name('ajustes.index');
+				Route::get('/tarifas', [MedidoresController::class, 'mostrarTarifas'])->name('tarifas.index');
 			//Actualizar medidor
-				Route::patch('/ajustes/tarifas/actualizar/', [AjustesController::class, 'actualizarTarifas'])->name('tarifas.update');	
+				Route::patch('/tarifas/actualizar/', [MedidoresController::class, 'actualizarTarifas'])->name('tarifas.update');	
 
 
 //Rutas para mostrar (historial de pagos)
