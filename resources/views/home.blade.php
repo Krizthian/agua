@@ -35,7 +35,7 @@
         <!--FIN DE MENSAJE DE RESULTADO DE CREACION-->    
       <form action="{{route('consulta.index')}}" method="GET">
        <div class="col-auto">
-      <center><input type="text" name="medidor_cedula" id="medidor_cedula" class="form-control" placeholder="Número de medidor o cédula" required></input></center>
+      <center><input type="text" name="medidor_cedula" id="medidor_cedula" class="form-control" placeholder="Número de medidor, planilla o cédula" required></input></center>
       <br>
       <center><button type="submit" class="btn btn-primary">Consultar</button></center>
       <br>
@@ -47,6 +47,7 @@
         <table class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
+              <th scope="col">Planilla</th>
               <th scope="col">Medidor</th>
               <th scope="col">Cédula</th>
               <th scope="col">Cliente</th>
@@ -65,6 +66,7 @@
             @else
                 @foreach($resultados as $pagosConsultaItem)
             <tr>
+              <td class="td_acciones">{{$pagosConsultaItem->id}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->medidor->numero_medidor}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->cliente->cedula}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->cliente->nombre}} {{$pagosConsultaItem->cliente->apellido}}</td>

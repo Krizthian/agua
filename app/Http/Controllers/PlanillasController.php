@@ -46,6 +46,9 @@ class PlanillasController extends Controller
                 })
                 ->orWhereHas('cliente', function ($subQuery) use ($medidor_cedula) {
                     $subQuery->where('cedula', $medidor_cedula);
+                })
+                 ->orWhere(function($subQuery) use ($medidor_cedula){
+                    $subQuery->where('id', $medidor_cedula);
                 });
             });
     // Ejecutar la consulta y obtener los resultados
