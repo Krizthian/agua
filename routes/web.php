@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 //Definimos los controladores creados
-	use App\Http\Controllers\ValoresAPagarController; //Controlador de Consulta
+	use App\Http\Controllers\PlanillasController; //Controlador de Consulta
 	use App\Http\Controllers\PagosController; //Controlador de Pagos
 	use App\Http\Controllers\MedidoresController; //Controlador de Medidores
 	use App\Http\Controllers\ClientesController; //Controlador de Clientes
@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 //Inicio
 	Route::view('/', 'home')->name('home');
-		Route::get('/consulta', [ValoresAPagarController::class, 'indexCiudadano'])->name('consulta.index');
+		Route::get('/consulta', [PlanillasController::class, 'indexCiudadano'])->name('consulta.index');
 
 //Login
 	Route::view('/login', 'login')->name('login');
@@ -50,15 +50,15 @@ use Illuminate\Support\Facades\Route;
 //Rutas para mostrar (valores a pagar)
 	Route::view('/panel', 'panel')->name('panel');
 		//Obtencion de valores
-			Route::get('/panel', [ValoresAPagarController::class, 'index'])->name('panel.index');
+			Route::get('/panel', [PlanillasController::class, 'index'])->name('panel.index');
 		//Busqueda de valores	
-			Route::get('/panel/busqueda', [ValoresAPagarController::class, 'busqueda'])->name('panel.busqueda');
+			Route::get('/panel/busqueda', [PlanillasController::class, 'busqueda'])->name('panel.busqueda');
 		//Devolver el formulario de ingreso de pago
-			Route::get('/panel/planillas/{valoresPagarItem}', [ValoresAPagarController::class, 'edit'])->name('planillas.ingresar');
+			Route::get('/panel/planillas/{valoresPagarItem}', [PlanillasController::class, 'edit'])->name('planillas.ingresar');
 			//Ingresar pago
-				Route::patch('/panel/{valoresPagarItem}', [ValoresAPagarController::class, 'update'])->name('planillas.update');		
+				Route::patch('/panel/{valoresPagarItem}', [PlanillasController::class, 'update'])->name('planillas.update');		
 		//Inhabilitar/Habilitar servicio	
-			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [ValoresAPagarController::class, 'inhabilitar'])->name('panel.inhabilitar');
+			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [PlanillasController::class, 'inhabilitar'])->name('panel.inhabilitar');
 
 //Rutas para mostrar (actualizacion de tarifas)
 		Route::view('/tarifas', 'tarifas')->name('tarifas');
