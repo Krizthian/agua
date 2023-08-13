@@ -64,7 +64,9 @@
               <td class="td_acciones"> {{$reclamosItem->email}}</td>
               <td class="td_acciones"> {{$reclamosItem->telefono}}</td>
               <td class="td_acciones"> {{$reclamosItem->motivo}}</td>
-              <td class="td_acciones"> {{ucFirst($reclamosItem->estado_reclamo)}}</td>
+             @if($reclamosItem->estado_reclamo == "ingresado")<td class="td_acciones"><span class="badge rounded-pill text-bg-info">{{ucfirst($reclamosItem->estado_reclamo);}}</span></td>@endif
+              @if($reclamosItem->estado_reclamo == "en proceso")<td class="td_acciones"><span class="badge rounded-pill text-bg-primary">{{ucfirst($reclamosItem->estado_reclamo);}}</span></td>@endif
+              @if($reclamosItem->estado_reclamo == "resuelto")<td class="td_acciones"><span class="badge rounded-pill text-bg-success">{{ucfirst($reclamosItem->estado_reclamo);}}</span></td>@endif
                     <!--INICIO DE BOTONES DE ACCIONES-->
               <td class="td_acciones">
               <div class="btn-group">
