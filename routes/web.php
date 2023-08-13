@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 
 /*Rutas para el usuario*/
 
+Route::view('/dashboard', 'dashboard')->name('dashboard');
+
 //Inicio
 	Route::view('/', 'home')->name('home');
 		Route::get('/consulta', [PlanillasController::class, 'indexCiudadano'])->name('consulta.index');
