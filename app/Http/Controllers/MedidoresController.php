@@ -174,7 +174,7 @@ class MedidoresController extends Controller
             $consumo_anterior = request('consumo_anterior');
             $fecha_lectura_anterior = request('fecha_lectura_anterior');
             $responsable = request('responsable'); 
-  
+
         //Validamos los valores recibidos desde el formulario anterior    
             $campos_validados = request()->validate([
                 'consumo_actual' => 'required|numeric|min:0',
@@ -238,23 +238,56 @@ class MedidoresController extends Controller
             if ($campos_validados) {
                 //Validamos si existe un medidor en la tabla 'consumos'
                     $id_medidorExistente = Consumos::where('id_medidor', $id_medidor)->exists();
-                    if ($id_medidorExistente) {       
-                       Consumos::where('id_medidor', $id_medidor)
-                       ->update([
-                        'consumo_actual' => $consumo_actual,
-                        'fecha_lectura_actual' => $fecha_lectura_actual,
-                        'consumo_anterior' => $consumo_anterior,
-                        'fecha_lectura_anterior' => $fecha_lectura_anterior,
-                        'responsable' => $responsable
-                       ]);
+                    if ($id_medidorExistente) {            
+                        //Obtenemos valores de la tabla planillas
+                            $planillaValorActual = Planillas::where('id_medidor', $id_medidor)
+                                ->pluck('valor_actual')
+                                ->first();
+                         //Comprobamos si existe una deuda pendiente
+                                /*
+                                    Vamos a comprobar si existe una deuda pendiente,
+                                    si ese es el caso, entonces continuaremos sumando el valor
+                                    anterior en conjunto con el nuevo, por lo que el valor a pagar
+                                    irá en incremento
+                                */
+                            if ($planillaValorActual > 0) {
+                                //Sumamos valores
+                                 $valorDeuda = $planillaValorActual + $valor_actual;                                
+                                Consumos::where('id_medidor', $id_medidor)
+                                       ->update([
+                                        'consumo_actual' => $consumo_actual,
+                                        'fecha_lectura_actual' => $fecha_lectura_actual,
+                                        'consumo_anterior' => $consumo_anterior,
+                                        'fecha_lectura_anterior' => $fecha_lectura_anterior,
+                                        'responsable' => $responsable
+                                       ]);
 
-                       Planillas::where('id_medidor', $id_medidor)
-                       ->update([
-                        'valor_actual' => $valor_actual,
-                        'fecha_factura' => $fecha_factura,
-                        'fecha_maxima' => $fecha_maxima
+                                Planillas::where('id_medidor', $id_medidor)
+                                       ->update([
+                                        'valor_actual' => $valorDeuda,
+                                        'fecha_factura' => $fecha_factura,
+                                        'fecha_maxima' => $fecha_maxima
 
-                       ]);
+                                    ]);              
+                         //Si no hay una deuda pendiente, continuamos con normalidad                                           
+                            }elseif($planillaValorActual == 0){
+                                   Consumos::where('id_medidor', $id_medidor)
+                                   ->update([
+                                    'consumo_actual' => $consumo_actual,
+                                    'fecha_lectura_actual' => $fecha_lectura_actual,
+                                    'consumo_anterior' => $consumo_anterior,
+                                    'fecha_lectura_anterior' => $fecha_lectura_anterior,
+                                    'responsable' => $responsable
+                                   ]);
+
+                                   Planillas::where('id_medidor', $id_medidor)
+                                   ->update([
+                                    'valor_actual' => $valor_actual,
+                                    'fecha_factura' => $fecha_factura,
+                                    'fecha_maxima' => $fecha_maxima
+
+                                   ]);
+                            }       
                    }else{
                     //Creamos el consumo si aun no existe
                         $consumoCreado = Consumos::create([
