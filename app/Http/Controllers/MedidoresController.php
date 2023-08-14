@@ -266,7 +266,8 @@ class MedidoresController extends Controller
                                        ->update([
                                         'valor_actual' => $valorDeuda,
                                         'fecha_factura' => $fecha_factura,
-                                        'fecha_maxima' => $fecha_maxima
+                                        'fecha_maxima' => $fecha_maxima,
+                                        'estado_servicio' => "inactivo"
 
                                     ]);              
                          //Si no hay una deuda pendiente, continuamos con normalidad                                           
