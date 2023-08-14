@@ -18,8 +18,10 @@
           <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
           </svg></a></div>
       <!--FIN DE BOTON DE REGRESAR-->
-        <main class="form-signin w-100 m-auto">
-         <form action="{{route('clientes.store')}}" method="POST">
+      <br>
+      <br>
+        <main class="w-100 m-auto">
+         <form action="{{route('clientes.store')}}" class="row g3" method="POST">
          	@csrf
           <!--DEVOLVEMOS MENSAJES DE ERROR-->
               @if ($errors->any())
@@ -34,15 +36,24 @@
                   </div>
               @endif
             <!--FIN DE MENSAJES DE ERROR-->  
-           <div class="col-auto">
+          <div class="col-md-6 mb-2">
             <label>Nombre del cliente:</label><center><input type="text" class="form-control" name="nombre" placeholder="Ej. Arturo" required></input></center>
+          </div>  
+          <div class="col-md-6 mb-2">
             <label>Apellido del cliente:</label><center><input type="text" class="form-control" name="apellido" placeholder="Ej. Cueva" required></input></center>
+          </div>  
+          <div class="col-md-6 mb-2">
             <label>Cédula del cliente:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" placeholder="Ej. 0705558887" required></input></center>
+          </div> 
+          <div class="col-md-6 mb-2">
             <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" placeholder="Ej. Avenida del Ejercito" required></input></center>
+           </div> 
+           <div class="col-mb-12">
             <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" placeholder="Ej. 2949888" required></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
           <br>
+            </div>
         </form>
     </main>
         </div>

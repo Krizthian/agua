@@ -39,13 +39,12 @@
             });
         });
     </script>
-
 <center><h1 class="display-4">GESTIÓN DE REPORTES</h1></center>
   <div class="container">
-	  <br>
-	    <center><label><strong>Tipo de Reporte</strong></label></center>
-        <form action="{{route('reportes.generar')}}" method="GET">
-          <div class="form-group">
+	  <br>  
+        <form action="{{route('reportes.generar')}}" method="GET" class="row g3" >
+          <div class="col-md-12 mb-2">
+         <center><label><strong>Tipo de Reporte</strong></label></center>
           <select class="form-select" id="tipo" name="tipo" required>
             <option value="" disabled selected>Seleccione un tipo de reporte</option>
             @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<option value="pagos">Pagos</option>@endif
@@ -53,10 +52,11 @@
             <option value="reclamos">Reclamos</option>
             <option value="medidores_activos">Medidores Activos</option>
             <option value="medidores_inactivos">Medidores Inactivos</option>
-  </select>
+        </select>
+      </div>
   <br>
+   <div class="col-md-6 mb-2">
           <center><label><strong>Mes</strong></label></center>
-          <div class="form-group">
           <select class="form-select" id="mes" name="mes">
             <option value="" disabled selected>Seleccione un mes</option>
             <option value="01">Enero</option>
@@ -74,8 +74,8 @@
   </select>
   </div>
     <br>
+     <div class="col-md-6 mb-2">
           <center><label><strong>Año</strong></label></center>
-          <div class="form-group">
           <select class="form-select" id="year" name="year" required>
             <option value="" disabled selected>Seleccione un año</option>
             <option>{{date("Y")}}</option>
@@ -93,9 +93,8 @@
   </select>
 </div>
 <br>
-      <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-primary">Consultar</button></center></div>
+      <div class="col-md-12 mt-4 text-right"><center><button type="submit" class="btn btn-primary">Consultar</button></center></div>
         </form>
-        <br>
       @if(isset($query))
     <!--INICIO TABLA CON DATOS-->
 
