@@ -113,8 +113,7 @@
           </tbody>
             </div>
         </table>
-                  <div class="text-muted mt-0"><caption><strong>Consejo: </strong>Para ampliar los detalles del reclamo, haz clic en el nombre del cliente.</caption></div>
-
+        <div class="text-muted mt-0"><caption><strong>Consejo: </strong>Para ampliar los detalles del reclamo, haz clic en el nombre del cliente.</caption></div>
       </div>
         <!--FIN DE TABLA CON VALORES-->
           {{$reclamos->links('pagination::bootstrap-4')}}
