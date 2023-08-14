@@ -59,11 +59,11 @@
                 @if(session()->get('sesion')['rol'] == 'administrador')<a class="nav-link {{setActive('usuarios.index')}}" aria-current="page" href="/usuarios">Usuarios</a>@endif
               </li>
              <!--FIN VINCULO RESERVADO-->
-              <li class="nav-item">
-                <a class="nav-link {{setActive('reportes')}}" aria-current="page" href="/reportes">Reportes</a>
+             <li class="nav-item">
+                <a class="nav-link {{setActive('reclamos.index')}}" aria-current="page" href="/reclamos">Reclamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{setActive('reclamos.index')}}" aria-current="page" href="/reclamos">Reclamos</a>
+                <a class="nav-link {{setActive('reportes')}}" aria-current="page" href="/reportes">Reportes</a>
               </li>
         </li>
       </ul>
