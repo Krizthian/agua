@@ -9,7 +9,17 @@
 	         background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
 	     }
     </style>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const valorActualInput = document.querySelector('input[name="valor_actual"]');
+            const valorNuevoInput = document.querySelector('input[name="valor_nuevo"]');
+            const rellenarButton = document.getElementById('rellenarValor');
+            
+            rellenarButton.addEventListener('click', function() {
+                valorNuevoInput.value = valorActualInput.value;
+            });
+        });
+    </script>
 <center><h1 class="display-4">INGRESAR PAGO</h1></center>
     <div class="container">
       <br>
@@ -68,7 +78,7 @@
               <label>Valor a pagar:</label><div class="input-group mb-2">
                 <span class="input-group-text">$</span>
                 <input type="text" class="form-control @error('valor_nuevo') is-invalid @enderror" name="valor_nuevo" value="{{old('valor_nuevo')}}" placeholder="Ingrese el valor a pagar" aria-label="Monto" required>
-              </div>
+              <button type="button" title="Rellenar con valor a pagar" class="btn btn-info" id="rellenarValor"><i class="fa-solid fa-file-invoice-dollar"></i></button></div>
             <!--FIN DE VALOR A PAGAR-->
           <br>
             <div class="col-md-12 text-right"><center><button onclick="return confirm('¿Estás seguro de que deseas ingresar un pago al medidor {{$valoresPagarItem->medidor->numero_medidor}}?')" type="submit" class="btn btn-success">Registrar Pago</button></center></div>
