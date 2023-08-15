@@ -67,56 +67,56 @@
                   <strong><label>0-15 m<sup>3</sup>:</label><center></strong>
                   <div class="input-group mb-2">
                       <span class="input-group-text"><b>$</b></span>
-                      <input type="text" class="form-control"  name="rango_0_15" value="{{$tarifasItem->tarifa_a}}" placeholder="{{$tarifasItem->tarifa_a}}" required>
+                      <input type="text" class="form-control @error('rango_0_15') is-invalid @enderror"  name="rango_0_15" value="{{$tarifasItem->tarifa_a}}" placeholder="{{$tarifasItem->tarifa_a}}" required>
                   </div></center>
              </div>     
             <div class="col-md-6 mb-2">
                   <strong><label>16-30 m<sup>3</sup>:</label><center></strong>
                   <div class="input-group mb-2">
                       <span class="input-group-text"><b>$</b></span>
-                      <input type="text" class="form-control" name="rango_16_30" value="{{$tarifasItem->tarifa_b}}" placeholder="{{$tarifasItem->tarifa_b}}" required>
+                      <input type="text" class="form-control @error('rango_16_30') is-invalid @enderror" name="rango_16_30" value="{{$tarifasItem->tarifa_b}}" placeholder="{{$tarifasItem->tarifa_b}}" required>
                   </div></center>
              </div>                     
             <div class="col-md-6 mb-2">
                   <strong><label>31-60 m<sup>3</sup>:</label><center></strong>
                   <div class="input-group mb-2">
                       <span class="input-group-text"><b>$</b></span>
-                      <input type="text" class="form-control" name="rango_31_60" value="{{$tarifasItem->tarifa_c}}" placeholder="{{$tarifasItem->tarifa_c}}" required>
+                      <input type="text" class="form-control @error('rango_31_60') is-invalid @enderror" name="rango_31_60" value="{{$tarifasItem->tarifa_c}}" placeholder="{{$tarifasItem->tarifa_c}}" required>
                   </div></center>
              </div>   
             <div class="col-md-6 mb-2">
                   <strong><label>61-100 m<sup>3</sup>:</label><center></strong>
                   <div class="input-group mb-2">
                       <span class="input-group-text"><b>$</b></span>
-                      <input type="text" class="form-control" name="rango_61_100" value="{{$tarifasItem->tarifa_d}}" placeholder="{{$tarifasItem->tarifa_d}}" required>
+                      <input type="text" class="form-control @error('rango_61_100') is-invalid @enderror" name="rango_61_100" value="{{$tarifasItem->tarifa_d}}" placeholder="{{$tarifasItem->tarifa_d}}" required>
                   </div></center>
              </div>               
             <div class="col-md-6 mb-2">
                   <strong><label>101-300 m<sup>3</sup>:</label><center></strong>
                   <div class="input-group mb-2">
                       <span class="input-group-text"><b>$</b></span>
-                      <input type="text" class="form-control" name="rango_101_300" value="{{$tarifasItem->tarifa_e}}" placeholder="{{$tarifasItem->tarifa_e}}" required>
+                      <input type="text" class="form-control @error('rango_101_300') is-invalid @enderror" name="rango_101_300" value="{{$tarifasItem->tarifa_e}}" placeholder="{{$tarifasItem->tarifa_e}}" required>
                   </div></center>
              </div>               
             <div class="col-md-6 mb-2">
                   <strong><label>301-2500 m<sup>3</sup>:</label><center></strong>
                   <div class="input-group mb-2">
                       <span class="input-group-text"><b>$</b></span>
-                      <input type="text" class="form-control" name="rango_301_2500" value="{{$tarifasItem->tarifa_f}}" placeholder="{{$tarifasItem->tarifa_f}}" required>
+                      <input type="text" class="form-control @error('rango_301_2500') is-invalid @enderror" name="rango_301_2500" value="{{$tarifasItem->tarifa_f}}" placeholder="{{$tarifasItem->tarifa_f}}" required>
                   </div></center>
                 </div>
             <div class="col-md-6 mb-2">
                   <strong><label>2501-5000 m<sup>3</sup>:</label><center></strong>
                   <div class="input-group mb-2">
                       <span class="input-group-text"><b>$</b></span>
-                      <input type="text" class="form-control" name="rango_2501_5000" value="{{$tarifasItem->tarifa_g}}" placeholder="{{$tarifasItem->tarifa_g}}" required>
+                      <input type="text" class="form-control @error('rango_2501_5000') is-invalid @enderror" name="rango_2501_5000" value="{{$tarifasItem->tarifa_g}}" placeholder="{{$tarifasItem->tarifa_g}}" required>
                   </div></center>
              </div> 
              <div class="col-md-6 mb-2"> 
                   <strong><label>5000 m<sup>3</sup> en adelante :</label><center></strong>
                   <div class="input-group mb-2">
                       <span class="input-group-text"><b>$</b></span>
-                      <input type="text" class="form-control" name="rango_5000" value="{{$tarifasItem->tarifa_h}}" placeholder="{{$tarifasItem->tarifa_h}}" required>
+                      <input type="text" class="form-control @error('rango_5000') is-invalid @enderror" name="rango_5000" value="{{$tarifasItem->tarifa_h}}" placeholder="{{$tarifasItem->tarifa_h}}" required>
                   </div></center>
              </div>     
             @endforeach
