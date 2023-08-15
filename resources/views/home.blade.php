@@ -20,6 +20,10 @@
       --bs-bg-opacity: 1;
       background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
     }
+    .image-container {
+      width: 900px; 
+      height: 318px;
+    }
 </style>
 
 <center><h1 class="display-4">CONSULTA DE VALORES A PAGAR</h1></center>
@@ -41,6 +45,16 @@
       <br>
 </div>
     </form>
+    @if(!isset($resultados))
+      </div>
+      <center><div class="container-fluid mt-5">
+        <div class="image-container d-flex justify-content-center align-items-center ">
+        <a href="{{route('calculadora.index')}}">
+          <img title="Calculadora de valores" alt="Calculadora de valores" class="img-fluid mt-4" src="{{url('img/banners/CalculadoraBanner.png')}}">
+        </a>
+      </div>
+    </div></center>
+    @endif
     @if(isset($resultados))
          <!--INICIO TABLA CON DATOS-->
       <div class="table-responsive">

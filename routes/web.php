@@ -32,6 +32,12 @@ Route::view('/dashboard', 'dashboard')->name('dashboard');
 	Route::view('/', 'home')->name('home');
 		Route::get('/consulta', [PlanillasController::class, 'indexCiudadano'])->name('consulta.index');
 
+//Calculadora
+	Route::view('/calculadora', 'calculadora')->name('calculadora');
+		Route::get('/calculadora', [PlanillasController::class, 'calculadoraFormulario'])->name('calculadora.index');
+		//Calculamos valores a pagar
+			Route::post('/calculadora/calcular', [PlanillasController::class, 'calcularValores'])->name('calculadora.calcular');
+
 //Login
 	Route::view('/login', 'login')->name('login');
 		//Ruta para proceso de Login

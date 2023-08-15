@@ -8,6 +8,7 @@ use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
 use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
 use App\Models\Consumos; //Importamos el modelo de la tabla 'consumos'
 use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
+use App\Models\Tarifas; //Importamos el modelo de la tabla 'pagos'
 
 class PlanillasController extends Controller
 {
@@ -27,6 +28,91 @@ class PlanillasController extends Controller
             }    
     }
 
+        /**
+        * Devolver formulario de calculadora
+        */
+
+        public function calculadoraFormulario()
+        {
+           //Obtenemos las tarifas desde la base de datos 
+            $tarifas = Tarifas::all();  
+           //Retornamos a la vista con los valores     
+            return view('calculadora', compact('tarifas'));
+        }
+
+
+        public function calcularValores(Request $request)
+        {
+            //Obtenemos los valoes desde el formulario anterior
+              $campos_validados = request()->validate([
+                    'valor' => 'required|numeric|min:0',
+                ],[
+                    //Mensaje de error
+                        'valor.numeric' => 'Se requiere un valor numérico para el campo de metros cúbicos',
+                        'valor.min' => 'El valor mínimo para el campo de metros cúbicos es 0',
+                        'valor.required' => 'El campo de metros cúbicos es obligatorio'
+                ]);
+            //Obtenemos los valores de las tarifas
+                     $tarifas = Tarifas::all();
+                        $tarifa_0_15 = $tarifas->pluck('tarifa_a')->first();
+                        $tarifa_16_30 = $tarifas->pluck('tarifa_b')->first();
+                        $tarifa_31_60 = $tarifas->pluck('tarifa_c')->first();
+                        $tarifa_61_100 = $tarifas->pluck('tarifa_d')->first();
+                        $tarifa_101_300 = $tarifas->pluck('tarifa_e')->first();
+                        $tarifa_301_2500 = $tarifas->pluck('tarifa_f')->first();
+                        $tarifa_2501_5000 = $tarifas->pluck('tarifa_g')->first();
+                        $tarifa_5000 = $tarifas->pluck('tarifa_h')->first(); 
+
+             if($campos_validados){
+                //Creamos variables temporales
+                        $valor_actual = 0;
+                        $costo_agua = 0;
+                //Realizamos el calculo de consumos en funcion de las tarifas e ingresarmos el valor en la variable valor_actual
+                   switch (true) {
+                        case ($campos_validados['valor'] >= 0 && $campos_validados['valor'] <= 15):
+                            $valor_actual = $campos_validados['valor'] * $tarifa_0_15;
+                            $costo_agua = $tarifa_0_15;
+                            break;
+                        case ($campos_validados['valor'] >= 16 && $campos_validados['valor'] <= 30):
+                            $valor_actual = $campos_validados['valor'] * $tarifa_16_30;
+                            $costo_agua = $tarifa_16_30;
+                            break;
+                        case ($campos_validados['valor'] >= 31 && $campos_validados['valor'] <= 60):
+                            $valor_actual = $campos_validados['valor'] * $tarifa_31_60;
+                            $costo_agua = $tarifa_31_60;
+                            break;
+                        case ($campos_validados['valor'] >= 61 && $campos_validados['valor'] <= 100):
+                            $valor_actual = $campos_validados['valor'] * $tarifa_61_100;
+                            $costo_agua = $tarifa_61_100;
+                            break;
+                        case ($campos_validados['valor'] >= 101 && $campos_validados['valor'] <= 300):
+                            $valor_actual = $campos_validados['valor'] *  $tarifa_101_300;
+                            $costo_agua = $tarifa_101_300;
+                            break;
+                        case ($campos_validados['valor'] >= 301 && $campos_validados['valor'] <= 2500):
+                            $valor_actual = $campos_validados['valor'] * $tarifa_301_2500;
+                            $costo_agua = $tarifa_301_2500;
+                            break;
+                        case ($campos_validados['valor'] >= 2501 && $campos_validados['valor'] <= 5000):
+                            $valor_actual = $campos_validados['valor'] * $tarifa_2501_5000;
+                            $costo_agua = $tarifa_2501_5000;
+                            break;
+                        case ($campos_validados['valor'] > 5000):
+                            $valor_actual = $campos_validados['valor'] * $tarifa_5000;
+                            $costo_agua = $tarifa_5000;
+                            break;
+                    }
+                        return redirect()->back()->withInput()->with([
+                            'valor_actual' => $valor_actual,
+                            'costo_agua' => $costo_agua
+                        ]);
+
+                   }else{
+                     return redirect()->back()->withErrors($campos_validados)->withInput();
+                   }     
+
+        }
+ 
     /**
      * Devolver resultados al Home (Solicitud de Ciudadano)
      */
