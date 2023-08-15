@@ -91,7 +91,7 @@
                       <td class="text-center">$ {{$tarifa->tarifa_b}}</td>
                     </tr>
                     <tr>
-                      <td class="text-center">31-60 - 50 m³</td>
+                      <td class="text-center">31 - 60 m³</td>
                       <td class="text-center">$ {{$tarifa->tarifa_c}}</td>
                     </tr>
                     <tr>
