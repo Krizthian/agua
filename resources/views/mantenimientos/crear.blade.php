@@ -49,7 +49,7 @@
            <div class="col-md-6 mb-2"> 
             <label>Estado de mantenimiento:</label><center>
             <select class="form-select input-group mb-2" id="estado_mantenimiento" name="estado_mantenimiento" required>
-                    <option value="solicitado" required>Ingresado</option>
+                    <option value="solicitado" required>Solicitado</option>
             </select>
                </div>  
           <br>

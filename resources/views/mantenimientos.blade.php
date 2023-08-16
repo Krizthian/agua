@@ -45,9 +45,9 @@
           </svg></button>
         </form>
       <!--INICIO DE MENSAJE DE RESULTADOS-->
-          @if(session('resultado'))
+          @if(session('resultado_creacion'))
             <div class="alert alert-success alert-dismissible fade show">
-                {{session('resultado')}}
+                {{session('resultado_creacion')}}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
             </div>
           @endif  
