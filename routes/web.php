@@ -30,7 +30,7 @@ Route::view('/dashboard', 'dashboard')->name('dashboard');
 
 //Inicio
 	Route::view('/', 'home')->name('home');
-		Route::get('/consulta', [PlanillasController::class, 'indexCiudadano'])->name('consulta.index');
+		Route::post('/consulta', [PlanillasController::class, 'indexCiudadano'])->name('consulta.index');
 
 //Calculadora
 	Route::view('/calculadora', 'calculadora')->name('calculadora');

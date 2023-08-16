@@ -117,9 +117,17 @@ class PlanillasController extends Controller
      * Devolver resultados al Home (Solicitud de Ciudadano)
      */
     public function indexCiudadano(Request $request){
+        //Validamos los campos recibidos
+                $campos_validados = request()->validate([
+                    'medidor_cedula' => 'required|numeric',
+                ],[
+        //Mensajes de error
+                    'medidor_cedula.required' => 'El campo de valores es obligatorio',
+                    'medidor_cedula.numeric' => 'El campo de valores debe ser un número',
+             ]);
 
     // Obtener los valores pasados por el formulario
-        $medidor_cedula = $request->input('medidor_cedula');
+        $medidor_cedula = $campos_validados['medidor_cedula'];
 
     // Consulta Eloquent
         $query = Planillas::with(['cliente', 'medidor', 'consumo']);

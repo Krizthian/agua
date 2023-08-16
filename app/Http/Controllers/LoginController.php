@@ -14,9 +14,19 @@ class LoginController extends Controller
     /* Procesar inicio de sesión */
     public function login(Request $request)
     {
+            //Validamos los campos recibidos
+                $campos_validados = request()->validate([
+                    'usuario' => 'required',
+                    'password' => 'required'
+                ],[
+                //Mensajes de error
+                    'usuario.required' => 'El campo usuario es obligatorio',
+                    'password.required' => 'El campo contraseña es obligatorio',
+             ]);
+
         // Recibimos las variables desde el formulario anterior
-            $usuario = $request->input('usuario');
-            $password = $request->input('password');
+            $usuario = $campos_validados['usuario'];
+            $password = $campos_validados['password'];
 
         // Realizamos la consulta para encontrar el usuario
             $usuarioEncontrado = Usuarios::where('usuario', $usuario)->first();
@@ -34,7 +44,6 @@ class LoginController extends Controller
                         }elseif(session()->get('sesion')['rol'] == 'supervisor'){
                             return redirect()->route('medidores.index');
                         }
-
                 }
 
             }
@@ -52,8 +61,16 @@ class LoginController extends Controller
     /*Procesamos la recuperación de credenciáles*/
         public function recuperarProceso (Request $request)
     {
+            //Validamos los campos recibidos
+                $campos_validados = request()->validate([
+                    'email' => 'required|email',
+                ],[
+            //Mensajes de error
+                'email.required' => 'El campo de correo electrónico es obligatorio',
+                'email.email' => 'El campo de correo electrónico debe contener un correo electrónico',
+                ]);
         //Recibimos las variables desde el formulario anterior
-            $email = $request->input('email');
+            $email = $campos_validados['email'];
         // Realizamos la consulta para encontrar el usuario asociado al correcto electronico
             $emailEncontrado = Usuarios::where('email', $email)->first();
 

@@ -36,8 +36,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
             </div>
           @endif  
-        <!--FIN DE MENSAJE DE RESULTADO DE CREACION-->    
-      <form action="{{route('consulta.index')}}" method="GET">
+        <!--FIN DE MENSAJE DE RESULTADO DE CREACION--> 
+        <!--DEVOLVEMOS MENSAJES DE ERROR-->
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show">
+          <strong>Error de validación</strong><br>
+              <ul>
+                @foreach ($errors->all() as $error)          
+                    <li>{{ $error }}</li>
+                   @endforeach   
+              </ul>
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>       
+        </div>
+    @endif
+  <!--FIN DE MENSAJES DE ERROR--> 
+      <form action="{{route('consulta.index')}}" method="POST">
+        @csrf
        <div class="col-auto">
       <center><input type="text" name="medidor_cedula" id="medidor_cedula" class="form-control" placeholder="Número de medidor, planilla o cédula" required></input></center>
       <br>
