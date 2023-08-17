@@ -1,7 +1,7 @@
 @extends('layouts.layout_panel')
 <title>Gestión de Reportes | Sistema de Consultas de Valores a Pagar del Agua</title>
 @section('content')
-	<style>
+  <style>
         /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (REPORTES)*/
         table th {
             text-align: center; 
@@ -41,10 +41,10 @@
     </script>
 <center><h1 class="display-4">GESTIÓN DE REPORTES</h1></center>
   <div class="container">
-	  <br>  
+    <br>  
         <form action="{{route('reportes.generar')}}" method="GET" class="row g3" >
           <div class="col-md-12 mb-2">
-         <center><label><strong>Tipo de Reporte</strong></label></center>
+         <center><label for="tipo"><strong>Tipo de Reporte</strong></label></center>
           <select class="form-select" id="tipo" name="tipo" required>
             <option value="" disabled selected>Seleccione un tipo de reporte</option>
             @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<option value="pagos">Pagos</option>@endif
@@ -56,7 +56,7 @@
       </div>
   <br>
    <div class="col-md-6 mb-2">
-          <center><label><strong>Mes</strong></label></center>
+          <center><label for="mes"><strong>Mes</strong></label></center>
           <select class="form-select" id="mes" name="mes">
             <option value="" disabled selected>Seleccione un mes</option>
             <option value="01">Enero</option>
@@ -75,7 +75,7 @@
   </div>
     <br>
      <div class="col-md-6 mb-2">
-          <center><label><strong>Año</strong></label></center>
+          <center><label for="year"><strong>Año</strong></label></center>
           <select class="form-select" id="year" name="year" required>
             <option value="" disabled selected>Seleccione un año</option>
             <option>{{date("Y")}}</option>

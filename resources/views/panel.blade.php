@@ -3,30 +3,30 @@
 
 @section('content')
 <style>
-	/*ESTILO PERSONALIZADO PARA PANEL DE GESTION (PAGINA DE INICIO)*/
+  /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (PAGINA DE INICIO)*/
     table th {
       text-align: center; 
     }
     .td_acciones{
       text-align: center;
     }
-		.container{
-	    background-color: #ecf0f1;
-	    border-radius: 6px 6px 6px 6px;
-	    -moz-border-radius: 6px 6px 6px 6px;
-	    -webkit-border-radius: 6px 6px 6px 6px;
-	    border: 0px solid #000000;
-	  }
-	  .bg-body-tertiary {
-	    --bs-bg-opacity: 1;
-	    background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+    .container{
+      background-color: #ecf0f1;
+      border-radius: 6px 6px 6px 6px;
+      -moz-border-radius: 6px 6px 6px 6px;
+      -webkit-border-radius: 6px 6px 6px 6px;
+      border: 0px solid #000000;
+    }
+    .bg-body-tertiary {
+      --bs-bg-opacity: 1;
+      background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
 
     }
     
 </style>
 <center><h1 class="display-4">GESTIÓN DE PLANILLAS</h1></center>
-		<div class="container">
-			<br>
+    <div class="container">
+      <br>
        @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')
       <!--BOTON DE HISTORIAL DE PAGOS-->
           <div class="col-md-12 text-right"><a title="Historial de pagos" href="{{route('pagos.index')}}" type="submit" class="btn btn-info float-start position-relative"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
@@ -39,7 +39,7 @@
       <!--FIN DE BOTON DE HISTORIAL DE PAGOS--> 
           <br><br>
         <form action="{{route('panel.busqueda')}}" method="GET" class="d-flex" role="search">
-            <input class="form-control me-2" type="search" name="valores" placeholder="Planilla, apellidos, número de medidor o cédula" aria-label="Buscar" required>
+            <label for="busqueda" hidden>Formulario de busqueda:</label><input class="form-control me-2" type="search" id="busqueda" name="valores" placeholder="Planilla, apellidos, número de medidor o cédula" aria-label="Buscar" required>
             <button class="btn btn-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
           </svg></button>
@@ -81,7 +81,7 @@
         <!--FIN DE MENSAJE DE RESULTADOS-->
     <!--INICIO TABLA CON DATOS-->
     <div class="table-responsive">
-    	<table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
+      <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
               <th scope="col"># Planilla</th>
@@ -98,10 +98,10 @@
             </tr>
           </thead>
           <tbody>
-          	@if(count($valores_pagar)<=0)
+            @if(count($valores_pagar)<=0)
               <center><tr><td colspan="8">No se han encontrado resultados</td></tr></center>
             @else
-          		@foreach ($valores_pagar as $valoresPagarItem)
+              @foreach ($valores_pagar as $valoresPagarItem)
             <tr>
               <td class="td_acciones">{{$valoresPagarItem->id}}</td>
               <td class="td_acciones">{{$valoresPagarItem->medidor->numero_medidor}}</td>
@@ -153,7 +153,7 @@
         </table>
 
       </div>
-        	{{$valores_pagar->links('pagination::bootstrap-4')}}
+          {{$valores_pagar->links('pagination::bootstrap-4')}}
       <!--FIN TABLA CON DATOS-->
         <!--BOTON DE IMPRIMIR
         <div class="col-md-12 bg-light text-right"><button title="Imprimir" class="btn btn-info float-end" type="button" name="imprimir" value="Imprimir" onclick="window.print();">Imprimir <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
@@ -165,5 +165,5 @@
           <script src="{{url('js/main.js')}}"></script>
         <!--FIN DE SCRIPT DATATABLE-->
 <br>
-		</div>
+    </div>
 @endsection('content')

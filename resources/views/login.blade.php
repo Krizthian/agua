@@ -37,7 +37,7 @@
       <!--INICIO DE MENSAJE DE ENLACE EXPIRADO-->
         @if(session('enlace_expirado'))
           <div class="alert alert-danger alert-dismissible fade show">
-              Este <b>enlace</b> ya no está disponible para recuperar la contraseña.
+              Este <strong>enlace</strong> ya no está disponible para recuperar la contraseña.
           </div>
         @endif  
       <!--FIN DE MENSAJE DE DE ENLACE EXPIRADO-->
@@ -45,7 +45,7 @@
       <!--INICIO DE MENSAJE DE CONTRASEÑA ACTUALIZADA-->
         @if(session('resultado_cambio'))
           <div class="alert alert-success alert-dismissible fade show">
-              Se ha actualizado la <b>contraseña</b> correctamente.
+              Se ha actualizado la <strong>contraseña</strong> correctamente.
           </div>
         @endif  
       <!--FIN DE MENSAJE DE CONTRASEÑA ACTUALIZADA-->
@@ -61,8 +61,8 @@
     <button class="btn btn-success w-100 py-2" type="submit">Ingresar</button>
     <br>
     <br>
-    <center><a href="/" class="mt-5 mb-3 text-body-secondary text-decoration-none">Regresar al inicio</a></center>
-    <center><a href="{{route('recuperar')}}" class="mt-5 mb-3 text-body-secondary text-decoration-none">¿Olvidaste tu contraseña?</a></center>
+    <center><a href="/" title="Regresar al inicio" class="mt-5 mb-3 text-body-secondary text-decoration-none">Regresar al inicio</a></center>
+    <center><a href="{{route('recuperar')}}" title="¿Olvidaste tu contraseña?" class="mt-5 mb-3 text-body-secondary text-decoration-none">¿Olvidaste tu contraseña?</a></center>
   </form>
 </main>
 </div>

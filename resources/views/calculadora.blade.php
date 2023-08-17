@@ -53,16 +53,16 @@
                           @endif
                         <!--FIN DE MENSAJES DE ERROR-->                      
                      <div class="col-auto">
-                      <label>Categoría:</label>
+                      <label for="tipo">Categoría:</label>
                       <select class="form-select mb-2" id="tipo" name="tipo" required>
                           <option value="residencial" selected>Residencial</option>
                       </select>
-                      <label>Metros Cúbicos (m<sup>3</sup>):</label><center><input type="text" placeholder="Ingresa la lectura de tu medidor" class="form-control mb-2 @error('valor') is-invalid @enderror " name="valor" value="{{old('valor')}}" required></input></center>
+                      <label for="valor">Metros Cúbicos (m<sup>3</sup>):</label><center><input type="text" id="valor" placeholder="Ingresa la lectura de tu medidor" class="form-control mb-2 @error('valor') is-invalid @enderror " name="valor" value="{{old('valor')}}" required></input></center>
                     @if(session('valor_actual'))
                       <hr>
-                      <label>Costo del agua:</label><input type="text" class="form-control mb-2" value="$ {{ session('costo_agua') }}" readonly></input></center>
-                      <label>Mantenimiento:</label><input type="text" class="form-control mb-2" value="$ 0.00" readonly></input></center>
-                      <label>Valor aproximado a pagar:</label><input type="text" class="form-control mb-2" value="$ {{ session('valor_actual') }}" readonly></input></center>
+                      <label for="costo_agua" >Costo del agua:</label><input type="text" id="costo_agua" class="form-control mb-2" value="$ {{ session('costo_agua') }}" readonly></input></center>
+                      <label for="mantenimiento">Mantenimiento:</label><input  id="mantenimiento"t ype="text" class="form-control mb-2" value="$ 0.00" readonly></input></center>
+                      <label for="valor_actual">Valor aproximado a pagar:</label><input type="text" id="valor_actual" class="form-control mb-2" value="$ {{ session('valor_actual') }}" readonly></input></center>
                     @endif  
                       <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Calcular</button></center></div>
                       <br>

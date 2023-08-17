@@ -53,7 +53,7 @@
       <form action="{{route('consulta.index')}}" method="POST">
         @csrf
        <div class="col-auto">
-      <center><input type="text" name="medidor_cedula" id="medidor_cedula" class="form-control" placeholder="Número de medidor, planilla o cédula" required></input></center>
+      <label for="medidor_cedula" hidden>Formulario de busqueda:</label><center><input type="text" name="medidor_cedula" id="medidor_cedula" class="form-control" placeholder="Número de medidor, planilla o cédula" required></input></center>
       <br>
       <center><button type="submit" class="btn btn-primary">Consultar</button></center>
       <br>
@@ -133,7 +133,7 @@
         <br>
        <!--INICIO DE BANNER DE RECLAMO-->
         @isset ($pagosConsultaItem)
-          <a href="{{route('reclamos.create', $pagosConsultaItem)}}"><center><img class="img-fluid" src="{{url('img/banners/banner_reclamo.png')}}" alt="Solicitud de mantenimiento"></center></a>
+          <a href="{{route('reclamos.create', $pagosConsultaItem)}}" title="Ingresar un reclamo"><center><img class="img-fluid" src="{{url('img/banners/banner_reclamo.png')}}" alt="Ingresar un reclamo"></center></a>
        @endisset
         <br>  
         <!--FIN DE BANNER DE RECLAMO-->
