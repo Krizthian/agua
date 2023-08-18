@@ -42,7 +42,7 @@
               @endif
           <!--FIN DE MENSAJES DE ERROR-->      
         <main class="w-100 m-auto">
-         <form action="{{route('planillas.update', $valoresPagarItem)}}" method="POST" class="row g3">
+         <form action="{{route('planillas.update', $valoresPagarItem)}}" method="POST" id="formPago" class="row g3">
          	@csrf @method('PATCH')
           <div class="col-md-6 mb-2">
             <label for="numero_medidor">Número de medidor:</label><center><input type="text" class="form-control mb-2" id="numero_medidor" name="numero_medidor" value="{{$valoresPagarItem->medidor->numero_medidor}}" placeholder="{{$valoresPagarItem->medidor->numero_medidor}}" disabled></input></center>
@@ -81,7 +81,30 @@
               <button type="button" title="Rellenar con valor a pagar" class="btn btn-info" id="rellenarValor"><i class="fa-solid fa-file-invoice-dollar"></i></button></div>
             <!--FIN DE VALOR A PAGAR-->
           <br>
-            <div class="col-md-12 text-right"><center><button onclick="return confirm('¿Estás seguro de que deseas ingresar un pago al medidor {{$valoresPagarItem->medidor->numero_medidor}}?')" type="submit" class="btn btn-success">Registrar Pago</button></center></div>
+              <div class="col-md-12 text-right">
+                  <center>
+                      <button id="pagar" type="button" class="btn btn-success">Registrar Pago</button>
+                  </center>
+              </div>
+              <script>
+                  $(document).ready(function() {
+                      $('#pagar').click(function() {
+                          // Mostrar el mensaje de confirmación con SweetAlert
+                          Swal.fire({
+                              title: 'Confirmación',
+                              text: '¿Estás seguro de que deseas ingresar un pago al medidor {{$valoresPagarItem->medidor->numero_medidor}}?',
+                              icon: 'question',
+                              showCancelButton: true,
+                              confirmButtonText: 'Sí, registrar pago',
+                              cancelButtonText: 'Cancelar'
+                          }).then((result) => {
+                              if (result.isConfirmed) {
+                                  $('#formPago').submit();
+                              }
+                          });
+                      });
+                  });
+              </script>
           <br>
         </form>
     </main>

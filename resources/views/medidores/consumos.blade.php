@@ -16,7 +16,7 @@
 		  <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
 		</svg></a></div>
         <main class="form-signin w-100 m-auto">
-         <form action="{{route('consumos.almacenarConsumo', $consumoMedidorItem)}}" method="POST">
+         <form id="formConsumo" action="{{route('consumos.almacenarConsumo', $consumoMedidorItem)}}" method="POST">
          	@csrf @method('PATCH')
           <!--DEVOLVEMOS MENSAJES DE ERROR-->
               @if ($errors->any())
@@ -45,7 +45,31 @@
 
             <label>Responsable de lectura:</label><center><input type="text" class="form-control mb-2 @error('responsable') is-invalid @enderror" name="responsable" value="{{session()->get('sesion')['nombres']}}" readonly required></input></center>
           <br>
-            <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar Consumo</button></center></div>
+              <div class="col-md-12 text-right">
+                  <center>
+                      <button id="ingresar" type="button" class="btn btn-success">Ingresar Consumo</button>
+                  </center>
+              </div>
+              <script>
+                  $(document).ready(function() {
+                      $('#ingresar').click(function() {
+                          // Mostrar el mensaje de confirmación con SweetAlert
+                          Swal.fire({
+                              title: 'Confirmación',
+                              text: '¿Estás seguro de que deseas ingresar un consumo a este medidor?',
+                              icon: 'info',
+                              showCancelButton: true,
+                              confirmButtonText: 'Sí, ingresar consumo',
+                              cancelButtonText: 'Cancelar'
+                          }).then((result) => {
+                              if (result.isConfirmed) {
+                                  $('#formConsumo').submit();
+                              }
+                          });
+                      });
+                  });
+              </script>
+          <br>            
           <br>
         </form>
     </main>

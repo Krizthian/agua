@@ -128,18 +128,67 @@
                   <!--INICIO DE COMPROBACION DE ESTADO DE SERVICIO-->  
                     @if($valoresPagarItem->estado_servicio == "activo") 
                      <!--BOTON CORTAR SERVICIO-->
-                              <a type="button" href="{{route('panel.inhabilitar', $valoresPagarItem)}}" class="btn btn-outline-danger" title="Suspender servicio" onclick="return confirm('¿Estás seguro de que deseas suspender el servicio al medidor {{$valoresPagarItem->medidor->numero_medidor}}?')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                            </svg></a>
+                            <a href="{{ route('panel.inhabilitar', $valoresPagarItem) }}" class="btn btn-outline-danger suspender" title="Suspender servicio">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                            </a></div>
+
+                            <script>
+                                $(document).ready(function() {
+                                    $('.suspender').click(function(event) {
+                                        event.preventDefault();
+                                        var url = $(this).attr('href');
+                                        // Mostrar el mensaje de confirmación con SweetAlert
+                                        Swal.fire({
+                                            title: 'Confirmación',
+                                            text: '¿Estás seguro de que deseas suspender el servicio al medidor seleccionado?',
+                                            icon: 'error',
+                                            showCancelButton: true,
+                                            confirmButtonText: 'Sí, suspender',
+                                            cancelButtonText: 'Cancelar'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                // Redirigir a la URL del enlace
+                                                window.location.href = url;
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
                       <!--FIN BOTON CORTAR SERVICIO-->
                     @else 
-                      <!--BOTON RESTAURAR SERVICIO-->
-                              <a type="button" href="{{route('panel.inhabilitar', $valoresPagarItem)}}" class="btn btn-outline-info" title="Reactivar servicio" onclick="return confirm('¿Estás seguro de que deseas habilitar el servicio al medidor {{$valoresPagarItem->medidor->numero_medidor}}?')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-                              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-                            </svg></a>
-                      <!--FIN BOTON RESTAURAR SERVICIO-->
+                   <!--INICIO BOTON DE REHABILITAR SERVICIO--> 
+                        <a href="{{ route('panel.inhabilitar', $valoresPagarItem) }}" class="btn btn-outline-info rehabilitar" title="Reactivar servicio">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                            </svg>
+                        </a></div>
+                        <script>
+                            $(document).ready(function() {
+                                $('.rehabilitar').click(function(event) {
+                                    event.preventDefault();
+                                    var url = $(this).attr('href');
+                                    // Mostrar el mensaje de confirmación con SweetAlert
+                                    Swal.fire({
+                                        title: 'Confirmación',
+                                        text: '¿Estás seguro de que deseas habilitar el servicio al medidor seleccionado?',
+                                        icon: 'success',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Sí, habilitar',
+                                        cancelButtonText: 'Cancelar'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Redirigir a la URL del enlace
+                                            window.location.href = url;
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                    <!--FIN BOTON REHABILITAR SERVICIO-->    
                     @endif
                   <!--FIN DE COMPROBACION DE ESTADO DE SERVICIO-->  
                   @else
@@ -157,12 +206,6 @@
       </div>
           {{$valores_pagar->links('pagination::bootstrap-4')}}
       <!--FIN TABLA CON DATOS-->
-        <!--BOTON DE IMPRIMIR
-        <div class="col-md-12 bg-light text-right"><button title="Imprimir" class="btn btn-info float-end" type="button" name="imprimir" value="Imprimir" onclick="window.print();">Imprimir <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
-        <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
-        <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
-        </svg></button></div>
-        FIN DE BOTON DE IMPRIMIR-->
         <!--SCRIPT DATATABLE-->
           <script src="{{url('js/main.js')}}"></script>
         <!--FIN DE SCRIPT DATATABLE-->
