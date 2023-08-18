@@ -271,6 +271,11 @@ class PlanillasController extends Controller
                      ->update([
                             'valor_actual' => $valorFinalIngresar,
                         ]);
+            //Si la deuda es completamente liquidada, se reinicia el contador de meses en mora         
+               if ($valoresPagarItem->valor_actual == $valor_nuevo) {
+                   Planillas::where('id_medidor', $valoresPagarItem->medidor->id)
+                     ->update(['meses_mora' => 0]);
+                }     
             //Realizamos la consulta Eloquent para la actualizacion de valores en 'Pagos'
                 Pagos::where('id_cliente', $valoresPagarItem->cliente->id)
                      ->create([

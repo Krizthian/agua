@@ -238,11 +238,17 @@ class MedidoresController extends Controller
             if ($campos_validados) {
                 //Validamos si existe un medidor en la tabla 'consumos'
                     $id_medidorExistente = Consumos::where('id_medidor', $id_medidor)->exists();
-                    if ($id_medidorExistente) {            
-                        //Obtenemos valores de la tabla planillas
-                            $planillaValorActual = Planillas::where('id_medidor', $id_medidor)
-                                ->pluck('valor_actual')
-                                ->first();
+                    if ($id_medidorExistente) {
+
+                    //Obtenemos valores de la tabla planillas
+                     $planillaData = Planillas::where('id_medidor', $id_medidor)
+                                    ->select('valor_actual', 'meses_mora')
+                                    ->first();  
+
+                        //Ingresamos valores en variables
+                            $planillaValorActual = $planillaData->valor_actual;
+                            $meses_mora =  $planillaData->meses_mora;
+
                          //Comprobamos si existe una deuda pendiente
                                 /*
                                     Vamos a comprobar si existe una deuda pendiente,
@@ -252,7 +258,10 @@ class MedidoresController extends Controller
                                 */
                             if ($planillaValorActual > 0) {
                                 //Sumamos valores
-                                 $valorDeuda = $planillaValorActual + $valor_actual;                                
+                                 $valorDeuda = $planillaValorActual + $valor_actual;
+                                 //Incrementamos los valores de meses en mora
+                                 $incremento = 1;
+                                 $meses_mora_incremento = $meses_mora + $incremento;                                
                                 Consumos::where('id_medidor', $id_medidor)
                                        ->update([
                                         'consumo_actual' => $consumo_actual,
@@ -267,8 +276,8 @@ class MedidoresController extends Controller
                                         'valor_actual' => $valorDeuda,
                                         'fecha_factura' => $fecha_factura,
                                         'fecha_maxima' => $fecha_maxima,
-                                        'estado_servicio' => "inactivo"
-
+                                        'estado_servicio' => "inactivo",
+                                        'meses_mora' => $meses_mora_incremento
                                     ]);              
                          //Si no hay una deuda pendiente, continuamos con normalidad                                           
                             }elseif($planillaValorActual == 0){
@@ -285,8 +294,7 @@ class MedidoresController extends Controller
                                    ->update([
                                     'valor_actual' => $valor_actual,
                                     'fecha_factura' => $fecha_factura,
-                                    'fecha_maxima' => $fecha_maxima
-
+                                    'fecha_maxima' => $fecha_maxima,
                                    ]);
                             }       
                    }else{
@@ -309,7 +317,8 @@ class MedidoresController extends Controller
                             'valor_actual' => $valor_actual,
                             'fecha_factura' => $fecha_factura,
                             'fecha_maxima' => $fecha_maxima,
-                            'estado_servicio' => "activo"   
+                            'estado_servicio' => "activo",
+                            'meses_mora' => 0 
                        ]);
                         //Redireccionamos y devolvemos variables
                         return redirect()->route('medidores.index')->with([

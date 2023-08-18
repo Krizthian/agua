@@ -29,7 +29,7 @@
             const yearSelect = document.getElementById('year');
             
             tipoSelect.addEventListener('change', function() {
-                if (tipoSelect.value === 'medidores_activos' || tipoSelect.value === 'medidores_inactivos') {
+                if (tipoSelect.value === 'medidores_activos' || tipoSelect.value === 'medidores_inactivos'|| tipoSelect.value === 'deudores') {
                     mesSelect.disabled = true;
                     yearSelect.disabled = true;
                 }else{
@@ -48,6 +48,7 @@
           <select class="form-select" id="tipo" name="tipo" required>
             <option value="" disabled selected>Seleccione un tipo de reporte</option>
             @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<option value="pagos">Pagos</option>@endif
+            @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<option value="deudores">Deudores</option>@endif
             <option value="mantenimientos">Mantenimientos</option>
             <option value="reclamos">Reclamos</option>
             <option value="medidores_activos">Medidores Activos</option>
@@ -135,6 +136,40 @@
     </div>
     @endif
      <!--FIN DE VALORES DE REPORTE DE PAGOS-->
+
+  <!--INICIO DE VALORES DE REPORTE DE DEUDORES-->          
+    @isset($queryDeudores)  
+     <div class="table-responsive"> 
+      <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Número de Medidor</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Dirección</th>
+              <th scope="col">Meses en mora</th>
+              <th scope="col">Total por cobrar</th>
+            </tr>
+          </thead>
+          <tbody>
+        @if(count($queryDeudores)<=0)
+          <center><tr><td colspan="8">No se han encontrado resultados dentro de las fechas establecidas</td></tr></center>
+        @else  
+          @foreach ($queryDeudores as $queryDeudoresItem)
+            <tr>
+              <td class="td_acciones">{{$queryDeudoresItem->medidor->numero_medidor}}</td>
+              <td class="td_acciones">{{$queryDeudoresItem->cliente->nombre}} {{$queryDeudoresItem->cliente->apellido}}</td>
+              <td class="td_acciones">{{$queryDeudoresItem->cliente->direccion}}</td>
+              <td class="td_acciones">{{$queryDeudoresItem->meses_mora}} @if($queryDeudoresItem->meses_mora == 1) mes @else meses @endif</td>
+              <td class="td_acciones">$ {{$queryDeudoresItem->valor_actual}}</td>
+            </tr> 
+          @endforeach
+          @endif
+        </tbody>
+      </table>
+    </div>
+    @endisset
+     <!--FIN DE VALORES DE REPORTE DE DEUDORES-->
+
 
 <!--INICIO DE VALORES DE REPORTE DE MANTENIMIENTOS-->          
     @isset($queryMantenimientos)  

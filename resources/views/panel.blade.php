@@ -89,6 +89,7 @@
               <th scope="col">Cédula</th>
               <th scope="col">Cliente</th>
               <th scope="col">Valor actual</th>
+              <th scope="col">Meses en mora</th>
               <th scope="col">Consumo actual</th>
               <th scope="col">Consumo previo</th>
               <th scope="col">Fecha de Factura</th>
@@ -108,6 +109,7 @@
               <td class="td_acciones">{{$valoresPagarItem->cliente->cedula}}</td>
               <td class="td_acciones">{{$valoresPagarItem->cliente->nombre}} {{$valoresPagarItem->cliente->apellido}}</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_actual}}</td>
+              <td class="td_acciones">{{$valoresPagarItem->meses_mora}} @if($valoresPagarItem->meses_mora == 1) mes @else meses @endif</td>
               <td class="td_acciones">{{$valoresPagarItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
               <td class="td_acciones">{{$valoresPagarItem->consumo->consumo_anterior}} m<sup><strong>3</strong></sup></td>
               <td class="td_acciones">{{$valoresPagarItem->fecha_factura}}</td>

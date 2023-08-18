@@ -38,13 +38,20 @@ class ReportesController extends Controller
                        $queryMedidoresInactivos = Planillas::where('estado_servicio', 'inactivo')->get();  
                         //Devolvemos los valores        
                             return view('reportes', compact('queryMedidoresInactivos'));
-
                 //Generación de reporte de medidores que se encuentren activos        
                  }elseif ($tipo == 'medidores_activos') {
                        $queryMedidoresActivos = Planillas::where('estado_servicio', 'activo')->get();  
                         //Devolvemos los valores        
                             return view('reportes', compact('queryMedidoresActivos'));
-
+        /*Obteneción de deudores*/
+                //Generación de reporte de deudores
+                }elseif ($tipo == 'deudores') {
+                        $queryDeudores = Planillas::with('cliente', 'medidor')
+                                        ->where('meses_mora', '>=', 1)
+                                        ->get();
+                       //$queryDeudores = Planillas::where('meses_mora', '>=', 1)->get();  
+                        //Devolvemos los valores        
+                            return view('reportes', compact('queryDeudores'));
          /*Obtención de mantenimientos*/               
                  }elseif ($tipo == 'mantenimientos'){
                     $queryMantenimientos = Mantenimientos::with('medidor')

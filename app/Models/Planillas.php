@@ -29,4 +29,6 @@ class Planillas extends Model
         {
             return $this->belongsTo(Consumos::class, 'id_consumo');
         }
+
+  
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table ->date('fecha_factura');
             $table ->date('fecha_maxima');
             $table ->string('estado_servicio');
+            $table ->integer('meses_mora');
         });
 
         //Añadimos el id_planilla a la tabla de "pagos"
