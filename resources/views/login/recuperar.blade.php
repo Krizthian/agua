@@ -11,8 +11,8 @@
 <main class="form-signin w-100 m-auto">
   <form action="{{route('login.RecuperarProcesar')}}" method="POST" >
     @csrf
-    <label for="email">Correo Electronico</label>
-      <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu correo electronico" required>
+    <label for="email">Correo Electrónico</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu correo electrónico" required>
     <br>
     <button class="btn btn-success w-100 py-2" type="submit">Enviar</button>
     <br>

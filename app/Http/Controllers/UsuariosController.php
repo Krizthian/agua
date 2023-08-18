@@ -72,7 +72,7 @@ class UsuariosController extends Controller
                     'cedula.numeric' => 'El campo cédula debe contener números',
                 //Mensajes de error de email
                     'email.unique' => 'Este correo ya se encuentra registrado y asociado a un usuario',     
-                    'email.email' => 'El campo correo debe contener un correo electronico',     
+                    'email.email' => 'El campo correo debe contener un correo electrónico',     
                 //Mensajes de error de teléfono
                     'telefono.numeric' => 'El campo teléfono debe contener números',
             ]);
@@ -118,7 +118,7 @@ class UsuariosController extends Controller
             //Mensajes de error de cédula
                 'cedula.numeric' => 'El campo cédula debe contener números',
             //Mensajes de error de email
-                'email.email' => 'El campo correo debe contener un correo electronico',     
+                'email.email' => 'El campo correo debe contener un correo electrónico',     
             //Mensajes de error de teléfono
                 'telefono.numeric' => 'El campo teléfono debe contener números',
         ]);

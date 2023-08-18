@@ -58,7 +58,7 @@
             </select></center>
           </div>  
         <div class="col-md-6 mb-2">
-            <label>Correo Electronico:</label><center><input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$usuariosItem->email}}" placeholder="{{$usuariosItem->email}}" required></input></center>
+            <label>Correo Electrónico:</label><center><input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$usuariosItem->email}}" placeholder="{{$usuariosItem->email}}" required></input></center>
           </div>  
         <div class="col-md-6 mb-2">
             <label>Teléfono:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$usuariosItem->telefono)}}" placeholder="{{$usuariosItem->telefono}}" required></input></center>

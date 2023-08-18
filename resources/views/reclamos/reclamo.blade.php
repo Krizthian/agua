@@ -48,7 +48,7 @@
               <th scope="col"># Planilla</th>
               <th scope="col">Cliente</th>
               <th scope="col">Fecha de reclamo</th>
-              <th scope="col">Correo Electronico</th>
+              <th scope="col">Correo Electrónico</th>
               <th scope="col">Teléfono</th>
               <th scope="col">Motivo del reclamo</th>
               <th scope="col">Estado del reclamo</th>

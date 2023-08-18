@@ -71,7 +71,7 @@ class LoginController extends Controller
                 ]);
         //Recibimos las variables desde el formulario anterior
             $email = $campos_validados['email'];
-        // Realizamos la consulta para encontrar el usuario asociado al correcto electronico
+        // Realizamos la consulta para encontrar el usuario asociado al correcto electrónico
             $emailEncontrado = Usuarios::where('email', $email)->first();
 
         //Iniciamos el proceso de recuperacion de credenciales
@@ -87,7 +87,7 @@ class LoginController extends Controller
                 //Almacenamos la id en una variable
                     $id_usuarioRecuperar = $emailEncontrado->id;
 
-                //Enviamos el correo electronico
+                //Enviamos el correo electrónico
                     Mail::to($email)->send(new RecuperacionContraseña($token, $id_usuarioRecuperar));
             }
           } 

@@ -89,9 +89,9 @@ class ReclamosController extends Controller
                 'numero_medidor.numeric' => 'El numero de medidor debe ser un valor numérico',
                 'numero_planilla.required' => 'El numero de planilla es un campo obligatorio',
                 'numero_planilla.numeric' => 'El numero de planilla debe ser un valor numérico',
-                'email.required' => 'El correo electronico es un campo obligatorio',
+                'email.required' => 'El correo electrónico es un campo obligatorio',
                 'telefono.required' => 'El telefóno es un campo obligatorio',
-                'motivo.required' => 'El correo electronico es un campo obligatorio',
+                'motivo.required' => 'El correo electrónico es un campo obligatorio',
             ]);           
         //Comprobamos si los campos estan validados
              if ($campos_validados) {
