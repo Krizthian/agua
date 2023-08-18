@@ -72,7 +72,7 @@
     @if(isset($resultados))
          <!--INICIO TABLA CON DATOS-->
       <div class="table-responsive">
-        <table class="table-hover table-responsive table table-bordered table-striped table-sm">
+        <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
               <th scope="col">Planilla</th>
@@ -123,19 +123,15 @@
           @endif  
         @endif
         <!--FIN DE MENSAJE DE ALERTA-->
-
-        <!--BOTON DE IMPRIMIR-->
-        <div class="col-md-12 bg-light text-right"><button title="Imprimir" class="btn btn-info float-end" type="button" name="imprimir" value="Imprimir" onclick="window.print();">Imprimir <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
-        <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
-        <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
-        </svg></button></div>
-        <!--FIN DE BOTON DE IMPRIMIR-->
         <br>
        <!--INICIO DE BANNER DE RECLAMO-->
         @isset ($pagosConsultaItem)
           <a href="{{route('reclamos.create', $pagosConsultaItem)}}" title="Ingresar un reclamo"><center><img class="img-fluid" src="{{url('img/banners/banner_reclamo.png')}}" alt="Ingresar un reclamo"></center></a>
        @endisset
         <br>  
+        <!--SCRIPT DATATABLE-->
+          <script src="{{url('js/main_home.js')}}"></script>
+        <!--FIN DE SCRIPT DATATABLE-->
         <!--FIN DE BANNER DE RECLAMO-->
     @endif
 
