@@ -75,14 +75,16 @@ class ReclamosController extends Controller
             $fecha_reclamo = date("Y-m-d");
         //Validamos los campos recibidos
              $campos_validados = request()->validate([
-                'nombre' => 'required',
-                'apellido' => 'required',
+                'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
+                'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'numero_medidor' => 'required|numeric',
                 'numero_planilla' => 'required|numeric',
                 'email' => 'required',
-                'telefono' => 'required',
+                'telefono' => 'required|numeric',
                 'motivo' => 'required',
             ],[
+                'nombre.regex' => 'El campo nombre debe contener texto',
+                'apellido.regex' => 'El campo apellido debe contener texto',                 
                 'nombre.required' => 'El nombre es un campo obligatorio',
                 'apellido.required' => 'El apellido es un campo obligatorio',
                 'numero_medidor.required' => 'El numero de medidor es un campo obligatorio',
@@ -90,7 +92,8 @@ class ReclamosController extends Controller
                 'numero_planilla.required' => 'El numero de planilla es un campo obligatorio',
                 'numero_planilla.numeric' => 'El numero de planilla debe ser un valor numérico',
                 'email.required' => 'El correo electrónico es un campo obligatorio',
-                'telefono.required' => 'El telefóno es un campo obligatorio',
+                'telefono.required' => 'El teléfono es un campo obligatorio',
+                'telefono.numeric' => 'El campo de teléfono debe contener numeros',
                 'motivo.required' => 'El correo electrónico es un campo obligatorio',
             ]);           
         //Comprobamos si los campos estan validados

@@ -37,19 +37,19 @@
               @endif
             <!--FIN DE MENSAJES DE ERROR-->  
           <div class="col-md-6 mb-2">
-            <label>Nombre del cliente:</label><center><input type="text" class="form-control" name="nombre" placeholder="Ej. Arturo" required></input></center>
+            <label>Nombre del cliente:</label><center><input type="text" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre')}}" name="nombre" placeholder="Ej. Arturo" required></input></center>
           </div>  
           <div class="col-md-6 mb-2">
-            <label>Apellido del cliente:</label><center><input type="text" class="form-control" name="apellido" placeholder="Ej. Cueva" required></input></center>
+            <label>Apellido del cliente:</label><center><input type="text" class="form-control @error('apellido') is-invalid @enderror" value="{{old('apellido')}}" name="apellido" placeholder="Ej. Cueva" required></input></center>
           </div>  
           <div class="col-md-6 mb-2">
-            <label>Cédula del cliente:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" placeholder="Ej. 0705558887" required></input></center>
+            <label>Cédula del cliente:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" value="{{old('cedula')}}" name="cedula" placeholder="Ej. 0705558887" required></input></center>
           </div> 
           <div class="col-md-6 mb-2">
-            <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" placeholder="Ej. Avenida del Ejercito" required></input></center>
+            <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" value="{{old('direccion')}}" placeholder="Ej. Avenida del Ejercito" required></input></center>
            </div> 
            <div class="col-mb-12">
-            <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" placeholder="Ej. 2949888" required></input></center>
+            <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" value="{{old('telefono')}}" name="telefono" placeholder="Ej. 2949888" required></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
           <br>

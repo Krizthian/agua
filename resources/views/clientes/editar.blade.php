@@ -35,16 +35,16 @@
          <form action="{{route('clientes.update', $clientesItem)}}" method="POST" class="row g3">
          	@csrf @method('PATCH') 
         <div class="col-md-6 mb-2">
-            <label>Nombre del cliente:</label><center><input type="text" class="form-control" name="nombre" value="{{$clientesItem->nombre}}" placeholder="{{$clientesItem->nombre}}" required></input></center>
+            <label>Nombre del cliente:</label><center><input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{old('nombre',$clientesItem->nombre)}}" placeholder="{{$clientesItem->nombre}}" required></input></center>
         </div> 
        <div class="col-md-6 mb-2">
-            <label>Apellido del cliente:</label><center><input type="text" class="form-control" name="apellido" value="{{$clientesItem->apellido}}" placeholder="{{$clientesItem->apellido}}" required></input></center>
+            <label>Apellido del cliente:</label><center><input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{old('apellido',$clientesItem->apellido)}}"  placeholder="{{$clientesItem->apellido}}" required></input></center>
         </div> 
         <div class="col-md-6 mb-2">
             <label>Cédula del cliente:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{old('cedula',$clientesItem->cedula)}}" placeholder="{{$clientesItem->cedula}}" required></input></center>
         </div>
         <div class="col-md-6 mb-2">
-            <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" value="{{$clientesItem->direccion}}" placeholder="{{$clientesItem->direccion}}" required></input></center>
+            <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" value="{{$clientesItem->direccion}}" value="{{old('direccion',$clientesItem->direccion)}}" placeholder="{{$clientesItem->direccion}}" required></input></center>
         </div>
         <div class="col-mb-12">
             <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$clientesItem->telefono)}}" placeholder="{{$clientesItem->telefono}}" required></input></center>

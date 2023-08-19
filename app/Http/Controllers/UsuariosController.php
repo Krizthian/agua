@@ -58,13 +58,16 @@ class UsuariosController extends Controller
             $campos_validados = request()->validate([
                 'usuario' => 'required|unique:usuarios',
                 'password' => 'required',
-                'nombre' => 'required',
-                'apellido' => 'required',
+                'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
+                'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'cedula' => 'required|unique:usuarios|numeric',
                 'rol' => 'required',
                 'email' => 'required|email|unique:usuarios',
                 'telefono' => 'required|numeric',
             ],[
+                //Mensajes de error de nombres
+                    'nombre.regex' => 'El campo nombre debe contener texto',
+                    'apellido.regex' => 'El campo apellido debe contener texto',
                 //Mensajes de error de usuario
                     'usuario.unique' => 'Este usuario ya se encuentra registrado',
                 //Mensajes de error de cédula
@@ -108,13 +111,16 @@ class UsuariosController extends Controller
             $campos_validados = request()->validate([
                 'usuario' => 'required',
                 'password' => 'required',
-                'nombre' => 'required',
-                'apellido' => 'required',
+                'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
+                'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'cedula' => 'required|numeric',
                 'rol' => 'required',
                 'email' => 'required|email',
                 'telefono' => 'required|numeric',
         ],[
+            //Mensajes de error de nombres
+                'nombre.regex' => 'El campo nombre debe contener texto',
+                'apellido.regex' => 'El campo apellido debe contener texto',            
             //Mensajes de error de cédula
                 'cedula.numeric' => 'El campo cédula debe contener números',
             //Mensajes de error de email

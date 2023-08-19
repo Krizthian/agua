@@ -35,19 +35,19 @@
               @endif
           <!--FIN DE MENSAJES DE ERROR-->
            <div class="col-auto">
-            <label>Nombre del cliente:</label><center><input type="text" class="form-control mb-2" name="nombre" value="{{$pagosConsultaItem->cliente->nombre}}"></input></center required>
+            <label>Nombre del cliente:</label><center><input type="text" name="nombre" class="form-control mb-2 @error('nombre') is-invalid @enderror"  value="{{$pagosConsultaItem->cliente->nombre}}"></input></center required>
 
-            <label>Apellido del cliente:</label><center><input type="text" class="form-control mb-2" name="apellido" value="{{$pagosConsultaItem->cliente->apellido}}"></input required></center>
+            <label>Apellido del cliente:</label><center><input type="text" class="form-control mb-2  @error('apellido') is-invalid @enderror" name="apellido" value="{{$pagosConsultaItem->cliente->apellido}}"></input required></center>
 
-            <label>Número de medidor:</label><center><input type="text" class="form-control mb-2" name="numero_medidor" value="{{$pagosConsultaItem->medidor->numero_medidor}}" required></input></center>
+            <label>Número de medidor:</label><center><input type="text" class="form-control mb-2 @error('numero_medidor') is-invalid @enderror" name="numero_medidor" value="{{$pagosConsultaItem->medidor->numero_medidor}}" required></input></center>
 
-            <label>Número de planilla:</label><center><input type="text" class="form-control mb-2" name="numero_planilla" value="{{$pagosConsultaItem->id}}" required></input></center>
+            <label>Número de planilla:</label><center><input type="text" class="form-control mb-2  @error('numero_planilla') is-invalid @enderror" name="numero_planilla" value="{{$pagosConsultaItem->id}}" required></input></center>
 
-            <label>Email:</label><center><input type="text" class="form-control mb-2" name="email" placeholder="Ej. jose@gmail.com" required></input></center>
+            <label>Email:</label><center><input type="text" class="form-control mb-2 @error('email') is-invalid @enderror" name="email" placeholder="Ej. jose@gmail.com" required></input></center>
 
-            <label>Teléfono:</label><center><input type="text" class="form-control mb-2" name="telefono" value="{{$pagosConsultaItem->cliente->telefono}}" required></input></center>
+            <label>Teléfono:</label><center><input type="text" class="form-control mb-2 @error('telefono') is-invalid @enderror" name="telefono" value="{{$pagosConsultaItem->cliente->telefono}}" required></input></center>
 
-            <label>Motivo de reclamo:</label><center><textarea maxlength="255" type="text" class="form-control mb-2" name="motivo" placeholder="Ingrese el motivo del reclamo" required></textarea></center>
+            <label>Motivo de reclamo:</label><center><textarea maxlength="255" type="text" class="form-control mb-2 @error('motivo') is-invalid @enderror" name="motivo" placeholder="Ingrese el motivo del reclamo" required></textarea></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Registrar Reclamo</button></center></div>
           <br>

@@ -65,12 +65,14 @@ class ClientesController extends Controller
     {
         //Validamos los valores recibidos
         $campos_validados = request()->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
+            'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
+            'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
             'cedula' => 'required|numeric',
             'direccion' => 'required',
             'telefono' => 'required|numeric',
         ],[
+            'nombre.regex' => 'El campo nombre debe contener texto',
+            'apellido.regex' => 'El campo apellido debe contener texto',
             'cedula.numeric' => 'El campo cédula debe contener números',
             'telefono.numeric' => 'El campo teléfono debe contener números',
         ]);
@@ -103,12 +105,14 @@ class ClientesController extends Controller
     {
     //Validamos los valores recibidos
         $campos_validados = request()->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
+            'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
+            'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
             'cedula' => 'required|numeric',
             'direccion' => 'required',
             'telefono' => 'required|numeric',
         ],[
+            'nombre.regex' => 'El campo nombre debe contener texto',
+            'apellido.regex' => 'El campo apellido debe contener texto',            
             'cedula.numeric' => 'El campo cédula debe contener números',
             'telefono.numeric' => 'El campo teléfono debe contener números',
         ]);

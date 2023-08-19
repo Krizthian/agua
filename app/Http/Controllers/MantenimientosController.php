@@ -84,10 +84,11 @@ class MantenimientosController extends Controller
                 $fecha_solicitud = date("Y-m-d"); //Obtenemos la fecha actual
             //Validamos los valores recibidos
             $campos_validados = request()->validate([
-                'responsable_asignado' => 'required',
+                'responsable_asignado' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'estado_mantenimiento' => 'required',
                 'fecha_mantenimiento' => 'required',
             ],[
+                'responsable_asignado.regex' => 'El campo de responsable asignado debe ser de texto',
                 'responsable_asignado.required' => 'El campo de responsable asignado es obligatorio',
                 'estado_mantenimiento.required' => 'El campo de estado de mantenimiento es obligatorio',
                 'fecha_mantenimiento.required' => 'El campo de fecha para mantenimiento es obligatorio',
@@ -135,9 +136,10 @@ class MantenimientosController extends Controller
 
         //Validamos los valores recibidos
             $campos_validados = request()->validate([
-                'responsable_asignado' => 'required',
+                'responsable_asignado' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'estado_mantenimiento' => 'required',
             ],[
+                'responsable_asignado.regex' => 'El campo de responsable asignado debe ser de texto',
                 'responsable_asignado.required' => 'El campo de responsable asignado es obligatorio',
                 'estado_mantenimiento.required' => 'El campo de estado de mantenimiento es obligatorio',
             ]);

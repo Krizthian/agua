@@ -49,7 +49,7 @@
 
             <label>Fecha para mantenimiento:</label><center><input type="date" class="form-control" name="fecha_mantenimiento" value="{{$mantenimientosItem->fecha_mantenimiento}}"></input></center>
 
-            <label>Responsable asignado:</label><center><input type="text" class="form-control" name="responsable_asignado" value="{{$mantenimientosItem->responsable_asignado}}"></input></center>
+            <label>Responsable asignado:</label><center><input type="text" class="form-control @error('responsable_asignado') is-invalid @enderror" name="responsable_asignado" value="{{$mantenimientosItem->responsable_asignado}}"></input></center>
 
 			<label>Estado de mantenimiento:</label><center>
 	            <select class="form-select input-group mb-2" id="estado_mantenimiento" name="estado_mantenimiento" required>
