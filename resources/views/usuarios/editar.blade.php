@@ -35,16 +35,16 @@
          <form action="{{route('usuarios.update', $usuariosItem)}}" method="POST" class="row g3">
          	@csrf @method('PATCH')
           <div class="col-md-6 mb-2">
-            <label>Nombre de Usuario:</label><center><input type="text" class="form-control" name="usuario" value="{{$usuariosItem->usuario}}" placeholder="{{$usuariosItem->usuario}}" required></input></center>
+            <label>Nombre de Usuario:</label><center><input type="text" class="form-control @error('usuario') is-invalid @enderror" name="usuario" value="{{$usuariosItem->usuario}}" placeholder="{{$usuariosItem->usuario}}" required></input></center>
           </div>
           <div class="col-md-6 mb-2">
-            <label>Contraseña:</label><center><input type="text" class="form-control" name="password" value="{{$usuariosItem->password}}" placeholder="{{$usuariosItem->password}}" required></input></center>
+            <label>Contraseña:</label><center><input type="text" class="form-control @error('password') is-invalid @enderror" name="password" value="{{$usuariosItem->password}}" placeholder="{{$usuariosItem->password}}" required></input></center>
           </div>  
           <div class="col-md-6 mb-2">
-            <label>Nombre:</label><center><input type="text" class="form-control" name="nombre" value="{{$usuariosItem->nombre}}" placeholder="{{$usuariosItem->nombre}}" required></input></center>
+            <label>Nombre:</label><center><input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{$usuariosItem->nombre}}" placeholder="{{$usuariosItem->nombre}}" required></input></center>
           </div>  
           <div class="col-md-6 mb-2">
-            <label>Apellido:</label><center><input type="text" class="form-control" name="apellido" value="{{$usuariosItem->apellido}}" placeholder="{{$usuariosItem->apellido}}" required></input></center>
+            <label>Apellido:</label><center><input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{$usuariosItem->apellido}}" placeholder="{{$usuariosItem->apellido}}" required></input></center>
           </div>  
           <div class="col-md-6 mb-2">
             <label>Cédula:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{old('cedula',$usuariosItem->cedula)}}" placeholder="{{$usuariosItem->cedula}}" required></input></center>

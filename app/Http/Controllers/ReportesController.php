@@ -49,15 +49,14 @@ class ReportesController extends Controller
                         $queryDeudores = Planillas::with('cliente', 'medidor')
                                         ->where('meses_mora', '>=', 1)
                                         ->get();
-                       //$queryDeudores = Planillas::where('meses_mora', '>=', 1)->get();  
-                        //Devolvemos los valores        
-                            return view('reportes', compact('queryDeudores'));
+                //Devolvemos los valores        
+                         return view('reportes', compact('queryDeudores'));
+
          /*Obtención de mantenimientos*/               
                  }elseif ($tipo == 'mantenimientos'){
                     $queryMantenimientos = Mantenimientos::with('medidor')
                     ->where('fecha_mantenimiento', 'LIKE', $month_year.'%')
                     ->get();
-
                     //Devolvemos los valores
                         return view('reportes', compact('queryMantenimientos'));
          /*Obtención de reclamos*/               

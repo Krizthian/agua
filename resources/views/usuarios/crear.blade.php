@@ -35,19 +35,19 @@
          <form action="{{route('usuarios.store')}}" method="POST" class="row g3">
          	@csrf
           <div class="col-md-6 mb-2">
-            <label>Nombre de Usuario:</label><center><input type="text" class="form-control @error('usuario') is-invalid @enderror" name="usuario" placeholder="Ej. arturo91" required></input></center>
+            <label>Nombre de Usuario:</label><center><input type="text" class="form-control @error('usuario') is-invalid @enderror" value="{{old('usuario')}}" name="usuario" placeholder="Ej. arturo91" required></input></center>
           </div>
           <div class="col-md-6 mb-2">
-            <label>Contraseña:</label><center><input type="text" class="form-control" name="password" placeholder="Ej. pw123" required></input></center>
+            <label>Contraseña:</label><center><input type="text" class="form-control" name="password" placeholder="Ej. pw123" value="{{old('password')}}" required></input></center>
           </div>
           <div class="col-md-6 mb-2">
-            <label>Nombre:</label><center><input type="text" class="form-control" name="nombre" placeholder="Ej. Arturo" required></input></center>
+            <label>Nombre:</label><center><input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" placeholder="Ej. Arturo" value="{{old('nombre')}}" required></input></center>
           </div>
           <div class="col-md-6 mb-2">
-            <label>Apellido:</label><center><input type="text" class="form-control" name="apellido" placeholder="Ej. Cueva" required></input></center>
+            <label>Apellido:</label><center><input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" placeholder="Ej. Cueva" value="{{old('apellido')}}" required></input></center>
           </div>
           <div class="col-md-6 mb-2">
-            <label>Cédula:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" placeholder="Ej. 0705559639" required></input></center>
+            <label>Cédula:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{old('cedula')}}" placeholder="Ej. 0705559639" required></input></center>
             </div>
           <div class="col-md-6 mb-2">
             <label>Rol:</label><center><select class="form-select" name="rol" required>
@@ -58,10 +58,10 @@
             </select></center>
             </div>
           <div class="col-md-6 mb-2">
-            <label>Correo Electrónico:</label><center><input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Ej. arturo@portovelo.gob.ec" required></input></center>
+            <label>Correo Electrónico:</label><center><input type="email" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Ej. arturo@portovelo.gob.ec" required></input></center>
             </div>
           <div class="col-md-6 mb-2">
-            <label>Teléfono:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" placeholder="2949888" required></input></center>
+            <label>Teléfono:</label><center><input value="{{old('telefono')}}" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" placeholder="2949888" required></input></center>
           </div>
           <br><br><br><br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
