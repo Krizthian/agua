@@ -8,7 +8,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Panel de Gestión</title>
       <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
       <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.1/css/buttons.bootstrap4.min.css">
       
@@ -34,6 +33,7 @@
           <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>     
     <!--FIN DE SWEETALERTS-->
     <link rel="stylesheet" href="{{url('css/footer.css')}}">
+    <link rel="stylesheet" href="{{url('css/blanco.css')}}">
   </head>
   <body class="bg-body-tertiary">
     <header>

@@ -1,5 +1,19 @@
 @extends('layouts.layout_panel')
-<title>Gestión de Reportes | Sistema de Consultas de Valores a Pagar del Agua</title>
+    @if(isset($query))
+        <title>Reporte de Pagos | Sistema de Consultas de Valores a Pagar del Agua</title>
+    @elseif(isset($queryDeudores))
+        <title>Reporte de Deudores | Sistema de Consultas de Valores a Pagar del Agua</title>
+    @elseif(isset($queryMantenimientos))
+        <title>Reporte de Mantenimientos | Sistema de Consultas de Valores a Pagar del Agua</title>
+    @elseif(isset($queryReclamos))
+        <title>Reporte de Reclamos | Sistema de Consultas de Valores a Pagar del Agua</title>
+    @elseif(isset($queryMedidoresInactivos))
+        <title>Reporte de Medidores Inactivos | Sistema de Consultas de Valores a Pagar del Agua</title>
+    @elseif(isset($queryMedidoresActivos))
+        <title>Reporte de Medidores Activos | Sistema de Consultas de Valores a Pagar del Agua</title>
+    @else
+        <title>Gestión de Reportes | Sistema de Consultas de Valores a Pagar del Agua</title>
+    @endif
 @section('content')
   <style>
         /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (REPORTES)*/
@@ -102,7 +116,7 @@
     <!--INICIO TABLA CON DATOS-->
 
   <!--INICIO DE VALORES DE REPORTE DE PAGOS-->          
-    @if($query)  
+    @if($query)
      <div class="table-responsive"> 
       <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
