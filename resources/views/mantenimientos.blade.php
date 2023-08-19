@@ -52,6 +52,22 @@
             </div>
           @endif  
         <!--FIN DE MENSAJE DE RESULTADOS-->
+  <!--INICIO DE MENSAJE DE RESULTADOS DE ACTUALIZACION-->
+          @if(session('resultado_actualizacion'))
+            <div class="alert alert-success alert-dismissible fade show">
+                {{session('resultado_actualizacion')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+          @endif  
+  <!--FIN DE MENSAJE DE RESULTADOS DE ACTUALIZACION-->
+    <!--INICIO DE MENSAJE DE RESULTADOS DE ACTUALIZACION DE ESTADO-->
+          @if(session('resultado'))
+            <div class="alert alert-success alert-dismissible fade show">
+                {{session('resultado')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+          @endif  
+  <!--FIN DE MENSAJE DE RESULTADOS DE ACTUALIZACION DE ESTADO-->
         <!--INICIO DE TABLA CON VALORES-->
        <div class="table-responsive"> 
         <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">

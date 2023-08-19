@@ -52,15 +52,15 @@ class MantenimientosController extends Controller
             //Cambiamos el estado del mantenimiento a "completado"
                 if ($mantenimientosItem->estado_mantenimiento == "en proceso") {
                     Mantenimientos::where('id', '=', $mantenimientosItem->id)->update(['estado_mantenimiento' => 'completado']);
-                    return redirect()->back()->with('resultado', 'Se ha actualizado el estado del medidor '. ''. $mantenimientosItem->medidor->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'mantenimientos'
+                    return redirect()->back()->with('resultado', 'Se ha actualizado el estado del mantenimiento al medidor '. ''. $mantenimientosItem->medidor->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'mantenimientos'
             //Cambiamos el estado del mantenimiento a "en proceso"
                 }elseif ($mantenimientosItem->estado_mantenimiento == "solicitado") {
                     Mantenimientos::where('id', '=', $mantenimientosItem->id)->update(['estado_mantenimiento' => 'en proceso']);
-                    return redirect()->back()->with('resultado', 'Se ha actualizado el estado del medidor '. ''. $mantenimientosItem->medidor->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'mantenimientos'
+                    return redirect()->back()->with('resultado', 'Se ha actualizado el estado del mantenimiento al medidor '. ''. $mantenimientosItem->medidor->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'mantenimientos'
             //Cambiamos el estado del mantenimiento a "solicitado"        
                 }elseif ($mantenimientosItem->estado_mantenimiento == "completado" || $mantenimientosItem->estado_mantenimiento == "en proceso"){
                     Mantenimientos::where('id', '=', $mantenimientosItem->id)->update(['estado_mantenimiento' => 'solicitado']);
-                    return redirect()->back()->with('resultado', 'Se ha actualizado el estado del medidor '. ''. $mantenimientosItem->medidor->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'mantenimientos' 
+                    return redirect()->back()->with('resultado', 'Se ha actualizado el estado del mantenimiento al medidor '. ''. $mantenimientosItem->medidor->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'mantenimientos' 
                 }
     }
 
@@ -152,7 +152,7 @@ class MantenimientosController extends Controller
                         'estado_mantenimiento' => $campos_validados['estado_mantenimiento']
                     ]);
         //Redireccionamos
-            return redirect()->route('mantenimientos.index')->with('resultado', 'Se ha actualizado la información de solicitud de mantenimiento correctamente'); 
+            return redirect()->route('mantenimientos.index')->with('resultado_actualizacion', 'Se ha actualizado la información de solicitud de mantenimiento correctamente'); 
 
             }else{
                 return redirect()->back()->withErrors($campos_validados)->withInput();
