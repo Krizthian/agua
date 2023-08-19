@@ -11,6 +11,7 @@
     <!--ARCHIVO DE CSS PERSONALIZADO-->
     <link rel="stylesheet" href="{{url('css/custom.css')}}">
     <link rel="stylesheet" href="{{url('css/footer.css')}}">
+    <link rel="stylesheet" href="{{url('css/blanco.css')}}">
     <!--DATATABLE-->   
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -29,7 +30,7 @@
 
   	<!--INICIO DE CABECERA-->
     <header>
-		<nav class="navbar navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
+		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary blanco" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
     <img class="img-fluid" src="{{url('img/logo.png')}}" width="170" height="50" alt="GAD DE PORTOVELO logo">
@@ -79,9 +80,7 @@
         </div></div>
   </div>
 </nav>
-<br>
-<br>
-<br>
+<br><br><br><br><br><br>
 </header>
 <!-- FIN DE CABECERA-->
 

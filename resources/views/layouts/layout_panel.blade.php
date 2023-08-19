@@ -37,7 +37,7 @@
   </head>
   <body class="bg-body-tertiary">
     <header>
-		<nav class="navbar navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
+		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary blanco" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/panel">
     <img class="img-fluid" src="{{url('img/logo.png')}}" width="170" height="50" alt="GAD DE PORTOVELO logo">
@@ -45,7 +45,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Desplegar navegación">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
        <li class="nav-item">
@@ -100,9 +100,7 @@
            </div>
   </div>
 </nav>
-<br>
-<br>
-<br>
+<br><br><br><br><br><br>
 </header>
 
 <!--CONTENIDO-->
