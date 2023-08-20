@@ -1,6 +1,5 @@
 @extends('layouts.layout_panel')
 <title>Gestión de Planillas | Sistema de Consultas de Valores a Pagar del Agua</title>
-
 @section('content')
 <style>
   /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (PAGINA DE INICIO)*/
@@ -21,8 +20,7 @@
       --bs-bg-opacity: 1;
       background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
 
-    }
-    
+    }   
 </style>
 <center><h1 class="display-4">GESTIÓN DE PLANILLAS</h1></center>
     <div class="container">
@@ -202,7 +200,6 @@
             @endif
           </tbody>
         </table>
-
       </div>
           {{$valores_pagar->links('pagination::bootstrap-4')}}
       <!--FIN TABLA CON DATOS-->
