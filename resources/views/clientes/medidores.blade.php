@@ -49,8 +49,8 @@
               <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="/medidores/busqueda?valores={{$medidoresItem->numero_medidor}}">{{$medidoresItem->numero_medidor}}</a></td>
               <td class="td_acciones">{{$medidoresItem->fecha_instalacion}}</td>
               <td class="td_acciones">{{$medidoresItem->ubicacion}}</td>
-              @isset($consumoMedidorItem->consumo)
-              <td class="td_acciones">{{$consumoMedidorItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
+              @isset($medidoresItem->consumo)
+              <td class="td_acciones">{{$medidoresItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
               @else
                <td class="td_acciones text-muted">N/D</td>
               @endisset
