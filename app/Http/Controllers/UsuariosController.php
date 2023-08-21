@@ -60,7 +60,7 @@ class UsuariosController extends Controller
                 'password' => 'required',
                 'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
-                'cedula' => 'required|unique:usuarios|numeric|min:10|max:10|',
+                'cedula' => 'required|unique:usuarios|numeric|digits_between:10,10',
                 'rol' => 'required',
                 'email' => 'required|email|unique:usuarios',
                 'telefono' => 'required|numeric',
@@ -73,8 +73,7 @@ class UsuariosController extends Controller
                 //Mensajes de error de cédula
                     'cedula.unique' => 'Esta cédula ya se encuentra registrada y asociada a un usuario',
                     'cedula.numeric' => 'El campo cédula debe contener números',
-                    'cedula.min' => 'El campo cédula debe contener al menos 10 caracteres',
-                    'cedula.max' => 'El campo cédula no debe exceder los 10 caracteres',                 
+                    'cedula.digits_between' => 'El campo cédula debe contener 10 caracteres',            
                 //Mensajes de error de email
                     'email.unique' => 'Este correo ya se encuentra asociado a un usuario',     
                     'email.email' => 'El campo correo debe contener un correo electrónico',     
@@ -115,7 +114,7 @@ class UsuariosController extends Controller
                 'password' => 'required',
                 'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
-                'cedula' => 'required|numeric|unique:usuarios,cedula,' . $usuariosItem->id,
+                'cedula' => 'required|numeric|unique:usuarios,cedula|digits_between:10,10,' . $usuariosItem->id,
                 'rol' => 'required',
                 'email' => 'required|email|unique:usuarios,email,' . $usuariosItem->id,
                 'telefono' => 'required|numeric',
@@ -131,7 +130,7 @@ class UsuariosController extends Controller
             //Mensajes de error de cédula
                 'cedula.numeric' => 'El campo cédula debe contener números',
                 'cedula.unique' => 'Esta cédula ya se encuentra asociada a un usuario',
-
+                 'cedula.digits_between' => 'El campo cédula debe contener 10 caracteres',  
             //Mensajes de error de email
                 'email.email' => 'El campo correo debe contener un correo electrónico',     
                 'email.unique' => 'Este correo ya se encuentra asociado a un usuario',     

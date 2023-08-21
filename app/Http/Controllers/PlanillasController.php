@@ -197,7 +197,7 @@ class PlanillasController extends Controller
     /**
     * Enviar la alerta de pago pendiente al cliente
     */
-    public function notificar (Request $request)
+    public function notificar(Request $request)
     {
         //Validamos valores
             $mensaje = request()->validate([

@@ -67,7 +67,7 @@ class ClientesController extends Controller
         $campos_validados = request()->validate([
             'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
             'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
-            'cedula' => 'required|numeric|min:10|max:10|unique:clientes',
+            'cedula' => 'required|numeric|digits_between:10,10|unique:clientes',
             'direccion' => 'required',
             'email' => 'required|email|unique:clientes',
             'telefono' => 'required|numeric',
@@ -78,8 +78,7 @@ class ClientesController extends Controller
             'cedula.numeric' => 'El campo cédula debe contener números',
             'cedula.required' => 'El campo cédula es obligatorio',
             'cedula.unique' => 'Esta cédula ya se encuentra asociada a un cliente',
-            'cedula.min' => 'El campo cédula debe contener al menos 10 caracteres',
-            'cedula.max' => 'El campo cédula no debe exceder los 10 caracteres',
+            'cedula.digits_between' => 'El campo cédula debe contener 10 caracteres',            
             'telefono.numeric' => 'El campo teléfono debe contener números',
 
             'email.unique' => 'Este correo electrónico ya se encuentra asociado a un cliente',
@@ -117,7 +116,7 @@ class ClientesController extends Controller
         $campos_validados = request()->validate([
             'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
             'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
-            'cedula' => 'required|numeric|min:10|max:10|unique:clientes,cedula,' . $clientesItem->id,
+            'cedula' => 'required|numeric|digits_between:10,10|unique:clientes,cedula,' . $clientesItem->id,
             'direccion' => 'required',
             'email' => 'required|email|unique:clientes,email,' . $clientesItem->id,
             'telefono' => 'required|numeric',
@@ -127,8 +126,7 @@ class ClientesController extends Controller
             'cedula.numeric' => 'El campo cédula debe contener números',
             'cedula.required' => 'El campo cédula es obligatorio',
             'cedula.unique' => 'Esta cédula ya se encuentra asociada a un cliente', 
-            'cedula.min' => 'El campo cédula debe contener al menos 10 caracteres',
-            'cedula.max' => 'El campo cédula no debe exceder los 10 caracteres',
+            'cedula.digits_between' => 'El campo cédula debe contener 10 caracteres',           
             'telefono.numeric' => 'El campo teléfono debe contener números',
 
             'email.unique' => 'Este correo electrónico ya se encuentra asociado a un cliente',
