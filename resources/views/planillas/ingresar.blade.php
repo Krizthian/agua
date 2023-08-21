@@ -76,9 +76,10 @@
           <div class="col-md-12 mb-2"> 
             <!--INICIO DE VALOR A PAGAR-->
               <label for="valor_nuevo">Valor a pagar:</label><div class="input-group mb-2">
+                <button type="button" title="Rellenar con valor a pagar" class="btn btn-info" id="rellenarValor"><i class="fa-solid fa-file-invoice-dollar"></i></button>
                 <span class="input-group-text">$</span>
                 <input type="text" id="valor_nuevo" class="form-control @error('valor_nuevo') is-invalid @enderror" name="valor_nuevo" value="{{old('valor_nuevo')}}" placeholder="Ingrese el valor a pagar" aria-label="Monto" required>
-              <button type="button" title="Rellenar con valor a pagar" class="btn btn-info" id="rellenarValor"><i class="fa-solid fa-file-invoice-dollar"></i></button></div>
+              </div>
             <!--FIN DE VALOR A PAGAR-->
           <br>
               <div class="col-md-12 text-right">
