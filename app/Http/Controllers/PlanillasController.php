@@ -10,6 +10,9 @@ use App\Models\Consumos; //Importamos el modelo de la tabla 'consumos'
 use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
 use App\Models\Tarifas; //Importamos el modelo de la tabla 'pagos'
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotificacionPlanilla; //Importamos la propiedad para el envio de correos
+
 class PlanillasController extends Controller
 {
     /**
@@ -189,6 +192,36 @@ class PlanillasController extends Controller
 
          //Retornamos los valores
             return view('panel', compact('valores_pagar'));   
+    }
+
+    /**
+    * Enviar la alerta de pago pendiente al cliente
+    */
+    public function notificar (Request $request)
+    {
+        //Validamos valores
+            $mensaje = request()->validate([
+                'cliente_planilla_id' => 'required',
+                'cliente_planilla_valorActual' => 'required',
+                'cliente_planilla_fechaFactura' => 'required',
+                'cliente_planilla_fechaMaxima' => 'required',
+                'cliente_medidor' => 'required',
+                'cliente_cedula' => 'required',
+                'cliente_nombre' => 'required',
+                'cliente_apellido' => 'required',
+                'cliente_email' => 'required'
+            ]);
+
+        //Antes de enviar el correo verificamos si hay valores a notificar
+            if ($request->input('cliente_planilla_valorActual') > 0) {
+                //Enviamos el correo electronico    
+                Mail::to($request->input('cliente_email'))->queue(new NotificacionPlanilla($mensaje));
+                    //Redireccionamos de vuelta a la vista
+                    return redirect()->route('panel.index')->with('resultado_notificacion', 'Notificación enviada');        
+                }else{
+                    //Redireccionamos de vuelta a la vista
+                    return redirect()->route('panel.index')->with('resultado_validacionNotificacion', 'No se puede notificar'); 
+                }
     }
 
     /**

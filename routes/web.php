@@ -64,7 +64,9 @@ Route::view('/dashboard', 'dashboard')->name('dashboard');
 		//Devolver el formulario de ingreso de pago
 			Route::get('/panel/planillas/{valoresPagarItem}', [PlanillasController::class, 'edit'])->name('planillas.ingresar');
 			//Ingresar pago
-				Route::patch('/panel/{valoresPagarItem}', [PlanillasController::class, 'update'])->name('planillas.update');		
+				Route::patch('/panel/{valoresPagarItem}', [PlanillasController::class, 'update'])->name('planillas.update');
+		//Notificar valores a pagar
+			Route::post('panel/notificar', [PlanillasController::class, 'notificar'])->name('planillas.notificar');			
 		//Inhabilitar/Habilitar servicio	
 			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [PlanillasController::class, 'inhabilitar'])->name('panel.inhabilitar');
 

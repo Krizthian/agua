@@ -48,8 +48,10 @@
           <div class="col-md-6 mb-2">
             <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" value="{{old('direccion')}}" placeholder="Ej. Avenida del Ejercito" required></input></center>
            </div> 
-           <div class="col-mb-12">
-            <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" value="{{old('telefono')}}" name="telefono" placeholder="Ej. 2949888" required></input></center>
+        <div class="col-mb-12">
+            <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" value="{{old('telefono')}}" name="telefono" placeholder="Ej. 2949888" required></input></center></div> 
+         <div class="col-mb-12">
+            <label>Correo Electrónico:</label><center><input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" placeholder="Ej. mbermeo@gmail.com" required></input></center>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
           <br>

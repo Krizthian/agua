@@ -67,14 +67,24 @@ class ClientesController extends Controller
         $campos_validados = request()->validate([
             'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
             'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
-            'cedula' => 'required|numeric',
+            'cedula' => 'required|numeric|min:10|max:10|unique:clientes',
             'direccion' => 'required',
+            'email' => 'required|email|unique:clientes',
             'telefono' => 'required|numeric',
+
         ],[
             'nombre.regex' => 'El campo nombre debe contener texto',
             'apellido.regex' => 'El campo apellido debe contener texto',
             'cedula.numeric' => 'El campo cédula debe contener números',
+            'cedula.required' => 'El campo cédula es obligatorio',
+            'cedula.unique' => 'Esta cédula ya se encuentra asociada a un cliente',
+            'cedula.min' => 'El campo cédula debe contener al menos 10 caracteres',
+            'cedula.max' => 'El campo cédula no debe exceder los 10 caracteres',
             'telefono.numeric' => 'El campo teléfono debe contener números',
+
+            'email.unique' => 'Este correo electrónico ya se encuentra asociado a un cliente',
+            'email.email' => 'El campo de correo electrónico debe contener un correo electrónico',
+            'email.required' => 'El campo de correo electrónico es obligatorio',
         ]);
         if ($campos_validados) {
         //Insertamos los valores en la tabla
@@ -107,24 +117,34 @@ class ClientesController extends Controller
         $campos_validados = request()->validate([
             'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
             'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
-            'cedula' => 'required|numeric',
+            'cedula' => 'required|numeric|min:10|max:10|unique:clientes,cedula,' . $clientesItem->id,
             'direccion' => 'required',
+            'email' => 'required|email|unique:clientes,email,' . $clientesItem->id,
             'telefono' => 'required|numeric',
         ],[
             'nombre.regex' => 'El campo nombre debe contener texto',
             'apellido.regex' => 'El campo apellido debe contener texto',            
             'cedula.numeric' => 'El campo cédula debe contener números',
+            'cedula.required' => 'El campo cédula es obligatorio',
+            'cedula.unique' => 'Esta cédula ya se encuentra asociada a un cliente', 
+            'cedula.min' => 'El campo cédula debe contener al menos 10 caracteres',
+            'cedula.max' => 'El campo cédula no debe exceder los 10 caracteres',
             'telefono.numeric' => 'El campo teléfono debe contener números',
+
+            'email.unique' => 'Este correo electrónico ya se encuentra asociado a un cliente',
+            'email.email' => 'El campo de correo electrónico debe contener un correo electrónico',
+            'email.required' => 'El campo de correo electrónico es obligatorio',
         ]);
         if ($campos_validados) {
             //Realizamos la consulta Eloquent
                 Clientes::where('id', $clientesItem->id)
                         ->update([
-                            'nombre' => request('nombre'),
-                            'apellido' => request('apellido'),
-                            'cedula' => request('cedula'),
-                            'direccion' => request('direccion'),
-                            'telefono' => request('telefono'),
+                            'nombre' => $campos_validados['nombre'],
+                            'apellido' => $campos_validados['apellido'],
+                            'cedula' => $campos_validados['cedula'],
+                            'direccion' => $campos_validados['direccion'],
+                            'email' => $campos_validados['email'],
+                            'telefono' => $campos_validados['telefono'],
                         ]);
             //Redireccionamos 
                 return redirect()->route('clientes.index')->with('resultado_edicion', 'El Cliente se ha actualizado correctamente');

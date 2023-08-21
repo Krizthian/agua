@@ -35,30 +35,30 @@
          <form action="{{route('usuarios.update', $usuariosItem)}}" method="POST" class="row g3">
          	@csrf @method('PATCH')
           <div class="col-md-6 mb-2">
-            <label>Nombre de Usuario:</label><center><input type="text" class="form-control @error('usuario') is-invalid @enderror" name="usuario" value="{{$usuariosItem->usuario}}" placeholder="{{$usuariosItem->usuario}}" required></input></center>
+            <label>Nombre de Usuario:</label><center><input type="text" class="form-control @error('usuario') is-invalid @enderror" name="usuario" value="{{old('usuario',$usuariosItem->usuario)}}" placeholder="{{$usuariosItem->usuario}}" required></input></center>
           </div>
           <div class="col-md-6 mb-2">
-            <label>Contraseña:</label><center><input type="text" class="form-control @error('password') is-invalid @enderror" name="password" value="{{$usuariosItem->password}}" placeholder="{{$usuariosItem->password}}" required></input></center>
+            <label>Contraseña:</label><center><input type="text" class="form-control @error('password') is-invalid @enderror" name="password" value="{{old('password',$usuariosItem->password)}}" placeholder="{{$usuariosItem->password}}" required></input></center>
           </div>  
           <div class="col-md-6 mb-2">
-            <label>Nombre:</label><center><input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{$usuariosItem->nombre}}" placeholder="{{$usuariosItem->nombre}}" required></input></center>
+            <label>Nombre:</label><center><input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{old('nombre',$usuariosItem->nombre)}}" placeholder="{{$usuariosItem->nombre}}" required></input></center>
           </div>  
           <div class="col-md-6 mb-2">
-            <label>Apellido:</label><center><input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{$usuariosItem->apellido}}" placeholder="{{$usuariosItem->apellido}}" required></input></center>
+            <label>Apellido:</label><center><input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{old('apellido',$usuariosItem->apellido)}}" placeholder="{{$usuariosItem->apellido}}" required></input></center>
           </div>  
           <div class="col-md-6 mb-2">
             <label>Cédula:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{old('cedula',$usuariosItem->cedula)}}" placeholder="{{$usuariosItem->cedula}}" required></input></center>
           </div>  
           <div class="col-md-6 mb-2">
             <label>Rol:</label><center><select class="form-select" name="rol" required>
-              <option value="{{$usuariosItem->rol}}" selected>{{ucfirst($usuariosItem->rol);}}</option>
+              <option value="{{old('rol',$usuariosItem->rol)}}" selected>{{ucfirst($usuariosItem->rol);}}</option>
               <option value="administrador">Administrador</option>
               <option value="personal">Personal</option>  
               <option value="supervisor">Supervisor</option>  
             </select></center>
           </div>  
         <div class="col-md-6 mb-2">
-            <label>Correo Electrónico:</label><center><input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$usuariosItem->email}}" placeholder="{{$usuariosItem->email}}" required></input></center>
+            <label>Correo Electrónico:</label><center><input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email',$usuariosItem->email)}}" placeholder="{{$usuariosItem->email}}" required></input></center>
           </div>  
         <div class="col-md-6 mb-2">
             <label>Teléfono:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$usuariosItem->telefono)}}" placeholder="{{$usuariosItem->telefono}}" required></input></center>

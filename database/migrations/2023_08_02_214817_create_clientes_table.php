@@ -15,8 +15,9 @@ return new class extends Migration
             $table->integer('id', true)->unique();
             $table ->string('nombre');
             $table ->string('apellido');
-            $table ->string('cedula');
+            $table ->string('cedula')->unique();
             $table ->string('direccion');
+            $table-> string('email')->unique();
             $table ->integer('telefono');
         });
 

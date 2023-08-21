@@ -69,6 +69,24 @@
         @endif  
         <!--FIN DE MENSAJE DE RESULTADO DE CREACION DE PLANILLA-->
 
+        <!--INICIO DE MENSAJE DE RESULTADOS DE NOTIFICACION-->
+        @if(session('resultado_notificacion'))
+          <div class="alert alert-success alert-dismissible fade show">
+              Se ha enviado una notificación de pago pendiente al cliente correctamente.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADOS DE NOTIFICACION-->
+
+        <!--INICIO DE MENSAJE DE RESULTADOS DE NOTIFICACION DE VALIDACION-->
+        @if(session('resultado_validacionNotificacion'))
+          <div class="alert alert-warning alert-dismissible fade show">
+              El medidor seleccionado no tiene valores pendientes para notificar al cliente.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADOS DE NOTIFICACION DE VALIDACION-->
+
         <!--INICIO DE MENSAJE DE RESULTADOS-->
         @if(session('resultado'))
           <div class="alert alert-success alert-dismissible fade show">
@@ -123,6 +141,28 @@
                       <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
                     </svg></a>
                  <!--FIN BOTON PAGAR-->
+                <!--BOTON NOTIFICAR-->
+                  <!--FORMULARIO DE VALORES A NOTIFICAR-->
+                  <div id="formulario_oculto_notificar" style="display: none;">
+                    <form id="formulario-notificar" action="{{route('planillas.notificar')}}" method="POST">
+                        @csrf
+                      <input type="hidden" name="cliente_planilla_id" value="{{ $valoresPagarItem->id }}">
+                      <input type="hidden" name="cliente_planilla_valorActual" value="{{ $valoresPagarItem->valor_actual }}">
+                      <input type="hidden" name="cliente_planilla_fechaFactura" value="{{ $valoresPagarItem->fecha_factura }}">
+                      <input type="hidden" name="cliente_planilla_fechaMaxima" value="{{ $valoresPagarItem->fecha_maxima }}">
+                      <input type="hidden" name="cliente_medidor" value="{{ $valoresPagarItem->medidor->numero_medidor }}">
+                      <input type="hidden" name="cliente_cedula" value="{{ $valoresPagarItem->cliente->cedula }}">
+                      <input type="hidden" name="cliente_nombre" value="{{ $valoresPagarItem->cliente->nombre }}">
+                      <input type="hidden" name="cliente_apellido" value="{{ $valoresPagarItem->cliente->apellido }}">
+                      <input type="hidden" name="cliente_email" value="{{ $valoresPagarItem->cliente->email }}">
+                    </div>
+                   <!--FIN DE FORMULARIO DE VALORES A NOTIFICAR--> 
+                    <button type="submit" class="btn btn-outline-primary notificar" title="Notificar al cliente">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                        </svg>
+                    </button></form>
+                 <!--FIN BOTON NOTIFICAR-->                 
                   <!--INICIO DE COMPROBACION DE ESTADO DE SERVICIO-->  
                     @if($valoresPagarItem->estado_servicio == "activo") 
                      <!--BOTON CORTAR SERVICIO-->
@@ -132,7 +172,6 @@
                                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                 </svg>
                             </a></div>
-
                             <script>
                                 $(document).ready(function() {
                                     $('.suspender').click(function(event) {

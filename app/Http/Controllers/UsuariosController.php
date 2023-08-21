@@ -60,7 +60,7 @@ class UsuariosController extends Controller
                 'password' => 'required',
                 'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
-                'cedula' => 'required|unique:usuarios|numeric',
+                'cedula' => 'required|unique:usuarios|numeric|min:10|max:10|',
                 'rol' => 'required',
                 'email' => 'required|email|unique:usuarios',
                 'telefono' => 'required|numeric',
@@ -73,8 +73,10 @@ class UsuariosController extends Controller
                 //Mensajes de error de cédula
                     'cedula.unique' => 'Esta cédula ya se encuentra registrada y asociada a un usuario',
                     'cedula.numeric' => 'El campo cédula debe contener números',
+                    'cedula.min' => 'El campo cédula debe contener al menos 10 caracteres',
+                    'cedula.max' => 'El campo cédula no debe exceder los 10 caracteres',                 
                 //Mensajes de error de email
-                    'email.unique' => 'Este correo ya se encuentra registrado y asociado a un usuario',     
+                    'email.unique' => 'Este correo ya se encuentra asociado a un usuario',     
                     'email.email' => 'El campo correo debe contener un correo electrónico',     
                 //Mensajes de error de teléfono
                     'telefono.numeric' => 'El campo teléfono debe contener números',
@@ -109,24 +111,33 @@ class UsuariosController extends Controller
     {
         //Validamos los valores recibidos
             $campos_validados = request()->validate([
-                'usuario' => 'required',
+                'usuario' => 'required|unique:usuarios,usuario,' . $usuariosItem->id,
                 'password' => 'required',
                 'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
-                'cedula' => 'required|numeric',
+                'cedula' => 'required|numeric|unique:usuarios,cedula,' . $usuariosItem->id,
                 'rol' => 'required',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:usuarios,email,' . $usuariosItem->id,
                 'telefono' => 'required|numeric',
         ],[
+            //Mensajes de error de usuario
+                'usuario.unique' => 'Este usuario ya se encuentra registrado',
+                'usuario.required' => 'El nombre de usuario es obligatorio',
+            //Mensajes de error de contraseña
+                'password.unique' => 'La contraseña es obligatoria',    
             //Mensajes de error de nombres
                 'nombre.regex' => 'El campo nombre debe contener texto',
                 'apellido.regex' => 'El campo apellido debe contener texto',            
             //Mensajes de error de cédula
                 'cedula.numeric' => 'El campo cédula debe contener números',
+                'cedula.unique' => 'Esta cédula ya se encuentra asociada a un usuario',
+
             //Mensajes de error de email
                 'email.email' => 'El campo correo debe contener un correo electrónico',     
+                'email.unique' => 'Este correo ya se encuentra asociado a un usuario',     
             //Mensajes de error de teléfono
                 'telefono.numeric' => 'El campo teléfono debe contener números',
+                'telefono.required' => 'El campo teléfono es obligatorio',
         ]);
 
         if($campos_validados){

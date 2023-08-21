@@ -47,7 +47,9 @@
             <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" value="{{$clientesItem->direccion}}" value="{{old('direccion',$clientesItem->direccion)}}" placeholder="{{$clientesItem->direccion}}" required></input></center>
         </div>
         <div class="col-mb-12">
-            <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$clientesItem->telefono)}}" placeholder="{{$clientesItem->telefono}}" required></input></center>
+            <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$clientesItem->telefono)}}" placeholder="{{$clientesItem->telefono}}" required></input></center></div>
+         <div class="col-mb-12">
+            <label>Correo Electrónico:</label><center><input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email', $clientesItem->email)}}" placeholder="Ej. mbermeo@gmail.com" required></input></center>            
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Actualizar</button></center></div>
           <br>
