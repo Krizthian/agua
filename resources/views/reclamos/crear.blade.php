@@ -43,7 +43,7 @@
 
             <label>Número de planilla:</label><center><input type="text" class="form-control mb-2  @error('numero_planilla') is-invalid @enderror" name="numero_planilla" value="{{$pagosConsultaItem->id}}" required></input></center>
 
-            <label>Email:</label><center><input type="text" class="form-control mb-2 @error('email') is-invalid @enderror" name="email" placeholder="Ej. jose@gmail.com" required></input></center>
+            <label>Email:</label><center><input type="text" class="form-control mb-2 @error('email') is-invalid @enderror" name="email" value="{{$pagosConsultaItem->cliente->email}}"placeholder="Ej. jose@gmail.com" required></input></center>
 
             <label>Teléfono:</label><center><input type="text" class="form-control mb-2 @error('telefono') is-invalid @enderror" name="telefono" value="{{$pagosConsultaItem->cliente->telefono}}" required></input></center>
 
