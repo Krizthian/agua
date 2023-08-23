@@ -30,22 +30,19 @@ class LoginController extends Controller
 
         // Realizamos la consulta para encontrar el usuario
             $usuarioEncontrado = Usuarios::where('usuario', $usuario)->first();
-
-        if ($usuarioEncontrado) {
-            // Verificamos la contraseña
-                if ($usuarioEncontrado->password === $password) {
-                    //Obtenemos los nombres
-                        $nombres = $usuarioEncontrado->nombre . ' ' . $usuarioEncontrado->apellido;
-                    // Guardamos el rol y el usuario en variables de sesión
-                        $request->session()->put('sesion', ['usuario' => $usuarioEncontrado->usuario, 'rol' => $usuarioEncontrado->rol, 'nombres' => $nombres]);
-                    // Redireccionamos al panel de control
-                        if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){
-                            return redirect()->route('panel.index');
-                        }elseif(session()->get('sesion')['rol'] == 'supervisor'){
-                            return redirect()->route('medidores.index');
-                        }
+            if ($usuarioEncontrado && password_verify($password, $usuarioEncontrado->password)) {
+                // Obtenemos los nombres
+                $nombres = $usuarioEncontrado->nombre . ' ' . $usuarioEncontrado->apellido;
+                
+                // Guardamos el rol y el usuario en variables de sesión
+                $request->session()->put('sesion', ['usuario' => $usuarioEncontrado->usuario, 'rol' => $usuarioEncontrado->rol, 'nombres' => $nombres]);
+                
+                // Redireccionamos al panel de control
+                if (session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador') {
+                    return redirect()->route('panel.index');
+                } elseif (session()->get('sesion')['rol'] == 'supervisor') {
+                    return redirect()->route('medidores.index');
                 }
-
             }
             // Redireccionamos al login si hay algún error en la validación
                  return redirect()->back()->with('resultado_login', 'El usuario o la contraseña son incorrectos')->withInput();
@@ -123,7 +120,7 @@ class LoginController extends Controller
     /*Actualizamos las credenciales*/
         public function recuperacionUpdate (Request $request)  
         {
-            //Validamos los campos recibidos
+        //Validamos los campos recibidos
                 $campos_validados = request()->validate([
                     'password' => 'required'
                 ],[
@@ -133,10 +130,12 @@ class LoginController extends Controller
 
             //Si los campos han sido vlaidados, actualizamos la contraseña
             if ($campos_validados) {
-                //Realizamos la consulta Eloquent
-                    Usuarios::where('id', $request->input('id_usuario'))
+            //Encriptamos la contraseña    
+                $campos_validados['password'] = bcrypt($request->input('password')); 
+            //Realizamos la consulta Eloquent
+                Usuarios::where('id', $request->input('id_usuario'))
                             ->update([
-                                'password' => request('password'),
+                                'password' => $campos_validados['password'],
                             ]);
               //Limpiamos el token 
                    session()->flush();            

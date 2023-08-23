@@ -81,7 +81,10 @@ class UsuariosController extends Controller
                     'telefono.numeric' => 'El campo teléfono debe contener números',
             ]);
 
-        if($campos_validados){
+        if($campos_validados){ 
+            //Ciframos la contraseña del usuario
+                $campos_validados['password'] = bcrypt($request->input('password'));
+
             //Insertamos los valores en la tabla
                 Usuarios::create($campos_validados);
 
@@ -106,15 +109,14 @@ class UsuariosController extends Controller
     /**
      * Actualizamos el valor en la base de datos
      */
-    public function update(Usuarios $usuariosItem)
+    public function update(Usuarios $usuariosItem, Request $request)
     {
         //Validamos los valores recibidos
             $campos_validados = request()->validate([
                 'usuario' => 'required|unique:usuarios,usuario,' . $usuariosItem->id,
-                'password' => 'required',
                 'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'apellido' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
-                'cedula' => 'required|numeric|unique:usuarios,cedula|digits_between:10,10,' . $usuariosItem->id,
+                'cedula' => 'required|numeric|digits_between:10,10,|unique:usuarios,cedula,' . $usuariosItem->id,
                 'rol' => 'required',
                 'email' => 'required|email|unique:usuarios,email,' . $usuariosItem->id,
                 'telefono' => 'required|numeric',
@@ -122,8 +124,6 @@ class UsuariosController extends Controller
             //Mensajes de error de usuario
                 'usuario.unique' => 'Este usuario ya se encuentra registrado',
                 'usuario.required' => 'El nombre de usuario es obligatorio',
-            //Mensajes de error de contraseña
-                'password.unique' => 'La contraseña es obligatoria',    
             //Mensajes de error de nombres
                 'nombre.regex' => 'El campo nombre debe contener texto',
                 'apellido.regex' => 'El campo apellido debe contener texto',            
@@ -144,7 +144,6 @@ class UsuariosController extends Controller
             Usuarios::where('id', $usuariosItem->id)
                     ->update([
                         'usuario' => request('usuario'),
-                        'password' => request('password'),
                         'nombre' => request('nombre'),
                         'apellido' => request('apellido'),
                         'cedula' => request('cedula'),

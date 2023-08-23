@@ -34,12 +34,9 @@
         <main class="w-100 m-auto">
          <form action="{{route('usuarios.update', $usuariosItem)}}" method="POST" class="row g3">
          	@csrf @method('PATCH')
-          <div class="col-md-6 mb-2">
+          <div class="col-md-12 mb-2">
             <label>Nombre de Usuario:</label><center><input type="text" class="form-control @error('usuario') is-invalid @enderror" name="usuario" value="{{old('usuario',$usuariosItem->usuario)}}" placeholder="{{$usuariosItem->usuario}}" required></input></center>
           </div>
-          <div class="col-md-6 mb-2">
-            <label>Contraseña:</label><center><input type="text" class="form-control @error('password') is-invalid @enderror" name="password" value="{{old('password',$usuariosItem->password)}}" placeholder="{{$usuariosItem->password}}" required></input></center>
-          </div>  
           <div class="col-md-6 mb-2">
             <label>Nombre:</label><center><input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{old('nombre',$usuariosItem->nombre)}}" placeholder="{{$usuariosItem->nombre}}" required></input></center>
           </div>  
