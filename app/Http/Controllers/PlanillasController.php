@@ -284,12 +284,13 @@ class PlanillasController extends Controller
             $fecha = date("Y-m-d");
        //Validamos los valores recibidos desde el formulario anterior
             $campos_validados = request()->validate([
-                'valor_nuevo' => 'required|numeric|min:0',
+                'valor_nuevo' => ['required', 'numeric', 'min:0', "max:$valoresPagarItem->valor_actual"],
                 'forma_pago' => 'required',
             ],[
                 //Mensaje de error
                     'valor_nuevo.numeric' => 'Se requiere un valor numérico para el campo de valor a pagar',
                     'valor_nuevo.min' => 'El valor mínimo para el campo de valor a pagar es 0',
+                    'valor_nuevo.max' => 'El valor ingresado no puede ser mayor al valor actual',
                     'forma_pago.required' => 'La forma de pago es obligatoria',
                     'valor_nuevo.required' => 'El campo de valor a pagar es obligatorio'
             ]);     

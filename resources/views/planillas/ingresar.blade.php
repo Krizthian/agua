@@ -93,7 +93,7 @@
             <label for="forma_pago">Forma de pago:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-cash-register  fa-sm"></i></span>
-              <select class="form-select input-group @error('forma_pago') is-invalid @enderror" id="forma_pago" name="forma_pago">
+              <select class="form-select input-group @error('forma_pago') is-invalid @enderror" id="forma_pago" name="forma_pago" required>
                 <option value="Seleccione una forma de pago" required selected disabled>Seleccione una forma de pago</option>
                 <option value="efectivo">Efectivo</option>
                 <option value="cheque">Cheque</option>
@@ -110,11 +110,20 @@
               </div>
             <!--FIN DE VALOR A PAGAR-->
           <br>
-              <div class="col-md-12 text-right">
-                  <center>
-                      <button id="pagar" type="button" class="btn btn-success">Registrar Pago</button>
-                  </center>
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                <button id="pagar" type="button" class="btn btn-success">Registrar pago</button>
+                <button id="limpiar" type="button" class="btn btn-danger">Limpiar campos</button>
               </div>
+
+              <script>
+                  document.getElementById("limpiar").addEventListener("click", function() {
+                    var campos = document.querySelectorAll("input"); // Obtenemos todos los campos de entrada y select
+                    campos.forEach(function(campo) {
+                      campo.value = ''; // Limpiamos el valor del campo
+                    });
+                  });
+              </script>
+
               <script>
                   $(document).ready(function() {
                       $('#pagar').click(function() {
