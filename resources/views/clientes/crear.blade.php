@@ -78,7 +78,18 @@
             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" placeholder="Ej. mbermeo@gmail.com" required></input>
           </div>
         </div>
-            <center><button type="submit" class="btn btn-success mt-2">Guardar</button></center>
+         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3">        
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <button id="limpiar" type="button" class="btn btn-danger">Limpiar campos</button>
+         </div>
+              <script>
+                document.getElementById("limpiar").addEventListener("click", function() {
+                  var campos = document.querySelectorAll("input:not([name='_token']):not([name='_method'])"); // Obtenemos todos los campos de entrada y select
+                  campos.forEach(function(campo) {
+                    campo.value = ''; // Limpiamos el valor del campo
+                  });
+                });
+            </script> 
           <br>
         </form>
     </main>

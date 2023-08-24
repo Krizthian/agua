@@ -46,7 +46,7 @@
             <label>Contraseña:</label>
           <div class="input-group mb-2">
             <span class="input-group-text"><i class="fa-solid fa-key fa-sm"></i></span> 
-              <input type="text" class="form-control" name="password" placeholder="Ej. pw123" value="{{old('password')}}" required></input>
+              <input type="password" class="form-control" name="password" placeholder="Ej. pw123" value="{{old('password')}}" required></input>
             </div>
           </div>
 
@@ -104,7 +104,18 @@
           </div>
 
           <br><br><br><br>
-            <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3">
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <button id="limpiar" type="button" class="btn btn-danger">Limpiar campos</button>
+          </div>
+              <script>
+                document.getElementById("limpiar").addEventListener("click", function() {
+                  var campos = document.querySelectorAll("input:not([name='_token']):not([name='_method'])"); // Obtenemos todos los campos de entrada y select
+                  campos.forEach(function(campo) {
+                    campo.value = ''; // Limpiamos el valor del campo
+                  });
+                });
+            </script>
         </form>
     </main>
         <br><br>

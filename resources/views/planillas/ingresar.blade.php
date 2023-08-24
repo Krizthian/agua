@@ -114,16 +114,14 @@
                 <button id="pagar" type="button" class="btn btn-success">Registrar pago</button>
                 <button id="limpiar" type="button" class="btn btn-danger">Limpiar campos</button>
               </div>
-
               <script>
-                  document.getElementById("limpiar").addEventListener("click", function() {
-                    var campos = document.querySelectorAll("input"); // Obtenemos todos los campos de entrada y select
-                    campos.forEach(function(campo) {
-                      campo.value = ''; // Limpiamos el valor del campo
-                    });
+                document.getElementById("limpiar").addEventListener("click", function() {
+                  var campos = document.querySelectorAll("input:not([name='_token']):not([name='_method'])"); // Obtenemos todos los campos de entrada y select
+                  campos.forEach(function(campo) {
+                    campo.value = ''; // Limpiamos el valor del campo
                   });
-              </script>
-
+                });
+            </script>
               <script>
                   $(document).ready(function() {
                       $('#pagar').click(function() {
