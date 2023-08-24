@@ -52,18 +52,51 @@
                               </div>
                           @endif
                         <!--FIN DE MENSAJES DE ERROR-->                      
-                     <div class="col-auto">
+                  <div class="col-auto">
                       <label for="tipo">Categoría:</label>
-                      <select class="form-select mb-2" id="tipo" name="tipo" required>
+                     <div class="input-group mb-2">
+                         <span class="input-group-text"><i class="fa-solid fa-house fa-sm"></i></span>           
+                      <select class="form-select" id="tipo" name="tipo" required>
                           <option value="residencial" selected>Residencial</option>
                       </select>
-                      <label for="valor">Metros Cúbicos (m<sup>3</sup>):</label><center><input type="text" id="valor" placeholder="Ingresa la lectura de tu medidor" class="form-control mb-2 @error('valor') is-invalid @enderror " name="valor" value="{{old('valor')}}" required></input></center>
+                      </div>
+                    </div>
+                  <div class="col-auto">
+                      <label for="valor">Metros Cúbicos (m<sup>3</sup>):</label>
+                      <div class="input-group mb-2">
+                        <span class="input-group-text"><i class="fa-solid fa-hand-holding-droplet fa-sm"></i></span>    
+                          <input type="text" id="valor" placeholder="Ingresa la lectura de tu medidor" class="form-control @error('valor') is-invalid @enderror " name="valor" value="{{old('valor')}}" required></input>
+                    </div>
+                  </div>
+
                     @if(session('valor_actual'))
                       <hr>
-                      <label for="costo_agua" >Costo del agua:</label><input type="text" id="costo_agua" class="form-control mb-2" value="$ {{ session('costo_agua') }}" readonly></input></center>
-                      <label for="mantenimiento">Mantenimiento:</label><input  id="mantenimiento"t ype="text" class="form-control mb-2" value="$ 0.00" readonly></input></center>
-                      <label for="valor_actual">Valor aproximado a pagar:</label><input type="text" id="valor_actual" class="form-control mb-2" value="$ {{ session('valor_actual') }}" readonly></input></center>
+                   <div class="col-auto">
+                        <label for="costo_agua" >Costo del agua:</label>
+                      <div class="input-group mb-2">
+                         <span class="input-group-text"><i class="fa-solid fa-dollar-sign fa-sm"></i></span>
+                        <input type="text" id="costo_agua" class="form-control" value="{{ session('costo_agua') }}" readonly></input></center>
+                    </div>
+                  </div>
+
+                  <div class="col-auto">
+                    <label for="mantenimiento">Mantenimiento:</label>
+                      <div class="input-group mb-2">
+                        <span class="input-group-text"><i class="fa-solid fa-dollar-sign fa-sm"></i></span>
+                          <input id="mantenimiento" type="text" class="form-control" value="0.00" readonly></input>
+                    </div>
+                  </div>
+
+                  <div class="col-auto">
+                      <label for="valor_actual">Valor aproximado a pagar:</label>
+                        <div class="input-group mb-2">
+                          <span class="input-group-text"><i class="fa-solid fa-dollar-sign fa-sm"></i></span>
+                        <input type="text" id="valor_actual" class="form-control" value="{{ session('valor_actual') }}" readonly></input>
+                    </div>
+                  </div>      
+
                     @endif  
+
                       <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Calcular</button></center></div>
                       <br>
                   </form>

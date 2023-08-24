@@ -34,37 +34,75 @@
         <main class="w-100 m-auto">
          <form action="{{route('usuarios.update', $usuariosItem)}}" method="POST" class="row g3">
          	@csrf @method('PATCH')
+
           <div class="col-md-12 mb-2">
-            <label>Nombre de Usuario:</label><center><input type="text" class="form-control @error('usuario') is-invalid @enderror" name="usuario" value="{{old('usuario',$usuariosItem->usuario)}}" placeholder="{{$usuariosItem->usuario}}" required></input></center>
+            <label>Nombre de Usuario:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-at fa-sm"></i></span> 
+              <input type="text" class="form-control @error('usuario') is-invalid @enderror" name="usuario" value="{{old('usuario',$usuariosItem->usuario)}}" placeholder="{{$usuariosItem->usuario}}" required></input>
+            </div>
           </div>
+
+
           <div class="col-md-6 mb-2">
-            <label>Nombre:</label><center><input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{old('nombre',$usuariosItem->nombre)}}" placeholder="{{$usuariosItem->nombre}}" required></input></center>
+            <label>Nombre:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span> 
+              <input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{old('nombre',$usuariosItem->nombre)}}" placeholder="{{$usuariosItem->nombre}}" required></input>
+            </div>  
           </div>  
+
+
           <div class="col-md-6 mb-2">
-            <label>Apellido:</label><center><input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{old('apellido',$usuariosItem->apellido)}}" placeholder="{{$usuariosItem->apellido}}" required></input></center>
+            <label>Apellido:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span> 
+              <input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{old('apellido',$usuariosItem->apellido)}}" placeholder="{{$usuariosItem->apellido}}" required></input>
+           </div>  
           </div>  
+
+
           <div class="col-md-6 mb-2">
-            <label>Cédula:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{old('cedula',$usuariosItem->cedula)}}" placeholder="{{$usuariosItem->cedula}}" required></input></center>
+            <label>Cédula:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-id-card fa-sm"></i></span> 
+              <input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{old('cedula',$usuariosItem->cedula)}}" placeholder="{{$usuariosItem->cedula}}" required></input>
+            </div>  
           </div>  
+
+
           <div class="col-md-6 mb-2">
-            <label>Rol:</label><center><select class="form-select" name="rol" required>
-              <option value="{{old('rol',$usuariosItem->rol)}}" selected>{{ucfirst($usuariosItem->rol);}}</option>
-              <option value="administrador">Administrador</option>
-              <option value="personal">Personal</option>  
-              <option value="supervisor">Supervisor</option>  
-            </select></center>
+            <label>Rol:</label>
+               <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-shield fa-sm"></i></span>
+              <select class="form-select" name="rol" required>
+                <option value="{{old('rol',$usuariosItem->rol)}}" selected>{{ucfirst($usuariosItem->rol);}}</option>
+                <option value="administrador">Administrador</option>
+                <option value="personal">Personal</option>  
+                <option value="supervisor">Supervisor</option>  
+            </select>
+            </div>  
           </div>  
+
+
         <div class="col-md-6 mb-2">
-            <label>Correo Electrónico:</label><center><input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email',$usuariosItem->email)}}" placeholder="{{$usuariosItem->email}}" required></input></center>
+            <label>Correo Electrónico:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-at fa-sm"></i></span> 
+              <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email',$usuariosItem->email)}}" placeholder="{{$usuariosItem->email}}" required></input>
+            </div>  
           </div>  
+
+
         <div class="col-md-6 mb-2">
-            <label>Teléfono:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$usuariosItem->telefono)}}" placeholder="{{$usuariosItem->telefono}}" required></input></center>
+            <label>Teléfono:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-phone fa-sm"></i></span> 
+              <input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$usuariosItem->telefono)}}" placeholder="{{$usuariosItem->telefono}}" required></input>
+          </div>  
          </div>  
 
-          <br>
-          <br>
-          <br>
-          <br>
+          <br><br><br><br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Actualizar</button></center></div>
           <br>
         </form>

@@ -37,28 +37,51 @@
               @endif
             <!--FIN DE MENSAJES DE ERROR-->  
           <div class="col-md-6 mb-2">
-            <label>Nombre del cliente:</label><center><input type="text" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre')}}" name="nombre" placeholder="Ej. Arturo" required></input></center>
+            <label>Nombre del cliente:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
+            <input type="text" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre')}}" name="nombre" placeholder="Ej. Arturo" required></input>
+            </div>  
           </div>  
           <div class="col-md-6 mb-2">
-            <label>Apellido del cliente:</label><center><input type="text" class="form-control @error('apellido') is-invalid @enderror" value="{{old('apellido')}}" name="apellido" placeholder="Ej. Cueva" required></input></center>
+            <label>Apellido del cliente:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
+            <input type="text" class="form-control @error('apellido') is-invalid @enderror" value="{{old('apellido')}}" name="apellido" placeholder="Ej. Cueva" required></input>
+            </div>  
           </div>  
           <div class="col-md-6 mb-2">
-            <label>Cédula del cliente:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" value="{{old('cedula')}}" name="cedula" placeholder="Ej. 0705558887" required></input></center>
+            <label>Cédula del cliente:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-id-card fa-sm"></i></span>
+            <input type="text" class="form-control @error('cedula') is-invalid @enderror" value="{{old('cedula')}}" name="cedula" placeholder="Ej. 0705558887" required></input>
+            </div> 
           </div> 
           <div class="col-md-6 mb-2">
-            <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" value="{{old('direccion')}}" placeholder="Ej. Avenida del Ejercito" required></input></center>
+            <label>Dirección del cliente:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-location-dot fa-sm"></i></span>            
+            <input type="text" class="form-control" name="direccion" value="{{old('direccion')}}" placeholder="Ej. Avenida del Ejercito" required></input>
+            </div> 
            </div> 
         <div class="col-mb-12">
-            <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" value="{{old('telefono')}}" name="telefono" placeholder="Ej. 2949888" required></input></center></div> 
+            <label>Teléfono del cliente:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-phone fa-sm"></i></span> 
+            <input type="text" class="form-control @error('telefono') is-invalid @enderror" value="{{old('telefono')}}" name="telefono" placeholder="Ej. 2949888" required></input>
+            </div> 
+          </div> 
          <div class="col-mb-12">
-            <label>Correo Electrónico:</label><center><input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" placeholder="Ej. mbermeo@gmail.com" required></input></center>
+            <label>Correo Electrónico:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-envelope fa-sm"></i></span>             
+            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" placeholder="Ej. mbermeo@gmail.com" required></input>
+          </div>
+        </div>
+            <center><button type="submit" class="btn btn-success mt-2">Guardar</button></center>
           <br>
-            <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
-          <br>
-            </div>
         </form>
     </main>
-        </div>
         <br><br>
     </div>
 

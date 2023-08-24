@@ -32,24 +32,59 @@
               @endif
           <!--FIN DE MENSAJES DE ERROR-->
            <div class="col-auto">
-            <label>Número de medidor:</label><center><input type="text" class="form-control mb-2" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" placeholder="{{$consumoMedidorItem->numero_medidor}}" disabled></input></center>
+            <label>Número de medidor:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-gauge fa-sm"></i></span>            
+              <input type="text" class="form-control" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" placeholder="{{$consumoMedidorItem->numero_medidor}}" disabled></input>
+            </div>
+          </div>
 
-            <label>Ubicación de medidor:</label><center><input type="text" class="form-control mb-2" name="ubicacion" value="{{$consumoMedidorItem->ubicacion}}" placeholder="{{$consumoMedidorItem->ubicacion}}" disabled></input></center>
+          <div class="col-auto">
+            <label>Ubicación de medidor:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-location-dot fa-sm"></i></span>  
+                <input type="text" class="form-control" name="ubicacion" value="{{$consumoMedidorItem->ubicacion}}" placeholder="{{$consumoMedidorItem->ubicacion}}" disabled></input>
+            </div>
+          </div>
 
-            <label>Consumo anterior (m<sup><strong>3</strong></sup>):</label><center><input type="text" class="form-control mb-2" name="consumo_anterior" 
-            @isset($consumoMedidorItem->consumo->consumo_actual) value="{{$consumoMedidorItem->consumo->consumo_actual}}" placeholder="{{$consumoMedidorItem->consumo_actual}}" @else value="0" placeholder="0" @endisset readonly></input></center>
+            <div class="col-auto">
+              <label>Consumo anterior (m<sup><strong>3</strong></sup>):</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-droplet fa-sm"></i></span> 
+              <input type="text" class="form-control" name="consumo_anterior" 
+              @isset($consumoMedidorItem->consumo->consumo_actual) value="{{$consumoMedidorItem->consumo->consumo_actual}}" placeholder="{{$consumoMedidorItem->consumo_actual}}" @else value="0" placeholder="0" @endisset readonly></input>
+              </div>
+            </div>
 
-            <label>Fecha de lectura anterior:</label><center><input type="text" class="form-control mb-2" name="fecha_lectura_anterior" @isset($consumoMedidorItem->consumo->fecha_lectura_actual) value="{{$consumoMedidorItem->consumo->fecha_lectura_actual}}" placeholder="{{$consumoMedidorItem->fecha_lectura_actual}}" @else value="2000-08-05" placeholder="2000-08-05" @endisset readonly></input></center>
+          <div class="col-auto">
+            <label>Fecha de lectura anterior:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-calendar-days fa-sm"></i></span>       
+              <input type="text" class="form-control" name="fecha_lectura_anterior" @isset($consumoMedidorItem->consumo->fecha_lectura_actual) value="{{$consumoMedidorItem->consumo->fecha_lectura_actual}}" placeholder="{{$consumoMedidorItem->fecha_lectura_actual}}" @else value="2000-08-05" placeholder="2000-08-05" @endisset readonly></input>
+            </div>
+          </div>
             <hr>
-            <label>Consumo actual (m<sup><strong>3</strong></sup>):</label><center><input type="text" class="form-control mb-2 @error('consumo_actual') is-invalid @enderror" name="consumo_actual" placeholder="Ingrese el consumo actual" required></input></center>
+            <div class="col-auto">
+              <label>Consumo actual (m<sup><strong>3</strong></sup>):</label>
+               <div class="input-group mb-2">
+               <span class="input-group-text"><i class="fa-solid fa-droplet fa-sm"></i></span>  
+                  <input type="text" class="form-control @error('consumo_actual') is-invalid @enderror" name="consumo_actual" placeholder="Ingrese el consumo actual" required></input>
+              </div>
+            </div>
 
-            <label>Responsable de lectura:</label><center><input type="text" class="form-control mb-2 @error('responsable') is-invalid @enderror" name="responsable" value="{{session()->get('sesion')['nombres']}}" readonly required></input></center>
+            <div class="col-auto">
+            <label>Responsable de lectura:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-user-pen fa-sm"></i></span>
+                <input type="text" class="form-control @error('responsable') is-invalid @enderror" name="responsable" value="{{session()->get('sesion')['nombres']}}" readonly required></input>
+                </div>  
+              </div> 
           <br>
               <div class="col-md-12 text-right">
                   <center>
-                      <button id="ingresar" type="button" class="btn btn-success">Ingresar Consumo</button>
+                    <button id="ingresar" type="button" class="btn btn-success">Ingresar Consumo</button>
                   </center>
-              </div>
+              </div>    
               <script>
                   $(document).ready(function() {
                       $('#ingresar').click(function() {

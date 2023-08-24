@@ -34,10 +34,11 @@
                   </div>
               @endif
             <!--FIN DE MENSAJES DE ERROR-->  
-           <div class="col-auto">
-        <label>Propietario del medidor:</label>
-          <div class="form-group">
-            <select class="form-select input-group mb-2" id="id_cliente" name="id_cliente" required>
+         <div class="col-auto"> 
+         <label>Propietario del medidor:</label>
+          <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
+            <select class="form-select input-group" id="id_cliente" name="id_cliente" required>
                 <option value="Seleccione un cliente" required selected disabled>Seleccione al propietario</option>
                 @foreach ($queryClientes as $cliente)
                     <option value="{{ $cliente->id }}" required>
@@ -45,9 +46,29 @@
                     </option>
                 @endforeach
             </select>
-            <label>Fecha de Instalación:</label><center><input type="date" class="form-control" name="fecha_instalacion" required></input></center>
-            <label>Ubicación del medidor:</label><center><input type="text" class="form-control" name="ubicacion" placeholder="Ej. Calle 10 de Agosto, Puerta Roja" required></input></center>
-            <label>Número de medidor:</label><center><input type="text" class="form-control @error('numero_medidor') is-invalid @enderror" name="numero_medidor" placeholder="Ej. 010027" required></input></center>
+          </div>
+        </div>
+         <div class="col-auto">         
+            <label>Fecha de Instalación:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-calendar-days fa-sm"></i></span>       
+            <input type="date" class="form-control" name="fecha_instalacion" required></input>
+              </div>
+            </div>
+        <div class="col-auto">    
+            <label>Ubicación del medidor:</label>
+            <div class="input-group mb-2">        
+            <span class="input-group-text"><i class="fa-solid fa-location-dot fa-sm"></i></span>     
+                <input type="text" class="form-control" name="ubicacion" placeholder="Ej. Calle 10 de Agosto, Puerta Roja" required></input>
+              </div>
+            </div>
+        <div class="col-auto">    
+            <label>Número de medidor:</label>
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fa-solid fa-gauge fa-sm"></i></span>          
+              <input type="text" class="form-control @error('numero_medidor') is-invalid @enderror" name="numero_medidor" placeholder="Ej. 010027" required></input>
+              </div>  
+            </div>  
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
           <br>

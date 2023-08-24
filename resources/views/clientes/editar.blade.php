@@ -35,23 +35,49 @@
          <form action="{{route('clientes.update', $clientesItem)}}" method="POST" class="row g3">
          	@csrf @method('PATCH') 
         <div class="col-md-6 mb-2">
-            <label>Nombre del cliente:</label><center><input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{old('nombre',$clientesItem->nombre)}}" placeholder="{{$clientesItem->nombre}}" required></input></center>
+            <label>Nombre del cliente:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
+            <input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{old('nombre',$clientesItem->nombre)}}" placeholder="{{$clientesItem->nombre}}" required></input>
+            </div> 
         </div> 
        <div class="col-md-6 mb-2">
-            <label>Apellido del cliente:</label><center><input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{old('apellido',$clientesItem->apellido)}}"  placeholder="{{$clientesItem->apellido}}" required></input></center>
+            <label>Apellido del cliente:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
+            <input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{old('apellido',$clientesItem->apellido)}}"  placeholder="{{$clientesItem->apellido}}" required></input>
+            </div> 
         </div> 
         <div class="col-md-6 mb-2">
-            <label>Cédula del cliente:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{old('cedula',$clientesItem->cedula)}}" placeholder="{{$clientesItem->cedula}}" required></input></center>
+            <label>Cédula del cliente:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-id-card fa-sm"></i></span>
+            <input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{old('cedula',$clientesItem->cedula)}}" placeholder="{{$clientesItem->cedula}}" required></input>
+            </div>
         </div>
         <div class="col-md-6 mb-2">
-            <label>Dirección del cliente:</label><center><input type="text" class="form-control" name="direccion" value="{{$clientesItem->direccion}}" value="{{old('direccion',$clientesItem->direccion)}}" placeholder="{{$clientesItem->direccion}}" required></input></center>
+            <label>Dirección del cliente:</label>
+             <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-location-dot fa-sm"></i></span>            
+            <input type="text" class="form-control" name="direccion" value="{{$clientesItem->direccion}}" value="{{old('direccion',$clientesItem->direccion)}}" placeholder="{{$clientesItem->direccion}}" required></input>
+            </div>
         </div>
         <div class="col-mb-12">
-            <label>Teléfono del cliente:</label><center><input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$clientesItem->telefono)}}" placeholder="{{$clientesItem->telefono}}" required></input></center></div>
+            <label>Teléfono del cliente:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-phone fa-sm"></i></span>             
+            <input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{old('telefono',$clientesItem->telefono)}}" placeholder="{{$clientesItem->telefono}}" required></input>
+            </div>
+        </div>
          <div class="col-mb-12">
-            <label>Correo Electrónico:</label><center><input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email', $clientesItem->email)}}" placeholder="Ej. mbermeo@gmail.com" required></input></center>            
+            <label>Correo Electrónico:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-envelope fa-sm"></i></span>              
+            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email', $clientesItem->email)}}" placeholder="Ej. mbermeo@gmail.com" required></input>
+                </div>
+            </div>      
           <br>
-            <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Actualizar</button></center></div>
+            <center><button type="submit" class="btn btn-success">Actualizar</button></center>
           <br>
         </form>
     </main>

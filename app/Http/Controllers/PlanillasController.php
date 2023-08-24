@@ -290,7 +290,8 @@ class PlanillasController extends Controller
                 //Mensaje de error
                     'valor_nuevo.numeric' => 'Se requiere un valor numérico para el campo de valor a pagar',
                     'valor_nuevo.min' => 'El valor mínimo para el campo de valor a pagar es 0',
-                    'forma_pago.required' => 'La forma de pago es obligatoria'
+                    'forma_pago.required' => 'La forma de pago es obligatoria',
+                    'valor_nuevo.required' => 'El campo de valor a pagar es obligatorio'
             ]);     
 
         //Realizamos la operacion matematica para restar valores

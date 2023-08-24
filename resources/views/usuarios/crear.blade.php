@@ -35,34 +35,74 @@
          <form action="{{route('usuarios.store')}}" method="POST" class="row g3">
          	@csrf
           <div class="col-md-6 mb-2">
-            <label>Nombre de Usuario:</label><center><input type="text" class="form-control @error('usuario') is-invalid @enderror" value="{{old('usuario')}}" name="usuario" placeholder="Ej. arturo91" required></input></center>
-          </div>
-          <div class="col-md-6 mb-2">
-            <label>Contraseña:</label><center><input type="text" class="form-control" name="password" placeholder="Ej. pw123" value="{{old('password')}}" required></input></center>
-          </div>
-          <div class="col-md-6 mb-2">
-            <label>Nombre:</label><center><input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" placeholder="Ej. Arturo" value="{{old('nombre')}}" required></input></center>
-          </div>
-          <div class="col-md-6 mb-2">
-            <label>Apellido:</label><center><input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" placeholder="Ej. Cueva" value="{{old('apellido')}}" required></input></center>
-          </div>
-          <div class="col-md-6 mb-2">
-            <label>Cédula:</label><center><input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{old('cedula')}}" placeholder="Ej. 0705559639" required></input></center>
+            <label>Nombre de Usuario:</label>
+          <div class="input-group mb-2">
+               <span class="input-group-text"><i class="fa-solid fa-at fa-sm"></i></span> 
+                <input type="text" class="form-control @error('usuario') is-invalid @enderror" value="{{old('usuario')}}" name="usuario" placeholder="Ej. arturo91" required></input>
             </div>
-          <div class="col-md-6 mb-2">
-            <label>Rol:</label><center><select class="form-select" name="rol" required>
-	            <option value="" disabled selected>Selecciona un rol</option>
-	            <option value="administrador">Administrador</option>
-	            <option value="personal">Personal</option>	
-              <option value="supervisor">Supervisor</option>  
-            </select></center>
-            </div>
-          <div class="col-md-6 mb-2">
-            <label>Correo Electrónico:</label><center><input type="email" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Ej. arturo@portovelo.gob.ec" required></input></center>
-            </div>
-          <div class="col-md-6 mb-2">
-            <label>Teléfono:</label><center><input value="{{old('telefono')}}" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" placeholder="2949888" required></input></center>
           </div>
+
+          <div class="col-md-6 mb-2">
+            <label>Contraseña:</label>
+          <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fa-solid fa-key fa-sm"></i></span> 
+              <input type="text" class="form-control" name="password" placeholder="Ej. pw123" value="{{old('password')}}" required></input>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <label>Nombre:</label>
+          <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span> 
+              <input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" placeholder="Ej. Arturo" value="{{old('nombre')}}" required></input>
+           </div>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <label>Apellido:</label>
+          <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span> 
+            <input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" placeholder="Ej. Cueva" value="{{old('apellido')}}" required></input>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <label>Cédula:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-id-card fa-sm "></i></span>
+              <input type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{old('cedula')}}" placeholder="Ej. 0705559639" required></input>
+              </div>
+            </div>
+
+          <div class="col-md-6 mb-2">
+            <label>Rol:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-shield fa-sm "></i></span>
+              <select class="form-select" name="rol" required>
+    	            <option value="" disabled selected>Selecciona un rol</option>
+    	            <option value="administrador">Administrador</option>
+    	            <option value="personal">Personal</option>	
+                  <option value="supervisor">Supervisor</option>  
+              </select>
+              </div>
+            </div>
+
+          <div class="col-md-6 mb-2">
+            <label>Correo Electrónico:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-envelope fa-sm "></i></span>
+                <input type="email" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Ej. arturo@portovelo.gob.ec" required></input>
+                </div>
+            </div>
+
+          <div class="col-md-6 mb-2">
+            <label>Teléfono:</label>
+            <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-phone fa-sm "></i></span>
+                <input value="{{old('telefono')}}" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" placeholder="2949888" required></input>
+            </div>
+          </div>
+
           <br><br><br><br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
         </form>

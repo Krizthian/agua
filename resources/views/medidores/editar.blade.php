@@ -35,10 +35,18 @@
               @endif
             <!--FIN DE MENSAJES DE ERROR-->  
            <div class="col-auto">
-            <label>Número de medidor:</label><center><input type="text" class="form-control" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" disabled></input></center>
+            <label>Número de medidor:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-gauge fa-sm"></i></span>             
+            <input type="text" class="form-control" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" disabled></input>
+            </div>
+          </div>
+
+         <div class="col-auto"> 
 	       <label>Propietario del medidor:</label>
-	          <div class="form-group">
-	            <select class="form-select input-group mb-2  @error('id_cliente') is-invalid @enderror" id="id_cliente" name="id_cliente" required>
+          <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span> 
+	            <select class="form-select input-group  @error('id_cliente') is-invalid @enderror" id="id_cliente" name="id_cliente" required>
 	                <option value="{{$consumoMedidorItem->cliente->id}}" required selected>{{$consumoMedidorItem->cliente->apellido}}, {{$consumoMedidorItem->cliente->nombre}} - {{$consumoMedidorItem->cliente->cedula}} </option>
 	                @foreach ($queryClientes as $cliente)
 	                    <option value="{{ $cliente->id }}" required>
@@ -46,9 +54,23 @@
 	                    </option>
 	                @endforeach
 	            </select>
+            </div>
+          </div>
 
-            <label>Fecha de instalación:</label><center><input type="text" class="form-control" name="fecha_instalacion" value="{{$consumoMedidorItem->fecha_instalacion}}" disabled></input></center>
-            <label>Ubicación:</label><center><input type="text" class="form-control @error('ubicacion') is-invalid @enderror" name="ubicacion" value="{{$consumoMedidorItem->ubicacion}}" placeholder="{{$consumoMedidorItem->ubicacion}}" required></input></center>
+          <div class="col-auto">
+            <label>Fecha de instalación:</label>
+          <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fa-solid fa-calendar-days fa-sm"></i></span> 
+            <input type="text" class="form-control" name="fecha_instalacion" value="{{$consumoMedidorItem->fecha_instalacion}}" disabled></input>
+            </div>
+          </div>
+          <div class="col-auto">
+            <label>Ubicación:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-location-dot fa-sm"></i></span> 
+            <input type="text" class="form-control @error('ubicacion') is-invalid @enderror" name="ubicacion" value="{{$consumoMedidorItem->ubicacion}}" placeholder="{{$consumoMedidorItem->ubicacion}}" required></input>
+          </div>
+        </div>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Actualizar</button></center></div>
           <br>

@@ -37,20 +37,38 @@
               @endif
           <!--FIN DE MENSAJES DE ERROR-->
     		<input type="hidden" name="id_medidor" value="{{ $consumoMedidorItem->id }}">
-         <div class="col-md-6 mb-2"> 
-              <label>Número de medidor:</label><center><input type="text" class="form-control" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" readonly required></input></center>
+         <div class="col-md-6"> 
+           <label>Número de medidor:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-gauge fa-sm"></i></span>
+              <input type="text" class="form-control" name="numero_medidor" value="{{$consumoMedidorItem->numero_medidor}}" readonly required></input>
+            </div>    
           </div>    
-          <div class="col-md-6 mb-2">  
-            <label>Fecha para mantenimiento:</label><center><input type="date" class="form-control" name="fecha_mantenimiento" required></input></center>
+
+          <div class="col-md-6">  
+            <label>Fecha para mantenimiento:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-calendar-days fa-sm"></i></span>
+            <input type="date" class="form-control" name="fecha_mantenimiento" required></input>
+            </div>  
           </div>  
-          <div class="col-md-6 mb-2">  
-            <label>Responsable asignado:</label><center><input type="text" class="form-control @error('responsable_asignado') is-invalid @enderror" name="responsable_asignado" placeholder="Ej. David Lopez" required></input></center>
+
+          <div class="col-md-6">  
+            <label>Responsable asignado:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-user-gear fa-sm"></i></span>
+                <input type="text" class="form-control @error('responsable_asignado') is-invalid @enderror" name="responsable_asignado" placeholder="Ej. David Lopez" required></input>
+            </div>  
           </div>  
-           <div class="col-md-6 mb-2"> 
-            <label>Estado de mantenimiento:</label><center>
-            <select class="form-select input-group mb-2" id="estado_mantenimiento" name="estado_mantenimiento" required>
+
+           <div class="col-md-6"> 
+            <label>Estado de mantenimiento:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-clock fa-sm"></i></span>
+            <select class="form-select input-group" id="estado_mantenimiento" name="estado_mantenimiento" required>
                     <option value="solicitado" required>Solicitado</option>
-            </select>
+              </select>
+                </div>  
                </div>  
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
