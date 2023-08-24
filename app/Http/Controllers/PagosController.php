@@ -14,15 +14,24 @@ class PagosController extends Controller
      */
     public function index()
     {
+    //Comprobamos el rol   
+      if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){
+
         $pagos = Pagos::with(['cliente', 'planilla'])->paginate(10);
         return view('pagos', compact('pagos'));
+
+    //Redireccionamos si el rol no es el permitido        
+        }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+            return redirect()->route('medidores.index');    
+        } 
     }
 
     public function busqueda(Request $request)
     {
+    //Comprobamos el rol   
+      if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){
         //Obtenemos los valores del formulario de busqueda
             $valores = $request->input('valores');
-
         //Consulta Eloquent    
             $query = Pagos::with(['cliente', 'planilla']);
 
@@ -42,5 +51,10 @@ class PagosController extends Controller
             $pagos = $query->paginate(10);
         //Retornamos los valores
             return view('pagos', compact('pagos'));    
-        }
+     //Redireccionamos si el rol no es el permitido        
+        }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+            return redirect()->route('medidores.index');    
+            } 
+        } 
+
 }

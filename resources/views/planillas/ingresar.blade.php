@@ -1,5 +1,5 @@
 @extends('layouts.layout_panel')
-<title>Ingresar pago - Gestión de Pagos | Sistema de Consultas de Valores a Pagar del Agua</title>
+<title>Ingresar pago - Gestión de Planillas | Sistema de Consultas de Valores a Pagar del Agua</title>
 <link rel="stylesheet" href="{{url('css/custom_login.css')}}">
 @section('content')
     <style>

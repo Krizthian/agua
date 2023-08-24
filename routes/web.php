@@ -55,10 +55,12 @@ Route::view('/dashboard', 'dashboard')->name('dashboard');
 
 /*Rutas para el personal del Municipio*/
 
-//Rutas para mostrar (valores a pagar)
+//Rutas para mostrar (planillas)
 	Route::view('/panel', 'panel')->name('panel');
 		//Obtencion de valores
 			Route::get('/panel', [PlanillasController::class, 'index'])->name('panel.index');
+		//Detalles de planilla
+			Route::get('/panel/planillas/planilla/{valoresPagarItem}', [PlanillasController::class, 'show'])->name('planillas.show');	
 		//Busqueda de valores	
 			Route::get('/panel/busqueda', [PlanillasController::class, 'busqueda'])->name('panel.busqueda');
 		//Devolver el formulario de ingreso de pago

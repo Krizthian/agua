@@ -3,6 +3,7 @@
     window.location = "/login";
   </script>
 @else
+
 <!doctype html>
 <html lang="es">
   <head>

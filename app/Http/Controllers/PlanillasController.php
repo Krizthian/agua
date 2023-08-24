@@ -161,6 +161,27 @@ class PlanillasController extends Controller
     }
 
     /**
+    * Mostramos todos los detalles de una planilla
+    */
+
+    public function show(Planillas $valoresPagarItem)
+    {
+
+     //Comprobamos el rol   
+      if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){
+
+        //Retornaremos a la vista con el formulario
+           return view('planillas.planilla', [
+            'valoresPagarItem' => $valoresPagarItem
+           ]); 
+
+        //Redireccionamos si el rol no es el permitido   
+         }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+                return redirect()->route('medidores.index');
+        }   
+    }
+
+    /**
      * Busqueda de valores en panel de gestión
      */
     public function busqueda(Request $request)
@@ -190,8 +211,14 @@ class PlanillasController extends Controller
          //Ejecutamos la consulta
             $valores_pagar = $query->paginate(10); //Solicitamos un maximo de valores para el paginado
 
-         //Retornamos los valores
-            return view('panel', compact('valores_pagar'));   
+         //Comprobamos el rol   
+          if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){
+             //Retornamos los valores
+                return view('panel', compact('valores_pagar'));   
+                //Redireccionamos si el rol no es el permitido   
+             }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+                    return redirect()->route('medidores.index');
+            }  
     }
 
     /**
@@ -217,10 +244,10 @@ class PlanillasController extends Controller
                 //Enviamos el correo electronico    
                 Mail::to($request->input('cliente_email'))->queue(new NotificacionPlanilla($mensaje));
                     //Redireccionamos de vuelta a la vista
-                    return redirect()->route('panel.index')->with('resultado_notificacion', 'Notificación enviada');        
+                    return redirect()->back()->with('resultado_notificacion', 'Notificación enviada');        
                 }else{
                     //Redireccionamos de vuelta a la vista
-                    return redirect()->route('panel.index')->with('resultado_validacionNotificacion', 'No se puede notificar'); 
+                    return redirect()->back()->with('resultado_validacionNotificacion', 'No se puede notificar'); 
                 }
     }
 
@@ -257,20 +284,28 @@ class PlanillasController extends Controller
                 $query->where('id_consumo', $valoresPagarItem);
             })
             ->get();
-    //Comprobamos si el medidor seleccionado tiene valores pendientes
-        if ($valoresPagarItem->valor_actual > 0) {
-            //Retornaremos a la vista con el formulario si existen valores pendientes
-                return view('planillas.ingresar', [
-                    'valoresPagarItem' => $valoresPagarItem,
-                    'valores_pagar' => $valores_pagar
-                ]);
-            }
-        //En caso de que no haya valores pendientes notificamos al usuario    
-            return redirect()->route('panel.index')->with([
-                'resultado_comprobacion' => 'El medidor seleccionado no tiene valores pendientes',
-                'medidor_pagado' => $valoresPagarItem->numero_medidor,
-            ]);
 
+     //Comprobamos el rol   
+      if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){
+        //Comprobamos si el medidor seleccionado tiene valores pendientes
+            if ($valoresPagarItem->valor_actual > 0) {
+                //Retornaremos a la vista con el formulario si existen valores pendientes
+                    return view('planillas.ingresar', [
+                        'valoresPagarItem' => $valoresPagarItem,
+                        'valores_pagar' => $valores_pagar
+                    ]);
+                }
+            //En caso de que no haya valores pendientes notificamos al usuario    
+                return redirect()->route('panel.index')->with([
+                    'resultado_comprobacion' => 'El medidor seleccionado no tiene valores pendientes',
+                    'medidor_pagado' => $valoresPagarItem->numero_medidor,
+                ]);
+
+        //Redireccionamos si el rol no es el permitido        
+        }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+            return redirect()->route('medidores.index');    
+        }  
+    
     }
 
     /**
