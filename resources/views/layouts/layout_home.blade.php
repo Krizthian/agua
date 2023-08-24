@@ -30,7 +30,7 @@
 
   	<!--INICIO DE CABECERA-->
     <header>
-		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary blanco" data-bs-theme="dark">
+		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
     <img class="img-fluid" src="{{url('img/logo.png')}}" width="170" height="50" alt="GAD DE PORTOVELO logo">
@@ -88,8 +88,7 @@
 @yield('content')
 
 <!--INICIO DE FOOTER-->
-<footer class="footer my-5 pt-5 text-body-secondary text-center text-small">
-  <div class="container_footer">
+<footer class="fixed-bottom my-5 pt-5 text-body-secondary text-center text-small">
   <!--INICIO DE ICONOS DE REDES SOCIALES-->
           <ul class="list-inline">
             <li class="list-inline-item mx-2">  
@@ -117,7 +116,6 @@
       <li class="list-inline-item"><a class="text-decoration-none" href="http://portovelo.gob.ec">Municipio</a></li>
       <li class="list-inline-item"><a class="text-decoration-none" href="http://www.portovelo.gob.ec/canton-portovelo/">Ciudad</a></li>
     </ul>
-  </div>
   </footer>
 <!--FIN DE FOOTER-->
 <!--JAVASCRIPT DE BOOTSTRAP 5.3 -->

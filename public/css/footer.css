@@ -17,6 +17,7 @@ body {
   height: 60px;
   line-height: 38px;
   left: 0;
+  
 }
 
 .container_footer{
@@ -28,3 +29,4 @@ body {
 .hr_short{
   width: 50%;
 }
+

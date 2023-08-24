@@ -38,7 +38,7 @@
   </head>
   <body class="bg-body-tertiary">
     <header>
-		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary blanco" data-bs-theme="dark">
+		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/panel">
     <img class="img-fluid" src="{{url('img/logo.png')}}" width="170" height="50" alt="GAD DE PORTOVELO logo">
@@ -47,7 +47,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-pills nav-justified">
         <li class="nav-item">
        <li class="nav-item">
                 @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<a class="nav-link {{setActive('panel.index')}}" aria-current="page" href="/panel">Planillas</a>@endif
@@ -106,13 +106,14 @@
 
 <!--CONTENIDO-->
   @yield('content')
+    </body>
 <!--FIN CONTENIDO-->
 <!--INICIO FOOTER-->
-<footer class="footer fixed-bottom my-5 pt-5 text-body-secondary text-center text-small">
-    <div class="container_footer">
+<footer class="my-5 pt-5 text-body-secondary text-center text-small text-muted" >
+
     <!--INICIO DE ICONOS DE REDES SOCIALES-->
-          <ul class="list-inline">
-            <li class="list-inline-item mx-2">
+          <ul class="list-inline mt-5">
+            <li class="list-inline-item mx-2 mt-5">
                   <!-- Facebook -->
                 <a title="Facebook" href="https://www.facebook.com/PortoveloGADM"><i class=" list-inline-item mx-2 fab fa-facebook-f fa-1x" style="color: #3b5998;"></i></a>
 
@@ -137,12 +138,11 @@
       <li class="list-inline-item"><a class="text-decoration-none" href="http://portovelo.gob.ec">Municipio</a></li>
       <li class="list-inline-item"><a class="text-decoration-none" href="http://www.portovelo.gob.ec/canton-portovelo/">Ciudad</a></li>
     </ul>
-  </div>
   </footer>
+</div>
 <!--FIN FOOTER-->
   <!--JAVASCRIPT BOOTSTRAP 5.3-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-  </body>
 </html>
 
 @endif

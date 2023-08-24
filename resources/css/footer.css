@@ -17,12 +17,16 @@ body {
   height: 60px;
   line-height: 38px;
   left: 0;
+  
 }
+
+
 
 .container_footer{
   background-color: #ecf0f1;
   width: 100%;
   padding-top: 10px;
+  height: 100%;
 }
 
 .hr_short{
