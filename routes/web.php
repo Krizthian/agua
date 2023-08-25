@@ -159,6 +159,10 @@ Route::view('/dashboard', 'dashboard')->name('dashboard');
 
 //Rutas para mostrar (usuarios)
 	Route::view('/usuarios', 'usuarios')->name('usuarios');
+		//Actualizar contraseña	
+			Route::get('/usuarios/actualizar', [UsuariosController::class, 'actualizarPasswordForm'])->name('usuarios.actualizarPassword');
+			//Procesar actualización de contraseña
+				Route::post('/usuarios/actualizar', [UsuariosController::class, 'actualizarPassword'])->name('actualizarPassword');
 		//Obtencion de usuarios
 			Route::get('/usuarios', [UsuariosController::class, 'index'])->name('usuarios.index');
 		//Busqueda de Usuarios

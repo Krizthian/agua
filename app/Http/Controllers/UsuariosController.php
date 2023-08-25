@@ -130,7 +130,7 @@ class UsuariosController extends Controller
             //Mensajes de error de cédula
                 'cedula.numeric' => 'El campo cédula debe contener números',
                 'cedula.unique' => 'Esta cédula ya se encuentra asociada a un usuario',
-                 'cedula.digits_between' => 'El campo cédula debe contener 10 caracteres',  
+                'cedula.digits_between' => 'El campo cédula debe contener 10 caracteres',  
             //Mensajes de error de email
                 'email.email' => 'El campo correo debe contener un correo electrónico',     
                 'email.unique' => 'Este correo ya se encuentra asociado a un usuario',     
@@ -176,4 +176,56 @@ class UsuariosController extends Controller
                 return redirect()->route('usuarios.index')->with('resultado', 'El usuario ha sido eliminado'); //Devolvemos el mensaje de resultados a la vista 'usuarios'
             }
     }
+
+    /**
+    * Mostrar formulario para actualizar contraseña
+    */
+    public function actualizarPasswordForm()
+    {
+        return view('usuarios.password');
+    }
+
+    /**
+    * Procesar actualización de contraseña
+    */
+    public function actualizarPassword(Request $request)
+    {
+        //Recibimos y validamos los valores ingresados
+            $campos_validados = request()->validate([
+                'password_actual' => 'required',
+                'password_nueva' => 'required'
+        ],[
+            //Mensajes de error de contraseña
+                'password_actual.required' => 'El campo de contraseña actual es obligatorio',
+                'password_nueva.required' => 'El campo de contraseña nueva es obligatorio',
+        ]);
+        if ($campos_validados) {
+        
+        //Ingresamos valores en variables
+            $password_actual = $campos_validados['password_actual'];
+            $password_nueva = bcrypt($campos_validados['password_nueva']);
+            $id_usuario = session()->get('sesion')['id'];
+
+         //Realizamos la consulta para validar el usuario actual
+            $usuarioEncontrado = Usuarios::where('id', $id_usuario)->first();
+            if ($usuarioEncontrado && password_verify($password_actual, $usuarioEncontrado->password)) {   
+                //Realizamos la actualización de la contraseña
+                Usuarios::where('id', $id_usuario)
+                    ->update([
+                        'password' => $password_nueva
+                    ]);   
+
+         //Redireccionamos y confirmamos la operación
+               return redirect()->back()->with('resultado_actualizacion', 'La contraseña se ha actualizado correctamente');
+
+            }else{
+              // Redireccionamos al login si hay algún error en la validación
+                 return redirect()->back()->with('resultado_validacionPassword', 'La contraseña actual es incorrecta')->withInput();
+            }
+
+         }else{
+           return redirect()->back()->withErrors($campos_validados)->withInput();
+         } 
+     }
 }
+

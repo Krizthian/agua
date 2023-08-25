@@ -35,7 +35,7 @@ class LoginController extends Controller
                 $nombres = $usuarioEncontrado->nombre . ' ' . $usuarioEncontrado->apellido;
                 
                 // Guardamos el rol y el usuario en variables de sesión
-                $request->session()->put('sesion', ['usuario' => $usuarioEncontrado->usuario, 'rol' => $usuarioEncontrado->rol, 'nombres' => $nombres]);
+                $request->session()->put('sesion', ['usuario' => $usuarioEncontrado->usuario, 'rol' => $usuarioEncontrado->rol, 'nombres' => $nombres, 'id' => $usuarioEncontrado->id]);
                 
                 // Redireccionamos al panel de control
                 if (session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador') {
