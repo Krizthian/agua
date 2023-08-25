@@ -1,0 +1,14 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: black;
+}
+
+/* Estilos específicos para la impresión */
+#print-container {
+    text-align: center;
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+}

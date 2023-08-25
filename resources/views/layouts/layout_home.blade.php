@@ -88,7 +88,7 @@
 @yield('content')
 
 <!--INICIO DE FOOTER-->
-<footer class="fixed-bottom my-5 pt-5 text-body-secondary text-center text-small">
+<footer class="my-5 pt-5 text-body-secondary text-center text-small">
   <!--INICIO DE ICONOS DE REDES SOCIALES-->
           <ul class="list-inline">
             <li class="list-inline-item mx-2">  

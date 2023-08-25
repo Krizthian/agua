@@ -316,7 +316,9 @@ class PlanillasController extends Controller
         //Obtenemos las variables enviadas en el formulario
             $valor_nuevo = request('valor_nuevo');
             $forma_pago = request('forma_pago');
+            date_default_timezone_set('America/Guayaquil'); // Establecer la zona horaria a Ecuador
             $fecha = date("Y-m-d");
+            $fechaHora = date("Y-m-d H:i:s");
        //Validamos los valores recibidos desde el formulario anterior
             $campos_validados = request()->validate([
                 'valor_nuevo' => ['required', 'numeric', 'min:0', "max:$valoresPagarItem->valor_actual"],
@@ -358,10 +360,17 @@ class PlanillasController extends Controller
                         ]);
 
             //Redireccionamos y devolvemos variables
-                return redirect()->route('panel.index')->with([
-                    'resultado_ingreso' => 'El pago se ha ingresado correctamente',
-                    'medidor_pagado' => $valoresPagarItem->numero_medidor,
+                return view('planillas.recibo')->with([
+                    'nombre_cliente' => $valoresPagarItem->cliente->nombre,
+                    'apellido_cliente' => $valoresPagarItem->cliente->apellido,
+                    'medidor_pagado' => $valoresPagarItem->medidor->numero_medidor,
                     'valor_pagado' => $valor_nuevo,
+                    'valor_a_pagar' => $valoresPagarItem->valor_actual,
+                    'forma_pago' => $forma_pago,
+                    'id_planilla' => $valoresPagarItem->id,
+                    'fecha' => $fechaHora,
+                    'cajero' => session()->get('sesion')['nombres'],
+
                 ]);         
         
         //Si no se ha realizado la validación correctamente, regresamos al formulario anterior        
