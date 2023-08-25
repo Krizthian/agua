@@ -15,6 +15,8 @@
 <main class="form-signin w-100 m-auto">
 		<div class="container"> <!--INICIO DE CONTENEDOR--> 
 			<form class="text-center">
+		<strong><label>Recibo: </label></strong> {{$numero_recibo}}
+		<br>
 		<strong><label>Cliente: </label></strong> {{$nombre_cliente}} {{$apellido_cliente}}
 		<br>
 		<strong><label>Planilla: </label></strong> # {{$id_planilla}}

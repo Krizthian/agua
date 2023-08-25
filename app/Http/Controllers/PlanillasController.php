@@ -319,6 +319,9 @@ class PlanillasController extends Controller
             date_default_timezone_set('America/Guayaquil'); // Establecer la zona horaria a Ecuador
             $fecha = date("Y-m-d");
             $fechaHora = date("Y-m-d H:i:s");
+            //Generamos un numero aleatorio de recibo de 6 digitos
+                $numero_recibo = mt_rand(100000, 999999);
+
        //Validamos los valores recibidos desde el formulario anterior
             $campos_validados = request()->validate([
                 'valor_nuevo' => ['required', 'numeric', 'min:0', "max:$valoresPagarItem->valor_actual"],
@@ -353,10 +356,11 @@ class PlanillasController extends Controller
                      ->create([
                             'id_cliente' => $valoresPagarItem->cliente->id,
                             'id_planilla' => $valoresPagarItem->id,
+                            'numero_recibo' => $numero_recibo,
                             'valor_pagado' => $valor_nuevo,
                             'valor_restante' => $valorFinalIngresar,
                             'fecha_pago' => $fecha,
-                            'forma_pago' => $forma_pago
+                            'forma_pago' => $forma_pago,
                         ]);
 
             //Redireccionamos y devolvemos variables
@@ -370,6 +374,7 @@ class PlanillasController extends Controller
                     'id_planilla' => $valoresPagarItem->id,
                     'fecha' => $fechaHora,
                     'cajero' => session()->get('sesion')['nombres'],
+                    'numero_recibo' => $numero_recibo
 
                 ]);         
         

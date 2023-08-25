@@ -40,7 +40,8 @@ class PagosController extends Controller
                 $query->where(function ($q) use ($valores) {
                     $q->whereHas('cliente', function ($subQuery) use ($valores) {
                         $subQuery->where('apellido', 'like', '%' . $valores . '%')
-                            ->orWhere('cedula', $valores);
+                            ->orWhere('cedula', $valores)
+                            ->orWhere('numero_recibo', $valores);
                     })
                     ->orWhere(function ($subQuery) use ($valores) {
                         $subQuery->where('id_planilla', 'like', '%' . $valores . '%');

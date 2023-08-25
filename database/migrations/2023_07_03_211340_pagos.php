@@ -13,6 +13,7 @@ return new class extends Migration
     {
      Schema::create('pagos', function (Blueprint $table) {
             $table->integer('id', true)->unique();
+            $table->string('numero_recibo')->unique();
             $table ->decimal('valor_pagado');
             $table ->decimal('valor_restante');
             $table ->date('fecha_pago');

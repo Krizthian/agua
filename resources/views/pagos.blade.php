@@ -31,7 +31,7 @@
       <!--FIN DE BOTON DE REGRESAR-->
       <br><br>
         <form action="{{route('pagos.busqueda')}}" method="GET" class="d-flex" role="search">
-            <label for="busqueda" hidden>Formulario de busqueda></label><input class="form-control me-2" id="busqueda" type="search" name="valores" placeholder="Apellidos o cédula" aria-label="Buscar" required>
+            <label for="busqueda" hidden>Formulario de busqueda></label><input class="form-control me-2" id="busqueda" type="search" name="valores" placeholder="Número de recibo, cédula o apellidos" aria-label="Buscar" required>
             <button class="btn btn-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
           </svg></button>
@@ -58,10 +58,10 @@
             @else
                 @foreach ($pagos as $pagosItem)
             <tr>
-              <td class="td_acciones">{{$pagosItem->id}}</td>
+              <td class="td_acciones">{{$pagosItem->numero_recibo}}</td>
               <td class="td_acciones">{{$pagosItem->cliente->nombre}} {{$pagosItem->cliente->apellido}}</td>
               <td class="td_acciones">{{$pagosItem->planilla->medidor->numero_medidor}}</td>
-              <td class="td_acciones"><a href="/panel/busqueda?valores={{$pagosItem->planilla->id}}" class="link link-offset-2 link-underline link-underline-opacity-0">{{$pagosItem->planilla->id}}</a></td>
+              <td class="td_acciones"><a href="/panel/busqueda?valores={{$pagosItem->planilla->id}}" class="link-dark link-offset-2 link-underline link-underline-opacity-0">{{$pagosItem->planilla->id}}</a></td>
               <td class="td_acciones">{{$pagosItem->valor_pagado}}</td>
               <td class="td_acciones">{{$pagosItem->valor_restante}}</td>
               <td class="td_acciones">{{$pagosItem->fecha_pago}}</td>
