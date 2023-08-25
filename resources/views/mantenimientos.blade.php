@@ -95,9 +95,9 @@
               <td class="td_acciones">{{$mantenimientosItem->fecha_mantenimiento}}</td>
               <td class="td_acciones">{{$mantenimientosItem->medidor->ubicacion}}</td>
               <td class="td_acciones">{{$mantenimientosItem->responsable_asignado}}</td>
-              @if($mantenimientosItem->estado_mantenimiento == "solicitado")<td class="td_acciones"><span class="badge rounded-pill text-bg-info">{{ucfirst($mantenimientosItem->estado_mantenimiento);}}</span></td>@endif
-              @if($mantenimientosItem->estado_mantenimiento == "en proceso")<td class="td_acciones"><span class="badge rounded-pill text-bg-primary">{{ucfirst($mantenimientosItem->estado_mantenimiento);}}</span></td>@endif
-              @if($mantenimientosItem->estado_mantenimiento == "completado")<td class="td_acciones"><span class="badge rounded-pill text-bg-success">{{ucfirst($mantenimientosItem->estado_mantenimiento);}}</span></td>@endif
+              @if($mantenimientosItem->estado_mantenimiento == "solicitado")<td class="td_acciones"><span class="badge text-bg-info">{{ucfirst($mantenimientosItem->estado_mantenimiento);}}</span></td>@endif
+              @if($mantenimientosItem->estado_mantenimiento == "en proceso")<td class="td_acciones"><span class="badge text-bg-primary">{{ucfirst($mantenimientosItem->estado_mantenimiento);}}</span></td>@endif
+              @if($mantenimientosItem->estado_mantenimiento == "completado")<td class="td_acciones"><span class="badge text-bg-success">{{ucfirst($mantenimientosItem->estado_mantenimiento);}}</span></td>@endif
               <!--INICIO DE BOTONES DE ACCIONES-->
               <td class="td_acciones">
               <div class="btn-group">

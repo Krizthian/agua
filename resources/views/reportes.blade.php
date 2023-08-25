@@ -121,6 +121,7 @@
       <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
+              <th scope="col">Recibo</th>
               <th scope="col">Cliente</th>
               <th scope="col">Número de Medidor</th>
               <th scope="col">Valor pagado</th>
@@ -135,6 +136,7 @@
         @else  
           @foreach ($query as $valorGenerado)
             <tr>
+              <td class="td_acciones">{{$valorGenerado->numero_recibo}}</td>
               <td class="td_acciones">{{$valorGenerado->cliente->nombre}} {{$valorGenerado->cliente->apellido}}</td>
               <td class="td_acciones">{{$valorGenerado->planilla->medidor->numero_medidor}}</td>
               <td class="td_acciones">$ {{$valorGenerado->valor_pagado}}</td>

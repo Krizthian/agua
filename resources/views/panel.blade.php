@@ -128,8 +128,8 @@
               <td class="td_acciones">{{$valoresPagarItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
               <td class="td_acciones">{{$valoresPagarItem->fecha_factura}}</td>
               <td class="td_acciones">{{$valoresPagarItem->fecha_maxima}}</td>
-               @if($valoresPagarItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge rounded-pill text-bg-success">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
-               @if($valoresPagarItem->estado_servicio == "inactivo")<td class="td_acciones"><span class="badge rounded-pill text-bg-danger">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
+               @if($valoresPagarItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge text-bg-success">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
+               @if($valoresPagarItem->estado_servicio == "inactivo")<td class="td_acciones"><span class="badge text-bg-danger">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
           @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')
               <td class="td_acciones">
               <!--INICIO DE ACCIONES-->
