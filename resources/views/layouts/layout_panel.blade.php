@@ -14,7 +14,7 @@
       
       <!--BOOTSTRAP 5.3-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.0/css/all.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.css">
         <link rel='shortcut icon' href='{{asset('img/favicon.ico')}}' type='image/x-icon'>
 
       <!--DATATABLE-->   
@@ -117,8 +117,8 @@
                   <!-- Facebook -->
                 <a title="Facebook" href="https://www.facebook.com/PortoveloGADM"><i class=" list-inline-item mx-2 fab fa-facebook-f fa-1x" style="color: #3b5998;"></i></a>
 
-                <!-- Twitter -->
-                <a title="Twitter" href="https://twitter.com/GadPortovelo"><i class=" list-inline-item mx-2 fab fa-twitter fa-1x" style="color: #55acee;"></i></a>
+                <!-- X -->
+                <a title="X" href="https://x.com/GadPortovelo"><i class=" list-inline-item mx-2 fab fa-brands fa-x-twitter fa-1x" style="color: #000;"></i></a>
 
                 <!-- Instagram -->
                 <a title="Instagram" href="https://www.instagram.com/gadportovelo/"><i class="list-inline-item mx-2 fab fa-instagram fa-1x" style="color: #ac2bac;"></i></a>
