@@ -71,19 +71,35 @@
 
                     @if(session('valor_actual'))
                       <hr>
-                   <div class="col-auto">
-                        <label for="costo_agua" >Costo del agua:</label>
+                   <!--<div class="col-auto">
+                        <label for="tarifa" >Tarifa:</label>
                       <div class="input-group mb-2">
-                         <span class="input-group-text"><i class="fa-solid fa-dollar-sign fa-sm"></i></span>
-                        <input type="text" id="costo_agua" class="form-control" value="{{ session('costo_agua') }}" readonly></input></center>
+                         <span class="input-group-text"><i class="fa-solid fa-comments-dollar fa-sm"></i></span>
+                        <input type="text" id="tarifa" class="form-control" value="$ {{ session('costo_agua') }}" readonly></input></center>
+                    </div>
+                  </div>-->
+
+                   <div class="col-auto">
+                        <label for="valor_agua" >Valor del agua:</label>
+                      <div class="input-group mb-2">
+                         <span class="input-group-text"><i class="fa-solid fa-droplet fa-sm"></i></span>
+                        <input type="text" id="valor_agua" class="form-control" value="$ {{ number_format(session('pre_valor_actual'), 2) }}" readonly></input></center>
                     </div>
                   </div>
 
                   <div class="col-auto">
-                    <label for="mantenimiento">Mantenimiento:</label>
+                    <label for="alcantarillado">Alcantarillado:</label>
                       <div class="input-group mb-2">
-                        <span class="input-group-text"><i class="fa-solid fa-dollar-sign fa-sm"></i></span>
-                          <input id="mantenimiento" type="text" class="form-control" value="0.00" readonly></input>
+                        <span class="input-group-text"><i class="fa-solid fa-toilet fa-sm"></i></span>
+                          <input id="alcantarillado" type="text" class="form-control" value="$ {{ number_format(session('alcantarillado'), 2) }}" readonly></input>
+                    </div>
+                  </div>
+
+                  <div class="col-auto">
+                    <label for="administración">Administración:</label>
+                      <div class="input-group mb-2">
+                        <span class="input-group-text"><i class="fa-solid fa-wrench fa-sm"></i></span>
+                          <input id="administración" type="text" class="form-control" value="$ {{ session('administracion') }}" readonly></input>
                     </div>
                   </div>
 
@@ -91,7 +107,7 @@
                       <label for="valor_actual">Valor aproximado a pagar:</label>
                         <div class="input-group mb-2">
                           <span class="input-group-text"><i class="fa-solid fa-dollar-sign fa-sm"></i></span>
-                        <input type="text" id="valor_actual" class="form-control" value="{{ session('valor_actual') }}" readonly></input>
+                        <input type="text" id="valor_actual" class="form-control" value="{{ number_format(session('valor_actual'), 2) }}" readonly></input>
                     </div>
                   </div>      
 

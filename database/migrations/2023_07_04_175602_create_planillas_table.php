@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('planillas', function (Blueprint $table) {
             $table->integer('id', true)->unique();
+            $table ->decimal('alcantarillado');
+            $table ->decimal('administracion');
             $table ->decimal('valor_actual');
             $table ->date('fecha_factura');
             $table ->date('fecha_maxima');

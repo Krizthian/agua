@@ -110,27 +110,51 @@
               	</div>
               </div>
 
-           <div class="col-md-12 mb-2">
-            <label>Valor actual:</label>
-              <div class="input-group mb-2">
-                <span class="input-group-text"><i class="fa-solid fa-dollar-sign fa-sm"></i></span>
-                  <input type="text" value="{{$valoresPagarItem->valor_actual}}" name="nombre" class="form-control" disabled></input>
-              	</div>
-              </div>
-
            <div class="col-md-6 mb-2">
             <label>Consumo actual:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-droplet fa-sm"></i></span>
                   <input type="text" value="{{$valoresPagarItem->consumo->consumo_actual}} m³" name="nombre" class="form-control" disabled></input>
-              	</div>
+                </div>
               </div>
 
-          	<div class="col-md-6 mb-2">
+            <div class="col-md-6 mb-2">
             <label>Consumo anterior:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-droplet fa-sm"></i></span>
                   <input type="text" value="{{$valoresPagarItem->consumo->consumo_anterior}} m³" name="nombre" class="form-control" disabled></input>
+                </div>
+              </div>
+
+           <div class="col-md-12 mb-2">
+            <label>Agua:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-hand-holding-droplet fa-sm"></i></span>
+                  <input type="text" value="$ {{$valorAgua = $valoresPagarItem->valor_actual - $valoresPagarItem->alcantarillado - $valoresPagarItem->administracion}}" name="nombre" class="form-control" disabled></input>
+                </div>
+              </div>
+
+           <div class="col-md-6 mb-2">
+            <label>Alcantarillado:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-toilet fa-sm"></i></span>
+                  <input type="text" value="$ {{$valoresPagarItem->alcantarillado}}" name="nombre" class="form-control" disabled></input>
+                </div>
+              </div>
+
+           <div class="col-md-6 mb-2">
+            <label>Administración:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-wrench fa-sm"></i></span>
+                  <input type="text" value="$ {{$valoresPagarItem->administracion}}" name="nombre" class="form-control" disabled></input>
+                </div>
+              </div>
+
+           <div class="col-md-12 mb-2">
+            <label>Valor actual (Total a pagar):</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-dollar-sign fa-sm"></i></span>
+                  <input type="text" value="{{$valoresPagarItem->valor_actual}}" name="nombre" class="form-control" disabled></input>
               	</div>
               </div>
 

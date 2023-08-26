@@ -8,6 +8,7 @@ use App\Models\Consumos; //Importamos el modelo de la tabla 'consumos'
 use App\Models\Planillas; //Importamos el modelo de la tabla 'planillas'
 use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
 use App\Models\Tarifas; //Importamos el modelo de la tabla 'tarifas'
+use App\Models\Cargos; //Importamos el modelo de la tabla 'cargos'
 
 class MedidoresController extends Controller
 {
@@ -206,31 +207,68 @@ class MedidoresController extends Controller
                     $tarifa_2501_5000 = $tarifas->pluck('tarifa_g')->first();
                     $tarifa_5000 = $tarifas->pluck('tarifa_h')->first(); 
 
+            //Obtenemos los valores de la tabla 'cargos'        
+                    $cargos = Cargos::all();
+                        $alcantarillado = $cargos->pluck('alcantarillado')->first();
+                        $administracion = $cargos->pluck('administracion')->first();
+
             //Realizamos el calculo de consumos en funcion de las tarifas e ingresarmos el valor en la variable valor_actual
                switch (true) {
                     case ($consumo_actual >= 0 && $consumo_actual <= 15):
-                        $valor_actual = $consumo_actual * $tarifa_0_15;
+                        $pre_valor_actual = $consumo_actual * $tarifa_0_15;
+                            //Obtenemos el porcentaje del alcantarillado
+                                $alcantarilladoIngresar = $pre_valor_actual * $alcantarillado;
+                            //Sumamos los cargos adicionales
+                                $valor_actual = $pre_valor_actual + $alcantarilladoIngresar + $administracion;
                         break;
                     case ($consumo_actual >= 16 && $consumo_actual <= 30):
-                        $valor_actual = $consumo_actual * $tarifa_16_30;
+                        $pre_valor_actual = $consumo_actual * $tarifa_16_30;
+                            //Obtenemos el porcentaje del alcantarillado
+                                $alcantarilladoIngresar = $pre_valor_actual * $alcantarillado;
+                            //Sumamos los cargos adicionales
+                                $valor_actual = $pre_valor_actual + $alcantarilladoIngresar + $administracion;
                         break;
                     case ($consumo_actual >= 31 && $consumo_actual <= 60):
-                        $valor_actual = $consumo_actual * $tarifa_31_60;
+                        $pre_valor_actual = $consumo_actual * $tarifa_31_60;
+                             //Obtenemos el porcentaje del alcantarillado
+                                $alcantarilladoIngresar = $pre_valor_actual * $alcantarillado;
+                            //Sumamos los cargos adicionales
+                                $valor_actual = $pre_valor_actual + $alcantarilladoIngresar + $administracion;
                         break;
                     case ($consumo_actual >= 61 && $consumo_actual <= 100):
-                        $valor_actual = $consumo_actual * $tarifa_61_100;
+                        $pre_valor_actual = $consumo_actual * $tarifa_61_100;
+                            //Obtenemos el porcentaje del alcantarillado
+                                $alcantarilladoIngresar = $pre_valor_actual * $alcantarillado;
+                            //Sumamos los cargos adicionales
+                                $valor_actual = $pre_valor_actual + $alcantarilladoIngresar + $administracion;
                         break;
                     case ($consumo_actual >= 101 && $consumo_actual <= 300):
-                        $valor_actual = $consumo_actual *  $tarifa_101_300;
+                        $pre_valor_actual = $consumo_actual *  $tarifa_101_300;
+                            //Obtenemos el porcentaje del alcantarillado
+                                $alcantarilladoIngresar = $pre_valor_actual * $alcantarillado;
+                            //Sumamos los cargos adicionales
+                                $valor_actual = $pre_valor_actual + $alcantarilladoIngresar + $administracion;
                         break;
                     case ($consumo_actual >= 301 && $consumo_actual <= 2500):
-                        $valor_actual = $consumo_actual * $tarifa_301_2500;
+                        $pre_valor_actual = $consumo_actual * $tarifa_301_2500;
+                            //Obtenemos el porcentaje del alcantarillado
+                                $alcantarilladoIngresar = $pre_valor_actual * $alcantarillado;
+                            //Sumamos los cargos adicionales
+                                $valor_actual = $pre_valor_actual + $alcantarilladoIngresar + $administracion;
                         break;
                     case ($consumo_actual >= 2501 && $consumo_actual <= 5000):
-                        $valor_actual = $consumo_actual * $tarifa_2501_5000;
+                        $pre_valor_actual = $consumo_actual * $tarifa_2501_5000;
+                            //Obtenemos el porcentaje del alcantarillado
+                                $alcantarilladoIngresar = $pre_valor_actual * $alcantarillado;
+                            //Sumamos los cargos adicionales
+                                $valor_actual = $pre_valor_actual + $alcantarilladoIngresar + $administracion;
                         break;
                     case ($consumo_actual > 5000):
-                        $valor_actual = $consumo_actual * $tarifa_5000;
+                        $pre_valor_actual = $consumo_actual * $tarifa_5000;
+                            //Obtenemos el porcentaje del alcantarillado
+                                $alcantarilladoIngresar = $pre_valor_actual * $alcantarillado;
+                            //Sumamos los cargos adicionales
+                                $valor_actual = $pre_valor_actual + $alcantarilladoIngresar + $administracion;
                         break;
                 }
 
@@ -242,12 +280,14 @@ class MedidoresController extends Controller
 
                     //Obtenemos valores de la tabla planillas
                      $planillaData = Planillas::where('id_medidor', $id_medidor)
-                                    ->select('valor_actual', 'meses_mora')
+                                    ->select('valor_actual', 'meses_mora', 'alcantarillado', 'administracion')
                                     ->first();  
 
                         //Ingresamos valores en variables
                             $planillaValorActual = $planillaData->valor_actual;
                             $meses_mora =  $planillaData->meses_mora;
+                            $alcantarillado_actual = $planillaData->alcantarillado;
+                            $administracion_actual = $planillaData->administracion;
 
                          //Comprobamos si existe una deuda pendiente
                                 /*
@@ -258,7 +298,13 @@ class MedidoresController extends Controller
                                 */
                             if ($planillaValorActual > 0) {
                                 //Sumamos valores
-                                 $valorDeuda = $planillaValorActual + $valor_actual;
+                                    //Deuda actual
+                                        $valorDeuda = $planillaValorActual + $valor_actual;
+                                    //Deuda de alcantarillado
+                                        $deudaAlcantarillado = $alcantarilladoIngresar + $alcantarillado_actual;
+                                    //Deuda de administracion
+                                        $deudaAdministracion = $administracion + $administracion_actual;
+
                                  //Incrementamos los valores de meses en mora
                                  $incremento = 1;
                                  $meses_mora_incremento = $meses_mora + $incremento;                                
@@ -274,6 +320,8 @@ class MedidoresController extends Controller
                                 Planillas::where('id_medidor', $id_medidor)
                                        ->update([
                                         'valor_actual' => $valorDeuda,
+                                        'alcantarillado' => $deudaAlcantarillado,
+                                        'administracion' => $deudaAdministracion,
                                         'fecha_factura' => $fecha_factura,
                                         'fecha_maxima' => $fecha_maxima,
                                         'estado_servicio' => "inactivo",
@@ -293,6 +341,8 @@ class MedidoresController extends Controller
                                    Planillas::where('id_medidor', $id_medidor)
                                    ->update([
                                     'valor_actual' => $valor_actual,
+                                    'alcantarillado' => $alcantarilladoIngresar,
+                                    'administracion' => $administracion,
                                     'fecha_factura' => $fecha_factura,
                                     'fecha_maxima' => $fecha_maxima,
                                    ]);
@@ -315,6 +365,8 @@ class MedidoresController extends Controller
                             'id_medidor' => $id_medidor,
                             'id_consumo' => $id_consumoCreado,
                             'valor_actual' => $valor_actual,
+                            'alcantarillado' => $alcantarilladoIngresar,
+                            'administracion' => $administracion,                           
                             'fecha_factura' => $fecha_factura,
                             'fecha_maxima' => $fecha_maxima,
                             'estado_servicio' => "activo",

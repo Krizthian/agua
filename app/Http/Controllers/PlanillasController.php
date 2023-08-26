@@ -8,7 +8,8 @@ use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
 use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
 use App\Models\Consumos; //Importamos el modelo de la tabla 'consumos'
 use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
-use App\Models\Tarifas; //Importamos el modelo de la tabla 'pagos'
+use App\Models\Tarifas; //Importamos el modelo de la tabla 'tarifas'
+use App\Models\Cargos; //Importamos el modelo de la tabla 'cargos'
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotificacionPlanilla; //Importamos la propiedad para el envio de correos
@@ -66,6 +67,11 @@ class PlanillasController extends Controller
                         $tarifa_2501_5000 = $tarifas->pluck('tarifa_g')->first();
                         $tarifa_5000 = $tarifas->pluck('tarifa_h')->first(); 
 
+            //Obtenemos los valores de cargos            
+                    $cargos = Cargos::all();
+                        $alcantarilladoBD = $cargos->pluck('alcantarillado')->first();     
+                        $administracion = $cargos->pluck('administracion')->first();     
+
              if($campos_validados){
                 //Creamos variables temporales
                         $valor_actual = 0;
@@ -73,39 +79,75 @@ class PlanillasController extends Controller
                 //Realizamos el calculo de consumos en funcion de las tarifas e ingresarmos el valor en la variable valor_actual
                    switch (true) {
                         case ($campos_validados['valor'] >= 0 && $campos_validados['valor'] <= 15):
-                            $valor_actual = $campos_validados['valor'] * $tarifa_0_15;
+                            $pre_valor_actual = $campos_validados['valor'] * $tarifa_0_15;
+                                //Obtenemos el porcentaje de alcantarillado
+                                    $alcantarilladoCalcular = $pre_valor_actual * $alcantarilladoBD;
+                                //Sumamos los cargos adicionales
+                                    $valor_actual = $pre_valor_actual + $alcantarilladoCalcular + $administracion;  
+                                                         
                             $costo_agua = $tarifa_0_15;
                             break;
                         case ($campos_validados['valor'] >= 16 && $campos_validados['valor'] <= 30):
-                            $valor_actual = $campos_validados['valor'] * $tarifa_16_30;
+                            $pre_valor_actual = $campos_validados['valor'] * $tarifa_16_30;
+                                //Obtenemos el porcentaje de alcantarillado
+                                    $alcantarilladoCalcular = $pre_valor_actual * $alcantarilladoBD;
+                                //Sumamos los cargos adicionales
+                                    $valor_actual = $pre_valor_actual + $alcantarilladoCalcular + $administracion;   
                             $costo_agua = $tarifa_16_30;
                             break;
                         case ($campos_validados['valor'] >= 31 && $campos_validados['valor'] <= 60):
-                            $valor_actual = $campos_validados['valor'] * $tarifa_31_60;
+                            $pre_valor_actual = $campos_validados['valor'] * $tarifa_31_60;
+                                //Obtenemos el porcentaje de alcantarillado
+                                    $alcantarilladoCalcular = $pre_valor_actual * $alcantarilladoBD;
+                                //Sumamos los cargos adicionales
+                                    $valor_actual = $pre_valor_actual + $alcantarilladoCalcular + $administracion;   
                             $costo_agua = $tarifa_31_60;
                             break;
                         case ($campos_validados['valor'] >= 61 && $campos_validados['valor'] <= 100):
-                            $valor_actual = $campos_validados['valor'] * $tarifa_61_100;
+                            $pre_valor_actual = $campos_validados['valor'] * $tarifa_61_100;
+                                //Obtenemos el porcentaje de alcantarillado
+                                    $alcantarilladoCalcular = $pre_valor_actual * $alcantarilladoBD;
+                                //Sumamos los cargos adicionales
+                                    $valor_actual = $pre_valor_actual + $alcantarilladoCalcular + $administracion;   
                             $costo_agua = $tarifa_61_100;
                             break;
                         case ($campos_validados['valor'] >= 101 && $campos_validados['valor'] <= 300):
-                            $valor_actual = $campos_validados['valor'] *  $tarifa_101_300;
+                            $pre_valor_actual = $campos_validados['valor'] *  $tarifa_101_300;
+                                 //Obtenemos el porcentaje de alcantarillado
+                                    $alcantarilladoCalcular = $pre_valor_actual * $alcantarilladoBD;
+                                //Sumamos los cargos adicionales
+                                    $valor_actual = $pre_valor_actual + $alcantarilladoCalcular + $administracion;   
                             $costo_agua = $tarifa_101_300;
                             break;
                         case ($campos_validados['valor'] >= 301 && $campos_validados['valor'] <= 2500):
-                            $valor_actual = $campos_validados['valor'] * $tarifa_301_2500;
+                            $pre_valor_actual = $campos_validados['valor'] * $tarifa_301_2500;
+                                //Obtenemos el porcentaje de alcantarillado
+                                    $alcantarilladoCalcular = $pre_valor_actual * $alcantarilladoBD;
+                                //Sumamos los cargos adicionales
+                                    $valor_actual = $pre_valor_actual + $alcantarilladoCalcular + $administracion;   
                             $costo_agua = $tarifa_301_2500;
                             break;
                         case ($campos_validados['valor'] >= 2501 && $campos_validados['valor'] <= 5000):
-                            $valor_actual = $campos_validados['valor'] * $tarifa_2501_5000;
+                            $pre_valor_actual = $campos_validados['valor'] * $tarifa_2501_5000;
+                                //Obtenemos el porcentaje de alcantarillado
+                                    $alcantarilladoCalcular = $pre_valor_actual * $alcantarilladoBD;
+                                //Sumamos los cargos adicionales
+                                    $valor_actual = $pre_valor_actual + $alcantarilladoCalcular + $administracion;   
                             $costo_agua = $tarifa_2501_5000;
                             break;
                         case ($campos_validados['valor'] > 5000):
-                            $valor_actual = $campos_validados['valor'] * $tarifa_5000;
+                            $pre_valor_actual = $campos_validados['valor'] * $tarifa_5000;
+                                //Obtenemos el porcentaje de alcantarillado
+                                    $alcantarilladoCalcular = $pre_valor_actual * $alcantarilladoBD;
+                                //Sumamos los cargos adicionales
+                                    $valor_actual = $pre_valor_actual + $alcantarilladoCalcular + $administracion;   
                             $costo_agua = $tarifa_5000;
                             break;
                     }
                         return redirect()->back()->withInput()->with([
+                            'pre_valor_actual' => $pre_valor_actual,
+                            'alcantarillado' => $alcantarilladoCalcular,
+                            'administracion' => $administracion,
                             'valor_actual' => $valor_actual,
                             'costo_agua' => $costo_agua
                         ]);
@@ -346,10 +388,10 @@ class PlanillasController extends Controller
                      ->update([
                             'valor_actual' => $valorFinalIngresar,
                         ]);
-            //Si la deuda es completamente liquidada, se reinicia el contador de meses en mora         
+            //Si la deuda es completamente liquidada, se reinicia el contador de meses en mora y de cargos         
                if ($valoresPagarItem->valor_actual == $valor_nuevo) {
                    Planillas::where('id_medidor', $valoresPagarItem->medidor->id)
-                     ->update(['meses_mora' => 0]);
+                     ->update(['meses_mora' => 0, 'alcantarillado' => 0, 'administracion' => 0]);
                 }     
             //Realizamos la consulta Eloquent para la actualizacion de valores en 'Pagos'
                 Pagos::where('id_cliente', $valoresPagarItem->cliente->id)
