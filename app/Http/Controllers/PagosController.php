@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pagos; //Importamos el modelo de la tabla 'pagos'
 use App\Models\Planillas; //Importamos el modelo de la tabla 'planillas'
 use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
+use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
 
 class PagosController extends Controller
 {
@@ -57,5 +58,40 @@ class PagosController extends Controller
             return redirect()->route('medidores.index');    
             } 
         } 
+
+/**
+* Mostrar recibo
+*/
+
+public function mostrarRecibo (Pagos $pagosItem){
+
+     //Comprobamos el rol   
+      if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){
+
+        //Obtenemos los valores
+           $pagosItemGet = Pagos::with(['cliente', 'planilla'])
+           ->where('id', $pagosItem->id) 
+           ->first();
+
+       //Retornaremos a la vista con el formulario
+           return view('pagos.recibo', [
+            'numero_recibo' => $pagosItemGet->numero_recibo,
+            'nombre_cliente' => $pagosItemGet->cliente->nombre,
+            'apellido_cliente' => $pagosItemGet->cliente->apellido,
+            'id_planilla' => $pagosItemGet->planilla->id,
+            'medidor_pagado' => $pagosItem->planilla->medidor->numero_medidor,
+            'valor_a_pagar' => $pagosItemGet->valor_a_pagar,
+            'valor_pagado' => $pagosItemGet->valor_pagado,
+            'forma_pago' => $pagosItemGet->forma_pago,
+            'cajero' => $pagosItemGet->cajero,
+            'fecha' => $pagosItemGet->fecha_pago,
+           ]); 
+
+     //Redireccionamos si el rol no es el permitido   
+         }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+                return redirect()->route('medidores.index');
+        }     
+
+}
 
 }

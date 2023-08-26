@@ -86,6 +86,8 @@ Route::view('/dashboard', 'dashboard')->name('dashboard');
 			Route::get('/pagos', [PagosController::class, 'index'])->name('pagos.index');
 			//Busqueda de valores	
 			Route::get('/pagos/busqueda', [PagosController::class, 'busqueda'])->name('pagos.busqueda');
+			//Mostrar recibo
+			Route::get('/pagos/recibo/{pagosItem}', [PagosController::class, 'mostrarRecibo'])->name('pagos.show');
 
 //Rutas para mostrar (medidores)
 	Route::view('/medidores', 'medidores')->name('medidores');

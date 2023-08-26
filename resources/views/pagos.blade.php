@@ -58,7 +58,7 @@
             @else
                 @foreach ($pagos as $pagosItem)
             <tr>
-              <td class="td_acciones">{{$pagosItem->numero_recibo}}</td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0"  href="{{route('pagos.show', $pagosItem)}}">{{$pagosItem->numero_recibo}}</td>
               <td class="td_acciones">{{$pagosItem->cliente->nombre}} {{$pagosItem->cliente->apellido}}</td>
               <td class="td_acciones">{{$pagosItem->planilla->medidor->numero_medidor}}</td>
               <td class="td_acciones"><a href="/panel/busqueda?valores={{$pagosItem->planilla->id}}" class="link-dark link-offset-2 link-underline link-underline-opacity-0">{{$pagosItem->planilla->id}}</a></td>
@@ -74,6 +74,7 @@
           </tbody>
             </div>
         </table>
+        <div class="text-muted mt-0"><caption><strong>Consejo: </strong>Para visualizar el recibo de pago, haz clic en el número del recibo.</caption></div>
       </div>
         <!--FIN DE TABLA CON VALORES-->
           {{$pagos->links('pagination::bootstrap-4')}}
