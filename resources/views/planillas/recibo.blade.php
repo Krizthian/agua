@@ -4,16 +4,25 @@
 <link rel="stylesheet" type="text/css" media="print" href="{{url('css/recibo.css')}}">
 @section('content')
     <style>
-    /*ESTILO PERSONALIZADO PARA PANEL DE GESTION*/
+    /*ESTILO PERSONALIZADO PARA RECIBO*/
 	    .bg-body-tertiary {
 	        --bs-bg-opacity: 1;
-	         background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+	         background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;   
 	     }
+	     .container-recibo{
+			  --mask: 
+			    conic-gradient(from 150deg at top,#0000,#000 1deg 59deg,#0000 60deg) top/34.64px 51% repeat-x,
+			    conic-gradient(from -30deg at bottom,#0000,#000 1deg 59deg,#0000 60deg) bottom/34.64px 51% repeat-x;
+			  -webkit-mask: var(--mask);
+			          mask: var(--mask);
+			    padding-bottom: 80px;
+			    padding-top: 60px; 
+			}
     </style>
 <div id="print-container">
 <center><h1 class="mt-0 display-4">Recibo de Pago</center></h1>
 <main class="form-signin w-100 m-auto">
-		<div class="container"> <!--INICIO DE CONTENEDOR--> 
+		<div class="container container-recibo"> <!--INICIO DE CONTENEDOR--> 
 			<form class="text-center">
 		<strong><label>Recibo: </label></strong> {{$numero_recibo}}
 		<br>
