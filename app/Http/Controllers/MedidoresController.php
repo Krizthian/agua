@@ -402,6 +402,10 @@ class MedidoresController extends Controller
             }    
     }
 
+ /**
+     * Procesar actualización de tarifas
+     */
+
     public function actualizarTarifas(Request $request)
     {
         //Realizamos la validacion de campos
@@ -463,5 +467,64 @@ class MedidoresController extends Controller
             }   
 
     }
- 
+
+ /**
+     * Devolver resultados a la pagina de cargos
+     */
+    public function mostrarCargos()
+    {
+        //Comprobamos el rol antes de devolver la vista
+            if(session()->get('sesion')['rol'] == 'administrador'){
+                $cargos = Cargos::all();
+                return view('medidores.cargos', compact('cargos'));
+
+        //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
+            }elseif(session()->get('sesion')['rol'] == 'supervisor' || session()->get('sesion')['rol'] == 'personal'){
+                return redirect()->route('medidores.index');
+            }    
+    }
+ /**
+     * Procesar actualización de cargos
+     */
+   public function actualizarCargos(Request $request)
+    {
+     //Comprobamos el rol antes de devolver la vista
+        if(session()->get('sesion')['rol'] == 'administrador'){
+         //Validamos los campos recibidos   
+            $campos_validados = request()->validate([
+                'alcantarillado' => 'required|integer|min:1|max:90|regex:/^\d+(\.\d{1,2})?$/',
+                'administracion' => 'required|numeric|min:0',
+            ],[
+                // Mensajes de error de administracion
+                    'administracion.numeric' => 'El valor ingresado para el campo de cargo por administración es incorrecto',
+                    'administracion.required' => 'El valor ingresado para el campo de cargo por administración es obligatorio',
+                    'administracion.min' => 'El valor ingresado para el campo de cargo por administración debe ser mayor a 0',
+                //Mensajes de error de alcantarillado
+                    'alcantarillado.required' => 'El valor ingresado para el campo de alcantarillado es obligatorio',
+                    'alcantarillado.integer' => 'El valor ingresado para el campo de alcantarillado es erróneo',
+                    'alcantarillado.min' => 'El porcentaje ingresado para el campo de alcantarillado debe ser mayor a 0',
+                    'alcantarillado.max' => 'El porcentaje ingresado para el campo de alcantarillado no debe ser mayor a 90',
+                    'alcantarillado.regex' => 'El formato del porcentaje es incorrecto. Debe ser un número entero',
+            ]);
+
+            if ($campos_validados) {
+                //Convertimos los valores de porcentaje recibidos
+                    $alcantarilladoString = $request->input('alcantarillado');
+                    $alcantarilladoDecimal = floatval(str_replace('%', '', $alcantarilladoString)) / 100;
+
+                //Actualizamos los valores en la tabla    
+                       Cargos::where('id', '1')
+                       ->update([
+                        'alcantarillado' => $alcantarilladoDecimal,
+                        'administracion' => $campos_validados['administracion'],
+                    ]);
+                    return redirect()->back()->with('resultados_cargos', 'Cargos actualizadas correctamente.');                   
+
+            }
+
+        //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
+            }elseif(session()->get('sesion')['rol'] == 'supervisor' || session()->get('sesion')['rol'] == 'personal'){
+                return redirect()->route('medidores.index');
+            }    
+    } 
 }

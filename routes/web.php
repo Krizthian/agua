@@ -79,6 +79,12 @@ Route::view('/dashboard', 'dashboard')->name('dashboard');
 			//Actualizar medidor
 				Route::patch('/tarifas/actualizar/', [MedidoresController::class, 'actualizarTarifas'])->name('tarifas.update');	
 
+//Rutas para mostrar (actualizacion de cargos)
+		Route::view('/cargos', 'cargos')->name('cargos');
+			//Obtencion de valores
+				Route::get('/cargos', [MedidoresController::class, 'mostrarCargos'])->name('cargos.index');
+			//Actualizar medidor
+				Route::patch('/cargos/actualizar/', [MedidoresController::class, 'actualizarCargos'])->name('cargos.update');	
 
 //Rutas para mostrar (historial de pagos)
 	Route::view('/pagos', 'pagos')->name('pagos');
