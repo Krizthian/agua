@@ -8,7 +8,7 @@
 <body>
 	<p><strong>Estimado(a)</strong>,</p>
 	{{$mensaje['cliente_apellido']}}, {{$mensaje['cliente_nombre']}}<br>
-	<p><strong>Cédula: </strong>{{$mensaje['cliente_cedula']}}</p>
+	<p><strong>Cédula/RUC: </strong>{{$mensaje['cliente_cedula']}}</p>
 	<p>El presente mensaje es una notificación de parte del departamento de cobros de agua de la institución, hemos identificado que cuenta con valores pendientes asociados a su medidor <strong>{{$mensaje['cliente_medidor']}}</strong> de <strong>${{$mensaje['cliente_planilla_valorActual']}}</strong> correspondientes a la factura generada el <strong>{{$mensaje['cliente_planilla_fechaFactura']}}</strong>, solicitamos que se acerque a realizar el pago de su planilla (#{{$mensaje['cliente_planilla_id']}})</p>
 
 	<p>Puede revisar mas a detalle los valores de su planilla así como también consumos a través del siguiente enlace: </p>

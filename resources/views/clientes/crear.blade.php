@@ -51,7 +51,7 @@
             </div>  
           </div>  
           <div class="col-md-6 mb-2">
-            <label>Cédula del cliente:</label>
+            <label>Cédula/RUC del cliente:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-id-card fa-sm"></i></span>
             <input type="text" class="form-control @error('cedula') is-invalid @enderror" value="{{old('cedula')}}" name="cedula" placeholder="Ej. 0705558887" required></input>

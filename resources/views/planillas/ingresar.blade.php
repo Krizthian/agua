@@ -52,7 +52,7 @@
                   </div>
              </div>  
           <div class="col-md-6 mb-2">
-            <label for="cedula">Cédula:</label>
+            <label for="cedula">Cédula/RUC:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-id-card fa-sm "></i></span>
             <input type="text" id="cedula" class="form-control" name="cedula" value="{{$valoresPagarItem->cliente->cedula}}" placeholder="{{$valoresPagarItem->cliente->cedula}}" disabled></input>

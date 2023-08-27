@@ -76,7 +76,7 @@
             <tr>
               <th scope="col">Planilla</th>
               <th scope="col">Medidor</th>
-              <th scope="col">Cédula</th>
+              <th scope="col">Cédula/RUC</th>
               <th scope="col">Cliente</th>
               <th scope="col">Valor actual</th>
               <th scope="col">Meses en mora</th>

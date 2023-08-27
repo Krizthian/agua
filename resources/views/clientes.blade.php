@@ -68,7 +68,7 @@
           <thead>
             <tr>
               <th scope="col">Cliente</th>
-              <th scope="col">Cédula</th>
+              <th scope="col">Cédula/RUC</th>
               <th scope="col">Dirección</th>
               <th scope="col">Teléfono</th>
               <th scope="col" align="center">Acciones</th> 

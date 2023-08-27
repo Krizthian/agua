@@ -124,7 +124,7 @@ class LoginController extends Controller
                 $campos_validados = request()->validate([
                     'password' => 'required'
                 ],[
-                //Mensajes de error de cédula
+                //Mensajes de error de contraseña
                     'password.required' => 'El campo contraseña es obligatorio',
              ]);
 

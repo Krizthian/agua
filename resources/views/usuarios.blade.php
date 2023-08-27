@@ -81,7 +81,7 @@
             <tr>
               <th scope="col">Usuario</th>
               <th scope="col">Nombres</th>
-              <th scope="col">Cédula</th>
+              <th scope="col">Cédula/RUC</th>
               <th scope="col">Rol</th>
               <th scope="col">Email</th>
               <th scope="col" align="center">Acciones</th> 
