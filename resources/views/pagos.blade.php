@@ -38,7 +38,8 @@
         </form>
 
         <!--INICIO DE TABLA CON VALORES-->
-       <div class="table-responsive"> 
+       <div class="table-responsive">
+            <div class="fst-italic text-muted mt-1 float-start"><caption><strong>Consejo: </strong>Para visualizar el recibo de pago, haz clic en el número del recibo.</caption></div>
         <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
@@ -74,7 +75,7 @@
           </tbody>
             </div>
         </table>
-        <div class="text-muted mt-0"><caption><strong>Consejo: </strong>Para visualizar el recibo de pago, haz clic en el número del recibo.</caption></div>
+        <!--<div class="text-muted mt-0"><caption><strong>Consejo: </strong>Para visualizar el recibo de pago, haz clic en el número del recibo.</caption></div>-->
       </div>
         <!--FIN DE TABLA CON VALORES-->
           {{$pagos->links('pagination::bootstrap-4')}}

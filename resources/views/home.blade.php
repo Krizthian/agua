@@ -71,6 +71,7 @@
     @if(isset($resultados))
          <!--INICIO TABLA CON DATOS-->
       <div class="table-responsive">
+                <div class="fst-italic text-muted mt-1 float-start"><caption><strong>Consejo: </strong>Para ampliar los detalles de la planilla, haz clic en el número de planilla.</caption></div>        
         <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
@@ -81,8 +82,8 @@
               <th scope="col">Valor actual</th>
               <th scope="col">Meses en mora</th>
               <th scope="col">Consumo actual</th>
-              <th scope="col">Consumo previo</th>
-              <th scope="col">Responsable de lectura</th>
+              <!--<th scope="col">Consumo previo</th>-->
+              <!--<th scope="col">Responsable de lectura</th>-->
               <th scope="col">Fecha de Factura</th>
               <th scope="col">Fecha máxima de pago</th>
               <th scope="col">Estado del servicio</th>  
@@ -94,19 +95,19 @@
             @else
                 @foreach($resultados as $pagosConsultaItem)
             <tr>
-              <td class="td_acciones">{{$pagosConsultaItem->id}}</td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0"  href="{{route('consulta.show', $pagosConsultaItem)}}">{{$pagosConsultaItem->id}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->medidor->numero_medidor}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->cliente->cedula}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->cliente->nombre}} {{$pagosConsultaItem->cliente->apellido}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_actual}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->meses_mora}} @if($pagosConsultaItem->meses_mora == 1) mes @else meses @endif</td>
               <td class="td_acciones">{{$pagosConsultaItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
-              <td class="td_acciones">{{$pagosConsultaItem->consumo->consumo_anterior}} m<sup><strong>3</strong></sup></td>
-              <td class="td_acciones">{{$pagosConsultaItem->consumo->responsable}}</td>
+              <!--<td class="td_acciones">{{$pagosConsultaItem->consumo->consumo_anterior}} m<sup><strong>3</strong></sup></td>-->
+              <!--<td class="td_acciones">{{$pagosConsultaItem->consumo->responsable}}</td>-->
               <td class="td_acciones">{{$pagosConsultaItem->fecha_factura}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha_maxima}}</td>
-               @if($pagosConsultaItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge mt-2 text-bg-success">{{ucfirst($pagosConsultaItem->estado_servicio);}}</span></td>@endif
-               @if($pagosConsultaItem->estado_servicio == "inactivo")<td class="td_acciones"><span class="badge mt-2 text-bg-danger">{{ucfirst($pagosConsultaItem->estado_servicio);}}</span></td>@endif
+               @if($pagosConsultaItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge mt-0 text-bg-success">{{ucfirst($pagosConsultaItem->estado_servicio);}}</span></td>@endif
+               @if($pagosConsultaItem->estado_servicio == "inactivo")<td class="td_acciones"><span class="badge mt-0 text-bg-danger">{{ucfirst($pagosConsultaItem->estado_servicio);}}</span></td>@endif
             </tr> 
             @endforeach
             @endif

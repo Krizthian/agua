@@ -83,7 +83,7 @@
             <label>Cliente:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
-                  <input type="text" value="{{$valoresPagarItem->cliente->nombre}} {{$valoresPagarItem->cliente->apellido}}" name="nombre" class="form-control" disabled></input>
+                  <input type="text" value="{{$valoresPagarItem->cliente->apellido}}, {{$valoresPagarItem->cliente->nombre}}" name="nombre" class="form-control" disabled></input>
               	</div>
               </div>
            <div class="col-md-12 mb-2">
@@ -153,8 +153,8 @@
            <div class="col-md-12 mb-2">
             <label>Valor actual (Total a pagar):</label>
               <div class="input-group mb-2">
-                <span class="input-group-text"><i class="fa-solid fa-dollar-sign fa-sm"></i></span>
-                  <input type="text" value="{{$valoresPagarItem->valor_actual}}" name="nombre" class="form-control" disabled></input>
+                <span class="input-group-text"><i class="fa-solid fa-file-invoice-dollar fa-sm"></i></span>
+                  <input type="text" value="$ {{$valoresPagarItem->valor_actual}}" name="nombre" class="form-control fw-bold" disabled></input>
               	</div>
               </div>
 
@@ -186,8 +186,15 @@
             <label>Estado de servicio:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-hand-holding-droplet fa-sm"></i></span>
-                  <input type="text" value="{{ucFirst($valoresPagarItem->estado_servicio)}}" name="nombre" class="form-control" disabled></input>
+                  <input type="text" value="{{ucFirst($valoresPagarItem->estado_servicio)}}" name="nombre" class="form-control fw-bold @if ($valoresPagarItem->estado_servicio == 'activo') text-success @elseif($valoresPagarItem->estado_servicio == 'inactivo') text-danger @endif" disabled></input>
               	</div>
+              </div>
+           <div class="col-md-12 mb-2">
+            <label>Responsable de lectura:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-glasses fa-sm"></i></span>
+                  <input type="text" value="{{$valoresPagarItem->consumo->responsable}}" name="nombre" class="form-control" disabled></input>
+                </div>
               </div>
        </form>
        		<!--INICIO DE COMPROBACION DE ROLES-->	

@@ -97,15 +97,16 @@
         <!--FIN DE MENSAJE DE RESULTADOS-->
     <!--INICIO TABLA CON DATOS-->
     <div class="table-responsive">
-      <table id="tabla" class="table-hover table-responsive table table-bordered table-striped">
+                <div class="fst-italic text-muted mt-1 float-start"><caption><strong>Consejo: </strong>Para ampliar los detalles de la planilla, haz clic en el número de planilla.</caption></div>
+      <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
-              <th scope="col"># Planilla</th>
+              <th scope="col">Planilla</th>
               <th scope="col">Medidor</th>
              <!-- <th scope="col">Cédula</th>-->
               <th scope="col">Cliente</th>
               <th scope="col">Valor actual</th>
-              <th scope="col">Meses en mora</th>
+              <!--<th scope="col">Meses en mora</th>-->
               <th scope="col">Consumo actual</th>
               <!-- <th scope="col">Consumo previo</th>-->
               <th scope="col">Fecha de Factura</th>
@@ -122,14 +123,14 @@
             <tr>
               <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0"  href="{{route('planillas.show', $valoresPagarItem)}}">{{$valoresPagarItem->id}}</td>
               <td class="td_acciones">{{$valoresPagarItem->medidor->numero_medidor}}</td>
-              <td class="td_acciones">{{$valoresPagarItem->cliente->nombre}} {{$valoresPagarItem->cliente->apellido}}</td>
+              <td class="td_acciones"> {{$valoresPagarItem->cliente->apellido}}, {{$valoresPagarItem->cliente->nombre}}</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_actual}}</td>
-              <td class="td_acciones">{{$valoresPagarItem->meses_mora}} @if($valoresPagarItem->meses_mora == 1) mes @else meses @endif</td>
+              <!--<td class="td_acciones">{{$valoresPagarItem->meses_mora}} @if($valoresPagarItem->meses_mora == 1) mes @else meses @endif</td>-->
               <td class="td_acciones">{{$valoresPagarItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
               <td class="td_acciones">{{$valoresPagarItem->fecha_factura}}</td>
               <td class="td_acciones">{{$valoresPagarItem->fecha_maxima}}</td>
-               @if($valoresPagarItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge mt-2 text-bg-success">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
-               @if($valoresPagarItem->estado_servicio == "inactivo")<td class="td_acciones"><span class="badge mt-2 text-bg-danger">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
+               @if($valoresPagarItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge mt-1 text-bg-success">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
+               @if($valoresPagarItem->estado_servicio == "inactivo")<td class="td_acciones"><span class="badge mt-1 text-bg-danger">{{ucfirst($valoresPagarItem->estado_servicio);}}</span></td>@endif
           @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')
               <td class="td_acciones">
               <!--INICIO DE ACCIONES-->
@@ -237,7 +238,7 @@
             @endif
           </tbody>
         </table>
-          <div class="text-muted mt-0"><caption><strong>Consejo: </strong>Para ampliar los detalles de la planilla, haz clic en el número de planilla.</caption></div>
+          <!--<div class="text-muted mt-0"><caption><strong>Consejo: </strong>Para ampliar los detalles de la planilla, haz clic en el número de planilla.</caption></div>-->
       </div>
           {{$valores_pagar->links('pagination::bootstrap-4')}}
       <!--FIN TABLA CON DATOS-->

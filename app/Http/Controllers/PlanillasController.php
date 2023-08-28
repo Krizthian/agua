@@ -203,7 +203,19 @@ class PlanillasController extends Controller
     }
 
     /**
-    * Mostramos todos los detalles de una planilla
+    * Mostramos todos los detalles de una planilla en la consulta del ciudadano
+    */
+
+    public function mostrarPlanillaCiudadano(Planillas $pagosConsultaItem)
+    {
+        //Retornaremos a la vista con el formulario
+           return view('consulta.planilla', [
+            'pagosConsultaItem' => $pagosConsultaItem
+           ]);   
+    }   
+
+    /**
+    * Mostramos todos los detalles de una planilla (Panel de Gestión - Gestión de Planillas)
     */
 
     public function show(Planillas $valoresPagarItem)

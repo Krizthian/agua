@@ -31,6 +31,9 @@ Route::view('/dashboard', 'dashboard')->name('dashboard');
 //Inicio
 	Route::view('/', 'home')->name('home');
 		Route::post('/consulta', [PlanillasController::class, 'indexCiudadano'])->name('consulta.index');
+	//Detalles de planilla
+		Route::get('/consulta/planilla/{pagosConsultaItem}', [PlanillasController::class, 'mostrarPlanillaCiudadano'])->name('consulta.show');	
+
 
 //Calculadora
 	Route::view('/calculadora', 'calculadora')->name('calculadora');
