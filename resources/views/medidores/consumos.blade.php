@@ -83,7 +83,7 @@
           <br>
               <div class="col-md-12 text-right">
                   <center>
-                    <button id="ingresar" type="button" class="btn btn-success">Ingresar Consumo</button>
+                    <button id="ingresar" type="button" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Ingresar Consumo</button>
                   </center>
               </div>    
               <script>

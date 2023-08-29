@@ -71,7 +71,7 @@
                 </div>  
                </div>  
           <br>
-            <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success">Guardar</button></center></div>
+            <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Guardar</button></center></div>
           <br>
         </form>
     </main>

@@ -77,7 +77,7 @@
                 </div>
             </div>      
           <br>
-            <center><button type="submit" class="btn btn-success">Actualizar</button></center>
+            <center><button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Actualizar</button></center>
           <br>
         </form>
     </main>

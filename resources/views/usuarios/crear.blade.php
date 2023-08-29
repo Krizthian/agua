@@ -105,8 +105,8 @@
 
           <br><br><br><br>
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3">
-            <button type="submit" class="btn btn-success">Guardar</button>
-            <button id="limpiar" type="button" class="btn btn-danger">Limpiar campos</button>
+            <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+            <button id="limpiar" type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Limpiar campos</button>
           </div>
               <script>
                 document.getElementById("limpiar").addEventListener("click", function() {

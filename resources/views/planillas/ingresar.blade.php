@@ -111,8 +111,8 @@
             <!--FIN DE VALOR A PAGAR-->
           <br>
               <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                <button id="pagar" type="button" class="btn btn-success">Registrar pago</button>
-                <button id="limpiar" type="button" class="btn btn-danger">Limpiar campos</button>
+                <button id="pagar" type="button" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Registrar pago</button>
+                <button id="limpiar" type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Limpiar campos</button>
               </div>
               <script>
                 document.getElementById("limpiar").addEventListener("click", function() {

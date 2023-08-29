@@ -62,7 +62,7 @@
       <input type="password" class="form-control" id="password_nueva" name="password_nueva" placeholder="Contraseña nueva" required>
       <label for="password_nueva">Contraseña nueva</label>
     </div>    
-    <button class="btn btn-success w-100 py-2" type="submit">Actualizar</button>  	
+    <button class="btn btn-success w-100 py-2" type="submit"><i class="fa-solid fa-floppy-disk"></i> Actualizar</button>  	
   </form>
 </main>
 @endsection('content')
