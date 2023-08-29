@@ -10,6 +10,9 @@ use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
 use App\Models\Tarifas; //Importamos el modelo de la tabla 'tarifas'
 use App\Models\Cargos; //Importamos el modelo de la tabla 'cargos'
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotificacionPlanillaGenerada; //Importamos la propiedad para el envio de correos
+
 class MedidoresController extends Controller
 {
     /**
@@ -276,12 +279,16 @@ class MedidoresController extends Controller
             if ($campos_validados) {
                 //Validamos si existe un medidor en la tabla 'consumos'
                     $id_medidorExistente = Consumos::where('id_medidor', $id_medidor)->exists();
+                //Obtenemos valores de la tabla medidores
+                        $medidorData = Medidores::with('cliente')
+                            ->where('id', $id_medidor)
+                            ->first();    
                     if ($id_medidorExistente) {
-
                     //Obtenemos valores de la tabla planillas
-                     $planillaData = Planillas::where('id_medidor', $id_medidor)
-                                    ->select('valor_actual', 'meses_mora', 'alcantarillado', 'administracion')
-                                    ->first();  
+                         $planillaData = Planillas::where('id_medidor', $id_medidor)
+                                        ->with('cliente') //Traemos los valores del cliente
+                                        ->select('valor_actual', 'meses_mora', 'alcantarillado', 'administracion', 'fecha_maxima', 'fecha_factura')
+                                        ->first();         
 
                         //Ingresamos valores en variables
                             $planillaValorActual = $planillaData->valor_actual;
@@ -360,7 +367,7 @@ class MedidoresController extends Controller
                         //Obtenemos el id de consumo para la creacion de la planilla
                             $id_consumoCreado = $consumoCreado->id;
                         //Creamos la nueva planilla    
-                            Planillas::create([
+                         $planillaCreada = Planillas::create([
                             'id_cliente' => $id_cliente,
                             'id_medidor' => $id_medidor,
                             'id_consumo' => $id_consumoCreado,
@@ -372,11 +379,65 @@ class MedidoresController extends Controller
                             'estado_servicio' => "activo",
                             'meses_mora' => 0 
                        ]);
+
+
+                      /*
+                        Envio de correo notificando el ingreso de la planilla
+                        Este envio de correo se realiza en caso de que aún no exista otra planilla
+                      */ 
+                      //Comprobamos si el cliente tiene un correo electronico
+                        if (!empty($medidorData->cliente->email)) {  
+                        //Enviamos el correo electronico al cliente notificando el ingreso de su planilla         
+                              //Introducimos valores para el correo
+                                    $mensaje = [
+                                        'id_planilla' => $planillaCreada->id,
+                                        'numero_medidor' => $medidorData->numero_medidor,
+                                        'nombre_cliente' => $medidorData->cliente->nombre,
+                                        'apellido_cliente' => $medidorData->cliente->apellido,
+                                        'cedula_cliente' => $medidorData->cliente->cedula,
+                                        'correo_cliente' => $medidorData->cliente->email,
+                                        'valor_actual' => $valor_actual,
+                                        'fecha_factura' => $fecha_factura,
+                                        'fecha_maxima' => $fecha_maxima,
+                                    ];
+                                //Enviamos el correo electronico    
+                                Mail::to($mensaje['correo_cliente'])->queue(new NotificacionPlanillaGenerada($mensaje));  
+                        }   
+
+
+
                         //Redireccionamos y devolvemos variables
                         return redirect()->route('medidores.index')->with([
                             'resultado_ingresoPlanilla' => 'Los consumos se han ingresado correctamente y se ha creado una nueva planilla',
                         ]);    
                    }
+
+
+                    /*
+                        Envio de correo notificando el ingreso de la planilla
+                        Este envio de correo se realiza en caso de que ya exista una planilla
+                    */ 
+                      //Comprobamos si el cliente tiene un correo electronico
+                        if (!empty($medidorData->cliente->email)) {      
+                        //Enviamos el correo electronico al cliente notificando el ingreso de su planilla         
+                              //Introducimos valores para el correo
+                                    $mensaje = [
+                                        'id_planilla' => $planillaData->id,
+                                        'numero_medidor' => $medidorData->numero_medidor,
+                                        'nombre_cliente' => $medidorData->cliente->nombre,
+                                        'apellido_cliente' => $medidorData->cliente->apellido,
+                                        'cedula_cliente' => $medidorData->cliente->cedula,
+                                        'correo_cliente' => $medidorData->cliente->email,
+                                        'valor_actual' => ($planillaValorActual > 0) ? $valorDeuda : $valor_actual, //Comprobamos si existe una deuda
+                                        'fecha_factura' => $fecha_factura,
+                                        'fecha_maxima' => $fecha_maxima,
+                                    ];
+                                //Enviamos el correo electronico    
+                                Mail::to($mensaje['correo_cliente'])->queue(new NotificacionPlanillaGenerada($mensaje));                   
+                        }  
+ 
+
+
           //Redireccionamos y devolvemos variables
                 return redirect()->route('medidores.index')->with([
                     'resultado_ingreso' => 'Los consumos se han ingresado correctamente',
