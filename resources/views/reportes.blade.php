@@ -14,6 +14,7 @@
     @else
         <title>Gestión de Reportes | Sistema de Consultas de Valores a Pagar del Agua</title>
     @endif
+    <link rel="stylesheet" href="{{url('css/custom_login.css')}}">
 @section('content')
   <style>
         /*ESTILO PERSONALIZADO PARA PANEL DE GESTION (REPORTES)*/
@@ -55,10 +56,13 @@
     </script>
 <center><h1 class="display-4">GESTIÓN DE REPORTES</h1></center>
   <div class="container">
-    <br>  
+    <br>
+      <main class="w-100 m-auto">  
         <form action="{{route('reportes.generar')}}" method="GET" class="row g3" >
           <div class="col-md-12 mb-2">
          <center><label for="tipo"><strong>Tipo de Reporte</strong></label></center>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-file fa-sm"></i></span>
           <select class="form-select" id="tipo" name="tipo" required>
             <option value="" disabled selected>Seleccione un tipo de reporte</option>
             @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<option value="pagos">Pagos</option>@endif
@@ -68,10 +72,12 @@
             <option value="medidores_activos">Medidores Activos</option>
             <option value="medidores_inactivos">Medidores Inactivos</option>
         </select>
+        </div>
       </div>
-  <br>
    <div class="col-md-6 mb-2">
           <center><label for="mes"><strong>Mes</strong></label></center>
+           <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-calendar-days fa-sm"></i></span>
           <select class="form-select" id="mes" name="mes">
             <option value="" disabled selected>Seleccione un mes</option>
             <option value="01">Enero</option>
@@ -87,10 +93,12 @@
             <option value="11">Noviembre</option>
             <option value="12">Diciembre</option>
   </select>
+    </div>
   </div>
-    <br>
      <div class="col-md-6 mb-2">
           <center><label for="year"><strong>Año</strong></label></center>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-calendar-days fa-sm"></i></span>
           <select class="form-select" id="year" name="year" required>
             <option value="" disabled selected>Seleccione un año</option>
             <option>{{date("Y")}}</option>
@@ -106,12 +114,12 @@
             <option>2013</option>
             <option>2012</option>
   </select>
+  </div>
 </div>
-<br>
       <div class="col-md-12 mt-4 text-right"><center><button type="submit" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
           </svg></button></center></div>
-        </form>
+        </form></main>
       @if(isset($query))
     <!--INICIO TABLA CON DATOS-->
 

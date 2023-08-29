@@ -33,12 +33,13 @@
            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
           <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>     
     <!--FIN DE SWEETALERTS-->
+    <link rel="stylesheet" href="{{url('css/custom.css')}}">
     <link rel="stylesheet" href="{{url('css/footer.css')}}">
     <link rel="stylesheet" href="{{url('css/blanco.css')}}">
   </head>
   <body class="bg-body-tertiary">
     <header>
-		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
+		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary borde_coloreado " data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/panel">
     <img class="img-fluid" src="{{url('img/logo.png')}}" width="170" height="50" alt="GAD DE PORTOVELO logo">

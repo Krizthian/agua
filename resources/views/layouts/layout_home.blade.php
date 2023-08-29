@@ -30,7 +30,7 @@
 
   	<!--INICIO DE CABECERA-->
     <header>
-		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
+		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary borde_coloreado" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
     <img class="img-fluid" src="{{url('img/logo.png')}}" width="170" height="50" alt="GAD DE PORTOVELO logo">

@@ -15,8 +15,15 @@ Fecha: 2 de julio de 2023
     -moz-border-radius: 6px 6px 6px 6px;
     -webkit-border-radius: 6px 6px 6px 6px;
     border: 0px solid #000000;
+    -webkit-box-shadow: 1px 2.5px 9px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 2.5px 9px -3px rgba(0,0,0,0.75);
+    box-shadow: 1px 2.5px 9px -3px rgba(0,0,0,0.75);
   }
 .bg-body-tertiary {
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+}
+
+.borde_coloreado{
+    border-bottom: 3.5px solid; border-image:   linear-gradient(to right, #f1c40f 50%, #e74c3c 50%) 5;
 }

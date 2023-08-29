@@ -1,9 +1,32 @@
 <!doctype html>
 <html lang="es">
   <head>
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.1/css/buttons.bootstrap4.min.css">
+      
       <!--BOOTSTRAP 5.3-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.0/css/all.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.css">
+        <link rel='shortcut icon' href='{{asset('img/favicon.ico')}}' type='image/x-icon'>
+
+      <!--DATATABLE-->   
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+      <!--FIN DATATABLE-->
+    <!--INICIO DE SWEETALERTS-->
+           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>     
+    <!--FIN DE SWEETALERTS-->
+    <link rel="stylesheet" href="{{url('css/footer.css')}}">
+    <link rel="stylesheet" href="{{url('css/blanco.css')}}">
 
 <style>
 body {
@@ -21,7 +44,7 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
-  padding: 58px 0 0; /* Height of navbar */
+  padding: 58px 0 0;
   box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
   width: 240px;
   z-index: 600;
@@ -43,7 +66,7 @@ body {
   height: calc(100vh - 48px);
   padding-top: 0.5rem;
   overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  overflow-y: auto;
 }
 
 </style>
@@ -149,8 +172,8 @@ var myChart = new Chart(ctx, {
         class="navbar-toggler"
         type="button"
         data-mdb-toggle="collapse"
-        data-mdb-target="#sidebarMenu"
-        aria-controls="sidebarMenu"
+        data-mdb-target="#main-navbar"
+        aria-controls="main-navbar"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
@@ -251,7 +274,8 @@ var myChart = new Chart(ctx, {
   </footer>
     <!--JAVASCRIPT BOOTSTRAP 5.3-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+  <!--JAVASCRIPT BOOTSTRAP 5.3-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 
