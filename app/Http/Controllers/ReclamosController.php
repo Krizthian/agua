@@ -148,9 +148,18 @@ class ReclamosController extends Controller
      */
     public function destroy(Reclamos $reclamosItem)
     {
-         //Realizamos la consulta Eloquent
-            Reclamos::destroy($reclamosItem->id);
-        //Redireccionamos    
-            return redirect()->back()->with('resultado', 'El reclamo ha sido eliminado correctamente'); //Devolvemos el mensaje de resultados a la vista 'reclamos'
+    //Comprobamos el rol antes de devolver la vista
+        if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){   
+            
+             //Realizamos la consulta Eloquent
+                Reclamos::destroy($reclamosItem->id);
+            //Redireccionamos    
+                return redirect()->back()->with('resultado', 'El reclamo ha sido eliminado correctamente'); //Devolvemos el mensaje de resultados a la vista 'reclamos'
+
+    //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
+        }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+                return redirect()->route('medidores.index');
+        }   
+
     }
 }
