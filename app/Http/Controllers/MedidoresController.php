@@ -53,10 +53,16 @@ class MedidoresController extends Controller
     */
     public function create()
     {
-    //Realizamos la consulta para obtener la informacion de los clientes registrados
-        $queryClientes = Clientes::with('medidor')->orderBy('apellido')->get();
-    //Retornaremos a la vista con el formulario    
-        return view('medidores.crear', compact('queryClientes')); 
+    //Comprobamos el rol antes de devolver la vista
+        if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){          
+            //Realizamos la consulta para obtener la informacion de los clientes registrados
+                $queryClientes = Clientes::with('medidor')->orderBy('apellido')->get();
+            //Retornaremos a la vista con el formulario    
+                return view('medidores.crear', compact('queryClientes')); 
+    //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
+        }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+                return redirect()->route('medidores.index');
+        }   
     }
 
     /**
@@ -101,14 +107,19 @@ class MedidoresController extends Controller
 
     public function edit(Medidores $consumoMedidorItem)
     {
-        //Obtenemos información de los clientes
-            $queryClientes = Clientes::with('medidor')->orderBy('apellido')->get();
-        //Devolvemos todo lo obtenido al formulario de ingreso
-            return view('medidores.editar', [
-                'consumoMedidorItem' => $consumoMedidorItem,
-                'queryClientes' => $queryClientes
-            ]);
-
+    //Comprobamos el rol antes de devolver la vista
+        if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){           
+            //Obtenemos información de los clientes
+                $queryClientes = Clientes::with('medidor')->orderBy('apellido')->get();
+            //Devolvemos todo lo obtenido al formulario de ingreso
+                return view('medidores.editar', [
+                    'consumoMedidorItem' => $consumoMedidorItem,
+                    'queryClientes' => $queryClientes
+                ]);
+    //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
+        }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+                return redirect()->route('medidores.index');
+        }  
     } 
 
     public function update(Request $request, Medidores $consumoMedidorItem)
