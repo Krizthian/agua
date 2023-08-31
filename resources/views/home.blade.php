@@ -63,6 +63,7 @@
     @if(!isset($resultados))
       </div>
       <center><div class="container-fluid mt-5">
+          <div class="border-bottom" style="width:75%"></div>
         <a href="{{route('calculadora.index')}}">
           <img title="Calculadora de valores" alt="Calculadora de valores" class="img-fluid mt-4" src="{{url('img/banners/CalculadoraBanner.png')}}">
         </a>

@@ -142,7 +142,7 @@
             <label>Estado de servicio:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-hand-holding-droplet fa-sm"></i></span>
-                  <input type="text" value="{{ucFirst($pagosConsultaItem->estado_servicio)}}" name="nombre" class="form-control fw-bold @if ($pagosConsultaItem->estado_servicio == 'activo') text-success @elseif($pagosConsultaItem->estado_servicio == 'inactivo') text-danger @endif" disabled></input>
+                  <input type="text" value="{{ucFirst($pagosConsultaItem->estado_servicio)}}" name="nombre" class="form-control fw-bold @if ($pagosConsultaItem->estado_servicio == 'activo') text-success border-success @elseif($pagosConsultaItem->estado_servicio == 'inactivo') text-danger border-danger @endif" disabled></input>
               	</div>
               </div>
            <div class="col-md-12 mb-2">

@@ -43,7 +43,7 @@
       @endif
         @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')
             <!--BOTON DE NUEVO MEDIDOR-->
-             <div class="col-md-12 bg-light text-right"><a href="{{route('medidores.create')}}" type="submit" class="btn btn-success float-end">Nuevo Medidor</a></div>
+             <div class="col-md-12 bg-light text-right"><a href="{{route('medidores.create')}}" type="submit" class="btn btn-success float-end"><i class="fa-solid fa-circle-plus"></i> Nuevo Medidor</a></div>
             <!--FIN BOTON DE NUEVO MEDIDOR-->
         @endif    
         <br><br>
@@ -88,7 +88,7 @@
 
         <!--INICIO DE TABLA CON VALORES-->
        <div class="table-responsive"> 
-        <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
+        <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-md">
           <thead>
             <tr>
               <th scope="col"># Medidor</th>

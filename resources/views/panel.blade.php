@@ -98,7 +98,7 @@
     <!--INICIO TABLA CON DATOS-->
     <div class="table-responsive">
                 <div class="fst-italic text-muted mt-1 float-start"><caption><strong>Consejo: </strong>Para ampliar los detalles de la planilla, haz clic en el número de planilla.</caption></div>
-      <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
+      <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-md">
           <thead>
             <tr>
               <th scope="col">Planilla</th>

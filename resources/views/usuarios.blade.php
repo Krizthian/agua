@@ -30,7 +30,7 @@
 <center><h1 class="display-4">GESTIÓN DE USUARIOS</h1></center>
     <div class="container">
       <br>
-        <div class="col-md-12 bg-light text-right"><a href="{{route('usuarios.create')}}" type="submit" class="btn btn-success float-end">Nuevo Usuario</a></div>
+        <div class="col-md-12 bg-light text-right"><a href="{{route('usuarios.create')}}" type="submit" class="btn btn-success float-end"><i class="fa-solid fa-circle-plus"></i> Nuevo Usuario</a></div>
         <br><br>
         <form action="{{route('usuarios.busqueda')}}" method="GET" class="d-flex" role="search">
             <label for="busqueda" hidden>Formulario de busqueda</label><input class="form-control me-2" id="busqueda" type="search" name="valores" placeholder="Apellidos o nombre de usuario" aria-label="Buscar" required>
