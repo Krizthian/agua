@@ -186,20 +186,14 @@ class ClientesController extends Controller
     */
 
     public function listar(Clientes $clientesItem)
-    {
-    //Comprobamos el rol antes de devolver la vista
-        if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){  
+    { 
            //Ejecutamos la consulta Eloquent 
                 $medidores = Medidores::where('id_cliente', $clientesItem->id)->get();
             //Retornaremos a la vista con los valores
                return view('clientes.medidores', [
                 'clientesItem' => $clientesItem,
                 'medidores' => $medidores
-               ]); 
-       //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
-        }elseif(session()->get('sesion')['rol'] == 'supervisor'){
-                return redirect()->route('medidores.index');
-        }           
+               ]);         
     }
 
 }
