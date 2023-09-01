@@ -38,11 +38,7 @@ class LoginController extends Controller
                 $request->session()->put('sesion', ['usuario' => $usuarioEncontrado->usuario, 'rol' => $usuarioEncontrado->rol, 'nombres' => $nombres, 'id' => $usuarioEncontrado->id]);
                 
                 // Redireccionamos al panel de control
-                if (session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador') {
                     return redirect()->route('panel.index');
-                } elseif (session()->get('sesion')['rol'] == 'supervisor') {
-                    return redirect()->route('medidores.index');
-                }
             }
             // Redireccionamos al login si hay algún error en la validación
                  return redirect()->back()->with('resultado_login', 'El usuario o la contraseña son incorrectos')->withInput();

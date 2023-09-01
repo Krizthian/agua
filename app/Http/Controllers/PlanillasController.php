@@ -17,14 +17,14 @@ use App\Mail\NotificacionPlanilla; //Importamos la propiedad para el envio de co
 class PlanillasController extends Controller
 {
     /**
-     * Devolver resultados al Panel
+     * Devolver resultados a la vista de Planillas
      */
     public function index()
     {
         //Comprobamos el rol antes de devolver la vista
             if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){
                 $valores_pagar = Planillas::with(['cliente', 'medidor', 'consumo'])->paginate(10);
-                return view('panel', compact('valores_pagar'));
+                return view('planillas', compact('valores_pagar'));
 
         //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
             }elseif(session()->get('sesion')['rol'] == 'supervisor'){
@@ -268,7 +268,7 @@ class PlanillasController extends Controller
          //Comprobamos el rol   
           if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){
              //Retornamos los valores
-                return view('panel', compact('valores_pagar'));   
+                return view('planillas', compact('valores_pagar'));   
                 //Redireccionamos si el rol no es el permitido   
              }elseif(session()->get('sesion')['rol'] == 'supervisor'){
                     return redirect()->route('medidores.index');
@@ -314,11 +314,11 @@ class PlanillasController extends Controller
             //Desactivamos el servicio si este se encuentra 'inactivo'
                 if ($valoresPagarItem->estado_servicio == "activo") {
                     Planillas::where('id', '=', $valoresPagarItem->id)->update(['estado_servicio' => 'inactivo']);
-                    return redirect()->back()->with('resultado', 'Se ha suspendido el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'panel'
+                    return redirect()->back()->with('resultado', 'Se ha suspendido el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'planillas'
             //Reactivamos el servicio si este se encuentra 'activo'
                 }elseif ($valoresPagarItem->estado_servicio == "inactivo") {
                     Planillas::where('id', '=', $valoresPagarItem->id)->update(['estado_servicio' => 'activo']);
-                    return redirect()->back()->with('resultado', 'Se ha reactivado el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'panel'
+                    return redirect()->back()->with('resultado', 'Se ha reactivado el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'planillas'
                 }
     }
 
@@ -350,7 +350,7 @@ class PlanillasController extends Controller
                     ]);
                 }
             //En caso de que no haya valores pendientes notificamos al usuario    
-                return redirect()->route('panel.index')->with([
+                return redirect()->route('planillas.index')->with([
                     'resultado_comprobacion' => 'El medidor seleccionado no tiene valores pendientes',
                     'medidor_pagado' => $valoresPagarItem->numero_medidor,
                 ]);

@@ -50,8 +50,11 @@
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-pills nav-justified">
         <li class="nav-item">
+        <li class="nav-item">
+          <a class="nav-link {{setActive('panel.index')}}" aria-current="page" href="/panel">Inicio</a>
+        </li>
        <li class="nav-item">
-                @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<a class="nav-link {{setActive('panel.index')}}" aria-current="page" href="/panel">Planillas</a>@endif
+                @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<a class="nav-link {{setActive('planillas.index')}}" aria-current="page" href="/planillas">Planillas</a>@endif
         </li>
        <li class="nav-item">
            @if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador')<a class="nav-link {{setActive('clientes.index')}}" aria-current="page" href="/clientes">Clientes</a>@endif

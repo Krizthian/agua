@@ -46,7 +46,8 @@ class ReclamosController extends Controller
             if (isset($valores)) {
                 $query->where('numero_medidor', $valores)
                     ->orWhere('numero_planilla', $valores)
-                    ->orWhere('apellido', $valores);
+                    ->orWhere('apellido', $valores)
+                    ->orWhere('id', $valores);
             }
 
         //Ejecutamos la consulta

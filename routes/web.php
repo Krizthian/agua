@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 	use App\Http\Controllers\ReportesController; //Controlador de Reportes
 	use App\Http\Controllers\MantenimientosController; //Controlador de Mantenimientos
 	use App\Http\Controllers\ReclamosController; //Controlador de Reclamos
+	use App\Http\Controllers\PanelController; //Controlador de Panel
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*Rutas para el usuario*/
-
-Route::view('/dashboard', 'dashboard')->name('dashboard');
 
 //Inicio
 	Route::view('/', 'home')->name('home');
@@ -58,22 +57,26 @@ Route::view('/dashboard', 'dashboard')->name('dashboard');
 
 /*Rutas para el personal del Municipio*/
 
-//Rutas para mostrar (planillas)
+//Rutas para mostrar (panel de gestión)
 	Route::view('/panel', 'panel')->name('panel');
+		Route::get('/panel', [PanelController::class, 'index'])->name('panel.index');
+
+//Rutas para mostrar (planillas)
+	Route::view('/planillas', 'planillas')->name('planillas');
 		//Obtencion de valores
-			Route::get('/panel', [PlanillasController::class, 'index'])->name('panel.index');
+			Route::get('/planillas', [PlanillasController::class, 'index'])->name('planillas.index');
 		//Detalles de planilla
-			Route::get('/panel/planillas/planilla/{valoresPagarItem}', [PlanillasController::class, 'show'])->name('planillas.show');	
+			Route::get('/planillas/planilla/{valoresPagarItem}', [PlanillasController::class, 'show'])->name('planillas.show');	
 		//Busqueda de valores	
-			Route::get('/panel/busqueda', [PlanillasController::class, 'busqueda'])->name('panel.busqueda');
+			Route::get('/planillas/busqueda', [PlanillasController::class, 'busqueda'])->name('planillas.busqueda');
 		//Devolver el formulario de ingreso de pago
-			Route::get('/panel/planillas/{valoresPagarItem}', [PlanillasController::class, 'edit'])->name('planillas.ingresar');
+			Route::get('/planillas/ingresar/{valoresPagarItem}', [PlanillasController::class, 'edit'])->name('planillas.ingresar');
 			//Ingresar pago
-				Route::patch('/panel/{valoresPagarItem}', [PlanillasController::class, 'update'])->name('planillas.update');
+				Route::patch('/planillas/{valoresPagarItem}', [PlanillasController::class, 'update'])->name('planillas.update');
 		//Notificar valores a pagar
-			Route::post('panel/notificar', [PlanillasController::class, 'notificar'])->name('planillas.notificar');			
+			Route::post('planillas/notificar', [PlanillasController::class, 'notificar'])->name('planillas.notificar');			
 		//Inhabilitar/Habilitar servicio	
-			Route::get('/panel/{valoresPagarItem}/inhabilitar/', [PlanillasController::class, 'inhabilitar'])->name('panel.inhabilitar');
+			Route::get('/planillas/{valoresPagarItem}/inhabilitar/', [PlanillasController::class, 'inhabilitar'])->name('planillas.inhabilitar');
 
 //Rutas para mostrar (actualizacion de tarifas)
 		Route::view('/tarifas', 'tarifas')->name('tarifas');
@@ -105,13 +108,13 @@ Route::view('/dashboard', 'dashboard')->name('dashboard');
 		//Busqueda de medidores
 			Route::get('/medidores/busqueda', [MedidoresController::class, 'busqueda'])->name('medidores.busqueda');
 		//Devolver el formulario de ingreso de consumos
-			Route::get('/panel/medidores/consumos/{consumoMedidorItem}', [MedidoresController::class, 'ingresarConsumo'])->name('consumos.ingresarConsumo');
+			Route::get('/medidores/consumos/ingresar/{consumoMedidorItem}', [MedidoresController::class, 'ingresarConsumo'])->name('consumos.ingresarConsumo');
 				//Ingresar consumo
-				Route::patch('/panel/medidores/consumos/{consumoMedidorItem}', [MedidoresController::class, 'almacenarConsumo'])->name('consumos.almacenarConsumo');
+				Route::patch('/medidores/consumos/{consumoMedidorItem}', [MedidoresController::class, 'almacenarConsumo'])->name('consumos.almacenarConsumo');
 		//Devolver el formulario de creación de medidor
-			Route::get('/panel/medidores/crear', [MedidoresController::class, 'create'])->name('medidores.create');
+			Route::get('/medidores/crear', [MedidoresController::class, 'create'])->name('medidores.create');
 			//Registrar medidor
-				Route::post('/panel/medidores', [MedidoresController::class, 'store'])->name('medidores.store');	
+				Route::post('/medidores/registrar', [MedidoresController::class, 'store'])->name('medidores.store');	
 		//Devolver el formulario de edición de medidor
 			Route::get('/medidores/editar/{consumoMedidorItem}', [MedidoresController::class, 'edit'])->name('medidores.edit');
 			//Actualizar medidor
@@ -122,17 +125,17 @@ Route::view('/dashboard', 'dashboard')->name('dashboard');
 		//Obtencion de valores
 			Route::get('/mantenimientos', [MantenimientosController::class, 'index'])->name('mantenimientos.index');				
 		//Devolver el formulario de solicitud de mantenimiento
-			Route::get('/panel/medidores/mantenimiento/{consumoMedidorItem}', [MantenimientosController::class, 'create'])->name('mantenimientos.create');
+			Route::get('/medidores/mantenimiento/{consumoMedidorItem}', [MantenimientosController::class, 'create'])->name('mantenimientos.create');
 			//Registrar mantenimiento
-				Route::post('/panel/medidores/mantenimiento/{consumoMedidorItem}', [MantenimientosController::class, 'store'])->name('mantenimientos.store');		
+				Route::post('/medidores/mantenimiento/{consumoMedidorItem}', [MantenimientosController::class, 'store'])->name('mantenimientos.store');		
 		//Busqueda de mantenimientos
-			Route::get('/panel/mantenimientos/busqueda', [MantenimientosController::class, 'busqueda'])->name('mantenimientos.busqueda');
+			Route::get('/medidores/mantenimientos/busqueda', [MantenimientosController::class, 'busqueda'])->name('mantenimientos.busqueda');
 		//Actualizar estado de solicitud	
-			Route::get('/panel/mantenimientos/{mantenimientosItem}/actualizar/', [MantenimientosController::class, 'actualizarEstado'])->name('mantenimientos.actualizarEstado');
+			Route::get('/medidores/mantenimientos/{mantenimientosItem}/actualizar/', [MantenimientosController::class, 'actualizarEstado'])->name('mantenimientos.actualizarEstado');
 		//Devolver el formulario de edición de solicitud de mantenimiento
-			Route::get('/panel/mantenimientos/editar/{mantenimientosItem}', [MantenimientosController::class, 'edit'])->name('mantenimientos.edit');
+			Route::get('/medidores/mantenimientos/editar/{mantenimientosItem}', [MantenimientosController::class, 'edit'])->name('mantenimientos.edit');
 			//Actualizar solicitud de mantenimiento
-				Route::patch('/panel/mantenimientos/editar/{mantenimientosItem}', [MantenimientosController::class, 'update'])->name('mantenimientos.update');				
+				Route::patch('/medidores/mantenimientos/editar/{mantenimientosItem}', [MantenimientosController::class, 'update'])->name('mantenimientos.update');				
 
 //Rutas para mostrar (reclamos)
 	Route::view('/reclamos', 'reclamos')->name('reclamos');

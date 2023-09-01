@@ -33,7 +33,10 @@ class MantenimientosController extends Controller
                 $query->where(function ($q) use ($valores) {
                     $q->whereHas('medidor', function ($subQuery) use ($valores) {
                         $subQuery->where('numero_medidor', $valores);
-                    });
+                    })
+                    ->orWhere(function($subQuery) use ($valores){
+                        $subQuery->where('id', $valores);
+                    }); 
                 });
             }
         //Ejecutamos la consulta
