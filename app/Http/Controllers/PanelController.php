@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Planillas; //Importamos el modelo de la tabla 'planillas'
 use App\Models\Clientes; //Importamos el modelo de la tabla 'clientes'
 use App\Models\Medidores; //Importamos el modelo de la tabla 'medidores'
@@ -42,7 +43,10 @@ class PanelController extends Controller
                 ->get();
 
           //Obtener valores de la tabla Reclamos
-            $reclamos = Reclamos::orderBy('fecha_reclamo', 'desc')->take(4)->get();
+            $reclamos = Reclamos::where('estado_reclamo', 'ingresado')
+                ->orderBy('fecha_reclamo', 'desc')
+                ->take(4)
+                ->get();
 
           //Obtener valores de la tabla Pagos (Del presente año)
             //Definimos la variable con el año actual
@@ -54,17 +58,17 @@ class PanelController extends Controller
                                      ->whereMonth('fecha_pago', $mes)
                                      ->count();
                         // Almacena la cantidad en el arreglo contarMes
-                        $contarMes[$mes] = $count;
+                            $contarMes[$mes] = $count;
                     }
-      //Retornamos los valores a la vista          
-        return view('panel')
-            ->with('planillas', $planillas)
-            ->with('clientes', $clientes)
-            ->with('medidores', $medidores)
-            ->with('mantenimientos', $mantenimientos)
-            ->with('reclamos', $reclamos)
-            ->with('usuarios', $usuarios)
-            ->with('contarMes', $contarMes);
+          //Retornamos los valores a la vista          
+            return view('panel')
+                ->with('planillas', $planillas)
+                ->with('clientes', $clientes)
+                ->with('medidores', $medidores)
+                ->with('mantenimientos', $mantenimientos)
+                ->with('reclamos', $reclamos)
+                ->with('usuarios', $usuarios)
+                ->with('contarMes', $contarMes);
     }
 
 }
