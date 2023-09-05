@@ -97,7 +97,7 @@
         <!--FIN DE MENSAJE DE RESULTADOS-->
     <!--INICIO TABLA CON DATOS-->
     <div class="table-responsive">
-                <div class="fst-italic text-muted mt-1 float-start"><caption><strong>Consejo: </strong>Para ampliar los detalles de la planilla, haz clic en el número de planilla.</caption></div>
+            <div class="mt-1 float-start text-muted"><i class="fa-regular fa-lightbulb"></i><strong> Consejo: </strong>Para ampliar los detalles de la planilla, haz clic en el número de planilla.</div>
       <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-md">
           <thead>
             <tr>

@@ -28,7 +28,7 @@
 	        @if(isset($pagosConsultaItem))
 		        @if($pagosConsultaItem->estado_servicio == 'inactivo')
 		          <div class="alert alert-danger alert-dismissible fade show">
-		              <strong>ATENCIÓN,</strong> el servicio de agua en su <strong>medidor</strong>, se encuentra suspendido por falta de pago, por favor, acérquese a realizar el pago lo antes posible.
+		              <i class="fa-solid fa-triangle-exclamation"></i><strong> ATENCIÓN,</strong> el servicio de agua en su <strong>medidor</strong>, se encuentra suspendido por falta de pago, por favor, acérquese a realizar el pago lo antes posible.
 		          </div>
 		          @endif  
 	        @endif

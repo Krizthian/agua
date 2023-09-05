@@ -42,7 +42,7 @@
         <!--FIN DE MENSAJE DE RESULTADOS-->
         <!--INICIO DE TABLA CON VALORES-->
        <div class="table-responsive">
-            <div class="fst-italic text-muted mt-1 float-start"><caption><strong>Consejo: </strong>Para ampliar los detalles del reclamo, haz clic en el nombre del cliente.</caption></div>
+            <div class="mt-1 float-start text-muted"><i class="fa-regular fa-lightbulb"></i><strong> Consejo: </strong>Para ampliar los detalles del reclamo, haz clic en el nombre del cliente.</div>
         <table id="tabla" class="table caption-top table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
