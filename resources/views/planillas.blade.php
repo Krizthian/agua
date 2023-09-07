@@ -121,7 +121,7 @@
             @else
               @foreach ($valores_pagar as $valoresPagarItem)
             <tr>
-              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0"  href="{{route('planillas.show', $valoresPagarItem)}}">{{$valoresPagarItem->id}}</td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0"  href="{{route('planillas.show', $valoresPagarItem)}}">{{$valoresPagarItem->id}}</a></td>
               <td class="td_acciones">{{$valoresPagarItem->medidor->numero_medidor}}</td>
               <td class="td_acciones"> {{$valoresPagarItem->cliente->apellido}}, {{$valoresPagarItem->cliente->nombre}}</td>
               <td class="td_acciones">$ {{$valoresPagarItem->valor_actual}}</td>

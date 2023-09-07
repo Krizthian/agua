@@ -39,7 +39,7 @@
 
         <!--INICIO DE TABLA CON VALORES-->
        <div class="table-responsive">
-            <div class="fst-italic text-muted mt-1 float-start"><caption><strong>Consejo: </strong>Para visualizar el recibo de pago, haz clic en el número del recibo.</caption></div>
+            <div class="mt-1 float-start text-muted"><i class="fa-regular fa-lightbulb"></i><strong> Consejo: </strong>Para visualizar el recibo de pago, haz clic en el número del recibo.</div>
         <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
@@ -60,7 +60,7 @@
                 @foreach ($pagos as $pagosItem)
             <tr>
               <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0"  href="{{route('pagos.show', $pagosItem)}}">{{$pagosItem->numero_recibo}}</td>
-              <td class="td_acciones">{{$pagosItem->cliente->nombre}} {{$pagosItem->cliente->apellido}}</td>
+              <td class="td_acciones"> {{$pagosItem->cliente->apellido}}, {{$pagosItem->cliente->nombre}}</td>
               <td class="td_acciones">{{$pagosItem->planilla->medidor->numero_medidor}}</td>
               <td class="td_acciones"><a href="/planillas/busqueda?valores={{$pagosItem->planilla->id}}" class="link-dark link-offset-2 link-underline link-underline-opacity-0">{{$pagosItem->planilla->id}}</a></td>
               <td class="td_acciones">{{$pagosItem->valor_pagado}}</td>

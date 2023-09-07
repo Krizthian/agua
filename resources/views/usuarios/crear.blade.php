@@ -51,7 +51,7 @@
           </div>
 
           <div class="col-md-6 mb-2">
-            <label>Nombre:</label>
+            <label>Nombres:</label>
           <div class="input-group mb-2">
             <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span> 
               <input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" placeholder="Ej. Arturo" value="{{old('nombre')}}" required></input>
@@ -59,7 +59,7 @@
           </div>
 
           <div class="col-md-6 mb-2">
-            <label>Apellido:</label>
+            <label>Apellidos:</label>
           <div class="input-group mb-2">
             <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span> 
             <input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" placeholder="Ej. Cueva" value="{{old('apellido')}}" required></input>

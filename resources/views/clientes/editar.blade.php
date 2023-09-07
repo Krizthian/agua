@@ -35,14 +35,14 @@
          <form action="{{route('clientes.update', $clientesItem)}}" method="POST" class="row g3">
          	@csrf @method('PATCH') 
         <div class="col-md-6 mb-2">
-            <label>Nombre del cliente:</label>
+            <label>Nombres del cliente:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
             <input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{old('nombre',$clientesItem->nombre)}}" placeholder="{{$clientesItem->nombre}}" required></input>
             </div> 
         </div> 
        <div class="col-md-6 mb-2">
-            <label>Apellido del cliente:</label>
+            <label>Apellidos del cliente:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
             <input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{old('apellido',$clientesItem->apellido)}}"  placeholder="{{$clientesItem->apellido}}" required></input>

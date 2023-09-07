@@ -59,14 +59,14 @@
             </div>
           </div>
           <div class="col-md-6 mb-2">
-            <label for="nombre">Nombre del cliente:</label>
+            <label for="nombre">Nombres del cliente:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
             <input type="text" id="nombre" class="form-control" name="nombre" value="{{$valoresPagarItem->cliente->nombre}}" placeholder="{{$valoresPagarItem->cliente->nombre}}" disabled></input>
             </div>
           </div>
           <div class="col-md-6 mb-2">
-            <label for="apellido">Apellido del cliente:</label>
+            <label for="apellido">Apellidos del cliente:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
               <input id="apellido" type="text" class="form-control" name="apellido" value="{{$valoresPagarItem->cliente->apellido}}" placeholder="{{$valoresPagarItem->cliente->apellido}}" disabled></input>

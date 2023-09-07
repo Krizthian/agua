@@ -35,7 +35,7 @@
               @endif
           <!--FIN DE MENSAJES DE ERROR-->
            <div class="col-auto">
-            <label>Nombre del cliente:</label>
+            <label>Nombres del cliente:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
                   <input type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror"  value="{{$pagosConsultaItem->cliente->nombre}}" required></input>
@@ -43,7 +43,7 @@
             </div>
 
            <div class="col-auto">
-            <label>Apellido del cliente:</label>
+            <label>Apellidos del cliente:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
                 <input type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{$pagosConsultaItem->cliente->apellido}}"></input required>

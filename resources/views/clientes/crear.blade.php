@@ -37,14 +37,14 @@
               @endif
             <!--FIN DE MENSAJES DE ERROR-->  
           <div class="col-md-6 mb-2">
-            <label>Nombre del cliente:</label>
+            <label>Nombres del cliente:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
             <input type="text" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre')}}" name="nombre" placeholder="Ej. Arturo" required></input>
             </div>  
           </div>  
           <div class="col-md-6 mb-2">
-            <label>Apellido del cliente:</label>
+            <label>Apellidos del cliente:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
             <input type="text" class="form-control @error('apellido') is-invalid @enderror" value="{{old('apellido')}}" name="apellido" placeholder="Ej. Cueva" required></input>

@@ -14,7 +14,7 @@
     <div class="container"> <!--INICIO DE CONTENEDOR-->  
         <br>
         <!--INICIO DE BOTON DE REGRESAR-->
-	        <div class="col-md-12 mb-5 bg-light text-right"><a href="{{route('home')}}" id="botonRegresar" type="submit" class="btn btn-primary float-start"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+	        <div class="col-md-12 mb-5 bg-light text-right"><a href="{{route('home')}}" id="botonRegresar" title="Regresar" type="submit" class="btn btn-primary float-start"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
 	          <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
 	        </svg></a>
         <!--FIN DE BOTON DE REGRESAR--> 
@@ -36,120 +36,120 @@
        <main class="w-100 m-auto">
         <form class="row g3">
            <div class="col-md-12 mb-2">
-            <label>Cliente:</label>
+            <label for="cliente">Cliente:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-user fa-sm"></i></span>
-                  <input type="text" value="{{$pagosConsultaItem->cliente->apellido}}, {{$pagosConsultaItem->cliente->nombre}}" name="nombre" class="form-control" disabled></input>
+                  <input id="cliente" type="text" value="{{$pagosConsultaItem->cliente->apellido}}, {{$pagosConsultaItem->cliente->nombre}}" name="nombre" class="form-control" disabled></input>
               	</div>
               </div>
            <div class="col-md-12 mb-2">
-            <label>Dirección:</label>
+            <label for="direccion">Dirección:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-location-dot fa-sm"></i></span>
-                  <input type="text" value="{{$pagosConsultaItem->cliente->direccion}}" name="nombre" class="form-control" disabled></input>
+                  <input id="direccion" type="text" value="{{$pagosConsultaItem->cliente->direccion}}" name="nombre" class="form-control" disabled></input>
               	</div>
               </div>              
 
            <div class="col-md-6 mb-2">
-            <label>Número de Planilla:</label>
+            <label for="planilla">Número de Planilla:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-file-invoice fa-sm"></i></span>
-                  <input type="text" value="{{$pagosConsultaItem->id}}" name="nombre" class="form-control" disabled></input>
+                  <input id="planilla" type="text" value="{{$pagosConsultaItem->id}}" name="nombre" class="form-control" disabled></input>
               	</div>
               </div>
 
            <div class="col-md-6 mb-2">
-            <label>Número de Medidor:</label>
+            <label for="medidor">Número de Medidor:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-gauge fa-sm"></i></span>
-                  <input type="text" value="{{$pagosConsultaItem->medidor->numero_medidor}}" name="nombre" class="form-control" disabled></input>
+                  <input id="medidor" type="text" value="{{$pagosConsultaItem->medidor->numero_medidor}}" name="nombre" class="form-control" disabled></input>
               	</div>
               </div>
 
            <div class="col-md-6 mb-2">
-            <label>Consumo actual:</label>
+            <label for="consumo_actual" >Consumo actual:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-droplet fa-sm"></i></span>
-                  <input type="text" value="{{$pagosConsultaItem->consumo->consumo_actual}} m³" name="nombre" class="form-control" disabled></input>
+                  <input id="consumo_actual" type="text" value="{{$pagosConsultaItem->consumo->consumo_actual}} m³" name="nombre" class="form-control" disabled></input>
                 </div>
               </div>
 
             <div class="col-md-6 mb-2">
-            <label>Consumo anterior:</label>
+            <label for="consumo_anterior">Consumo anterior:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-droplet fa-sm"></i></span>
-                  <input type="text" value="{{$pagosConsultaItem->consumo->consumo_anterior}} m³" name="nombre" class="form-control" disabled></input>
+                  <input id="consumo_anterior" type="text" value="{{$pagosConsultaItem->consumo->consumo_anterior}} m³" name="nombre" class="form-control" disabled></input>
                 </div>
               </div>
 
            <div class="col-md-12 mb-2">
-            <label>Agua:</label>
+            <label for="agua">Agua:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-hand-holding-droplet fa-sm"></i></span>
-                  <input type="text" value="$ {{$valorAgua = $pagosConsultaItem->valor_actual - $pagosConsultaItem->alcantarillado - $pagosConsultaItem->administracion}}" name="nombre" class="form-control" disabled></input>
+                  <input id="agua" type="text" value="$ {{$valorAgua = $pagosConsultaItem->valor_actual - $pagosConsultaItem->alcantarillado - $pagosConsultaItem->administracion}}" name="nombre" class="form-control" disabled></input>
                 </div>
               </div>
 
            <div class="col-md-6 mb-2">
-            <label>Alcantarillado:</label>
+            <label for="alcantarillado">Alcantarillado:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-toilet fa-sm"></i></span>
-                  <input type="text" value="$ {{$pagosConsultaItem->alcantarillado}}" name="nombre" class="form-control" disabled></input>
+                  <input id="alcantarillado" type="text" value="$ {{$pagosConsultaItem->alcantarillado}}" name="nombre" class="form-control" disabled></input>
                 </div>
               </div>
 
            <div class="col-md-6 mb-2">
-            <label>Administración:</label>
+            <label for="administracion" >Administración:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-wrench fa-sm"></i></span>
-                  <input type="text" value="$ {{$pagosConsultaItem->administracion}}" name="nombre" class="form-control" disabled></input>
+                  <input type="text" id="administracion" value="$ {{$pagosConsultaItem->administracion}}" name="nombre" class="form-control" disabled></input>
                 </div>
               </div>
 
            <div class="col-md-12 mb-2">
-            <label>Valor actual (Total a pagar):</label>
+            <label for="valor_actual">Valor actual (Total a pagar):</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-file-invoice-dollar fa-sm"></i></span>
-                  <input type="text" value="$ {{$pagosConsultaItem->valor_actual}}" name="nombre" class="form-control fw-bold" disabled></input>
+                  <input type="text" id="valor_actual" value="$ {{$pagosConsultaItem->valor_actual}}" name="nombre" class="form-control fw-bold" disabled></input>
               	</div>
               </div>
 
            <div class="col-md-6 mb-2">
-            <label>Meses en mora:</label>
+            <label for="meses_mora">Meses en mora:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-calendar-days fa-sm"></i></span>
-                  <input type="text" value="{{$pagosConsultaItem->meses_mora}}@if($pagosConsultaItem->meses_mora == 1) mes @else meses @endif" name="nombre" class="form-control" disabled></input>
+                  <input id="meses_mora" type="text" value="{{$pagosConsultaItem->meses_mora}}@if($pagosConsultaItem->meses_mora == 1) mes @else meses @endif" name="nombre" class="form-control" disabled></input>
               	</div>
               </div>
 
            <div class="col-md-6 mb-2">
-            <label>Fecha de factura:</label>
+            <label for="fecha_factura">Fecha de factura:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-calendar-days fa-sm"></i></span>
-                  <input type="text" value="{{$pagosConsultaItem->fecha_factura}}" name="nombre" class="form-control" disabled></input>
+                  <input type="text" id="fecha_factura" value="{{$pagosConsultaItem->fecha_factura}}" name="nombre" class="form-control" disabled></input>
               	</div>
               </div>
 
            <div class="col-md-6 mb-2">
-            <label>Fecha máxima de pago:</label>
+            <label for="fecha_maxima">Fecha máxima de pago:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-calendar-days fa-sm"></i></span>
-                  <input type="text" value="{{$pagosConsultaItem->fecha_maxima}}" name="nombre" class="form-control" disabled></input>
+                  <input id="fecha_maxima" type="text" value="{{$pagosConsultaItem->fecha_maxima}}" name="nombre" class="form-control" disabled></input>
               	</div>
               </div>
 
            <div class="col-md-6 mb-2">
-            <label>Estado de servicio:</label>
+            <label for="estado_servicio">Estado de servicio:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-hand-holding-droplet fa-sm"></i></span>
-                  <input type="text" value="{{ucFirst($pagosConsultaItem->estado_servicio)}}" name="nombre" class="form-control fw-bold @if ($pagosConsultaItem->estado_servicio == 'activo') text-success border-success @elseif($pagosConsultaItem->estado_servicio == 'inactivo') text-danger border-danger @endif" disabled></input>
+                  <input id="estado_servicio" type="text" value="{{ucFirst($pagosConsultaItem->estado_servicio)}}" name="nombre" class="form-control fw-bold @if ($pagosConsultaItem->estado_servicio == 'activo') text-success border-success @elseif($pagosConsultaItem->estado_servicio == 'inactivo') text-danger border-danger @endif" disabled></input>
               	</div>
               </div>
            <div class="col-md-12 mb-2">
-            <label>Responsable de lectura:</label>
+            <label for="responsable_lectura">Responsable de lectura:</label>
               <div class="input-group mb-2">
                 <span class="input-group-text"><i class="fa-solid fa-glasses fa-sm"></i></span>
-                  <input type="text" value="{{$pagosConsultaItem->consumo->responsable}}" name="nombre" class="form-control" disabled></input>
+                  <input id="responsable_lectura" type="text" value="{{$pagosConsultaItem->consumo->responsable}}" name="nombre" class="form-control" disabled></input>
               	</div>
               </div>
        </form>
