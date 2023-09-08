@@ -32,7 +32,7 @@
           <!--INICIO DE MENSAJE DE RESULTADO DE CREACION-->
           @if(session('resultado_creacion'))
             <div class="alert alert-success alert-dismissible fade show">
-                Se ha ingresado el reclamo correctamente.
+                Tu <strong>reclamo</strong> se ha ingresado correctamente, nos pondremos en contacto contigo lo antes posible.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
             </div>
           @endif  
