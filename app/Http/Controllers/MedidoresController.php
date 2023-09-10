@@ -75,10 +75,12 @@ class MedidoresController extends Controller
         //Validamos los valores recibidos
         $campos_validados = request()->validate([
             'fecha_instalacion' => 'required',
+            'id_cliente' => 'required',
             'ubicacion' => 'required',
             'numero_medidor' => 'required|numeric|min:0|unique:medidores,numero_medidor',
         ],[
             'ubicacion.required' => 'El campo de ubicación es obligatorio',
+            'id_cliente.required' => 'El campo de propietario de medidor es obligatorio',
             'numero_medidor.numeric' => 'El campo de número de medidor debe contener números',
             'numero_medidor.min' => 'El valor mínimo para el campo de número de medidor es 0',
             'numero_medidor.required' => 'El campo de número de medidor es obligatorio',

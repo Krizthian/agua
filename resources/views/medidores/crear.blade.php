@@ -52,14 +52,14 @@
             <label>Fecha de Instalación:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-calendar-days fa-sm"></i></span>       
-            <input type="date" class="form-control" name="fecha_instalacion" required></input>
+                <input type="date" class="form-control" value="{{old('fecha_instalacion')}}" name="fecha_instalacion" required></input>
               </div>
             </div>
         <div class="col-auto">    
             <label>Ubicación del medidor:</label>
             <div class="input-group mb-2">        
             <span class="input-group-text"><i class="fa-solid fa-location-dot fa-sm"></i></span>     
-                <input type="text" class="form-control" name="ubicacion" placeholder="Ej. Calle 10 de Agosto, Puerta Roja" required></input>
+                <input type="text" class="form-control" name="ubicacion" value="{{old('ubicacion')}}" placeholder="Ej. Calle 10 de Agosto, Puerta Roja" required></input>
               </div>
             </div>
         <div class="col-auto">    
