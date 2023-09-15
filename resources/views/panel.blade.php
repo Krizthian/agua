@@ -219,7 +219,7 @@
                     @foreach($reclamos as $reclamo)
                       <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="/reclamos/busqueda?valores={{$reclamo->id}}">{{$reclamo->id}}</a></td>
                       <td class="td_acciones">{{$reclamo->numero_medidor}}</td>
-                      <td class="td_acciones">{{$reclamo->nombre}} {{$reclamo->apellido}}</td>
+                      <td class="td_acciones">{{$reclamo->apellido}}, {{$reclamo->nombre}}</td>
                       <td class="td_acciones">{{$reclamo->fecha_reclamo}}</td>
                        @if($reclamo->estado_reclamo == "ingresado")<td class="td_acciones"><span class="badge text-bg-info">{{ucfirst($reclamo->estado_reclamo);}}</span></td>@endif
                         @if($reclamo->estado_reclamo == "en proceso")<td class="td_acciones"><span class="badge text-bg-primary">{{ucfirst($reclamo->estado_reclamo);}}</span></td>@endif

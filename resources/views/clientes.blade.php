@@ -80,7 +80,7 @@
             @else
                 @foreach ($clientes as $clientesItem)
             <tr>
-              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="{{route('clientes.listar', $clientesItem )}}">{{$clientesItem->nombre}} {{$clientesItem->apellido}}</a></td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="{{route('clientes.listar', $clientesItem )}}">{{$clientesItem->apellido}}, {{$clientesItem->nombre}}</a></td>
               <td class="td_acciones">{{$clientesItem->cedula}}</td>
               <td class="td_acciones">{{$clientesItem->direccion}}</td>
               <td class="td_acciones">{{$clientesItem->telefono}}</td>

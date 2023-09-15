@@ -41,16 +41,17 @@ class ClientesController extends Controller
                 //Verificamos si se recibio un valor        
                     if(isset($valores)){
                         $query->where('cedula', $valores)
-                              ->orWhere('nombre', $valores)
-                              ->orWhere('apellido', $valores)
-                              ->orWhere('cedula', $valores);
-                    }
+                            ->orWhere('nombre', 'LIKE', '%' . $valores . '%') //Ajustamos la busqueda para que no requiera valores exactos
+                            ->orWhere('apellido', 'LIKE', '%' . $valores . '%') //Ajustamos la busqueda para que no requiera valores exactos
+                            ->orWhere('cedula', $valores);
+                    }   
 
                 //Ejecutamos la consulta
-                    $clientes = $query->paginate(10); //Solicitamos un maximo de valores para el paginado  
+                    $clientes = $query->paginate(20); //Solicitamos un maximo de valores para el paginado  
 
                 //Retornamos los valores
                     return view('clientes', compact('clientes'));              
+
         //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
             }elseif(session()->get('sesion')['rol'] == 'supervisor'){
                 return redirect()->route('medidores.index');

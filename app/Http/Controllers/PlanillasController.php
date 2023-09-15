@@ -254,7 +254,7 @@ class PlanillasController extends Controller
                     })
                     ->orWhereHas('cliente', function ($subQuery) use ($valores) {
                         $subQuery->where('cedula', $valores)
-                                  ->orWhere('apellido', $valores);
+                                  ->orWhere('apellido', 'LIKE', '%' . $valores . '%'); //Ajustamos la exactitud en las busquedas
                     })              
                     ->orWhere(function($subQuery) use ($valores){
                         $subQuery->where('id', $valores);
@@ -263,7 +263,7 @@ class PlanillasController extends Controller
             }
 
          //Ejecutamos la consulta
-            $valores_pagar = $query->paginate(10); //Solicitamos un maximo de valores para el paginado
+            $valores_pagar = $query->paginate(20); //Solicitamos un maximo de valores para el paginado
 
          //Comprobamos el rol   
           if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){

@@ -14,7 +14,7 @@
     <div class="container">
       <br>
         <!--BOTON DE REGRESAR-->
-          <div title="Regresar" class="col-md-12 bg-light text-right"><a href="{{route('home')}}" type="submit" class="btn btn-primary float-start"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+          <div title="Regresar" id="botonRegresar" class="col-md-12 bg-light text-right"><a href="{{route('home')}}" type="submit" class="btn btn-primary float-start"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
           </svg></a></div><br>
       <!--FIN DE BOTON DE REGRESAR-->      
@@ -96,5 +96,12 @@
         </div>
         <br><br>
     </div>
-
+          <!--INICIO SCRIPT PARA REGRESAR-->      
+              <script>
+                  document.getElementById("botonRegresar").addEventListener("click", function(event) {
+                      event.preventDefault(); // Evitar la acción predeterminada
+                      window.history.back();  // Regresar a la página anterior
+                  });
+              </script>
+         <!--FIN DE SCRIPT PARA REGRESAR-->
 @endsection('content')

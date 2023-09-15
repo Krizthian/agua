@@ -40,7 +40,7 @@ class PagosController extends Controller
             if (isset($valores)) {
                 $query->where(function ($q) use ($valores) {
                     $q->whereHas('cliente', function ($subQuery) use ($valores) {
-                        $subQuery->where('apellido', 'like', '%' . $valores . '%')
+                        $subQuery->where('apellido', 'like', '%' . $valores . '%') //Ajustamos la exactitud en la busqueda
                             ->orWhere('cedula', $valores)
                             ->orWhere('numero_recibo', $valores);
                     })
@@ -50,7 +50,7 @@ class PagosController extends Controller
                 });
             }
         //Ejecutamos la consulta
-            $pagos = $query->paginate(10);
+            $pagos = $query->paginate(20);
         //Retornamos los valores
             return view('pagos', compact('pagos'));    
      //Redireccionamos si el rol no es el permitido        

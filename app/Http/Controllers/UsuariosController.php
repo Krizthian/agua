@@ -42,7 +42,8 @@ class UsuariosController extends Controller
                 //Verificamos si se recibio un valor
                     if (isset($valores)) {
                         $query->where('usuario',$valores)
-                            ->orWhere('apellido',$valores);
+                            ->orWhere('nombre', 'LIKE', '%' . $valores . '%') //Ajustamos la busqueda para que no requiera valores exactos
+                            ->orWhere('apellido', 'LIKE', '%' . $valores . '%'); //Ajustamos la busqueda para que no requiera valores exactos
                     }  
 
                 //Ejecutamos la consulta          

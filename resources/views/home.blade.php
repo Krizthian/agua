@@ -64,9 +64,9 @@
       </div>
       <center><div class="container-fluid mt-5">
           <div class="border-bottom" style="width:75%"></div>
-        <a href="{{route('calculadora.index')}}">
-          <img title="Calculadora de valores" alt="Calculadora de valores" class="img-fluid mt-4" src="{{url('img/banners/CalculadoraBanner.png')}}">
-        </a>
+            <a href="{{route('calculadora.index')}}">
+              <img title="Calculadora de valores" alt="Calculadora de valores" class="img-fluid mt-4" src="{{url('img/banners/CalculadoraBanner.png')}}">
+            </a>
        </div></center>
     @endif
     @if(isset($resultados))
@@ -96,18 +96,18 @@
                 @foreach($resultados as $pagosConsultaItem)
                   <!--INICIO DE MENSAJE DE ALERTA-->
                     @if(isset($pagosConsultaItem))
-                    @if($pagosConsultaItem->estado_servicio == 'inactivo')
-                      <div class="alert alert-danger alert-dismissible fade show">
-                          <i class="fa-solid fa-triangle-exclamation"></i><strong> ATENCIÓN,</strong> el servicio de agua en su <strong>medidor</strong>, se encuentra suspendido por falta de pago, por favor, acérquese a realizar el pago lo antes posible.
-                      </div>
-                      @endif  
+                      @if($pagosConsultaItem->estado_servicio == 'inactivo')
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <i class="fa-solid fa-triangle-exclamation"></i><strong> ATENCIÓN,</strong> el servicio de agua en su <strong>medidor</strong> #{{$pagosConsultaItem->medidor->numero_medidor}}, se encuentra suspendido por falta de pago, por favor, acérquese a realizar el pago lo antes posible.
+                        </div>
+                        @endif  
                     @endif
                     <!--FIN DE MENSAJE DE ALERTA-->
             <tr>
               <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0"  href="{{route('consulta.show', $pagosConsultaItem)}}">{{$pagosConsultaItem->id}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->medidor->numero_medidor}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->cliente->cedula}}</td>
-              <td class="td_acciones">{{$pagosConsultaItem->cliente->nombre}} {{$pagosConsultaItem->cliente->apellido}}</td>
+              <td class="td_acciones">{{$pagosConsultaItem->cliente->apellido}}, {{$pagosConsultaItem->cliente->nombre}}</td>
               <td class="td_acciones">$ {{$pagosConsultaItem->valor_actual}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->meses_mora}} @if($pagosConsultaItem->meses_mora == 1) mes @else meses @endif</td>
               <td class="td_acciones">{{$pagosConsultaItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
@@ -126,15 +126,23 @@
         <!--FIN DE LA TABLA CON DATOS-->
             <div class="mt-1 float-start text-muted"><i class="fa-regular fa-lightbulb mb-3"></i><strong> Consejo: </strong>Para ampliar los detalles de la planilla, haz clic en el número de planilla.</div>
         <br>
+        <br>
        <!--INICIO DE BANNER DE RECLAMO-->
-        @isset ($pagosConsultaItem)
-          <a href="{{route('reclamos.create', $pagosConsultaItem)}}" title="Ingresar un reclamo"><center><img class="img-fluid" src="{{url('img/banners/banner_reclamo.png')}}" alt="Ingresar un reclamo"></center></a>
+        @isset($pagosConsultaItem)
+          <center>
+              <div class="container-fluid mt-4">
+                <hr style="opacity:10%;">
+                  <a href="{{route('reclamos.create', $pagosConsultaItem)}}" title="Ingresar un reclamo">
+                  <img class="img-fluid mb-4" src="{{url('img/banners/banner_reclamo.png')}}" alt="Ingresar un reclamo"></center></a>
+              </a>
+             </div>
+         </center>
        @endisset
+     <!--FIN DE BANNER DE RECLAMO-->  
         <br>  
         <!--SCRIPT DATATABLE-->
-          <script src="{{url('js/main_home.js')}}"></script>
+              <script src="{{url('js/main_home.js')}}"></script>
         <!--FIN DE SCRIPT DATATABLE-->
-        <!--FIN DE BANNER DE RECLAMO-->
     @endif
 
 </div>

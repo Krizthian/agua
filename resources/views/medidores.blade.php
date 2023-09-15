@@ -108,7 +108,7 @@
          @foreach ($consumoMedidor as $consumoMedidorItem)   
             <tr>
               <td class="td_acciones">{{$consumoMedidorItem->numero_medidor}}</td>
-              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="{{route('clientes.listar', $consumoMedidorItem->cliente )}}">{{$consumoMedidorItem->cliente->nombre}} {{$consumoMedidorItem->cliente->apellido}}</a></td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="{{route('clientes.listar', $consumoMedidorItem->cliente )}}">{{$consumoMedidorItem->cliente->apellido}}, {{$consumoMedidorItem->cliente->nombre}}</a></td>
               <td class="td_acciones">{{$consumoMedidorItem->fecha_instalacion}}</td>
               <td class="td_acciones">{{$consumoMedidorItem->ubicacion}}</td>
               @isset($consumoMedidorItem->consumo)
