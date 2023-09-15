@@ -141,7 +141,7 @@
      <!--FIN DE BANNER DE RECLAMO-->  
         <br>  
         <!--SCRIPT DATATABLE-->
-              <script src="{{url('js/main_home.js')}}" defer></script>
+              <script src="{{url('js/main_home.js')}}"></script>
         <!--FIN DE SCRIPT DATATABLE-->
     @endif
 

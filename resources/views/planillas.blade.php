@@ -243,7 +243,7 @@
           {{$valores_pagar->links('pagination::bootstrap-4')}}
       <!--FIN TABLA CON DATOS-->
         <!--SCRIPT DATATABLE-->
-          <script src="{{url('js/main.js')}}" defer></script>
+          <script src="{{url('js/main.js')}}"></script>
         <!--FIN DE SCRIPT DATATABLE-->
 <br>
     </div>

@@ -65,7 +65,7 @@
       </div>
         <!--FIN DE TABLA CON VALORES-->
         <!--SCRIPT DATATABLE-->
-          <script src="{{url('js/main.js')}}" defer></script>
+          <script src="{{url('js/main.js')}}"></script>
          <!--FIN DE SCRIPT DATATABLE--> 
         <br><br>
     </div>
