@@ -329,7 +329,7 @@
      <!--FIN DE VALORES DE REPORTE DE MEDIDORES ACTIVOS-->
 </div>
       <!--SCRIPT DATATABLE-->
-        <script src="{{url('js/main.js')}}"></script>
+        <script src="{{url('js/main.js')}}" defer></script>
       <!--FIN DE SCRIPT DATATABLE-->  
 </div>
 
