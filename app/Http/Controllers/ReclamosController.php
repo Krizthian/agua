@@ -95,7 +95,7 @@ class ReclamosController extends Controller
                 'email.required' => 'El correo electrónico es un campo obligatorio',
                 'telefono.required' => 'El teléfono es un campo obligatorio',
                 'telefono.numeric' => 'El campo de teléfono debe contener numeros',
-                'motivo.required' => 'El correo electrónico es un campo obligatorio',
+                'motivo.required' => 'El motivo del reclamo es un campo obligatorio',
             ]);           
         //Comprobamos si los campos estan validados
              if ($campos_validados) {
