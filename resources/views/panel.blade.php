@@ -248,5 +248,5 @@
     
        </center></main>
 
-<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+<script src="https://cdn.canvasjs.com/canvasjs.min.js" defer></script>
 @endsection('content')

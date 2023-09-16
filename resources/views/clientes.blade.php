@@ -107,7 +107,7 @@
         </table>
                 {{$clientes->links('pagination::bootstrap-4')}}
         <!--SCRIPT DATATABLE-->
-          <script src="{{url('js/main.js')}}"></script>
+          <script src="{{url('js/main.js')}}" defer></script>
         <!--FIN DE SCRIPT DATATABLE-->
       </div>
        

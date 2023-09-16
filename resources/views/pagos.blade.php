@@ -80,7 +80,7 @@
         <!--FIN DE TABLA CON VALORES-->
           {{$pagos->links('pagination::bootstrap-4')}}
       <!--SCRIPT DATATABLE-->
-        <script src="{{url('js/main.js')}}"></script>
+        <script src="{{url('js/main.js')}}" defer></script>
       <!--FIN DE SCRIPT DATATABLE-->  
         <br><br>
       </div>  
