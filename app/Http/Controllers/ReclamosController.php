@@ -46,7 +46,7 @@ class ReclamosController extends Controller
             if (isset($valores)) {
                 $query->where('numero_medidor', $valores)
                     ->orWhere('numero_planilla', $valores)
-                    ->orWhere('apellido', $valores)
+                    ->orWhere('apellido', 'LIKE', '%' . $valores . '%') //Ajustamos la busqueda para que no requiera valores exactos
                     ->orWhere('id', $valores);
             }
 
