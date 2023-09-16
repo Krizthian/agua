@@ -41,7 +41,7 @@
 		<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary borde_coloreado " data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/panel">
-    <img class="img-fluid" src="{{url('img/logo.png')}}" width="170" height="50" alt="GAD DE PORTOVELO logo">
+    <img class="img-fluid" src="{{url('img/logo.webp')}}" width="170" height="50" alt="GAD DE PORTOVELO logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Desplegar navegación">
       <span class="navbar-toggler-icon"></span>
