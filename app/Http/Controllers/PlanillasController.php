@@ -411,7 +411,7 @@ class PlanillasController extends Controller
                             'id_cliente' => $valoresPagarItem->cliente->id,
                             'id_planilla' => $valoresPagarItem->id,
                             'numero_recibo' => $numero_recibo,
-                            'valor_a_pagar' => $valor_nuevo,
+                            'valor_a_pagar' => $valoresPagarItem->valor_actual,
                             'valor_pagado' => $valor_nuevo,
                             'valor_restante' => $valorFinalIngresar,
                             'fecha_pago' => $fecha,
