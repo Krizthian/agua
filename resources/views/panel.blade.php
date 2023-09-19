@@ -30,49 +30,6 @@
      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
     }  
 </style>
-<!--CONFIGURACION DE CANVAS JS-->
-    @php
-      $dataPoints = array(
-        array("label"=> "Enero", "y"=> $contarMes[1]),
-        array("label"=> "Febrero", "y"=> $contarMes[2]),
-        array("label"=> "Marzo", "y"=> $contarMes[3]),
-        array("label"=> "Abril", "y"=> $contarMes[4]),
-        array("label"=> "Mayo", "y"=> $contarMes[5]),
-        array("label"=> "Junio", "y"=> $contarMes[6]),
-        array("label"=> "Julio", "y"=> $contarMes[7]),
-        array("label"=> "Agosto", "y"=> $contarMes[8]),
-        array("label"=> "Septiembre", "y"=> $contarMes[9]),
-        array("label"=> "Octubre", "y"=> $contarMes[10]),
-        array("label"=> "Noviembre", "y"=> $contarMes[11]),
-        array("label"=> "Diciembre", "y"=> $contarMes[12]),
-      );
-    @endphp
-    <script>
-      window.onload = function () {   
-      var chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        exportEnabled: true,
-        title:{
-          text: "Pagos realizados en 2023"
-        },
-        subtitles: [
-{          text: "Cantidad de pagos realizados en el presente año"
-        }],
-        data: [{
-          type: "pie",
-          showInLegend: "true",
-          legendText: "{label}",
-          indexLabelFontSize: 16,
-          indexLabel: "{label} - #percent%",
-          yValueFormatString: "",
-          dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-        }]
-      });
-      chart.render();
-       
-      }
-    </script>
-<!--FIN DE CONFIGURACION DE CANVAS JS-->
      <!-- Contenido principal -->
       <center><main class="col-md-9">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-2 mb-3 border-bottom">
@@ -244,9 +201,50 @@
         </div>
       <div class="row">
         <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-       @endif
-    
+       @endif   
        </center></main>
-
-<script src="https://cdn.canvasjs.com/canvasjs.min.js" defer></script>
+        <script src="https://cdn.canvasjs.com/canvasjs.min.js" defer></script>
+          <!--CONFIGURACION DE CANVAS JS-->
+            @php
+              $dataPoints = array(
+                array("label"=> "Enero", "y"=> $contarMes[1]),
+                array("label"=> "Febrero", "y"=> $contarMes[2]),
+                array("label"=> "Marzo", "y"=> $contarMes[3]),
+                array("label"=> "Abril", "y"=> $contarMes[4]),
+                array("label"=> "Mayo", "y"=> $contarMes[5]),
+                array("label"=> "Junio", "y"=> $contarMes[6]),
+                array("label"=> "Julio", "y"=> $contarMes[7]),
+                array("label"=> "Agosto", "y"=> $contarMes[8]),
+                array("label"=> "Septiembre", "y"=> $contarMes[9]),
+                array("label"=> "Octubre", "y"=> $contarMes[10]),
+                array("label"=> "Noviembre", "y"=> $contarMes[11]),
+                array("label"=> "Diciembre", "y"=> $contarMes[12]),
+              );
+            @endphp
+            <script>
+              window.onload = function () {   
+              var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                exportEnabled: true,
+                title:{
+                  text: "Pagos realizados en @php echo date('Y'); @endphp"
+                },
+                subtitles: [{
+                  text: "Cantidad de pagos realizados en el presente año"
+                }],
+                data: [{
+                  type: "pie",
+                  showInLegend: "true",
+                  legendText: "{label}",
+                  indexLabelFontSize: 16,
+                  indexLabel: "{label} - #percent%",
+                  yValueFormatString: "",
+                  dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                }]
+              });
+              chart.render();
+               
+              }
+            </script>
+        <!--FIN DE CONFIGURACION DE CANVAS JS-->
 @endsection('content')
