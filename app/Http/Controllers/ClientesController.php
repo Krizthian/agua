@@ -76,6 +76,8 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
+    //Obtenemos la fecha actual
+        $fecha = date("Y-m-d");    
     //Comprobamos el rol antes de devolver la vista
         if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){           
                 //Validamos los valores recibidos
@@ -102,7 +104,16 @@ class ClientesController extends Controller
                 ]);
                 if ($campos_validados) {
                 //Insertamos los valores en la tabla
-                    Clientes::create($campos_validados);
+                    Clientes::create([
+                        'nombre' => $campos_validados['nombre'],
+                        'apellido' => $campos_validados['apellido'],
+                        'cedula' => $campos_validados['cedula'],
+                        'direccion' => $campos_validados['direccion'],
+                        'email' => $campos_validados['email'],
+                        'telefono' => $campos_validados['telefono'],
+                        'resp_creacion' => session()->get('sesion')['nombres'],
+                        'fecha_creacion' => $fecha
+                    ]);
                 //Redireccionamos
                     return redirect()->route('clientes.index')->with('resultado_creacion', 'Se ha creado el Cliente correctamente'); 
                 }else{
