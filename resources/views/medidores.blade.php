@@ -95,6 +95,7 @@
               <th scope="col">Propietario</th>
               <th scope="col">Fecha de Instalación</th>
               <th scope="col">Ubicación</th>
+              <th scope="col">Categoría</th>
               <th scope="col">Consumo</th>
               <th scope="col">Responsable de lectura</th>
               <th scope="col">Fecha de lectura</th>
@@ -111,6 +112,7 @@
               <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="{{route('clientes.listar', $consumoMedidorItem->cliente )}}">{{$consumoMedidorItem->cliente->apellido}}, {{$consumoMedidorItem->cliente->nombre}}</a></td>
               <td class="td_acciones">{{$consumoMedidorItem->fecha_instalacion}}</td>
               <td class="td_acciones">{{$consumoMedidorItem->ubicacion}}</td>
+              <td class="td_acciones">{{ucfirst($consumoMedidorItem->categoria_medidor)}}</td>
               @isset($consumoMedidorItem->consumo)
               <td class="td_acciones">{{$consumoMedidorItem->consumo->consumo_actual}} m<sup><strong>3</strong></sup></td>
               <td class="td_acciones">{{$consumoMedidorItem->consumo->responsable}}</td>

@@ -62,6 +62,16 @@
                 <input type="text" class="form-control" name="ubicacion" value="{{old('ubicacion')}}" placeholder="Ej. Calle 10 de Agosto, Puerta Roja" required></input>
               </div>
             </div>
+          <div class="col-auto">
+            <label>Categoría:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-house fa-sm"></i></span> 
+                <select class="form-select input-group  @error('categoria') is-invalid @enderror" id="categoria" name="categoria" required>
+                      <option value="residencial" required selected>Residencial</option>
+                      <option value="comercial" required>Comercial</option>
+              </select>
+          </div>
+        </div>
         <div class="col-auto">    
             <label>Número de medidor:</label>
             <div class="input-group mb-2">

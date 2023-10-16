@@ -71,6 +71,17 @@
             <input type="text" class="form-control @error('ubicacion') is-invalid @enderror" name="ubicacion" value="{{$consumoMedidorItem->ubicacion}}" placeholder="{{$consumoMedidorItem->ubicacion}}" required></input>
           </div>
         </div>
+          <div class="col-auto">
+            <label>Categoría:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-house fa-sm"></i></span> 
+                <select class="form-select input-group  @error('categoria') is-invalid @enderror" id="categoria" name="categoria" required>
+                  <option value="{{$consumoMedidorItem->categoria_medidor}}" required selected>{{ucFirst($consumoMedidorItem->categoria_medidor)}}
+                      <option value="residencial" required>Residencial</option>
+                      <option value="comercial" required>Comercial</option>
+              </select>
+          </div>
+        </div>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Actualizar</button></center></div>
           <br>

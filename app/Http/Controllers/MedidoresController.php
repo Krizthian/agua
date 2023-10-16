@@ -77,9 +77,11 @@ class MedidoresController extends Controller
             'fecha_instalacion' => 'required',
             'id_cliente' => 'required',
             'ubicacion' => 'required',
+            'categoria' => 'required',
             'numero_medidor' => 'required|numeric|min:0|unique:medidores,numero_medidor',
         ],[
             'ubicacion.required' => 'El campo de ubicación es obligatorio',
+            'categoria.required' => 'El campo de categoría es obligatorio',
             'id_cliente.required' => 'El campo de propietario de medidor es obligatorio',
             'numero_medidor.numeric' => 'El campo de número de medidor debe contener números',
             'numero_medidor.min' => 'El valor mínimo para el campo de número de medidor es 0',
@@ -94,6 +96,9 @@ class MedidoresController extends Controller
                 'fecha_instalacion' => $campos_validados['fecha_instalacion'],
                 'ubicacion' => $campos_validados['ubicacion'],
                 'numero_medidor' => $campos_validados['numero_medidor'],
+                'categoria_medidor' => $campos_validados['categoria'],
+                'estado_medidor' => "activo",
+                'resp_creacion' => session()->get('sesion')['nombres']
             ]);
         //Redireccionamos
             return redirect()->route('medidores.index')->with('resultado_creacion', 'Se ha creado el medidor correctamente'); 
@@ -133,8 +138,10 @@ class MedidoresController extends Controller
             $campos_validados = request()->validate([
                 'ubicacion' => 'required',
                 'id_cliente' => 'required',
+                'categoria' => 'required'
             ],[
                 'ubicacion.required' => 'El campo de ubicación es obligatorio',
+                'categoria.required' => 'El campo de categoría es obligatorio',
                 'id_cliente.required' => 'El campo de propietario es obligatorio',
             ]);
         //Comprobamos si los campos han sido validados
@@ -143,7 +150,8 @@ class MedidoresController extends Controller
                     Medidores::where('id', $id_medidor)
                        ->update([
                         'id_cliente' => $id_cliente,
-                        'ubicacion' => $campos_validados['ubicacion']
+                        'ubicacion' => $campos_validados['ubicacion'],
+                        'categoria_medidor' => $campos_validados['categoria']
                        ]);
                 //Actualizamos los valores en la tabla de planilla       
                      Planillas::where('id_medidor', $id_medidor)
