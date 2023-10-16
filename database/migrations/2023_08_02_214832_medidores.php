@@ -16,6 +16,9 @@ return new class extends Migration
             $table ->date('fecha_instalacion');
             $table ->string('ubicacion');
             $table ->string('numero_medidor')->unique();
+            $table ->string('categoria_medidor');
+            $table ->string('estado_medidor');
+            $table ->string('resp_creacion');
         });
 
         //Añadimos el id_medidor a la tabla de "planillas"

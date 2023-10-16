@@ -310,10 +310,16 @@ class PlanillasController extends Controller
      */
     public function inhabilitar (Planillas $valoresPagarItem)
     {
+        //Obtenemos la fecha actual
+            $fecha = date("Y-m-d");
         //Comprobamos el estado del servicio
             //Desactivamos el servicio si este se encuentra 'inactivo'
                 if ($valoresPagarItem->estado_servicio == "activo") {
-                    Planillas::where('id', '=', $valoresPagarItem->id)->update(['estado_servicio' => 'inactivo']);
+                    Planillas::where('id', '=', $valoresPagarItem->id)->update([
+                        'estado_servicio' => 'inactivo',
+                        'resp_suspension' => session()->get('sesion')['nombres'],
+                        'fecha_suspension' => $fecha
+                    ]);
                     return redirect()->back()->with('resultado', 'Se ha suspendido el servicio al medidor '. ''. $valoresPagarItem->numero_medidor); //Devolvemos el mensaje de resultados a la vista 'planillas'
             //Reactivamos el servicio si este se encuentra 'activo'
                 }elseif ($valoresPagarItem->estado_servicio == "inactivo") {

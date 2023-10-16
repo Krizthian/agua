@@ -20,7 +20,8 @@ return new class extends Migration
             $table-> string('cedula')->unique();
             $table-> string('rol');
             $table-> string('email')->unique();
-            $table -> integer('telefono');
+            $table-> integer('telefono');
+            $table-> string('estado_usuario');
             $table->timestamps();
         });
     }

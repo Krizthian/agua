@@ -19,6 +19,8 @@ return new class extends Migration
             $table ->date('fecha_factura');
             $table ->date('fecha_maxima');
             $table ->string('estado_servicio');
+            $table ->string('resp_suspension');
+            $table ->date('fecha_suspension');
             $table ->integer('meses_mora');
         });
 

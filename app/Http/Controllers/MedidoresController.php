@@ -191,7 +191,7 @@ class MedidoresController extends Controller
             $consumo_anterior = request('consumo_anterior');
             $fecha_lectura_anterior = request('fecha_lectura_anterior');
             $responsable = request('responsable'); 
-
+            $fecha = date("Y-m-d");
         //Validamos los valores recibidos desde el formulario anterior    
             $campos_validados = request()->validate([
                 'consumo_actual' => 'required|numeric|min:0',
@@ -328,24 +328,26 @@ class MedidoresController extends Controller
                                  //Incrementamos los valores de meses en mora
                                  $incremento = 1;
                                  $meses_mora_incremento = $meses_mora + $incremento;                                
-                                Consumos::where('id_medidor', $id_medidor)
-                                       ->update([
-                                        'consumo_actual' => $consumo_actual,
-                                        'fecha_lectura_actual' => $fecha_lectura_actual,
-                                        'consumo_anterior' => $consumo_anterior,
-                                        'fecha_lectura_anterior' => $fecha_lectura_anterior,
-                                        'responsable' => $responsable
-                                       ]);
+                                    Consumos::where('id_medidor', $id_medidor)
+                                           ->update([
+                                            'consumo_actual' => $consumo_actual,
+                                            'fecha_lectura_actual' => $fecha_lectura_actual,
+                                            'consumo_anterior' => $consumo_anterior,
+                                            'fecha_lectura_anterior' => $fecha_lectura_anterior,
+                                            'responsable' => $responsable
+                                           ]);
 
-                                Planillas::where('id_medidor', $id_medidor)
-                                       ->update([
-                                        'valor_actual' => $valorDeuda,
-                                        'alcantarillado' => $deudaAlcantarillado,
-                                        'administracion' => $deudaAdministracion,
-                                        'fecha_factura' => $fecha_factura,
-                                        'fecha_maxima' => $fecha_maxima,
-                                        'estado_servicio' => "inactivo",
-                                        'meses_mora' => $meses_mora_incremento
+                                    Planillas::where('id_medidor', $id_medidor)
+                                           ->update([
+                                            'valor_actual' => $valorDeuda,
+                                            'alcantarillado' => $deudaAlcantarillado,
+                                            'administracion' => $deudaAdministracion,
+                                            'fecha_factura' => $fecha_factura,
+                                            'fecha_maxima' => $fecha_maxima,
+                                            'estado_servicio' => "inactivo", //Suspendemos el servicio automaticamente
+                                            'resp_suspension' => "Suspensión automática", //La suspensión fue realizada por el sistema
+                                            'fecha_suspension' => $fecha, //Se toma la fecha actual para registrar la suspensión
+                                            'meses_mora' => $meses_mora_incremento
                                     ]);              
                          //Si no hay una deuda pendiente, continuamos con normalidad                                           
                             }elseif($planillaValorActual == 0){
@@ -390,6 +392,8 @@ class MedidoresController extends Controller
                             'fecha_factura' => $fecha_factura,
                             'fecha_maxima' => $fecha_maxima,
                             'estado_servicio' => "activo",
+                            'resp_suspension' => "ND",
+                            'fecha_suspension' => "1970-01-01",
                             'meses_mora' => 0 
                        ]);
 

@@ -19,6 +19,8 @@ return new class extends Migration
             $table ->string('direccion');
             $table-> string('email')->unique();
             $table ->integer('telefono');
+            $table ->string('resp_creacion');
+            $table ->date('fecha_creacion');
         });
 
        //Añadimos el id_cliente a la tabla de "planillas"
