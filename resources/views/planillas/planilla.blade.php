@@ -114,6 +114,14 @@
               	</div>
               </div>
 
+           <div class="col-md-12 mb-2">
+            <label for="categoria_medidor">Categoría:</label>
+              <div class="input-group mb-2">
+                <span class="input-group-text"><i class="fa-solid fa-house fa-sm"></i></span>
+                  <input id="categoria_medidor" type="text" value="{{ucFirst($valoresPagarItem->medidor->categoria_medidor)}}" name="nombre" class="form-control" disabled></input>
+                </div>
+              </div>
+
            <div class="col-md-6 mb-2">
             <label>Consumo actual:</label>
               <div class="input-group mb-2">

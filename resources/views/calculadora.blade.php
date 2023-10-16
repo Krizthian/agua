@@ -58,7 +58,7 @@
                          <span class="input-group-text"><i class="fa-solid fa-house fa-sm"></i></span>           
                       <select class="form-select" id="tipo" name="tipo" required>
                           <option value="residencial" selected>Residencial</option>
-                          <option value="comercial" selected>Comercial</option>
+                          <option value="comercial">Comercial</option>
                       </select>
                       </div>
                     </div>
