@@ -24,23 +24,27 @@ class LoginController extends Controller
                     'password.required' => 'El campo contraseña es obligatorio',
              ]);
 
-        // Recibimos las variables desde el formulario anterior
+        //Recibimos las variables desde el formulario anterior
             $usuario = $campos_validados['usuario'];
             $password = $campos_validados['password'];
 
-        // Realizamos la consulta para encontrar el usuario
+        //Realizamos la consulta para encontrar el usuario
             $usuarioEncontrado = Usuarios::where('usuario', $usuario)->first();
             if ($usuarioEncontrado && password_verify($password, $usuarioEncontrado->password)) {
-                // Obtenemos los nombres
+                //Comprobamos si el usuario se encuentra inactivo
+                    if($usuarioEncontrado->estado_usuario == "inactivo"){
+                        //Si el usuario se encuentra inactivo redireccionamos
+                            return redirect()->back()->with('resultado_inactivo', 'El usuario actual se encuentra inactivo en el sistema')->withInput();    
+                    }
+                //Obtenemos los nombres
                 $nombres = $usuarioEncontrado->nombre . ' ' . $usuarioEncontrado->apellido;
-                
-                // Guardamos el rol y el usuario en variables de sesión
+                //Guardamos el rol y el usuario en variables de sesión
                 $request->session()->put('sesion', ['usuario' => $usuarioEncontrado->usuario, 'rol' => $usuarioEncontrado->rol, 'nombres' => $nombres, 'id' => $usuarioEncontrado->id]);
                 
-                // Redireccionamos al panel de control
+                //Redireccionamos al panel de control
                     return redirect()->route('panel.index');
             }
-            // Redireccionamos al login si hay algún error en la validación
+            //Redireccionamos al login si hay algún error en la validación
                  return redirect()->back()->with('resultado_login', 'El usuario o la contraseña son incorrectos')->withInput();
     }
 

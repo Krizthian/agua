@@ -116,7 +116,17 @@ class UsuariosController extends Controller
                         $campos_validados['password'] = bcrypt($request->input('password'));
 
                     //Insertamos los valores en la tabla
-                        Usuarios::create($campos_validados);
+                        Usuarios::create([
+                            'usuario' => $campos_validados['usuario'],
+                            'password'=> $campos_validados['password'],
+                            'nombre'=> $campos_validados['nombre'],
+                            'apellido'=> $campos_validados['apellido'],
+                            'cedula'=> $campos_validados['cedula'],
+                            'rol'=> $campos_validados['rol'],
+                            'email'=> $campos_validados['email'],
+                            'telefono'=> $campos_validados['telefono'],
+                            'estado_usuario' => "activo"
+                        ]);
 
                     //Redireccionamos
                         return redirect()->route('usuarios.index')->with('resultado_creacion', 'Se ha creado el usuario correctamente');         

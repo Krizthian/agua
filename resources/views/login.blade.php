@@ -33,7 +33,13 @@
           </div>
         @endif  
       <!--FIN DE MENSAJE DE RESULTADO DE RECUPERACION-->
-
+      <!--INICIO DE MENSAJE DE CUENTA INACTIVA-->
+        @if(session('resultado_inactivo'))
+          <div class="alert alert-warning alert-dismissible fade show">
+              Actualmente el <strong>usuario</strong> ingresado se encuentra <strong>inactivo</strong> por lo que no es posible iniciar sesión.
+          </div>
+        @endif  
+      <!--FIN DE MENSAJE DE CUENTA INACTIVA-->
       <!--INICIO DE MENSAJE DE ENLACE EXPIRADO-->
         @if(session('enlace_expirado'))
           <div class="alert alert-danger alert-dismissible fade show">

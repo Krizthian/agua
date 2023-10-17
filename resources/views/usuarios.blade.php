@@ -84,6 +84,7 @@
               <th scope="col">Cédula/RUC</th>
               <th scope="col">Rol</th>
               <th scope="col">Email</th>
+              <th scope="col">Estado</th>
               <th scope="col" align="center">Acciones</th> 
             </tr>
           </thead>
@@ -96,17 +97,28 @@
               <td class="td_acciones">{{$usuariosItem->usuario}}</td>
               <td class="td_acciones">{{$usuariosItem->nombre}} {{$usuariosItem->apellido}}</td>
               <td class="td_acciones">{{$usuariosItem->cedula}}</td>
+
+              <!--COMPROBACION DE ROL DE USUARIO-->
               @if($usuariosItem->rol == "administrador")
-              <td class="td_acciones"><span class="badge mt-1 text-bg-primary">{{ucfirst($usuariosItem->rol);}}</span></td>
+                <td class="td_acciones"><span class="badge mt-1 text-bg-primary">{{ucfirst($usuariosItem->rol);}}</span></td>
               @elseif($usuariosItem->rol == "personal")
-              <td class="td_acciones"><span class="badge mt-1 text-bg-info">{{ucfirst($usuariosItem->rol);}}</span></td>
+                <td class="td_acciones"><span class="badge mt-1 text-bg-info">{{ucfirst($usuariosItem->rol);}}</span></td>
               @elseif($usuariosItem->rol == "supervisor")
-              <td class="td_acciones"><span class="badge mt-1 text-bg-secondary">{{ucfirst($usuariosItem->rol);}}</span></td>
+                <td class="td_acciones"><span class="badge mt-1 text-bg-secondary">{{ucfirst($usuariosItem->rol);}}</span></td>
               @endif
+
               <td class="td_acciones">{{$usuariosItem->email}}</td>
-              <td class="td_acciones">
-          <!--INICIO DE ACCIONES-->      
-            <div class="btn-group">
+
+              <!--COMPROBACION DE ESTADO DE USUARIO-->
+              @if($usuariosItem->estado_usuario == "activo")
+                <td class="td_acciones"><span class="badge mt-1 text-bg-success">{{ucFirst($usuariosItem->estado_usuario)}}</span></td>
+              @elseif($usuariosItem->estado_usuario == "inactivo")
+                <td class="td_acciones"><span class="badge mt-1 text-bg-secondary">{{ucFirst($usuariosItem->estado_usuario)}}</span></td>
+              @endif
+              
+          <!--INICIO DE ACCIONES-->  
+              <td class="td_acciones">    
+                <div class="btn-group">
              <!--BOTON EDITAR-->
                       <a title="Editar usuario" type="button" href="{{route('usuarios.editar', $usuariosItem )}}" class="btn btn-outline-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                       <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
