@@ -118,7 +118,9 @@ use Illuminate\Support\Facades\Route;
 		//Devolver el formulario de edición de medidor
 			Route::get('/medidores/editar/{consumoMedidorItem}', [MedidoresController::class, 'edit'])->name('medidores.edit');
 			//Actualizar medidor
-				Route::patch('/medidores/{consumoMedidorItem}', [MedidoresController::class, 'update'])->name('medidores.update');	
+				Route::patch('/medidores/{consumoMedidorItem}', [MedidoresController::class, 'update'])->name('medidores.update');		
+		//Inhabilitar/Habilitar medidores	
+			Route::get('/medidores/inhabilitar/{consumoMedidorItem}', [MedidoresController::class, 'inhabilitar'])->name('medidores.inhabilitar');
 
 //Rutas para mostrar (mantenimientos)
 	Route::view('/mantenimientos', 'mantenimientos')->name('mantenimientos');
@@ -189,7 +191,7 @@ use Illuminate\Support\Facades\Route;
 			Route::get('/usuarios/editar/{usuariosItem}', [UsuariosController::class, 'edit'])->name('usuarios.editar');
 			//Actualizar usuario
 				Route::patch('/usuarios/{usuariosItem}', [UsuariosController::class, 'update'])->name('usuarios.update');		
-		//Eliminar usuarios	
+		//Inhabilitar/Habilitar usuarios	
 			Route::get('/usuarios/{usuariosItem}', [UsuariosController::class, 'inhabilitar'])->name('usuarios.inhabilitar');
 
 //Rutas para mostrar (reportes)

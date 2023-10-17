@@ -86,6 +86,15 @@
           @endif  
         <!--FIN DE MENSAJE DE RESULTADO DE ACTUALIZACION-->
 
+        <!--INICIO DE MENSAJE DE RESULTADOS DE ACCION DE INHABILITAR/HABILITAR-->
+        @if(session('resultado_inhabilitar'))
+          <div class="alert alert-success alert-dismissible fade show">
+              {{session('resultado_inhabilitar')}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+        <!--FIN DE MENSAJE DE RESULTADOS DE ACCION DE INHABILITAR/HABILITAR-->
+
         <!--INICIO DE TABLA CON VALORES-->
        <div class="table-responsive"> 
         <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-md">
@@ -99,6 +108,7 @@
               <th scope="col">Consumo</th>
               <th scope="col">Responsable de lectura</th>
               <th scope="col">Fecha de lectura</th>
+              <th scope="col">Estado</th>
               <th scope="col" align="center">Acciones</th> 
             </tr>
           </thead>
@@ -122,13 +132,21 @@
                <td class="td_acciones text-muted">N/D</td>
                <td class="td_acciones text-muted">N/D</td>
               @endisset
+              <!--COMPROBACION DE ESTADO DE MEDIDOR-->
+                @if($consumoMedidorItem->estado_medidor == "activo")              
+                    <td class="td_acciones"><span class="badge mt-1 text-bg-success">{{ucfirst($consumoMedidorItem->estado_medidor)}}</span></td>
+                @elseif($consumoMedidorItem->estado_medidor == "inactivo")
+                    <td class="td_acciones"><span class="badge mt-1 text-bg-secondary">{{ucfirst($consumoMedidorItem->estado_medidor)}}</span></td>
+                @endif    
+               <!--FIN DE COMPROBACION DE ESTADO DE USUARIO-->
+
               <!--INICIO DE BOTONES DE ACCIONES-->
               <td class="td_acciones">
               <div class="btn-group">
             <!--COMPROBAMOS ROLES-->
                 @if(session()->get('sesion')['rol'] == 'supervisor' || session()->get('sesion')['rol'] == 'administrador')
                 <!--BOTON INGRESAR CONSUMO-->
-                    <a type="button" href="{{route('consumos.ingresarConsumo', $consumoMedidorItem)}}" class="btn btn-outline-success" title="Ingresar consumo"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-droplet" viewBox="0 0 16 16">
+                    <a type="button" href="{{route('consumos.ingresarConsumo', $consumoMedidorItem)}}" class="btn btn-outline-primary" title="Ingresar consumo"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-droplet" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
                     <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
                   </svg></a>
@@ -147,7 +165,70 @@
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                   </svg></a>
                  <!--FIN EDITAR MEDIDOR -->
-                @endif 
+               <!--COMPORBAMOS SI EL MEDIDOR ESTA ACTIVO-->
+                  @if($consumoMedidorItem->estado_medidor == "activo") 
+                     <!--BOTON INHABILITAR MEDIDOR-->
+                            <a href="{{ route('medidores.inhabilitar', $consumoMedidorItem) }}" class="btn btn-outline-danger inhabilitar" title="Inhabilitar medidor">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                            </a></div>
+                            <script>
+                                $(document).ready(function() {
+                                    $('.inhabilitar').click(function(event) {
+                                        event.preventDefault();
+                                        var url = $(this).attr('href');
+                                        // Mostrar el mensaje de confirmación con SweetAlert
+                                        Swal.fire({
+                                            title: 'Confirmación',
+                                            text: '¿Estás seguro de que deseas inhabilitar el medidor seleccionado?',
+                                            icon: 'error',
+                                            showCancelButton: true,
+                                            confirmButtonText: 'Sí, inhabilitar',
+                                            cancelButtonText: 'Cancelar'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                // Redirigir a la URL del enlace
+                                                window.location.href = url;
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
+                     <!--FIN BOTON INHABILITAR MEDIDOR-->                
+                    <!-- COMPROBAMOS SI EL MEDIDOR ESTÁ INACTIVO-->                        
+                    @else
+                        <a href="{{ route('medidores.inhabilitar', $consumoMedidorItem) }}" class="btn btn-outline-success habilitar" title="Habilitar medidor">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                            </svg>
+                        </a></div>
+                        <script>
+                            $(document).ready(function() {
+                                $('.habilitar').click(function(event) {
+                                    event.preventDefault();
+                                    var url = $(this).attr('href');
+                                    // Mostrar el mensaje de confirmación con SweetAlert
+                                    Swal.fire({
+                                        title: 'Confirmación',
+                                        text: '¿Estás seguro de que deseas habilitar el medidor?',
+                                        icon: 'success',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Sí, habilitar',
+                                        cancelButtonText: 'Cancelar'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            // Redirigir a la URL del enlace
+                                            window.location.href = url;
+                                        }
+                                    });
+                                });
+                            });
+                        </script>                        
+                @endif
+           @endif
               </div>   
               </td>
               <!--FIN DE BOTONES DE ACCIONES-->

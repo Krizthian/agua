@@ -115,6 +115,7 @@
               @elseif($usuariosItem->estado_usuario == "inactivo")
                 <td class="td_acciones"><span class="badge mt-1 text-bg-secondary">{{ucFirst($usuariosItem->estado_usuario)}}</span></td>
               @endif
+              <!--FIN DE COMPROBACION DE ESTADO DE USUARIO-->
               
           <!--INICIO DE ACCIONES-->  
               <td class="td_acciones">    
@@ -159,7 +160,7 @@
                                 });
                             </script>
                       <!--FIN BOTON INHABILITAR USUARIO-->
-              <!--SI EL USUARIO ESTÁ INACTIVO-->
+              <!--COMPROBAMOS SI EL USUARIO ESTÁ INACTIVO-->
                     @else 
                    <!--INICIO BOTON DE HABILITAR USUARIO--> 
                         <a href="{{ route('usuarios.inhabilitar', $usuariosItem) }}" class="btn btn-outline-success habilitar" title="Habilitar usuario">

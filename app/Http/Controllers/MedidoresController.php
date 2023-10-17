@@ -167,8 +167,37 @@ class MedidoresController extends Controller
     }
 
     /**
-     * Redireccionar al formulario de ingreso de consumos
+     * Procesar la habilitación/inhabilitación del medidor
     */
+    public function inhabilitar(Medidores $consumoMedidorItem)
+    {
+        //Comprobamos los roles antes de devolver a la vista
+           if(session()->get('sesion')['rol'] == 'personal' || session()->get('sesion')['rol'] == 'administrador'){  
+            //Si el rol es correcto entonces comprobamos los estados
+                //Comprobamos el estado del medidor y DESACTIVAMOS si se encuentra 'activo'
+                    if ($consumoMedidorItem->estado_medidor == "activo") {
+                        //Actualizamos el estado
+                            Medidores::where('id', '=', $consumoMedidorItem->id)->update([
+                                'estado_medidor' => 'inactivo'
+                            ]);
+                        //Redireccionamos confirmando la operación
+                           return redirect()->route('medidores.index')->with('resultado_inhabilitar', 'Se ha inhabilitado el medidor correctamente');     
+
+                //Comprobamos el estado del medidor y ACTIVAMOS si se encuentra 'inactivo'            
+                      }elseif($consumoMedidorItem->estado_medidor == "inactivo"){
+                        //Actualizamos el estado
+                            Medidores::where('id', '=', $consumoMedidorItem->id)->update([
+                                'estado_medidor' => 'activo'
+                            ]);                            
+                        //Redireccionamos confirmando la operación
+                           return redirect()->route('medidores.index')->with('resultado_inhabilitar', 'Se ha habilitado el medidor correctamente');  
+                      }
+
+        //Redireccionamos en caso de que el rol no sea un "personal" o "administrador"   
+            }elseif(session()->get('sesion')['rol'] == 'supervisor'){
+                return redirect()->route('medidores.index');
+            }   
+    }
 
     public function ingresarConsumo(Medidores $consumoMedidorItem)
     {

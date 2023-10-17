@@ -221,7 +221,7 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Eliminar el valor en la base de datos
+     * Procesar la habilitación/inhabilitación del usuario
      */
     public function inhabilitar(Usuarios $usuariosItem)
     {
