@@ -223,19 +223,35 @@ class UsuariosController extends Controller
     /**
      * Eliminar el valor en la base de datos
      */
-    public function destroy(Usuarios $usuariosItem)
+    public function inhabilitar(Usuarios $usuariosItem)
     {
          //Comprobamos el rol antes de devolver la vista
-            if(session()->get('sesion')['rol'] == 'administrador'){ 
+            if(session()->get('sesion')['rol'] == 'administrador'){                     
                 //Comprobamos si el usuario es un administrador
                     if ($usuariosItem->rol == 'administrador') {
-                        return redirect()->route('usuarios.index')->with('error', 'No se puede eliminar a un administrador'); //Devolvemos el mensaje de error a la vista 'usuarios'
+                        return redirect()->route('usuarios.index')->with('error', 'No se puede realizar esta acción con un administrador, por favor actualice su rol e intente nuevamente.'); //Devolvemos el mensaje de error a la vista 'usuarios'
                     }else{
-                //Si el usuario no es un administrador, procedemos con la eliminación        
-                    //Realizamos la consulta Eloquent
-                        Usuarios::destroy($usuariosItem->id);
-                    //Redireccionamos    
-                        return redirect()->route('usuarios.index')->with('resultado', 'El usuario ha sido eliminado'); //Devolvemos el mensaje de resultados a la vista 'usuarios'
+                        //Si el usuario no es un administrador, procedemos con la actualización de estado
+                            //Comprobamos el estado del usuario y DESACTIVAMOS si se encuentra 'activo'
+                                if ($usuariosItem->estado_usuario == "activo") {
+                                        //Actualizamos el estado
+                                            Usuarios::where('id', '=', $usuariosItem->id)->update([
+                                                'estado_usuario' => 'inactivo'
+                                            ]);
+                                        //Redireccionamos
+                                           return redirect()->route('usuarios.index')->with('resultado', 'Se ha inhabilitado el usuario correctamente');
+
+                            //Comprobamos el estado del usuario y ACTIVAMOS si se encuentra 'inactivo'   
+                                    }elseif($usuariosItem->estado_usuario == "inactivo"){
+                                        //Actualizamos el estado
+                                            Usuarios::where('id', '=', $usuariosItem->id)->update([
+                                                'estado_usuario' => 'activo'
+                                            ]);
+                                        //Redireccionamos
+                                           return redirect()->route('usuarios.index')->with('resultado', 'Se ha habilitado el usuario correctamente');
+                                    }
+
+
                     }
           //Redireccionamos en caso de que el rol no sea un "administrador"   
             }else{

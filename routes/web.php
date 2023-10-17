@@ -190,7 +190,7 @@ use Illuminate\Support\Facades\Route;
 			//Actualizar usuario
 				Route::patch('/usuarios/{usuariosItem}', [UsuariosController::class, 'update'])->name('usuarios.update');		
 		//Eliminar usuarios	
-			Route::get('/usuarios/{usuariosItem}', [UsuariosController::class, 'destroy'])->name('usuarios.destroy');
+			Route::get('/usuarios/{usuariosItem}', [UsuariosController::class, 'inhabilitar'])->name('usuarios.inhabilitar');
 
 //Rutas para mostrar (reportes)
 	Route::view('/reportes', 'reportes')->name('reportes');
