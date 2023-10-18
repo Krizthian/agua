@@ -129,6 +129,10 @@ class MedidoresController extends Controller
         }  
     } 
 
+    /**
+     * Procesamos la actualización del medidor
+    */
+
     public function update(Request $request, Medidores $consumoMedidorItem)
     {
         //Obtenemos valores
@@ -199,8 +203,14 @@ class MedidoresController extends Controller
             }   
     }
 
+    /**
+     * Redireccionar al formulario de ingreso de consumos
+    */
+
     public function ingresarConsumo(Medidores $consumoMedidorItem)
     {
+      //Comprobamos que el medidor se encuentre activo
+        if($consumoMedidorItem->estado_medidor == "activo"){
         //Comprobamos el rol antes de devolver la vista
             if(session()->get('sesion')['rol'] == 'supervisor' || session()->get('sesion')['rol'] == 'administrador'){            
             //Devolvemos todo lo obtenido al formulario de ingreso
@@ -211,7 +221,10 @@ class MedidoresController extends Controller
             }elseif(session()->get('sesion')['rol'] == 'personal'){
                 return redirect()->route('medidores.index');
             }                   
-
+      //Redireccionamos y mostramos error si el medidor se encuentra inactivo
+        }else{
+            return redirect()->route('medidores.index')->with('resultado', 'El medidor seleccionado no se encuentra activo por lo que no es posible ingresar consumos'); 
+        }      
     }
 
     /**
