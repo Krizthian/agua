@@ -153,8 +153,6 @@ use Illuminate\Support\Facades\Route;
 				Route::post('/reclamos/crear/{pagosConsultaItem}', [ReclamosController::class, 'store'])->name('reclamos.store');
 		//Actualizar estado de solicitud	
 			Route::get('/reclamos/actualizar/{reclamosItem}', [ReclamosController::class, 'actualizarEstado'])->name('reclamos.actualizarEstado');
-		//Eliminar reclamos	
-			Route::get('/reclamos/eliminar/{reclamosItem}', [ReclamosController::class, 'destroy'])->name('reclamos.destroy');
 
 //Rutas para mostrar (clientes)
 	Route::view('/clientes', 'clientes')->name('clientes');
