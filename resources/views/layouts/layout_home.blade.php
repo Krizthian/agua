@@ -13,10 +13,10 @@
       <link rel="stylesheet" href="{{url('css/footer.css')}}">
       <link rel="stylesheet" href="{{url('css/blanco.css')}}">
     <!--DATATABLE-->   
-      <script src="{{asset('js/jquery.min.js')}}" defer></script>
+      <script src="{{asset('js/jquery.min.js')}}" ></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js" defer></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" defer></script>
       <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" defer></script>
       <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js" defer></script>
       <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js" defer></script>

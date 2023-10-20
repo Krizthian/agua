@@ -39,7 +39,13 @@ class LoginController extends Controller
                 //Obtenemos los nombres
                 $nombres = $usuarioEncontrado->nombre . ' ' . $usuarioEncontrado->apellido;
                 //Guardamos el rol y el usuario en variables de sesión
-                $request->session()->put('sesion', ['usuario' => $usuarioEncontrado->usuario, 'rol' => $usuarioEncontrado->rol, 'nombres' => $nombres, 'id' => $usuarioEncontrado->id]);
+                $request->session()->put('sesion', [
+                    'usuario' => $usuarioEncontrado->usuario,
+                    'rol' => $usuarioEncontrado->rol,
+                    'nombres' => $nombres,
+                    'id' => $usuarioEncontrado->id,
+                    'updated_at' => $usuarioEncontrado->updated_at
+                ]);
                 
                 //Redireccionamos al panel de control
                     return redirect()->route('panel.index');
@@ -132,10 +138,12 @@ class LoginController extends Controller
             if ($campos_validados) {
             //Encriptamos la contraseña    
                 $campos_validados['password'] = bcrypt($request->input('password')); 
+                $fecha_actual = date("Y-m-d H:i:s"); //Generamos una fecha actual
             //Realizamos la consulta Eloquent
                 Usuarios::where('id', $request->input('id_usuario'))
                             ->update([
                                 'password' => $campos_validados['password'],
+                                'updated_at' => $fecha_actual
                             ]);
               //Limpiamos el token 
                    session()->flush();            

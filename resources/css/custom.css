@@ -5,7 +5,6 @@ ARCHIVO CSS PERSONALIZADO
 
 Autor: Cristhian Alejandro Ortiz Morales
 
-Autor: Cristhian Alejandro Ortiz Morales
 Fecha: 2 de julio de 2023
 
 */
@@ -21,6 +20,8 @@ Fecha: 2 de julio de 2023
     -moz-box-shadow: 1px 2.5px 9px -3px rgba(0,0,0,0.75);
     box-shadow: 1px 2.5px 9px -3px rgba(0,0,0,0.75);
   }
+
+
 .bg-body-tertiary {
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;

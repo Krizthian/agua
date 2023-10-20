@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
       <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.1/css/buttons.bootstrap4.min.css">
+      <link rel="stylesheet" href="{{url('css/dataTables.css')}}">
       
       <!--BOOTSTRAP 5.3-->
         <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -106,7 +107,19 @@
 </nav>
 <br><br><br><br><br><br>
 </header>
-
+        <!--COMPROBAMOS LA RUTA EN LA QUE NOS ENCONTRAMOS-->
+        @if(Route::is('usuarios.actualizarPassword') )
+          @else <!--SI ESTAMOS EN CUALQUIER OTRA RUTA DEL PANEL DE GESTION MOSTRAMOS EL MENSAJE-->
+        <!--COMPROBACION DE ACTUALIZACION DE CONTRASEÑA-->
+            @if(session()->get('sesion')['updated_at'] == '1970-01-01 00:00:00')
+              <div class="container-sm">
+                      <div class="alert alert-warning alert-dismissible fade show">
+                          <center><strong><i class="fa-solid fa-circle-exclamation"></i> Aviso:</strong> Aún no has actualizado tu contraseña, <a class="nav-link" href="{{route('usuarios.actualizarPassword')}}"><i>haz clic aquí para actualizarla</i></a></center>
+                      </div>
+              </div>
+            @endif <!--FIN DE COMPROBACION DE ACTUALIZACION DE CONTRASEÑA-->
+          @endif <!--FIN DE COMPROBACION DE LA RUTA EN LA QUE NOS ENCONTRAMOS-->
+      
 <!--CONTENIDO-->
   @yield('content')
     </body>

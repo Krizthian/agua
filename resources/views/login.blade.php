@@ -19,6 +19,14 @@
           </div>
         @endif  
       <!--FIN DE MENSAJE DE RESULTADO DE LOGOUT-->
+      <!--INICIO DE MENSAJE DE RESULTADO DE ACTUALIZACION DE CONTRASEÑA-->
+        @if(session('resultado_update'))
+          <div class="alert alert-success alert-dismissible fade show">
+              La <strong>contraseña</strong> se ha actualizado correctamente, por favor inicia sesión con tu nueva contraseña.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        @endif  
+      <!--FIN DE MENSAJE DE RESULTADO DE ACTUALIZACION DE CONTRASEÑA-->
       <!--INICIO DE MENSAJE DE RESULTADO DE VALIDACION-->
         @if(session('resultado_login'))
           <div class="alert alert-danger alert-dismissible fade show">

@@ -85,6 +85,7 @@ class UsuariosController extends Controller
             if(session()->get('sesion')['rol'] == 'administrador'){ 
 
                 //Validamos los valores recibidos
+                    $fecha_actual = date("Y-m-d H:i:s"); //Generamos una fecha actual
                     $campos_validados = request()->validate([
                         'usuario' => 'required|unique:usuarios',
                         'password' => 'required',
@@ -125,7 +126,9 @@ class UsuariosController extends Controller
                             'rol'=> $campos_validados['rol'],
                             'email'=> $campos_validados['email'],
                             'telefono'=> $campos_validados['telefono'],
-                            'estado_usuario' => "activo"
+                            'estado_usuario' => "activo",
+                            'created_at' => $fecha_actual,
+                            'updated_at' => "1970-01-01"
                         ]);
 
                     //Redireccionamos
@@ -168,6 +171,7 @@ class UsuariosController extends Controller
             if(session()->get('sesion')['rol'] == 'administrador'){ 
 
                 //Validamos los valores recibidos
+                    $fecha_actual = date("Y-m-d H:i:s"); //Generamos una fecha actual
                     $campos_validados = request()->validate([
                         'usuario' => 'required|unique:usuarios,usuario,' . $usuariosItem->id,
                         'nombre' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
@@ -206,6 +210,7 @@ class UsuariosController extends Controller
                                 'rol' => request('rol'),
                                 'email' => request('email'),
                                 'telefono' => request('telefono'),
+                                'updated_at' => $fecha_actual
                             ]);
                 //Redireccionamos 
                     return redirect()->route('usuarios.index')->with('resultado_edicion', 'El usuario se ha actualizado correctamente');
@@ -282,7 +287,7 @@ class UsuariosController extends Controller
                 'password_nueva.required' => 'El campo de contraseña nueva es obligatorio',
         ]);
         if ($campos_validados) {
-        
+            $fecha_actual = date("Y-m-d H:i:s");
         //Ingresamos valores en variables
             $password_actual = $campos_validados['password_actual'];
             $password_nueva = bcrypt($campos_validados['password_nueva']);
@@ -294,11 +299,15 @@ class UsuariosController extends Controller
                 //Realizamos la actualización de la contraseña
                 Usuarios::where('id', $id_usuario)
                     ->update([
-                        'password' => $password_nueva
+                        'password' => $password_nueva,
+                        'updated_at' => $fecha_actual
                     ]);   
 
-         //Redireccionamos y confirmamos la operación
-               return redirect()->back()->with('resultado_actualizacion', 'La contraseña se ha actualizado correctamente');
+         //Cerramos la sesión y redireccionamos
+                //Limpamos las sesiones existentes
+                    session()->flush(); 
+                //Redireccionamos a la pagina de inicio de sesión
+                    return redirect()->route('login')->with('resultado_update', 'La contraseña se ha actualizado correctamente, por favor inicia sesión nuevamente'); 
 
             }else{
               // Redireccionamos al login si hay algún error en la validación
