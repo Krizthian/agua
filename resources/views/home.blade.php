@@ -71,7 +71,7 @@
     @if(isset($resultados))
          <!--INICIO TABLA CON DATOS-->
       <div class="table-responsive">
-        <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
+        <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-md">
           <thead>
             <tr>
               <th scope="col">Planilla</th>
@@ -86,6 +86,7 @@
               <th scope="col">Fecha de Factura</th>
               <th scope="col">Fecha máxima de pago</th>
               <th scope="col">Estado del servicio</th>  
+              <th scope="col">Acciones</th>  
             </tr>
           </thead>
           <tbody>
@@ -103,7 +104,7 @@
                     @endif
                     <!--FIN DE MENSAJE DE ALERTA-->
             <tr>
-              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0"  href="{{route('consulta.show', $pagosConsultaItem)}}">{{$pagosConsultaItem->id}}</td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0">{{$pagosConsultaItem->id}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->medidor->numero_medidor}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->cliente->cedula}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->cliente->apellido}}, {{$pagosConsultaItem->cliente->nombre}}</td>
@@ -114,8 +115,9 @@
               <!--<td class="td_acciones">{{$pagosConsultaItem->consumo->responsable}}</td>-->
               <td class="td_acciones">{{$pagosConsultaItem->fecha_factura}}</td>
               <td class="td_acciones">{{$pagosConsultaItem->fecha_maxima}}</td>
-               @if($pagosConsultaItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge mt-0 text-bg-success">{{ucfirst($pagosConsultaItem->estado_servicio);}}</span></td>@endif
-               @if($pagosConsultaItem->estado_servicio == "inactivo")<td class="td_acciones"><span class="badge mt-0 text-bg-danger">{{ucfirst($pagosConsultaItem->estado_servicio);}}</span></td>@endif
+               @if($pagosConsultaItem->estado_servicio == "activo")<td class="td_acciones"><span class="badge mt-1 text-bg-success">{{ucfirst($pagosConsultaItem->estado_servicio);}}</span></td>@endif
+               @if($pagosConsultaItem->estado_servicio == "inactivo")<td class="td_acciones"><span class="badge mt-1 text-bg-danger">{{ucfirst($pagosConsultaItem->estado_servicio);}}</span></td>@endif
+              <td class="td_acciones"><a href="{{route('consulta.show', $pagosConsultaItem)}}" class="btn btn-outline-primary" title="Ver detalles de planilla" type="button"><i class="fa-solid fa-eye"></i></a></td> 
             </tr> 
             @endforeach
             @endif
@@ -123,7 +125,7 @@
         </table>
       </div>
         <!--FIN DE LA TABLA CON DATOS-->
-            <div class="mt-1 float-start text-muted"><i class="fa-regular fa-lightbulb mb-3"></i><strong> Consejo: </strong>Para ampliar los detalles de la planilla, haz clic en el número de planilla.</div>
+            <!--<div class="mt-1 float-start text-muted"><i class="fa-regular fa-lightbulb mb-3"></i><strong> Consejo: </strong>Para ampliar los detalles de la planilla, haz clic en el número de planilla.</div>-->
         <br>
         <br>
        <!--INICIO DE BANNER DE RECLAMO-->
@@ -143,7 +145,6 @@
               <script src="{{url('js/main_home.js')}}" defer></script>
         <!--FIN DE SCRIPT DATATABLE-->
     @endif
-
 </div>
 
 @endsection('content')

@@ -39,7 +39,7 @@
 
         <!--INICIO DE TABLA CON VALORES-->
        <div class="table-responsive">
-            <div class="mt-1 float-start text-muted"><i class="fa-regular fa-lightbulb"></i><strong> Consejo: </strong>Para visualizar el recibo de pago, haz clic en el número del recibo.</div>
+            <!--<div class="mt-1 float-start text-muted"><i class="fa-regular fa-lightbulb"></i><strong> Consejo: </strong>Para visualizar el recibo de pago, haz clic en el número del recibo.</div>-->
         <table id="tabla" class="table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
@@ -51,6 +51,7 @@
               <th scope="col">Valor restante</th>
               <th scope="col">Fecha de pago</th>
               <th scope="col">Forma de pago</th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -67,6 +68,9 @@
               <td class="td_acciones">{{$pagosItem->valor_restante}}</td>
               <td class="td_acciones">{{$pagosItem->fecha_pago}}</td>
               <td class="td_acciones">{{ucfirst($pagosItem->forma_pago)}}</td>
+               <!--BOTON VER-->
+              <td class="td_acciones"><a href="{{route('pagos.show', $pagosItem)}}" class="btn btn-outline-primary" title="Ver recibo" type="button"><i class="fa-solid fa-eye"></i></a></td>
+              <!--FIN BOTON VER-->
             </tr>
               </td>
             </tr> 

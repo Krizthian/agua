@@ -42,7 +42,7 @@
         <!--FIN DE MENSAJE DE RESULTADOS-->
         <!--INICIO DE TABLA CON VALORES-->
        <div class="table-responsive">
-            <div class="mt-1 float-start text-muted"><i class="fa-regular fa-lightbulb"></i><strong> Consejo: </strong>Para ampliar los detalles del reclamo, haz clic en el nombre del cliente.</div>
+            <!--<div class="mt-1 float-start text-muted"><i class="fa-regular fa-lightbulb"></i><strong> Consejo: </strong>Para ampliar los detalles del reclamo, haz clic en el nombre del cliente.</div>-->
         <table id="tabla" class="table caption-top table-hover table-responsive table table-bordered table-striped table-sm">
           <thead>
             <tr>
@@ -62,7 +62,7 @@
                 @foreach ($reclamos as $reclamosItem)
             <tr>
               <td class="td_acciones">{{$reclamosItem->id}}</td>
-              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="{{route('reclamos.show', $reclamosItem)}}">{{$reclamosItem->nombre}} {{$reclamosItem->apellido}}</td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0">{{$reclamosItem->nombre}} {{$reclamosItem->apellido}}</td>
               <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="/medidores/busqueda?valores={{$reclamosItem->numero_medidor}}">{{$reclamosItem->numero_medidor}}</a></td>
               <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="/planillas/busqueda?valores={{$reclamosItem->numero_planilla}}">{{$reclamosItem->numero_planilla}}</a></td>
               <td class="td_acciones">{{$reclamosItem->fecha_reclamo}}</td>
@@ -72,6 +72,9 @@
               <!--INICIO DE BOTONES DE ACCIONES-->
               <td class="td_acciones">
               <div class="btn-group">
+               <!--BOTON VER-->
+                  <a href="{{route('reclamos.show', $reclamosItem)}}" class="btn btn-outline-primary" title="Ver detalles del reclamo" type="button"><i class="fa-solid fa-eye"></i></a>
+                <!--FIN BOTON VER-->
              @if($reclamosItem->estado_reclamo == "en proceso")
                   <!--BOTON ACTUALIZAR ESTADO A MARCAR COMO RESUELTO-->
                       <a type="button" href="{{route('reclamos.actualizarEstado', $reclamosItem)}}" class="btn btn-outline-success" title="Marcar como resuelto"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-check" viewBox="0 0 16 16">

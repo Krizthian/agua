@@ -80,13 +80,16 @@
             @else
                 @foreach ($clientes as $clientesItem)
             <tr>
-              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="{{route('clientes.listar', $clientesItem )}}">{{$clientesItem->apellido}}, {{$clientesItem->nombre}}</a></td>
+              <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0">{{$clientesItem->apellido}}, {{$clientesItem->nombre}}</a></td>
               <td class="td_acciones">{{$clientesItem->cedula}}</td>
               <td class="td_acciones">{{$clientesItem->direccion}}</td>
               <td class="td_acciones">{{$clientesItem->telefono}}</td>
               <td class="td_acciones">
              <!--INICIO DE ACCIONES-->
                 <div class="btn-group">
+                <!--BOTON VER-->
+                    <a href="{{route('clientes.listar', $clientesItem )}}" class="btn btn-outline-primary" title="Ver medidores del cliente" type="button"><i class="fa-solid fa-gauge"></i></a>
+                <!--FIN BOTON VER-->
                 <!--BOTON EDITAR-->
                 <div class="btn-group">
                     <a title="Editar cliente" type="button" href="{{route('clientes.editar', $clientesItem )}}" class="btn btn-outline-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
