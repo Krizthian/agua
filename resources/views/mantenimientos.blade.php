@@ -79,6 +79,7 @@
               <th scope="col">Fecha para Mantenimiento</th>
               <th scope="col">Ubicación</th>
               <th scope="col">Responsable Asignado</th>
+              <th scope="col">Detalle</th>
               <th scope="col">Estado de Mantenimiento</th>
               <th scope="col">Acciones</th>
             </tr>
@@ -95,6 +96,7 @@
               <td class="td_acciones">{{$mantenimientosItem->fecha_mantenimiento}}</td>
               <td class="td_acciones">{{$mantenimientosItem->medidor->ubicacion}}</td>
               <td class="td_acciones">{{$mantenimientosItem->responsable_asignado}}</td>
+              <td class="td_acciones">{{$mantenimientosItem->detalle}}</td>
               @if($mantenimientosItem->estado_mantenimiento == "solicitado")<td class="td_acciones"><span class="badge mt-1 text-bg-info">{{ucfirst($mantenimientosItem->estado_mantenimiento);}}</span></td>@endif
               @if($mantenimientosItem->estado_mantenimiento == "en proceso")<td class="td_acciones"><span class="badge mt-1 text-bg-primary">{{ucfirst($mantenimientosItem->estado_mantenimiento);}}</span></td>@endif
               @if($mantenimientosItem->estado_mantenimiento == "completado")<td class="td_acciones"><span class="badge mt-1 text-bg-success">{{ucfirst($mantenimientosItem->estado_mantenimiento);}}</span></td>@endif

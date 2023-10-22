@@ -37,7 +37,7 @@
               @endif
           <!--FIN DE MENSAJES DE ERROR-->
     		<input type="hidden" name="id_medidor" value="{{ $consumoMedidorItem->id }}">
-         <div class="col-md-6"> 
+         <div class="col-md-6 mb-2">
            <label>Número de medidor:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-gauge fa-sm"></i></span>
@@ -45,23 +45,23 @@
             </div>    
           </div>    
 
-          <div class="col-md-6">  
+          <div class="col-md-6 mb-2"> 
             <label>Fecha para mantenimiento:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-calendar-days fa-sm"></i></span>
-            <input type="date" class="form-control" name="fecha_mantenimiento" required></input>
+            <input type="date" value="{{old('fecha_mantenimiento')}}" class="form-control" name="fecha_mantenimiento" required></input>
             </div>  
           </div>  
 
-          <div class="col-md-6">  
+          <div class="col-md-6 mb-2">
             <label>Responsable asignado:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-user-gear fa-sm"></i></span>
-                <input type="text" class="form-control @error('responsable_asignado') is-invalid @enderror" name="responsable_asignado" placeholder="Ej. David Lopez" required></input>
+                <input type="text" value="{{old('responsable_asignado')}}" class="form-control @error('responsable_asignado') is-invalid @enderror" name="responsable_asignado" placeholder="Ej. David Lopez" required></input>
             </div>  
           </div>  
 
-           <div class="col-md-6"> 
+           <div class="col-md-6 mb-2">
             <label>Estado de mantenimiento:</label>
             <div class="input-group mb-2">
               <span class="input-group-text"><i class="fa-solid fa-clock fa-sm"></i></span>
@@ -70,6 +70,15 @@
               </select>
                 </div>  
                </div>  
+
+           <div class="col-mb-12">
+            <label>Detalle:</label>
+            <div class="input-group mb-2">
+              <span class="input-group-text"><i class="fa-solid fa-circle-info fa-sm"></i></span>
+              <textarea maxlength="255" type="text" class="form-control @error('detalle') is-invalid @enderror" name="detalle" placeholder="Ingrese el detalle de la solicitud" required></textarea>
+                </div>  
+               </div>
+
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Guardar</button></center></div>
           <br>

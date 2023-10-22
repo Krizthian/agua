@@ -90,11 +90,13 @@ class MantenimientosController extends Controller
                 'responsable_asignado' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'estado_mantenimiento' => 'required',
                 'fecha_mantenimiento' => 'required',
+                'detalle' => 'required',
             ],[
                 'responsable_asignado.regex' => 'El campo de responsable asignado debe ser de texto',
                 'responsable_asignado.required' => 'El campo de responsable asignado es obligatorio',
                 'estado_mantenimiento.required' => 'El campo de estado de mantenimiento es obligatorio',
                 'fecha_mantenimiento.required' => 'El campo de fecha para mantenimiento es obligatorio',
+                'detalle.required' => 'El campo de detalle para mantenimiento es obligatorio',
             ]);
             //Comprobamos si se validaron los campos
                 if ($campos_validados) {
@@ -104,6 +106,7 @@ class MantenimientosController extends Controller
                         'fecha_mantenimiento' => $campos_validados['fecha_mantenimiento'],
                         'responsable_asignado' => $campos_validados['responsable_asignado'],
                         'estado_mantenimiento' => $campos_validados['estado_mantenimiento'],
+                        'detalle' => $campos_validados['detalle'],
                    ]);
              //Redireccionamos
                 return redirect()->route('mantenimientos.index')->with('resultado_creacion', 'Se ha solicitado el mantenimiento correctamente');
@@ -141,10 +144,12 @@ class MantenimientosController extends Controller
             $campos_validados = request()->validate([
                 'responsable_asignado' => 'required|regex:/^[a-zA-ZáÁéÉíÍóÓúÚñÑ\s]+$/u',
                 'estado_mantenimiento' => 'required',
+                'detalle' => 'required',
             ],[
                 'responsable_asignado.regex' => 'El campo de responsable asignado debe ser de texto',
                 'responsable_asignado.required' => 'El campo de responsable asignado es obligatorio',
                 'estado_mantenimiento.required' => 'El campo de estado de mantenimiento es obligatorio',
+                'detalle.required' => 'El campo de detalle de mantenimiento es obligatorio',
             ]);
         //Comprobamos si los campos han sido validados
             if ($campos_validados) {
@@ -154,7 +159,8 @@ class MantenimientosController extends Controller
                         'id_medidor' => $id_medidor,
                         'fecha_mantenimiento' => $fecha_mantenimiento,
                         'responsable_asignado' => $campos_validados['responsable_asignado'],
-                        'estado_mantenimiento' => $campos_validados['estado_mantenimiento']
+                        'estado_mantenimiento' => $campos_validados['estado_mantenimiento'],
+                        'detalle' => $campos_validados['detalle']
                     ]);
         //Redireccionamos
             return redirect()->route('mantenimientos.index')->with('resultado_actualizacion', 'Se ha actualizado la información de solicitud de mantenimiento correctamente'); 

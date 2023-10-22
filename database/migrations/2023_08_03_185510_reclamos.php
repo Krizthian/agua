@@ -20,6 +20,7 @@ return new class extends Migration
             $table ->string('email');
             $table ->string('motivo');
             $table ->string('estado_reclamo');
+            $table ->string('observacion');
             $table ->date('fecha_reclamo');
             $table ->string('telefono');
         });

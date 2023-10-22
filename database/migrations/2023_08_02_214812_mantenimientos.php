@@ -17,6 +17,7 @@ return new class extends Migration
             $table ->date('fecha_mantenimiento');
             $table ->string('responsable_asignado');
             $table ->string('estado_mantenimiento');
+            $table ->string('detalle');
         });
     }
 

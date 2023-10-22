@@ -207,6 +207,7 @@
               <th scope="col">Fecha para Mantenimiento</th>
               <th scope="col">Ubicación</th>
               <th scope="col">Responsable Asignado</th>
+              <th scope="col">Detalle</th>
               <th scope="col">Estado de Mantenimiento</th>
             </tr>
           </thead>
@@ -222,6 +223,7 @@
               <td class="td_acciones">{{$queryMantenimientosItem->fecha_mantenimiento}}</td>
               <td class="td_acciones">{{$queryMantenimientosItem->medidor->ubicacion}}</td>
               <td class="td_acciones">{{$queryMantenimientosItem->responsable_asignado}}</td>
+              <td class="td_acciones">{{$queryMantenimientosItem->detalle}}</td>
               <td class="td_acciones">{{ucFirst($queryMantenimientosItem->estado_mantenimiento)}}</td>
             </tr> 
           @endforeach

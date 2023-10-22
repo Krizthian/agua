@@ -51,12 +51,16 @@
 
             <label>Responsable asignado:</label><center><input type="text" class="form-control @error('responsable_asignado') is-invalid @enderror" name="responsable_asignado" value="{{$mantenimientosItem->responsable_asignado}}"></input></center>
 
-			<label>Estado de mantenimiento:</label><center>
-	            <select class="form-select input-group mb-2" id="estado_mantenimiento" name="estado_mantenimiento" required>
-	              <option value="{{$mantenimientosItem->estado_mantenimiento}}" required selected>{{ucFirst($mantenimientosItem->estado_mantenimiento)}}</option>
-	              <option value="en proceso" required>En proceso</option>
-	              <option value="completado" required>Completado</option>
-	            </select>
+      			<label>Estado de mantenimiento:</label><center>
+      	            <select class="form-select input-group mb-2" id="estado_mantenimiento" name="estado_mantenimiento" required>
+      	              <option value="{{$mantenimientosItem->estado_mantenimiento}}" required selected>{{ucFirst($mantenimientosItem->estado_mantenimiento)}}</option>
+      	              <option value="solicitado" required>Solicitado</option>
+                      <option value="en proceso" required>En proceso</option>
+      	              <option value="completado" required>Completado</option>
+      	            </select></center>
+            <label>Detalle:</label><div class="input-group mb-2">
+                    <span class="input-group-text"><i class="fa-solid fa-circle-info fa-sm"></i></span>
+                    <textarea maxlength="255" type="text" class="form-control @error('detalle') is-invalid @enderror" name="detalle" placeholder="{{$mantenimientosItem->detalle}}" required>{{$mantenimientosItem->detalle}}</textarea><center></div>
           <br>
             <div class="col-md-12 text-right"><center><button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Actualizar</button></center></div>
           <br>
