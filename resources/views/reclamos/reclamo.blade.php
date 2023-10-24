@@ -83,14 +83,21 @@
                 <span class="input-group-text"><i class="fa-solid fa-circle-info"></i></span>
               <textarea maxlength="255" rows="3" type="text" class="form-control" placeholder="{{$reclamosItem->motivo}}" disabled></textarea>
           </div>
-        </div>
+        </div>       
         <hr>
            <div class="col-auto">
             <label>Estado del reclamo:</label>
               <div class="input-group mb-2">
-                <span class="input-group-text"><i class="fa-solid fa-comment fa-sm"></i></span>
+                <span class="input-group-text"><i class="fa-solid fa-clock fa-sm"></i></span>
                 <input type="text" value="{{ucFirst($reclamosItem->estado_reclamo)}}" class="form-control @if($reclamosItem->estado_reclamo == "resuelto") is-valid @endif" disabled></input>
-                </div>     
+                </div>
+             <div class="col-auto">
+              <label>Observación:</label>
+                <div class="input-group mb-2">
+                  <span class="input-group-text"><i class="fa-solid fa-comment"></i></span>
+                <textarea maxlength="255" rows="3" type="text" class="form-control" placeholder="{{$reclamosItem->observacion}}" disabled></textarea>
+            </div>
+        </div> 
                 <br>  
               <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-2">
                 @if($reclamosItem->estado_reclamo == "en proceso")
@@ -105,7 +112,7 @@
 
                   @elseif ($reclamosItem->estado_reclamo == "ingresado")
                  <!--BOTON ACTUALIZAR ESTADO A MARCAR COMO EN PROCESO-->
-                    <a type="button" href="{{route('reclamos.actualizarEstado', $reclamosItem)}}" class="btn btn-outline-primary" title="Marcar como en proceso"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                    <a type="button" href="{{route('reclamos.actualizarEstado', $reclamosItem)}}" class="btn btn-outline-dark" title="Marcar como en proceso"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
                     <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
                     <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
                   </svg> Marcar como en proceso</a>
@@ -121,6 +128,7 @@
                  <!--FIN BOTON ACTUALIZAR ESTADO A MARCAR COMO INGRESADO -->
                  @endif            
               </div>   
+
   </main>
         <!--FIN DE TABLA CON VALORES-->
         <!--SCRIPT DATATABLE-->

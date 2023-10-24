@@ -122,23 +122,33 @@ class ReclamosController extends Controller
     }
 
     /**
-     * Actualizar el estado del reclamo
-     */
+     * Devolver formulario para actualizar el estado del reclamo
+    */
     public function actualizarEstado(Reclamos $reclamosItem)
     {
-        //Comprobamos el estado del servicio
-            //Cambiamos el estado del reclamo a "en proceso"
-                if ($reclamosItem->estado_reclamo == "ingresado") {
-                    Reclamos::where('id', '=', $reclamosItem->id)->update(['estado_reclamo' => 'en proceso']);
-                    return redirect()->back()->with('resultado', 'Se ha actualizado el estado del reclamo '. ''. $reclamosItem->id); //Devolvemos el mensaje de resultados a la vista 'reclamos'
-            //Cambiamos el estado del reclamo a "resuelto"
-                }elseif ($reclamosItem->estado_reclamo == "en proceso") {
-                    Reclamos::where('id', '=', $reclamosItem->id)->update(['estado_reclamo' => 'resuelto']);
-                    return redirect()->back()->with('resultado', 'Se ha actualizado el estado del reclamo '. ''. $reclamosItem->id); //Devolvemos el mensaje de resultados a la vista 'reclamos'
-            //Cambiamos el estado del reclamo a "ingresado"        
-                }elseif ($reclamosItem->estado_reclamo == "resuelto" || $reclamosItem->estado_reclamo == "en proceso"){
-                    Reclamos::where('id', '=', $reclamosItem->id)->update(['estado_reclamo' => 'ingresado']);
-                    return redirect()->back()->with('resultado', 'Se ha actualizado el estado del reclamo '. ''. $reclamosItem->id); //Devolvemos el mensaje de resultados a la vista 'reclamos' 
-                }
+
+        //Obtenemos la informacion del reclamo
+            $queryReclamos = Reclamos::where('id', '=', $reclamosItem->id)->get();
+
+        //Devolvemos todo lo obtenido al formulario de actualización    
+            return view('reclamos.actualizar', [
+                'reclamosItem' => $reclamosItem,
+                'queryReclamos' => $queryReclamos
+            ]);
     }
+
+    /**
+     * Procesar actualización de estado de reclamo
+    */
+    public function update(Request $request, Reclamos $reclamosItem)
+    {
+        //Obtenemos los valores
+            $estado_reclamo = $request->input('estado_reclamo');
+            $observacion = $request->input('observacion');
+
+        //Actualizamos el estado
+                Reclamos::where('id', '=', $reclamosItem->id)->update(['estado_reclamo' => $estado_reclamo, 'observacion' => $observacion]);
+                return redirect()->route('reclamos.index')->with('resultado', 'Se ha actualizado el estado del reclamo '. '#'. $reclamosItem->id); //Devolvemos el mensaje de resultados a la vista 'reclamos'
+    }
+
 }

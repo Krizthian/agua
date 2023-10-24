@@ -151,8 +151,10 @@ use Illuminate\Support\Facades\Route;
 			Route::get('/reclamos/busqueda', [ReclamosController::class, 'busqueda'])->name('reclamos.busqueda');
 			//Registrar reclamo
 				Route::post('/reclamos/crear/{pagosConsultaItem}', [ReclamosController::class, 'store'])->name('reclamos.store');
-		//Actualizar estado de solicitud	
+		//Devolver formulario de actualización de estado de solicitud	
 			Route::get('/reclamos/actualizar/{reclamosItem}', [ReclamosController::class, 'actualizarEstado'])->name('reclamos.actualizarEstado');
+			//Actualizar estado del reclamo
+				Route::patch('/reclamos/actualizar/{reclamosItem}', [ReclamosController::class, 'update'])->name('reclamos.update');
 
 //Rutas para mostrar (clientes)
 	Route::view('/clientes', 'clientes')->name('clientes');
