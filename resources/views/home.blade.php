@@ -81,8 +81,6 @@
               <th scope="col">Valor actual</th>
               <th scope="col">Meses en mora</th>
               <th scope="col">Consumo actual</th>
-              <!--<th scope="col">Consumo previo</th>-->
-              <!--<th scope="col">Responsable de lectura</th>-->
               <th scope="col">Fecha de Factura</th>
               <th scope="col">Fecha máxima de pago</th>
               <th scope="col">Estado del servicio</th>  
@@ -150,18 +148,17 @@
                           searching: false, // Oculta la barra de búsqueda
                           info: false, // Oculta la información de paginación
                           paginate: false, // Oculta la información de paginación
+                          responsive: true,
                           language: {
                               "emptyTable": "No hay datos disponibles",
                               "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
                               "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
                               "infoFiltered": "(filtrado de _MAX_ entradas totales)",
                               "lengthMenu": "Mostrar _MENU_ entradas",
-
                           },
-                           initComplete: function () {
-                           $('.dt-buttons').addClass('float-end mb-3'); // Agrega la clase float-end al contenedor de botones
-                          },
-
+                             initComplete: function () {
+                             $('.dt-buttons').addClass('float-end mb-3'); // Agrega la clase float-end al contenedor de botones
+                            },
                           buttons: [
                               {
                                   extend: 'pdfHtml5',
@@ -169,6 +166,10 @@
                                   text: '<i class="fas fa-file-pdf"></i>',
                                   titleAttr: 'Exportar a PDF',
                                   title: 'LISTADO DE PLANILLAS DE CIUDADANO',
+                                  messageTop: 'Fecha de reporte: {{ now()->toDateString() }}',
+                                  exportOptions: {
+                                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ] //Seleccionamos las columnas que se exportarán
+                                  },
                                   customize: function ( doc ) {
 
                                                       doc.content.splice( 1, 0, {
@@ -184,9 +185,24 @@
                                   extend: 'print',
                                   className: 'btn btn-info',
                                   text: '<i class="fas fa-print"></i>',
-                                  titleAttr: 'Imprimir'
-
-                              }, 
+                                  title: '<center>LISTADO DE PLANILLAS DE CIUDADANO</center>',
+                                  messageTop: '<b>Fecha de reporte:</b> {{ now()->toDateString() }}',                                  
+                                  exportOptions: {
+                                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ] //Seleccionamos las columnas que se exportarán
+                                  },
+                                  titleAttr: 'Imprimir',
+                                  //Inicio marca de agua
+                                    customize: function ( win ) {
+                                        $(win.document.body)
+                                            .css( 'font-size', '10pt' )
+                                            .prepend(
+                                                '<img src="https://i.imgur.com/mNg8QqN.png" style="display:block; margin-right:auto; margin-left:0;" />'
+                                            );
+                                        $(win.document.body).find( 'table' )
+                                            .addClass( 'compact' )
+                                            .css( 'font-size', 'inherit' );
+                                    } //Fin marca de agua
+                                }, 
                                                            
                           ]
 

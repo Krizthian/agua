@@ -23,6 +23,7 @@
       <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js" defer></script>
       <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js" defer></script>
       <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js" defer></script>
+      
     <!--FIN DATATABLE-->
 
   </head>

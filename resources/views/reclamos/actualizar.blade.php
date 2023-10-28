@@ -105,7 +105,7 @@
             <label>Observación:</label>
               <div class="input-group mb-2">
                <span class="input-group-text"><i class="fa-solid fa-comment fa-sm"></i></span>
-              <textarea maxlength="255" rows="3" type="text" name="observacion" placeholder="Ingrese una observacion" class="form-control">{{$reclamosItem->observacion}}</textarea>
+              <textarea maxlength="255" rows="3" type="text" name="observacion" placeholder="Ingrese una observación" class="form-control">{{$reclamosItem->observacion}}</textarea>
           </div>
         </div>
          <br>
