@@ -31,6 +31,9 @@
     <!--FIN DE BOTONES-->
        <main class="w-100 m-auto">
         <div id="planilla">
+          <!--LOGOTIPO DE INSTITUCION-->
+            <center><img class="img-fluid mb-4" width="170" height="50" src="{{url('img/negro_logo.png')}}" alt="Ingresar un reclamo"></center>
+          <!-- FIN DE LOGOTIPO DE INSTITUCION-->
       <!--INICIO DE MENSAJE DE VALORES INEXISTENTES-->
           @if($pagosConsultaItem->valor_actual == 0 && $pagosConsultaItem->estado_servicio == 'activo')
               <div class="alert alert-primary alert-dismissible fade show">

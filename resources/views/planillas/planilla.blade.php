@@ -82,6 +82,9 @@
     <!--FIN DE BOTONES-->
        <main class="w-100 m-auto">
         <div id="planilla">
+          <!--LOGOTIPO DE INSTITUCION-->
+            <center><img class="img-fluid mb-4" width="170" height="50" src="{{url('img/negro_logo.png')}}" alt="Ingresar un reclamo"></center>
+          <!-- FIN DE LOGOTIPO DE INSTITUCION-->
         <form class="row g3">
            <div class="col-md-12 mb-2">
             <label>Cliente:</label>
