@@ -94,7 +94,7 @@ class UsuariosController extends Controller
                         'cedula' => 'required|unique:usuarios|numeric|digits_between:10,13',
                         'rol' => 'required',
                         'email' => 'required|email|unique:usuarios',
-                        'telefono' => 'required|numeric',
+                        'telefono' => 'required|numeric|digits_between:7,10',
                     ],[
                         //Mensajes de error de nombres
                             'nombre.regex' => 'El campo nombre debe contener texto',
@@ -110,6 +110,7 @@ class UsuariosController extends Controller
                             'email.email' => 'El campo correo debe contener un correo electrónico',     
                         //Mensajes de error de teléfono
                             'telefono.numeric' => 'El campo teléfono debe contener números',
+                            'telefono.digits_between' => 'El campo teléfono debe contener hasta 10 caracteres'
                     ]);
 
                 if($campos_validados){ 
@@ -179,7 +180,7 @@ class UsuariosController extends Controller
                         'cedula' => 'required|numeric|digits_between:10,13,|unique:usuarios,cedula,' . $usuariosItem->id,
                         'rol' => 'required',
                         'email' => 'required|email|unique:usuarios,email,' . $usuariosItem->id,
-                        'telefono' => 'required|numeric',
+                        'telefono' => 'required|numeric|digits_between:7,10',
                 ],[
                     //Mensajes de error de usuario
                         'usuario.unique' => 'Este usuario ya se encuentra registrado',
@@ -197,6 +198,7 @@ class UsuariosController extends Controller
                     //Mensajes de error de teléfono
                         'telefono.numeric' => 'El campo teléfono debe contener números',
                         'telefono.required' => 'El campo teléfono es obligatorio',
+                        'telefono.digits_between' => 'El campo teléfono debe contener hasta 10 caracteres'
                 ]);
 
                 if($campos_validados){

@@ -87,7 +87,7 @@ class ClientesController extends Controller
                     'cedula' => 'required|numeric|digits_between:10,13|unique:clientes',
                     'direccion' => 'required',
                     'email' => 'required|email|unique:clientes',
-                    'telefono' => 'required|numeric',
+                    'telefono' => 'required|numeric|digits_between:7,10',
 
                 ],[
                     'nombre.regex' => 'El campo nombre debe contener texto',
@@ -97,6 +97,7 @@ class ClientesController extends Controller
                     'cedula.unique' => 'Esta cédula ya se encuentra asociada a un cliente',
                     'cedula.digits_between' => 'El campo cédula debe contener al menos 10 caracteres',            
                     'telefono.numeric' => 'El campo teléfono debe contener números',
+                    'telefono.digits_between' => 'El campo teléfono debe contener hasta 10 caracteres',
 
                     'email.unique' => 'Este correo electrónico ya se encuentra asociado a un cliente',
                     'email.email' => 'El campo de correo electrónico debe contener un correo electrónico',
@@ -157,7 +158,7 @@ class ClientesController extends Controller
                     'cedula' => 'required|numeric|digits_between:10,13|unique:clientes,cedula,' . $clientesItem->id,
                     'direccion' => 'required',
                     'email' => 'required|email|unique:clientes,email,' . $clientesItem->id,
-                    'telefono' => 'required|numeric',
+                    'telefono' => 'required|numeric|digits_between:7,10',
                 ],[
                     'nombre.regex' => 'El campo nombre debe contener texto',
                     'apellido.regex' => 'El campo apellido debe contener texto',            
@@ -166,6 +167,7 @@ class ClientesController extends Controller
                     'cedula.unique' => 'Esta cédula ya se encuentra asociada a un cliente', 
                     'cedula.digits_between' => 'El campo cédula debe contener al menos 10 caracteres',           
                     'telefono.numeric' => 'El campo teléfono debe contener números',
+                    'telefono.digits_between' => 'El campo teléfono debe contener hasta 10 caracteres',
 
                     'email.unique' => 'Este correo electrónico ya se encuentra asociado a un cliente',
                     'email.email' => 'El campo de correo electrónico debe contener un correo electrónico',
