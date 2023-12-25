@@ -24,7 +24,7 @@
 <center><h1 class="mt-0 display-4">Recibo de Pago</center></h1>
 <main class="form-signin w-100 m-auto">
 		<div class="container container-recibo"> <!--INICIO DE CONTENEDOR--> 
-			<center><img class="img-fluid" width="170" height="50" src="{{url('img/negro_logo.png')}}" alt="Logotipo de Portovelo"></center>
+			<center><img class="img-fluid" width="170" height="50" src="{{url('img/fade_negro_logo.png')}}" alt="Logotipo de Portovelo"></center>
 			<form class="text-center">
 				<strong><label>Recibo: </label></strong> #{{$numero_recibo}}
 				<br>
