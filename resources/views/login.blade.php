@@ -8,10 +8,10 @@
 @section('content')
 <center><h1 class="display-4">INICIAR SESIÓN</h1></center>
 <link rel="stylesheet" href="{{url('css/custom_login.css')}}">
-<main class="form-signin w-100 m-auto container">
-  <!--LOGOTIPO DE INSTITUCION-->
+<main class="form-signin w-100 m-auto">
+  <!--LOGOTIPO DE INSTITUCION
     <center><img class="img-fluid mb-4" width="170" height="50" src="{{url('img/fade_negro_logo.png')}}" alt="Ingresar un reclamo"></center>
-  <!-- FIN DE LOGOTIPO DE INSTITUCION-->
+   FIN DE LOGOTIPO DE INSTITUCION-->
     <form action="{{route('login')}}" method="POST" >
       @csrf
         <!--INICIO DE MENSAJE DE RESULTADO DE LOGOUT-->

@@ -8,7 +8,7 @@
 @section('content')
 <center><h1 class="display-4">RECUPERAR CONTRASEÑA</h1></center>
 <link rel="stylesheet" href="{{url('css/custom_login.css')}}">
-<main class="form-signin w-100 m-auto container">
+<main class="form-signin w-100 m-auto">
   <form action="{{route('login.RecuperarProcesar')}}" method="POST" >
     @csrf
     <label for="email">Correo Electrónico</label>
