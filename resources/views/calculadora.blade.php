@@ -56,9 +56,15 @@
                       <label for="tipo">Categoría:</label>
                      <div class="input-group mb-2">
                          <span class="input-group-text"><i class="fa-solid fa-house fa-sm"></i></span>           
-                      <select class="form-select" id="tipo" name="tipo" required>
-                          <option value="residencial" selected>Residencial</option>
-                          <option value="comercial">Comercial</option>
+                          <select class="form-select" id="tipo" name="tipo" required>
+                            @if(session('valor_actual'))
+                                <option value="{{old('tipo')}}" selected>{{ucFirst(old('tipo'))}}</option>
+                                <option value="residencial">Residencial</option>
+                                <option value="comercial">Comercial</option>
+                              @else
+                                <option value="residencial" selected>Residencial</option>
+                                <option value="comercial">Comercial</option>
+                            @endif
                       </select>
                       </div>
                     </div>
@@ -72,14 +78,6 @@
 
                     @if(session('valor_actual'))
                       <hr>
-                   <!--<div class="col-auto">
-                        <label for="tarifa" >Tarifa:</label>
-                      <div class="input-group mb-2">
-                         <span class="input-group-text"><i class="fa-solid fa-comments-dollar fa-sm"></i></span>
-                        <input type="text" id="tarifa" class="form-control" value="$ {{ session('costo_agua') }}" readonly></input></center>
-                    </div>
-                  </div>-->
-
                    <div class="col-auto">
                         <label for="valor_agua" >Valor del agua:</label>
                       <div class="input-group mb-2">
