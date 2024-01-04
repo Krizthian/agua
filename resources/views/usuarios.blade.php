@@ -104,7 +104,7 @@
               @elseif($usuariosItem->rol == "personal")
                 <td class="td_acciones"><span class="badge mt-1 text-bg-info">{{ucfirst($usuariosItem->rol);}}</span></td>
               @elseif($usuariosItem->rol == "supervisor")
-                <td class="td_acciones"><span class="badge mt-1 text-bg-secondary">{{ucfirst($usuariosItem->rol);}}</span></td>
+                <td class="td_acciones"><span class="badge mt-1 text-bg-dark">{{ucfirst($usuariosItem->rol);}}</span></td>
               @endif
 
               <td class="td_acciones">{{$usuariosItem->email}}</td>
