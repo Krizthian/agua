@@ -127,6 +127,7 @@
                       <th>Medidor</th>
                       <th>Fecha de Solicitud</th>
                       <th>Estado</th>
+                      <th>Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -137,9 +138,12 @@
                       <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="/medidores/mantenimientos/busqueda?valores={{$mantenimiento->id}}">{{$mantenimiento->id}}</a></td>
                       <td class="td_acciones">{{$mantenimiento->medidor->numero_medidor}}</td>
                       <td class="td_acciones">{{$mantenimiento->fecha_solicitud}}</td>
+
                       @if($mantenimiento->estado_mantenimiento == "solicitado")<td class="td_acciones"><span class="badge text-bg-info">{{ucfirst($mantenimiento->estado_mantenimiento);}}</span></td>@endif
                       @if($mantenimiento->estado_mantenimiento == "en proceso")<td class="td_acciones"><span class="badge text-bg-primary">{{ucfirst($mantenimiento->estado_mantenimiento);}}</span></td>@endif
                       @if($mantenimiento->estado_mantenimiento == "completado")<td class="td_acciones"><span class="badge text-bg-success">{{ucfirst($mantenimiento->estado_mantenimiento);}}</span></td>@endif
+
+                      <td class="td_acciones"><a title="Ver detalles de solicitud" class="btn btn-outline-primary" href="/medidores/mantenimientos/busqueda?valores={{$mantenimiento->id}}"><i class="fa-solid fa-eye"></i></a></td>
                   </tbody>
                   @endforeach
                   @endif
@@ -167,6 +171,7 @@
                       <th>Cliente</th>
                       <th>Fecha</th>
                       <th>Estado</th>
+                      <th>Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -174,13 +179,16 @@
                       <center><tr><td colspan="8">No existen reclamos ingresados</td></tr></center>
                     @else
                     @foreach($reclamos as $reclamo)
-                      <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="/reclamos/busqueda?valores={{$reclamo->id}}">{{$reclamo->id}}</a></td>
+                      <td class="td_acciones"><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" href="/reclamos/reclamo/{{$reclamo->id}}">{{$reclamo->id}}</a></td>
                       <td class="td_acciones">{{$reclamo->numero_medidor}}</td>
                       <td class="td_acciones">{{$reclamo->apellido}}, {{$reclamo->nombre}}</td>
                       <td class="td_acciones">{{$reclamo->fecha_reclamo}}</td>
-                       @if($reclamo->estado_reclamo == "ingresado")<td class="td_acciones"><span class="badge text-bg-info">{{ucfirst($reclamo->estado_reclamo);}}</span></td>@endif
+                        
+                        @if($reclamo->estado_reclamo == "ingresado")<td class="td_acciones"><span class="badge text-bg-info">{{ucfirst($reclamo->estado_reclamo);}}</span></td>@endif
                         @if($reclamo->estado_reclamo == "en proceso")<td class="td_acciones"><span class="badge text-bg-primary">{{ucfirst($reclamo->estado_reclamo);}}</span></td>@endif
                         @if($reclamo->estado_reclamo == "resuelto")<td class="td_acciones"><span class="badge text-bg-success">{{ucfirst($reclamo->estado_reclamo);}}</span></td>@endif
+                      
+                      <td class="td_acciones"><a title="Ver detalles de reclamo" class="btn btn-outline-primary" href="/reclamos/reclamo/{{$reclamo->id}}"><i class="fa-solid fa-eye"></i></a></td>
                   </tbody>
                     @endforeach
                   @endif
