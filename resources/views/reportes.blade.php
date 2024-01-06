@@ -102,6 +102,7 @@
           <select class="form-select" id="year" name="year" required>
             <option value="" disabled selected>Seleccione un año</option>
             <option>{{date("Y")}}</option>
+            <option>{{date("Y")-1}}</option>
             <option>2022</option>
             <option>2021</option>
             <option>2020</option>
